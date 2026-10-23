@@ -68,6 +68,9 @@ export const GET: APIRoute = () => {
       commit: r.commitSha ?? null,
       commitDate: r.commitDate ?? null,
       pinnedAt: r.pinnedAt ?? null,
+      ...(r.tag ? { release: r.tag } : {}),
+      ...(r.install ? { install: r.install } : {}),
+      ...(r.stats ? { stats: r.stats } : {}),
       skillCount: r.skillCount,
       skillsIndexed: r.skills.length,
       skills: r.skills.map((s) => ({

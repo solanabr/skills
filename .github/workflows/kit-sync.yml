@@ -1,0 +1,68 @@
+name: Sync Solana AI Kit
+
+# Keeps the solanabr/ai-kit entry on the kit's latest release tag: its skills,
+# mirrors and the agent/command/MCP/pack counts in its blurb. Cheap (a handful
+# of API calls), so it runs daily instead of waiting for the weekly refresh.
+# The kit can also trigger it on release with a repository_dispatch of type
+# `kit-release`.
+
+on:
+  schedule:
+    - cron: '23 7 * * *' # daily 07:23 UTC
+  repository_dispatch:
+    types: [kit-release]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Shared with refresh.yml: both write src/data and push to main.
+concurrency:
+  group: registry-data
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Refresh the kit entry from its latest release
+        run: node scripts/refresh.mjs --only solana-ai-kit
+        env:
+          GITHUB_TOKEN: ${{ secrets.REGISTRY_TOKEN || secrets.GITHUB_TOKEN }}
+      - name: Skip when only stars or timestamps moved
+        id: changed
+        run: |
+          node -e '
+            const { execSync } = require("node:child_process");
+            const pick = (txt) => {
+              const e = JSON.parse(txt).ecosystem.find((x) => x.id === "solana-ai-kit");
+              const { stars, pushedAt, pinnedAt, ...rest } = e;
+              return JSON.stringify(rest);
+            };
+            const before = pick(execSync("git show HEAD:src/data/registry.json", { maxBuffer: 1 << 26 }).toString());
+            const after = pick(require("node:fs").readFileSync("src/data/registry.json", "utf8"));
+            const files = execSync("git status --porcelain -- src/data/eco-skill-files/solana-ai-kit").toString().trim();
+            const changed = before !== after || files !== "";
+            console.log(changed ? "Kit content changed." : "Kit unchanged — nothing to commit.");
+            require("node:fs").appendFileSync(process.env.GITHUB_OUTPUT, `changed=${changed}\n`);
+          '
+      - name: Build with the new kit data
+        if: steps.changed.outputs.changed == 'true'
+        run: npm run build
+      - name: Verify served bytes match advertised sha256 pins
+        if: steps.changed.outputs.changed == 'true'
+        run: node scripts/verify-integrity.mjs
+      - name: Commit
+        if: steps.changed.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data
+          git commit -m "chore(data): sync Solana AI Kit $(node -p 'require("./src/data/registry.json").ecosystem.find(x => x.id === "solana-ai-kit").tag')"
+          git push

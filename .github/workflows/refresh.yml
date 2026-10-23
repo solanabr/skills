@@ -8,9 +8,16 @@ on:
 permissions:
   contents: write
 
+# Shared with kit-sync.yml: both write src/data and push to main.
+concurrency:
+  group: registry-data
+  cancel-in-progress: false
+
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    # A rate-limited run waits for the hourly reset instead of failing.
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -21,11 +28,13 @@ jobs:
       - name: Refresh registry + mirrors from GitHub
         run: node scripts/refresh.mjs
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # REGISTRY_TOKEN (optional): a fine-grained token with public read
+          # access gets 5000 calls/h; the Actions token gets 1000/h.
+          GITHUB_TOKEN: ${{ secrets.REGISTRY_TOKEN || secrets.GITHUB_TOKEN }}
       - name: Verify every advertised external link is alive
         run: node scripts/check-links.mjs
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.REGISTRY_TOKEN || secrets.GITHUB_TOKEN }}
       - name: Build with refreshed data
         run: npm run build
       - name: Verify served bytes match advertised sha256 pins

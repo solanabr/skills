@@ -77,7 +77,26 @@ export interface EcosystemRepo {
   homepage: string | null;
   categories: string[];
   blurb: string;
+  /** Rendered into `blurb` by refresh from `stats` ({version}, {agents}, …). */
+  blurbTemplate?: string;
   url: string;
+  /** The repo's own installer, when it has one; else `npx skills add`. */
+  install?: string;
+  /** "release-tag" pins the highest vX.Y.Z tag instead of the branch head. */
+  pin?: "release-tag";
+  /** Read agent/command/MCP/pack counts from a Claude Code kit at the pin. */
+  kitStats?: boolean;
+  stats?: {
+    version: string;
+    agents: number;
+    commands: number;
+    mcpServers: number;
+    corePacks: number;
+    extensionPacks: number;
+    packs: number;
+  };
+  /** Release tag the pin resolves to (pin: "release-tag" only). */
+  tag?: string;
   stars: number | null;
   pushedAt: string | null;
   commitSha?: string | null;
@@ -179,7 +198,7 @@ export function installCommands(skill: OfficialSkill) {
 }
 
 export function repoInstallCommand(repo: EcosystemRepo): string {
-  return `npx skills add ${repo.repo}`;
+  return repo.install ?? `npx skills add ${repo.repo}`;
 }
 
 /** Convert a pinned github tree/blob URL into a raw SKILL.md URL agents can fetch. */

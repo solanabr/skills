@@ -4,8 +4,11 @@
  *
  *   node scripts/refresh.mjs          # full refresh (mirrors, trees, metadata, new skills)
  *   node scripts/refresh.mjs --meta   # metadata only (stars, pushed_at) — cheap
+ *   node scripts/refresh.mjs --only solana-ai-kit   # one entry (by id), a handful of calls
  *
- * Set GITHUB_TOKEN to raise API rate limits (60/h anonymous → 5000/h).
+ * Set GITHUB_TOKEN to raise API rate limits (60/h anonymous → 5000/h; an
+ * Actions GITHUB_TOKEN gets 1000/h). Hitting the limit waits for the reset
+ * rather than failing the run.
  */
 import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -17,6 +20,15 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const REGISTRY_PATH = join(ROOT, "src/data/registry.json");
 const registry = JSON.parse(readFileSync(REGISTRY_PATH, "utf8"));
 const metaOnly = process.argv.includes("--meta");
+/** --only <id>: refresh just that official/ecosystem/community entry. */
+const onlyIdx = process.argv.indexOf("--only");
+const only = onlyIdx > -1 ? process.argv[onlyIdx + 1] : null;
+if (onlyIdx > -1 && !only) throw new Error("--only needs an entry id");
+const selected = (id) => !only || id === only;
+if (only && ![...registry.official, ...registry.ecosystem].some((e) => e.id === only) &&
+    !registry.communityIndex.some((c) => c.repo === only)) {
+  throw new Error(`--only ${only}: no such entry`);
+}
 
 /** One timestamp per run — every pin taken this run carries the same pinnedAt. */
 const RUN_TS = new Date().toISOString();
@@ -88,7 +100,11 @@ const SKILL_PATHS = {
     include: [/^skills\/(solana|drift)\/SKILL\.md$/],
     exclude: [],
   },
-  // trailofbits/skills + solanabr/solana-ai-kit are hand-curated (highlights only)
+  // The kit's own skills; its packs live under ext/ and are indexed from their
+  // own repos. The hub at .claude/skills/SKILL.md and skill-packs only route
+  // to packs inside an installed kit, so they are no use on their own.
+  "solanabr/ai-kit": { include: [/^\.claude\/skills\/[^/]+\/SKILL\.md$/], exclude: [/^\.claude\/skills\/skill-packs\//] },
+  // trailofbits/skills is hand-curated (highlights only)
 };
 
 /**
@@ -100,7 +116,7 @@ const SKILL_PATHS = {
 const HOSTED_FULL = new Set([
   "sendaifun/skills",
   "sendaifun/solana-new",
-  "solanabr/solana-ai-kit",
+  "solanabr/ai-kit",
 ]);
 const ECO_FILES_DIR = join(ROOT, "src/data/eco-skill-files");
 
@@ -124,15 +140,30 @@ async function fetchRetry(url, opts, tries = 3) {
   }
 }
 
+/** Longest we sleep for a rate-limit reset; the primary window is an hour. */
+const MAX_RATE_WAIT_MS = 65 * 60 * 1000;
+
 let apiCalls = 0;
 async function gh(path) {
-  apiCalls++;
-  const res = await fetchRetry(`https://api.github.com${path}`, { headers: API_HEADERS });
-  if (res.status === 403 || res.status === 429) {
-    throw new Error(`GitHub API rate-limited on ${path} — set GITHUB_TOKEN`);
+  for (let attempt = 0; ; attempt++) {
+    apiCalls++;
+    const res = await fetchRetry(`https://api.github.com${path}`, { headers: API_HEADERS });
+    if (res.status !== 403 && res.status !== 429) return res.ok ? res.json() : null;
+    // A 403 without rate-limit headers is a real permission error.
+    const retryAfter = Number(res.headers.get("retry-after"));
+    const remaining = res.headers.get("x-ratelimit-remaining");
+    const reset = Number(res.headers.get("x-ratelimit-reset"));
+    let waitMs = null;
+    if (retryAfter > 0) waitMs = retryAfter * 1000;
+    else if (remaining === "0" && reset > 0) waitMs = Math.max(0, reset * 1000 - Date.now()) + 5000;
+    else if (res.status === 429) waitMs = 60_000;
+    if (waitMs === null) return null;
+    if (attempt >= 2 || waitMs > MAX_RATE_WAIT_MS) {
+      throw new Error(`GitHub API rate-limited on ${path} — set GITHUB_TOKEN`);
+    }
+    console.warn(`⚠ rate-limited on ${path} — waiting ${Math.ceil(waitMs / 60000)} min for the reset`);
+    await new Promise((r) => setTimeout(r, waitMs));
   }
-  if (!res.ok) return null;
-  return res.json();
 }
 
 async function raw(repo, branch, path) {
@@ -162,21 +193,95 @@ function parseFrontmatter(txt) {
   return fm;
 }
 
-async function repoMeta(repo) {
+/**
+ * Highest vX.Y.Z tag — what a repo's installer ships, for entries that set
+ * `pin: "release-tag"`. GitHub's "latest release" can lag the tags, so it is
+ * not used.
+ */
+async function latestTag(repo) {
+  const refs = await gh(`/repos/${repo}/git/matching-refs/tags/v`);
+  const tags = (refs ?? [])
+    .map((r) => r.ref.replace("refs/tags/", ""))
+    .filter((t) => /^v\d+\.\d+\.\d+$/.test(t));
+  const num = (t) => t.slice(1).split(".").map(Number);
+  tags.sort((a, b) => {
+    const [x, y] = [num(a), num(b)];
+    return x[0] - y[0] || x[1] - y[1] || x[2] - y[2];
+  });
+  return tags.pop() ?? null;
+}
+
+async function repoMeta(repo, pin) {
   const data = await gh(`/repos/${repo}`);
   if (!data) return null;
   const branch = data.default_branch ?? "main";
-  const branchData = await gh(`/repos/${repo}/branches/${branch}`);
+  let tag = null;
+  let head;
+  if (pin === "release-tag") {
+    tag = await latestTag(repo);
+    if (!tag) {
+      console.warn(`⚠ ${repo}: no vX.Y.Z tag — pin unchanged`);
+      head = null;
+    } else {
+      const c = await gh(`/repos/${repo}/commits/${tag}`);
+      head = c ? { sha: c.sha, date: c.commit?.committer?.date ?? null } : null;
+    }
+  } else {
+    const b = await gh(`/repos/${repo}/branches/${branch}`);
+    head = b ? { sha: b.commit?.sha, date: b.commit?.commit?.committer?.date ?? null } : null;
+  }
   return {
     stars: data.stargazers_count ?? null,
     pushedAt: data.pushed_at?.slice(0, 10) ?? null,
     license: data.license?.spdx_id ?? null,
     description: data.description ?? null,
     branch,
-    commitSha: branchData?.commit?.sha ?? null,
-    commitDate: branchData?.commit?.commit?.committer?.date ?? null,
+    tag,
+    commitSha: head?.sha ?? null,
+    commitDate: head?.date ?? null,
   };
 }
+
+/**
+ * Figures read from a Claude Code kit at its pin, for entries that set
+ * `kitStats: true`: agents and commands are the .md files in .claude/agents
+ * and .claude/commands, packs the core + extension entries of the kit's skill
+ * registry. They fill the {placeholders} in the entry's `blurbTemplate`.
+ */
+async function kitStats(repo, ref, tree) {
+  const count = (dir) =>
+    tree.tree.filter((n) => n.type === "blob" && new RegExp(`^${dir.replaceAll(".", "\\.")}/[^/]+\\.md$`).test(n.path)).length;
+  const json = async (path) => {
+    const txt = await raw(repo, ref, path);
+    try {
+      return txt ? JSON.parse(txt) : null;
+    } catch {
+      return null;
+    }
+  };
+  const version = (await raw(repo, ref, ".claude/VERSION"))?.trim().split(/\s+/).pop() ?? null;
+  const mcp = await json(".mcp.json");
+  const reg = await json(".claude/skills/skill-registry.json");
+  const entries = reg?.entries ?? [];
+  const stats = {
+    version,
+    agents: count(".claude/agents"),
+    commands: count(".claude/commands"),
+    mcpServers: mcp ? Object.keys(mcp.mcpServers ?? {}).length : null,
+    corePacks: entries.filter((e) => e.tier === "core").length,
+    extensionPacks: entries.filter((e) => e.tier === "extension").length,
+  };
+  stats.packs = stats.corePacks + stats.extensionPacks;
+  const missing = Object.entries(stats).filter(([, v]) => !v).map(([k]) => k);
+  if (missing.length) throw new Error(`${repo}@${ref.slice(0, 7)}: kit stats unreadable (${missing.join(", ")})`);
+  return stats;
+}
+
+const fillTemplate = (tpl, vars) =>
+  tpl.replace(/\{(\w+)\}/g, (m, k) => {
+    if (!(k in vars)) throw new Error(`blurbTemplate: unknown placeholder ${m}`);
+    return String(vars[k]);
+  });
 
 /** Extract the skill directory from a github tree/blob URL regardless of ref. */
 const dirFromUrl = (url) => url.match(/\/tree\/[^/]+\/(.*)$/)?.[1] ?? null;
@@ -323,7 +428,15 @@ async function mirrorEcoSkills(eco) {
       : s.commitSha === eco.commitSha && eco.commitDate
         ? eco.commitDate
         : await commitDateAt(eco.repo, s.commitSha);
-    s.lastAuthor = await lastAuthorAt(eco.repo, ref, skillFilePath);
+    // The author of an unchanged SKILL.md is unchanged: reuse it instead of
+    // spending one API call per skill per run, which is what exhausted the
+    // Actions token's hourly budget.
+    const tree0 = blobM ? null : await treeAt(eco.repo, ref);
+    const blobSha = tree0?.tree?.find((n) => n.path === skillFilePath)?.sha ?? null;
+    if (!(blobSha && s.blobSha === blobSha && s.lastAuthor !== undefined)) {
+      s.lastAuthor = await lastAuthorAt(eco.repo, ref, skillFilePath);
+    }
+    s.blobSha = blobSha;
 
     const txt = await raw(eco.repo, ref, skillFilePath);
     if (!txt) {
@@ -396,7 +509,8 @@ async function mirrorEcoSkills(eco) {
 
 // ---------- official: metadata + verbatim mirrors + file trees ----------
 for (const skill of registry.official) {
-  const meta = await repoMeta(skill.repo);
+  if (!selected(skill.id)) continue;
+  const meta = await repoMeta(skill.repo, skill.pin);
   if (!meta) {
     console.warn(`⚠ ${skill.repo}: repo metadata unavailable`);
     continue;
@@ -512,7 +626,8 @@ for (const skill of registry.official) {
 // ---------- ecosystem: metadata + new-skill discovery ----------
 const skippedNoName = [];
 for (const eco of registry.ecosystem) {
-  const meta = await repoMeta(eco.repo);
+  if (!selected(eco.id)) continue;
+  const meta = await repoMeta(eco.repo, eco.pin);
   if (!meta) {
     console.warn(`⚠ ${eco.repo}: repo metadata unavailable`);
     continue;
@@ -546,9 +661,14 @@ for (const eco of registry.ecosystem) {
       console.warn(`⚠ ${eco.repo}: git tree unavailable at ${ref.slice(0, 7)} — skipped, pin unchanged`);
       continue;
     }
+    if (eco.kitStats) {
+      eco.stats = await kitStats(eco.repo, ref, tree);
+      if (eco.blurbTemplate) eco.blurb = fillTemplate(eco.blurbTemplate, eco.stats);
+    }
     eco.commitSha = ref;
     eco.commitDate = meta.commitDate;
     eco.pinnedAt = RUN_TS;
+    eco.tag = meta.tag ?? undefined;
     const skillPaths = tree.tree
       .map((n) => n.path)
       .filter((p) => p.endsWith("SKILL.md"))
@@ -604,6 +724,7 @@ for (const eco of registry.ecosystem) {
 // No mirror exists for these, so the pin is a verification stamp: the commit
 // that was HEAD when we last confirmed the repo is alive and what it claims.
 for (const c of registry.communityIndex) {
+  if (!selected(c.repo)) continue;
   const meta = await repoMeta(c.repo);
   if (!meta) {
     console.warn(`⚠ community ${c.repo}: repo metadata unavailable`);
@@ -652,8 +773,9 @@ for (const e of registry.ecosystem) e.logo = logoFor(e.repo);
 for (const c of registry.communityIndex) c.logo = logoFor(c.repo);
 console.log(`✓ logos for ${owners.size} orgs`);
 
-registry.updated = new Date().toISOString().slice(0, 10);
-if (!metaOnly) registry.pinnedAt = RUN_TS; // must never be fresher than the pins it describes
+if (!only) registry.updated = new Date().toISOString().slice(0, 10);
+// must never be fresher than the pins it describes — a single-entry run leaves the rest as they were
+if (!metaOnly && !only) registry.pinnedAt = RUN_TS;
 writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2) + "\n");
 
 // Legacy flat URLs 301 to dir-style hosting (Cloudflare/Netlify; Vercel uses vercel.json).

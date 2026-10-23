@@ -90,6 +90,14 @@ const countLabel = repo.highlightsOnly
       )
     }
     {
+      repo.tag && (
+        <>
+          <span aria-hidden="true">·</span>
+          <span title="Latest release: what the installer ships, and the commit this card is pinned to">{repo.tag}</span>
+        </>
+      )
+    }
+    {
       repo.commitSha && (
         <>
           <span aria-hidden="true">·</span>

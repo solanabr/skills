@@ -19,7 +19,7 @@ Built with [Astro](https://astro.build) as a fully static site. No client framew
 - **`/s/<id>/SKILL.md` + `/s/<id>/<companion>.md`** — dir-style hosting of the whole skill, companion reference files included, so relative links resolve and an agent can walk the entire skill without leaving the domain. Detail pages surface these as a **Reference library** (title + description parsed from each file's frontmatter).
 - **`/skills/<repo-id>/<skill>`** — ecosystem skill detail: same layout as official pages (rendered `SKILL.md`, install tabs, file tree, vendor logo) with an explicit *not official* disclaimer.
 - **`/s/<repo-id>/<skill>/SKILL.md`** — ecosystem mirrors. Three hosting tiers:
-  - **Full** (`sendaifun/skills`, `sendaifun/solana-new`, `solanabr/solana-ai-kit`): `SKILL.md` verbatim + every companion `.md`, relative links resolve on-domain — same guarantee as official skills.
+  - **Full** (`sendaifun/skills`, `sendaifun/solana-new`, `solanabr/ai-kit`): `SKILL.md` verbatim + every companion `.md`, relative links resolve on-domain — same guarantee as official skills.
   - **Partial** (every other repo with a license): `SKILL.md` mirrored with relative links rewritten to GitHub URLs pinned at the indexed commit, plus a provenance comment; companions stay upstream.
   - **Link-only** (repos with no declared license): never republished — pages link to the pinned source instead.
 - **Commit-SHA pinning, end to end** — every skill on the site (official, ecosystem, and link-only community entries) is tied to an immutable git commit plus two timestamps: the upstream committer date (`commitDate`) and when our refresh took the pin (`pinnedAt`). All mirrors are fetched *at* the pinned sha, all advertised `raw`/`github` links point *at* the pinned sha (never a branch), and whole-dir install commands fetch GitHub's codeload tarball *at* the sha (degit can't resolve arbitrary commits — it only matches ref tips) — closing the window where upstream force-pushes or branch moves could swap content between review and install. Pins advance **fail-closed**: only after the content at the new sha is actually fetched, never on a metadata-only (`--meta`) run, and never by falling back to a branch ref — so a recorded commit always describes exactly what was mirrored.
@@ -52,7 +52,13 @@ npm run refresh            # full: mirrors, file trees, frontmatter, stars, new-
 node scripts/refresh.mjs --meta   # cheap: stars + pushed_at only
 ```
 
-`GITHUB_TOKEN` is optional but raises rate limits. A weekly GitHub Action (`.github/workflows/refresh.yml`) runs the full refresh and commits changes; CI (`ci.yml`) builds every PR, asserts hosted files remain byte-identical mirrors, and re-verifies every advertised `sha256` against the built output (`scripts/verify-integrity.mjs`).
+`GITHUB_TOKEN` is optional but raises rate limits; when a run hits the limit it waits for the hourly reset instead of failing. A weekly GitHub Action (`.github/workflows/refresh.yml`) runs the full refresh and commits changes. It uses the `REGISTRY_TOKEN` repo secret when set (a fine-grained token with public read access, 5000 calls/h), else the Actions token (1000 calls/h); CI (`ci.yml`) builds every PR, asserts hosted files remain byte-identical mirrors, and re-verifies every advertised `sha256` against the built output (`scripts/verify-integrity.mjs`).
+
+### Solana AI Kit, synced daily
+
+The `solana-ai-kit` entry tracks [solanabr/ai-kit](https://github.com/solanabr/ai-kit) at its highest `vX.Y.Z` tag (`"pin": "release-tag"`), which is what the kit's installer ships, not its branch head. `"kitStats": true` reads the kit at that tag: agents and commands from `.claude/agents/*.md` and `.claude/commands/*.md`, MCP servers from `.mcp.json`, core and extension packs from `.claude/skills/skill-registry.json`, the version from `.claude/VERSION`. They fill the placeholders in the entry's `blurbTemplate`, so the card's numbers are never typed by hand.
+
+`.github/workflows/kit-sync.yml` runs `node scripts/refresh.mjs --only solana-ai-kit` every day at 07:23 UTC, about five API calls. It commits only when the kit's content changed (a new tag, skill or count), not for a star-count move. The kit can trigger it at release time with a `repository_dispatch` of type `kit-release`, sent with a token that can reach this repo. It shares a concurrency group with the weekly refresh, so the two never push at once.
 
 ### Adding an official skill
 

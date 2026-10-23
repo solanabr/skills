@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SkillCard from '../../components/SkillCard.astro';
+import SuperteamCard from '../../components/SuperteamCard.astro';
 import { registry, totalSkills, CATEGORY_LABELS, ecoSkillPage, superteamPage } from '../../lib/registry';
 
 const official = registry.official;
@@ -15,15 +16,14 @@ const ecoSkills = registry.ecosystem.flatMap((repo) =>
   }))
 );
 
-// Superteam Brasil: a skill with its own SKILL.md, plus every skill a skill set ships.
-const stSkills = registry.superteam.flatMap((st) => [
-  ...(st.main === 'SKILL.md'
-    ? [{ name: st.id, description: st.tagline, category: st.category, page: superteamPage(st), setName: st.displayName }]
-    : []),
-  ...st.subskills
+// Superteam Brasil: each skill sits beside the Foundation's in the official
+// row; the skills a skill set ships are listed in their own group below.
+const stOfficial = registry.superteam;
+const stSkills = registry.superteam.flatMap((st) =>
+  st.subskills
     .filter((x) => x.kind === 'skill')
     .map((x) => ({ name: x.name, description: x.description ?? '', category: st.category, page: superteamPage(st, x), setName: st.displayName })),
-]);
+);
 
 const categories = [
   'development',
@@ -38,6 +38,7 @@ const categories = [
 ];
 const usedCategories = new Set([
   ...official.map((s) => s.category),
+  ...stOfficial.map((s) => s.category),
   ...stSkills.map((s) => s.category),
   ...ecoSkills.map((s) => s.category),
 ]);
@@ -52,7 +53,7 @@ const usedCategories = new Set([
     <div class="container">
       <h1 class="section-title">Browse skills</h1>
       <p class="section-sub">
-        Official Solana Foundation skills, plus {ecoSkills.length} skills indexed from{' '}
+        Official skills from the Solana Foundation and Superteam Brasil, plus {ecoSkills.length} skills indexed from{' '}
         {registry.ecosystem.length} ecosystem repositories — each pinned to the commit we indexed.
       </p>
       <div class="filter-bar" role="search">
@@ -82,14 +83,14 @@ const usedCategories = new Set([
       </div>
       <div class="chips" id="category-chips">
         <button class="chip" data-cat="all" aria-pressed="true">
-          All <span class="chip-count">{official.length + stSkills.length + ecoSkills.length}</span>
+          All <span class="chip-count">{official.length + stOfficial.length + stSkills.length + ecoSkills.length}</span>
         </button>
         <button class="chip" data-cat="official" aria-pressed="false">
-          Official <span class="chip-count">{official.length}</span>
+          Official <span class="chip-count">{official.length + stOfficial.length}</span>
         </button>
-        {stSkills.length > 0 && (
+        {stOfficial.length > 0 && (
           <button class="chip" data-cat="superteam" aria-pressed="false">
-            Superteam Brasil <span class="chip-count">{stSkills.length}</span>
+            Superteam Brasil <span class="chip-count">{stOfficial.length + stSkills.length}</span>
           </button>
         )}
         {
@@ -98,6 +99,7 @@ const usedCategories = new Set([
             .map((c) => {
               const n =
                 official.filter((s) => s.category === c).length +
+                stOfficial.filter((s) => s.category === c).length +
                 stSkills.filter((s) => s.category === c).length +
                 ecoSkills.filter((s) => s.category === c).length;
               return (
@@ -115,7 +117,7 @@ const usedCategories = new Set([
     <div class="container">
       <div class="group" id="group-official">
         <h2 class="group-title">
-          <span class="badge badge-official">Official</span> Solana Foundation
+          <span class="badge badge-official">Official</span> Solana Foundation and Superteam Brasil
         </h2>
         <div class="grid grid-official">
           {
@@ -131,6 +133,20 @@ const usedCategories = new Set([
               </div>
             ))
           }
+          {
+            stOfficial.map((st) => (
+              <div
+                class="filterable"
+                data-name={st.id}
+                data-text={`${st.displayName} ${st.id} ${st.tagline} ${st.summary} ${CATEGORY_LABELS[st.category] ?? ''} ${st.category} superteam brasil brazil official`.toLowerCase()}
+                data-cat={st.category}
+                data-official="true"
+                data-superteam="true"
+              >
+                <SuperteamCard skill={st} featured />
+              </div>
+            ))
+          }
         </div>
       </div>
 
@@ -138,7 +154,7 @@ const usedCategories = new Set([
         stSkills.length > 0 && (
           <div class="group" id="group-superteam">
             <h2 class="group-title">
-              <span class="badge st-badge">Superteam Brasil</span> Official skills, part of the Solana AI Kit
+              <span class="badge st-badge">Superteam Brasil</span> Every skill in {[...new Set(stSkills.map((s) => s.setName))].join(' and ')}
             </h2>
             <div class="grid">
               {stSkills.map((s) => (

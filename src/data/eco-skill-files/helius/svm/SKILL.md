@@ -8,7 +8,7 @@ metadata:
 ---
 
 <!--
-  Mirror of https://github.com/helius-labs/core-ai/blob/f8c74e6a357fe89fc93c80bac522f5a8b6a7cafe/helius-skills/svm/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/helius-labs/core-ai/blob/f8c74e6a357fe89fc93c80bac522f5a8b6a7cafe/helius-skills/svm/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

@@ -4,7 +4,7 @@ description: Enhanced Solana RPC with DAS API, parsed transactions, webhooks, an
 ---
 
 <!--
-  Mirror of https://github.com/agiprolabs/claude-trading-skills/blob/981e1d736cdc02bdc1c55c74ec9224e956414706/skills/helius-api/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/agiprolabs/claude-trading-skills/blob/981e1d736cdc02bdc1c55c74ec9224e956414706/skills/helius-api/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

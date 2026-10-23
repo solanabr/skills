@@ -15,7 +15,7 @@ tags:
 ---
 
 <!--
-  Mirror of https://github.com/jup-ag/agent-skills/blob/a2211e3f6a7caa03310c7a9a8d816e723b0bdc5f/skills/jupiter-swap-migration/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/jup-ag/agent-skills/blob/a2211e3f6a7caa03310c7a9a8d816e723b0bdc5f/skills/jupiter-swap-migration/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

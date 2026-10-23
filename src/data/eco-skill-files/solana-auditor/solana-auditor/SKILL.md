@@ -4,7 +4,7 @@ description: Security audit of Solana/Rust programs while you develop. Trigger o
 ---
 
 <!--
-  Mirror of https://github.com/sanbir/solana-auditor-skills/blob/e501915ff4953ed25ff40bd9e776de370b350e8d/solana-auditor/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/sanbir/solana-auditor-skills/blob/e501915ff4953ed25ff40bd9e776de370b350e8d/solana-auditor/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

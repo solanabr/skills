@@ -17,7 +17,7 @@ metadata:
 ---
 
 <!--
-  Mirror of https://github.com/chainstacklabs/pumpclaw/blob/80706ea9381fc97d87215b3b1d51cbc16492101b/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/chainstacklabs/pumpclaw/blob/80706ea9381fc97d87215b3b1d51cbc16492101b/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

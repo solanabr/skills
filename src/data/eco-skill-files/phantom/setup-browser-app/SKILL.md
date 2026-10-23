@@ -4,7 +4,7 @@ description: Scaffold a vanilla JS/TS app with Phantom Browser SDK for wallet in
 ---
 
 <!--
-  Mirror of https://github.com/phantom/phantom-connect-cursor-plugin/blob/4162aa88131f0a6b6f0c050b176736f0773d038c/skills/setup-browser-app/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/phantom/phantom-connect-cursor-plugin/blob/4162aa88131f0a6b6f0c050b176736f0773d038c/skills/setup-browser-app/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

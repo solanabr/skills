@@ -1,6 +1,6 @@
-# skills.solana.com
+# kit.superteam.codes
 
-Agent skills for building on Solana — a curated registry of **official Solana Foundation skills** (hosted verbatim, per-file) plus an explorer for **ecosystem skill repositories** (Jupiter, Helius, Metaplex, SendAI, Solana Mobile, Trail of Bits, Pyth, OKX, and more).
+Agent skills for building on Solana — a curated registry of **official skills from the Solana Foundation and Superteam Brasil** (hosted verbatim, per-file) plus an explorer for **ecosystem skill repositories** (Jupiter, Helius, Metaplex, SendAI, Solana Mobile, Trail of Bits, Pyth, OKX, and more).
 
 Unlike sites that reskin a single community aggregator, this registry indexes **30 independent source repositories** — protocol-native ones included — every skill pinned to an immutable commit with published integrity hashes.
 
@@ -13,7 +13,7 @@ Built with [Astro](https://astro.build) as a fully static site. No client framew
 - **`/skills/<id>`** — official skill detail: rendered `SKILL.md`, install tabs (skills CLI / Claude Code / no-install / git), companion-file tree, metadata.
 - **`/s/<id>/SKILL.md`** — **per-file hosting**: the official skill served verbatim with `text/markdown` + CORS, so any agent can consume it from a single URL — no install:
   ```
-  Read https://skills.solana.com/s/solana-dev/SKILL.md and follow it for this task: …
+  Read https://kit.superteam.codes/s/solana-dev/SKILL.md and follow it for this task: …
   ```
   (The legacy flat form `/s/<id>.md` 301s here; it survives as a plain-file fallback on hosts without redirect support, but its relative links only resolve from the dir-style URL.)
 - **`/s/<id>/SKILL.md` + `/s/<id>/<companion>.md`** — dir-style hosting of the whole skill, companion reference files included, so relative links resolve and an agent can walk the entire skill without leaving the domain. Detail pages surface these as a **Reference library** (title + description parsed from each file's frontmatter).
@@ -86,6 +86,8 @@ npm run preview
 ```
 
 Deploy `dist/` to any static host (Vercel / Cloudflare Pages / Netlify — zero config, no server runtime).
+
+The site is served at `kit.superteam.codes`, set as `site` in `astro.config.mjs` and `SITE_URL` in `src/lib/registry.ts`; every hosted-file URL, canonical link, social image and llms.txt line is built from it. `superteam.codes` is on Vercel's nameservers with a wildcard record, so adding the domain under the Vercel project's **Settings → Domains** is the whole setup. The Solana AI Kit's installer stays at `aikit.superteam.codes` (`curl -fsSL https://aikit.superteam.codes | bash`), served by the kit's own Vercel project.
 
 ## Design
 

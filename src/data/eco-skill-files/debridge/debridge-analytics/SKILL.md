@@ -20,7 +20,7 @@ metadata:
 ---
 
 <!--
-  Mirror of https://github.com/debridge-finance/debridge-skills/blob/b3bc79abefd7e7fa7092c810c5f4f02136567d4e/skills/analytics/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/debridge-finance/debridge-skills/blob/b3bc79abefd7e7fa7092c810c5f4f02136567d4e/skills/analytics/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

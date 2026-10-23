@@ -62,7 +62,7 @@ export interface OgSpec {
   badge?: string | null;
   /** Second muted chip next to the badge, e.g. the repo slug. */
   badge2?: string | null;
-  /** Shown in the bottom bar: skills.solana.com<path>. */
+  /** Shown in the bottom bar: kit.superteam.codes<path>. */
   path?: string;
   /** Vendor logo data URI (use logoDataUri()). */
   logo?: string | null;
@@ -74,7 +74,7 @@ const clamp = (s: string, n: number) =>
 export async function renderOgPng(spec: OgSpec): Promise<Buffer> {
   const title = clamp(spec.title, 64);
   const subtitle = spec.subtitle ? clamp(spec.subtitle, 170) : null;
-  const displayUrl = `skills.solana.com${spec.path ?? ""}`;
+  const displayUrl = `kit.superteam.codes${spec.path ?? ""}`;
 
   const tree = h(
     "div",

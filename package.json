@@ -1,8 +1,8 @@
 {
-  "name": "skills-solana-com",
+  "name": "kit-superteam-codes",
   "version": "1.0.0",
   "private": true,
-  "description": "skills.solana.com — agent skills for building on Solana",
+  "description": "kit.superteam.codes — agent skills for building on Solana",
   "type": "module",
   "scripts": {
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",

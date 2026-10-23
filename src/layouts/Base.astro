@@ -19,7 +19,7 @@ const { title, description, canonical, noindex = false, ogImage } = Astro.props;
 const cleanPath =
   Astro.url.pathname.replace(/\.html$/, "").replace(/^\/index$/, "/") || "/";
 const canonicalURL = canonical ?? new URL(cleanPath, Astro.site).href;
-const ogImageURL = new URL(ogImage ?? '/og.png', Astro.site).href;
+const ogImageURL = new URL(ogImage ?? '/og/home.png', Astro.site).href;
 ---
 
 <!doctype html>

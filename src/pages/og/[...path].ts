@@ -6,6 +6,12 @@ import { renderOgPng, logoDataUri, type OgSpec } from "../../lib/og-template";
 // page route it belongs to (e.g. /og/skills/solana-dev.png).
 function specs(): Record<string, OgSpec> {
   const out: Record<string, OgSpec> = {
+    // The default card for any page without its own (Base.astro).
+    "home.png": {
+      title: "Teach your agent to build on Solana",
+      subtitle: `${totalSkills()}+ agent skills, official from the Solana Foundation and Superteam Brasil plus the ecosystem: install with one command, or use straight from a URL.`,
+      path: "",
+    },
     "skills.png": {
       title: "Browse skills",
       subtitle: `${totalSkills()} agent skills for building on Solana — official Solana Foundation skills plus the ecosystem, each pinned to the commit we indexed.`,

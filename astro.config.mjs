@@ -46,7 +46,7 @@ function rehypeCodeTabindex() {
 }
 
 export default defineConfig({
-  site: 'https://skills.solana.com',
+  site: 'https://kit.superteam.codes',
   output: 'static',
   trailingSlash: 'never',
   build: {

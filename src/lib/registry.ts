@@ -23,7 +23,8 @@ export interface OfficialSkill {
   repo: string;
   branch: string;
   dir: string;
-  license: string;
+  /** SPDX id GitHub detects upstream; null when the repo declares none. */
+  license: string | null;
   version: string | null;
   compatibility: string | null;
   multiFile: boolean;

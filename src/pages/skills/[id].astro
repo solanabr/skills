@@ -186,7 +186,7 @@ const refs = refsFor(skill.id);
             </div>
             <div>
               <dt>License</dt>
-              <dd>{skill.license}</dd>
+              <dd>{skill.license ?? 'None declared'}</dd>
             </div>
             {
               skill.version && (

@@ -151,7 +151,7 @@
       "repo": "solana-foundation/eth-to-sol-skill",
       "branch": "main",
       "dir": "",
-      "license": "MIT",
+      "license": null,
       "version": null,
       "compatibility": null,
       "multiFile": true,

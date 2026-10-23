@@ -163,7 +163,7 @@ const countLabel = repo.highlightsOnly
   }
   <div class="repo-actions">
     <div class="copyblock mini">
-      <span class="prompt-char">$</span>{install}
+      <span class="cmd"><span class="prompt-char">$ </span>{install}</span>
       <button class="copy-btn" data-copy={install} aria-label={`Copy install command for ${repo.displayName}`} title="Copy">
         <svg
           width="14"
@@ -327,7 +327,7 @@ const countLabel = repo.highlightsOnly
   .copyblock.mini {
     flex: 1;
     min-width: 0;
-    padding: 8px 40px 8px 12px;
+    padding: 4px 4px 4px 12px;
     font-size: 0.76rem;
   }
 </style>

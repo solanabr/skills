@@ -349,13 +349,21 @@ a.card:hover .card-arrow {
   background: var(--bg-code);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 13px 52px 13px 16px;
+  padding: 8px 8px 8px 16px;
   font-family: var(--font-mono);
   font-size: 0.84rem;
   line-height: 1.5;
   color: #d7dae2;
-  overflow-x: auto;
   white-space: pre;
+}
+
+/* The command scrolls inside its own box, so the copy button beside it never
+   covers the text. */
+.copyblock .cmd {
+  flex: 1;
+  min-width: 0;
+  padding: 5px 0;
+  overflow-x: auto;
   scrollbar-width: thin;
 }
 
@@ -388,6 +396,12 @@ a.card:hover .card-arrow {
 
 .copy-btn.copied {
   color: var(--green);
+}
+
+.copyblock .copy-btn {
+  position: static;
+  transform: none;
+  flex-shrink: 0;
 }
 
 /* ---------- tabs ---------- */

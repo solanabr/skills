@@ -519,7 +519,9 @@ for (const skill of registry.official) {
   skill.pushedAt = meta.pushedAt;
   skill.branch = meta.branch;
   if (metaOnly) continue;
-  if (meta.license && meta.license !== "NOASSERTION") skill.license = meta.license;
+  // What upstream declares, nothing else: a hand-set licence would outlive
+  // the repo that never had one.
+  skill.license = meta.license && meta.license !== "NOASSERTION" ? meta.license : null;
 
   // Fail closed: the pin (commitSha/commitDate/pinnedAt) is only committed
   // AFTER the mirror content is fetched at it, so a recorded sha always

@@ -1,9 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
 import SkillCard from '../components/SkillCard.astro';
+import SuperteamCard from '../components/SuperteamCard.astro';
 import RepoCard from '../components/RepoCard.astro';
 import CopyBlock from '../components/CopyBlock.astro';
-import { registry, totalSkills, contributorCount, installCommands, superteamPage, SITE_URL } from '../lib/registry';
+import { registry, totalSkills, contributorCount, installCommands, SITE_URL } from '../lib/registry';
 
 const official = registry.official;
 const featured = registry.ecosystem.filter((r) =>
@@ -47,7 +48,7 @@ const superteam = registry.superteam;
       <dl class="hero-stats">
         <div>
           <dt>Official skills</dt>
-          <dd>{official.length}</dd>
+          <dd title="Solana Foundation and Superteam Brasil">{official.length + superteam.length}</dd>
         </div>
         <div>
           <dt>Ecosystem repos</dt>
@@ -72,56 +73,22 @@ const superteam = registry.superteam;
         <div>
           <h2 class="section-title">Official skills</h2>
           <p class="section-sub">
-            Written and maintained by the Solana Foundation. Mirrored here byte-for-byte at a pinned
-            commit; every build checks the hosted files against their published sha256.
+            Written and maintained by the Solana Foundation and Superteam Brasil. Mirrored here
+            byte-for-byte at a pinned commit; every build checks the hosted files against their
+            published sha256.
           </p>
         </div>
-        <a class="btn btn-ghost btn-sm" href="/skills">View all</a>
+        <div class="section-actions">
+          <a class="btn btn-ghost btn-sm" href="/superteam">Superteam Brasil</a>
+          <a class="btn btn-ghost btn-sm" href="/skills">View all</a>
+        </div>
       </div>
       <div class="grid grid-official">
         {official.map((skill) => <SkillCard skill={skill} featured />)}
+        {superteam.map((skill) => <SuperteamCard skill={skill} featured />)}
       </div>
     </div>
   </section>
-
-  <!-- ————— Superteam Brasil ————— -->
-  {
-    superteam.length > 0 && (
-      <section class="section">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <h2 class="section-title">Superteam Brasil skills</h2>
-              <p class="section-sub">
-                Official skills from Superteam Brasil, built as part of the Solana AI Kit. Every
-                skill and subskill is hosted here as markdown, ready to copy.
-              </p>
-            </div>
-            <a class="btn btn-ghost btn-sm" href="/superteam">View all</a>
-          </div>
-          <div class="grid grid-official">
-            {superteam.map((s) => (
-              <a class="card hoverable st-home-card" href={superteamPage(s)}>
-                <span class="card-arrow" aria-hidden="true">↗</span>
-                <span class="st-home-badges">
-                  <span class="badge st-home-badge">Superteam Brasil</span>
-                  {s.tag && <span class="badge">{s.tag}</span>}
-                </span>
-                <h3>{s.displayName}</h3>
-                <p>{s.tagline}</p>
-                <span class="card-meta">
-                  <span>{s.subskills.length} {s.subskills.some((x) => x.kind === 'skill') ? 'skills' : 'commands and agents'}</span>
-                  <span aria-hidden="true">·</span>
-                  <span>{s.files.length} files</span>
-                  {s.stars !== null && (<><span aria-hidden="true">·</span><span>★ {s.stars}</span></>)}
-                </span>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
 
   <!-- ————— how to use ————— -->
   <section class="section" id="use">
@@ -295,20 +262,10 @@ const superteam = registry.superteam;
   .grid-official {
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   }
-  .st-home-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .st-home-badges {
+  .section-actions {
     display: flex;
     gap: 8px;
-  }
-  .st-home-badge {
-    background: rgba(255, 210, 63, 0.12);
-    color: #ffd23f;
-    border-color: rgba(255, 210, 63, 0.35);
+    flex-shrink: 0;
   }
   .use-grid {
     display: grid;
@@ -372,6 +329,10 @@ const superteam = registry.superteam;
     }
     .hero-stats {
       gap: 28px;
+    }
+    .section-head {
+      flex-wrap: wrap;
+      align-items: flex-start;
     }
   }
 </style>

@@ -1,0 +1,84 @@
+---
+import type { SuperteamEntry } from '../lib/registry';
+import { CATEGORY_LABELS, superteamPage } from '../lib/registry';
+
+// A Superteam Brasil skill, styled to sit beside the Foundation's SkillCard.
+interface Props {
+  skill: SuperteamEntry;
+  featured?: boolean;
+}
+const { skill, featured = false } = Astro.props;
+const subs = skill.subskills.length;
+const subLabel = skill.subskills.some((x) => x.kind === 'skill') ? 'skills' : 'commands and agents';
+---
+
+<a href={superteamPage(skill)} class:list={['card', { featured }]}>
+  <svg
+    class="card-arrow"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M7 17 17 7M7 7h10v10"></path>
+  </svg>
+  <div class="badges">
+    <span class="badge badge-official">Official</span>
+    <span class="badge badge-stbr">Superteam Brasil</span>
+    <span class="badge">{CATEGORY_LABELS[skill.category] ?? skill.category}</span>
+  </div>
+  <h3>{skill.displayName}</h3>
+  <code class="skill-name mono">{skill.id}</code>
+  <p>{skill.tagline}</p>
+  <div class="card-meta">
+    {skill.logo && <img class="owner-logo" src={skill.logo} alt="" width="18" height="18" loading="lazy" />}
+    <span>{skill.repo.split('/')[0]}</span>
+    <span aria-hidden="true">·</span>
+    {skill.tag && <span>{skill.tag}</span>}
+    {skill.tag && <span aria-hidden="true">·</span>}
+    <span>{subs} {subLabel}</span>
+    <span aria-hidden="true">·</span>
+    <span>{skill.files.length} files</span>
+  </div>
+</a>
+
+<style>
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .badge-stbr {
+    background: rgba(255, 210, 63, 0.12);
+    color: #ffd23f;
+    border-color: rgba(255, 210, 63, 0.35);
+  }
+  .skill-name {
+    align-self: flex-start;
+    font-size: 0.8rem;
+    color: #ffd23f;
+    background: rgba(255, 210, 63, 0.08);
+    border: 1px solid rgba(255, 210, 63, 0.25);
+    border-radius: 6px;
+    padding: 2px 8px;
+  }
+  .featured {
+    padding: 30px;
+  }
+  .featured h3 {
+    font-size: 1.35rem;
+  }
+  .featured p {
+    -webkit-line-clamp: 4;
+  }
+  .owner-logo {
+    border-radius: 5px;
+    object-fit: cover;
+    background: var(--bg-elev);
+  }
+</style>

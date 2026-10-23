@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import CopyBlock from '../../components/CopyBlock.astro';
+import MdActions from '../../components/MdActions.astro';
 import { registry, installCommands, CATEGORY_LABELS, SITE_URL } from '../../lib/registry';
 import { refsFor } from '../../lib/skill-refs';
 
@@ -140,18 +141,24 @@ const refs = refsFor(skill.id);
               </p>
               <div class="ref-grid">
                 {refs.map((ref) => (
-                  <a class="ref-card" href={`/s/${skill.id}/${ref.path}`}>
-                    <span class="ref-title">{ref.title}</span>
-                    {ref.description && <span class="ref-desc">{ref.description}</span>}
-                    <code class="mono ref-path">{ref.path}</code>
-                  </a>
+                  <div class="ref-card">
+                    <a class="ref-main" href={`/s/${skill.id}/${ref.path}`}>
+                      <span class="ref-title">{ref.title}</span>
+                      {ref.description && <span class="ref-desc">{ref.description}</span>}
+                      <code class="mono ref-path">{ref.path}</code>
+                    </a>
+                    <MdActions url={`/s/${skill.id}/${ref.path}`} name={ref.path} size="sm" />
+                  </div>
                 ))}
               </div>
             </section>
           )
         }
 
-        <h2 class="contents-title">Skill contents</h2>
+        <div class="contents-title contents-head">
+          <h2>Skill contents</h2>
+          <MdActions url={skill.hostedPath} name="SKILL.md" />
+        </div>
         <div class="prose" id="skill-prose">{Content && <Content />}</div>
       </article>
 
@@ -517,6 +524,17 @@ const refs = refsFor(skill.id);
     background: rgba(153, 69, 255, 0.06);
     border-radius: 0 8px 8px 0;
   }
+  .contents-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .contents-head h2 {
+    font-size: inherit;
+    margin: 0;
+  }
   .contents-title {
     margin: 44px 0 8px;
     font-size: 1.3rem;
@@ -542,6 +560,13 @@ const refs = refsFor(skill.id);
     background: var(--bg-card);
     transition: border-color 0.15s ease, background 0.15s ease;
     min-width: 0;
+  }
+  .ref-main {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    color: inherit;
   }
   .ref-card:hover {
     border-color: rgba(20, 241, 149, 0.45);

@@ -1,0 +1,63 @@
+---
+import CopyBlock from '../CopyBlock.astro';
+import type { InstallOption } from '../../lib/registry';
+
+interface Props {
+  options: InstallOption[];
+  /** Absolute URL of the hosted .md, for the "No install" tab. */
+  fetchable?: string | null;
+}
+const { options, fetchable } = Astro.props;
+const tabs = [
+  ...options.map((o, i) => ({ key: `opt${i}`, ...o })),
+  ...(fetchable
+    ? [
+        {
+          key: 'noinstall',
+          label: 'No install',
+          note: 'Hosted here as plain markdown at a pinned commit. Tell your agent:',
+          commands: [`Read ${fetchable} and follow it for this task: `],
+          prompt: false,
+        },
+      ]
+    : []),
+];
+---
+
+<div class="st-panel" data-tabs>
+  <div class="tabs" role="tablist" aria-label="Install methods">
+    {
+      tabs.map((t, i) => (
+        <button
+          class="tab"
+          role="tab"
+          id={`tab-${t.key}`}
+          aria-controls={`panel-${t.key}`}
+          data-tab={t.key}
+          aria-selected={i === 0 ? 'true' : 'false'}
+          tabindex={i === 0 ? undefined : '-1'}
+        >
+          {t.label}
+        </button>
+      ))
+    }
+  </div>
+  {
+    tabs.map((t, i) => (
+      <div
+        class="tab-panel"
+        role="tabpanel"
+        id={`panel-${t.key}`}
+        aria-labelledby={`tab-${t.key}`}
+        tabindex="0"
+        data-panel={t.key}
+        hidden={i !== 0}
+      >
+        <p class="st-panel-note">{t.note}</p>
+        {t.commands.map((c) => (
+          <CopyBlock command={c} prompt={t.prompt !== false} />
+        ))}
+      </div>
+    ))
+  }
+</div>

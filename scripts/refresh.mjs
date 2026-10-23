@@ -4,7 +4,7 @@
  *
  *   node scripts/refresh.mjs          # full refresh (mirrors, trees, metadata, new skills)
  *   node scripts/refresh.mjs --meta   # metadata only (stars, pushed_at) — cheap
- *   node scripts/refresh.mjs --only solana-ai-kit   # one entry (by id), a handful of calls
+ *   node scripts/refresh.mjs --only solana-ai-kit,auditor-skill   # some entries (by id), a handful of calls
  *
  * Set GITHUB_TOKEN to raise API rate limits (60/h anonymous → 5000/h; an
  * Actions GITHUB_TOKEN gets 1000/h). Hitting the limit waits for the reset
@@ -20,14 +20,19 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const REGISTRY_PATH = join(ROOT, "src/data/registry.json");
 const registry = JSON.parse(readFileSync(REGISTRY_PATH, "utf8"));
 const metaOnly = process.argv.includes("--meta");
-/** --only <id>: refresh just that official/ecosystem/community entry. */
+registry.superteam ??= [];
+/** --only <id>[,<id>…]: refresh just those official/superteam/ecosystem/community entries. */
 const onlyIdx = process.argv.indexOf("--only");
-const only = onlyIdx > -1 ? process.argv[onlyIdx + 1] : null;
-if (onlyIdx > -1 && !only) throw new Error("--only needs an entry id");
-const selected = (id) => !only || id === only;
-if (only && ![...registry.official, ...registry.ecosystem].some((e) => e.id === only) &&
-    !registry.communityIndex.some((c) => c.repo === only)) {
-  throw new Error(`--only ${only}: no such entry`);
+const onlyArg = onlyIdx > -1 ? process.argv[onlyIdx + 1] : null;
+if (onlyIdx > -1 && !onlyArg) throw new Error("--only needs an entry id");
+const only = onlyArg ? new Set(onlyArg.split(",").map((x) => x.trim()).filter(Boolean)) : null;
+const selected = (id) => !only || only.has(id);
+if (only) {
+  const known = new Set([
+    ...[...registry.official, ...registry.superteam, ...registry.ecosystem].map((e) => e.id),
+    ...registry.communityIndex.map((c) => c.repo),
+  ]);
+  for (const id of only) if (!known.has(id)) throw new Error(`--only ${id}: no such entry`);
 }
 
 /** One timestamp per run — every pin taken this run carries the same pinnedAt. */
@@ -240,6 +245,31 @@ async function repoMeta(repo, pin) {
     commitSha: head?.sha ?? null,
     commitDate: head?.date ?? null,
   };
+}
+
+/**
+ * GitHub logins that contributed to a repo (bots and anonymous commits left
+ * out). The homepage counts the distinct people across every indexed repo.
+ */
+async function contributorsOf(repo) {
+  const logins = [];
+  for (let page = 1; page <= 5; page++) {
+    const list = await gh(`/repos/${repo}/contributors?per_page=100&page=${page}`);
+    if (!Array.isArray(list)) return page === 1 ? null : logins;
+    for (const c of list) {
+      if (c.type === "User" && c.login && !c.login.endsWith("[bot]")) logins.push(c.login);
+    }
+    if (list.length < 100) break;
+  }
+  return logins.sort((a, b) => a.localeCompare(b));
+}
+
+/** Keep the previous list when the API gives none, rather than counting zero. */
+async function refreshContributors(entry) {
+  if (metaOnly) return;
+  const logins = await contributorsOf(entry.repo);
+  if (logins) entry.contributors = logins;
+  else console.warn(`⚠ ${entry.repo}: contributors unavailable — previous list kept`);
 }
 
 /**
@@ -519,6 +549,7 @@ for (const skill of registry.official) {
   skill.pushedAt = meta.pushedAt;
   skill.branch = meta.branch;
   if (metaOnly) continue;
+  await refreshContributors(skill);
   // What upstream declares, nothing else: a hand-set licence would outlive
   // the repo that never had one.
   skill.license = meta.license && meta.license !== "NOASSERTION" ? meta.license : null;
@@ -645,6 +676,7 @@ for (const eco of registry.ecosystem) {
   // stay published (or vice versa).
   eco.license = meta.license === "NOASSERTION" ? null : meta.license;
   eco.description = meta.description;
+  await refreshContributors(eco);
   // Fail closed, as with official skills: never fall back to a branch ref,
   // and advance the repo pin only once the tree it describes is in hand.
   if (!meta.commitSha) {
@@ -722,6 +754,121 @@ for (const eco of registry.ecosystem) {
   );
 }
 
+// ---------- Superteam Brasil: whole-repo mirrors + subskills ----------
+// Every .md in the repo is mirrored verbatim at src/data/stbr-files/<id>/<path>
+// (and served at /s/<id>/<path>), so the skill, each subskill and every
+// reference file can be read, copied or handed to an agent from this domain.
+// Subskills are the files matching an entry's `subskillRules`: auditor-skill's
+// commands and agents, startup-builder-skill's skills. Pages render from
+// src/data/stbr-render/, the same bodies with frontmatter removed, so an
+// upstream header that strict YAML rejects cannot break the build.
+const STBR_DIR = join(ROOT, "src/data/stbr-files");
+const STBR_RENDER_DIR = join(ROOT, "src/data/stbr-render");
+const stripFrontmatter = (txt) => txt.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, "");
+for (const st of registry.superteam) {
+  if (!selected(st.id)) continue;
+  const meta = await repoMeta(st.repo, st.pin);
+  if (!meta) {
+    console.warn(`⚠ ${st.repo}: repo metadata unavailable`);
+    continue;
+  }
+  st.stars = meta.stars;
+  st.pushedAt = meta.pushedAt;
+  if (metaOnly) continue;
+  st.license = meta.license === "NOASSERTION" ? null : meta.license;
+  st.description = meta.description;
+  await refreshContributors(st);
+  if (!meta.commitSha) {
+    console.warn(`⚠ ${st.repo}: head unresolvable — skipped, pin unchanged`);
+    continue;
+  }
+  const ref = meta.commitSha;
+  const tree = await treeAt(st.repo, ref);
+  if (!tree?.tree) {
+    console.warn(`⚠ ${st.repo}: git tree unavailable at ${ref.slice(0, 7)} — skipped, pin unchanged`);
+    continue;
+  }
+  const exclude = (st.exclude ?? []).map((x) => new RegExp(x));
+  const mdPaths = tree.tree
+    .filter((n) => n.type === "blob" && n.path.endsWith(".md"))
+    .map((n) => n.path)
+    .filter((p) => !p.startsWith(".github/") && !exclude.some((re) => re.test(p)))
+    .sort();
+
+  // Fetch everything first; the pin and the mirror move together or not at all.
+  const bodies = new Map();
+  let failed = false;
+  for (const path of mdPaths) {
+    const body = await raw(st.repo, ref, path);
+    if (body === null) {
+      console.warn(`⚠ ${st.id}: ${path} unreachable at ${ref.slice(0, 7)} — skipped, pin unchanged`);
+      failed = true;
+      break;
+    }
+    try {
+      matter(body);
+    } catch (e) {
+      console.warn(`⚠ ${st.id}: ${path} frontmatter is not valid YAML — mirrored as is (${e.message.split("\n")[0]})`);
+    }
+    bodies.set(path, body);
+  }
+  if (failed) continue;
+
+  const repoDir = join(STBR_DIR, st.id);
+  rmSync(repoDir, { recursive: true, force: true });
+  st.files = [];
+  st.integrity = {};
+  for (const [path, body] of bodies) {
+    const dest = join(repoDir, path);
+    mkdirSync(dirname(dest), { recursive: true });
+    writeFileSync(dest, body);
+    st.files.push(path);
+    st.integrity[path] = sha256(body);
+  }
+
+  st.subskills = [];
+  for (const rule of st.subskillRules ?? []) {
+    const re = new RegExp(rule.pattern);
+    for (const path of st.files.filter((f) => re.test(f))) {
+      const fm = parseFrontmatter(bodies.get(path));
+      const slug = path.replace(/\/SKILL\.md$/, "").replace(/\.md$/, "");
+      const dir = path.endsWith("/SKILL.md") ? path.slice(0, -"/SKILL.md".length) : null;
+      st.subskills.push({
+        kind: rule.kind,
+        slug,
+        path,
+        name: fm.name || slug.split("/").pop(),
+        description: cleanDescription(fm.description) || null,
+        // A skill directory's own reference files (skill subskills only).
+        files: dir ? st.files.filter((f) => f.startsWith(`${dir}/`) && f !== path) : [],
+      });
+    }
+  }
+  // Render copies: the main file and each subskill.
+  const renderDir = join(STBR_RENDER_DIR, st.id);
+  rmSync(renderDir, { recursive: true, force: true });
+  for (const path of [st.main, ...st.subskills.map((x) => x.path)].filter((x) => x && bodies.has(x))) {
+    const dest = join(renderDir, path);
+    mkdirSync(dirname(dest), { recursive: true });
+    writeFileSync(dest, stripFrontmatter(bodies.get(path)));
+  }
+  const mainBody = st.main ? bodies.get(st.main) : null;
+  if (st.main && !mainBody) console.warn(`⚠ ${st.id}: main file ${st.main} missing`);
+  st.words = mainBody ? mainBody.replace(/^---[\s\S]*?---\s*/, "").split(/\s+/).length : null;
+  st.counts = Object.fromEntries(
+    Object.entries(st.countRules ?? {}).map(([k, pattern]) => [
+      k,
+      st.files.filter((f) => new RegExp(pattern).test(f)).length,
+    ])
+  );
+  st.commitSha = ref;
+  st.commitDate = meta.commitDate;
+  st.pinnedAt = RUN_TS;
+  st.tag = meta.tag ?? undefined;
+  st.url = `https://github.com/${st.repo}`;
+  console.log(`✓ superteam ${st.id} (${st.files.length} files, ${st.subskills.length} subskills)`);
+}
+
 // ---------- community index: link-only entries get pinned too ----------
 // No mirror exists for these, so the pin is a verification stamp: the commit
 // that was HEAD when we last confirmed the repo is alive and what it claims.
@@ -745,6 +892,7 @@ console.log(`✓ community index ${metaOnly ? "refreshed (meta only)" : "pinned"
 const owners = new Set(
   [
     ...registry.official.map((s) => s.repo),
+    ...registry.superteam.map((s) => s.repo),
     ...registry.ecosystem.map((e) => e.repo),
     ...registry.communityIndex.map((c) => c.repo),
   ].map((repo) => repo.split("/")[0])
@@ -772,6 +920,7 @@ const logoFor = (repo) => {
 };
 for (const s of registry.official) s.logo = logoFor(s.repo);
 for (const e of registry.ecosystem) e.logo = logoFor(e.repo);
+for (const s of registry.superteam) s.logo = logoFor(s.repo);
 for (const c of registry.communityIndex) c.logo = logoFor(c.repo);
 console.log(`✓ logos for ${owners.size} orgs`);
 

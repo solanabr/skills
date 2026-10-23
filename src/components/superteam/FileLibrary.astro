@@ -1,0 +1,51 @@
+---
+import { superteamFileUrl, type SuperteamEntry } from '../../lib/registry';
+
+// Every mirrored .md of a Superteam Brasil skill, grouped by top-level
+// folder, each with its hosted URL and a copy button.
+interface Props {
+  skill: SuperteamEntry;
+  /** Restrict to these paths (a subskill's references); default all files. */
+  paths?: string[];
+  /** Strip this prefix from the shown names. */
+  base?: string;
+  open?: boolean;
+}
+const { skill, paths = skill.files, base = '', open = false } = Astro.props;
+const groups = new Map<string, string[]>();
+for (const p of paths) {
+  const rel = p.startsWith(base) ? p.slice(base.length) : p;
+  const key = rel.includes('/') ? rel.split('/')[0] + '/' : 'Root';
+  groups.set(key, [...(groups.get(key) ?? []), p]);
+}
+// Within a folder, show the name below it; the folder is the summary.
+const shown = (f: string, group: string) => {
+  const rel = f.startsWith(base) ? f.slice(base.length) : f;
+  return group !== 'Root' && rel.startsWith(group) ? rel.slice(group.length) : rel;
+};
+const ordered = [...groups.entries()].sort(([a], [b]) => (a === 'Root' ? -1 : b === 'Root' ? 1 : a.localeCompare(b)));
+---
+
+<div class="st-files">
+  {
+    ordered.map(([group, files]) => (
+      <details open={open || ordered.length === 1}>
+        <summary>
+          {group} <span class="muted">({files.length})</span>
+        </summary>
+        <ul>
+          {files.map((f) => (
+            <li>
+              <a href={superteamFileUrl(skill, f)} title={f}>
+                {shown(f, group)}
+              </a>
+              <button type="button" class="st-file-copy" data-copy-url={superteamFileUrl(skill, f)} aria-label={`Copy ${f} as Markdown`}>
+                <span class="md-label">Copy .md</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </details>
+    ))
+  }
+</div>

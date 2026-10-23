@@ -18,6 +18,20 @@ export const GET: APIRoute = () => {
       raw: `${SITE_URL}${s.hostedPath}`,
       commit: s.commitSha ?? null,
     })),
+    ...registry.superteam.flatMap((st) =>
+      st.subskills
+        .filter((x) => x.kind === "skill")
+        .map((x) => ({ name: x.name, path: x.path }))
+        .concat(st.main === "SKILL.md" ? [{ name: st.id, path: "SKILL.md" }] : [])
+        .map((x) => ({
+          name: x.name,
+          vendor: "Superteam Brasil",
+          official: false,
+          category: st.category,
+          raw: `${SITE_URL}/s/${st.id}/${x.path}`,
+          commit: st.commitSha ?? null,
+        })),
+    ),
     ...registry.ecosystem.flatMap((r) =>
       r.skills.map((s) => ({
         name: s.name,

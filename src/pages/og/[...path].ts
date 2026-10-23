@@ -27,6 +27,34 @@ function specs(): Record<string, OgSpec> {
       logo: logoDataUri(s.logo),
     };
   }
+  out["superteam.png"] = {
+    title: "Superteam Brasil skills",
+    subtitle: "Official skills from Superteam Brasil, part of the Solana AI Kit: a full security audit firm and a startup operations playbook for your agent.",
+    badge: "Superteam Brasil",
+    badge2: "Official",
+    path: "/superteam",
+    logo: logoDataUri(registry.superteam[0]?.logo),
+  };
+  for (const s of registry.superteam) {
+    out[`superteam/${s.id}.png`] = {
+      title: s.displayName,
+      subtitle: s.tagline,
+      badge: "Superteam Brasil",
+      badge2: s.repo,
+      path: `/superteam/${s.id}`,
+      logo: logoDataUri(s.logo),
+    };
+    for (const x of s.subskills) {
+      out[`superteam/${s.id}/${x.slug}.png`] = {
+        title: x.name,
+        subtitle: x.description ?? s.tagline,
+        badge: "Superteam Brasil",
+        badge2: s.displayName,
+        path: `/superteam/${s.id}/${x.slug}`,
+        logo: logoDataUri(s.logo),
+      };
+    }
+  }
   for (const r of registry.ecosystem) {
     for (const s of r.skills) {
       if (!s.slug) continue;

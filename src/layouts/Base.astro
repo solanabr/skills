@@ -77,6 +77,40 @@ const ogImageURL = new URL(ogImage ?? '/og.png', Astro.site).href;
         }
       });
 
+      // Copy a file's contents: any element with [data-copy-url]. The fetch is
+      // handed to ClipboardItem as a promise, which keeps Safari's user-gesture
+      // requirement satisfied; writeText is the fallback elsewhere.
+      document.addEventListener('click', async (e) => {
+        const btn = (e.target as HTMLElement).closest<HTMLElement>('[data-copy-url]');
+        if (!btn) return;
+        const url = btn.getAttribute('data-copy-url') ?? '';
+        const label = btn.querySelector('.md-label');
+        const flash = (cls: string, text: string) => {
+          btn.classList.add(cls);
+          if (label) label.textContent = text;
+          setTimeout(() => {
+            btn.classList.remove(cls);
+            if (label) label.textContent = 'Copy .md';
+          }, 1600);
+        };
+        const text = fetch(url).then((r) => {
+          if (!r.ok) throw new Error(String(r.status));
+          return r.text();
+        });
+        try {
+          if (window.ClipboardItem && navigator.clipboard.write) {
+            await navigator.clipboard.write([
+              new ClipboardItem({ 'text/plain': text.then((t) => new Blob([t], { type: 'text/plain' })) }),
+            ]);
+          } else {
+            await navigator.clipboard.writeText(await text);
+          }
+          flash('copied', 'Copied');
+        } catch {
+          flash('failed', 'Copy failed');
+        }
+      });
+
       // Tabs: [role=tab] toggling sibling [role=tabpanel]s within a [data-tabs] scope
       function activateTab(tab: HTMLElement) {
         const scope = tab.closest<HTMLElement>('[data-tabs]');

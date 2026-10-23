@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SkillCard from '../../components/SkillCard.astro';
-import { registry, totalSkills, CATEGORY_LABELS, ecoSkillPage } from '../../lib/registry';
+import { registry, totalSkills, CATEGORY_LABELS, ecoSkillPage, superteamPage } from '../../lib/registry';
 
 const official = registry.official;
 const ecoSkills = registry.ecosystem.flatMap((repo) =>
@@ -14,6 +14,16 @@ const ecoSkills = registry.ecosystem.flatMap((repo) =>
     page: ecoSkillPage(repo, s),
   }))
 );
+
+// Superteam Brasil: a skill with its own SKILL.md, plus every skill a skill set ships.
+const stSkills = registry.superteam.flatMap((st) => [
+  ...(st.main === 'SKILL.md'
+    ? [{ name: st.id, description: st.tagline, category: st.category, page: superteamPage(st), setName: st.displayName }]
+    : []),
+  ...st.subskills
+    .filter((x) => x.kind === 'skill')
+    .map((x) => ({ name: x.name, description: x.description ?? '', category: st.category, page: superteamPage(st, x), setName: st.displayName })),
+]);
 
 const categories = [
   'development',
@@ -28,6 +38,7 @@ const categories = [
 ];
 const usedCategories = new Set([
   ...official.map((s) => s.category),
+  ...stSkills.map((s) => s.category),
   ...ecoSkills.map((s) => s.category),
 ]);
 ---
@@ -71,17 +82,23 @@ const usedCategories = new Set([
       </div>
       <div class="chips" id="category-chips">
         <button class="chip" data-cat="all" aria-pressed="true">
-          All <span class="chip-count">{official.length + ecoSkills.length}</span>
+          All <span class="chip-count">{official.length + stSkills.length + ecoSkills.length}</span>
         </button>
         <button class="chip" data-cat="official" aria-pressed="false">
           Official <span class="chip-count">{official.length}</span>
         </button>
+        {stSkills.length > 0 && (
+          <button class="chip" data-cat="superteam" aria-pressed="false">
+            Superteam Brasil <span class="chip-count">{stSkills.length}</span>
+          </button>
+        )}
         {
           categories
             .filter((c) => usedCategories.has(c))
             .map((c) => {
               const n =
                 official.filter((s) => s.category === c).length +
+                stSkills.filter((s) => s.category === c).length +
                 ecoSkills.filter((s) => s.category === c).length;
               return (
                 <button class="chip" data-cat={c} aria-pressed="false">
@@ -116,6 +133,39 @@ const usedCategories = new Set([
           }
         </div>
       </div>
+
+      {
+        stSkills.length > 0 && (
+          <div class="group" id="group-superteam">
+            <h2 class="group-title">
+              <span class="badge st-badge">Superteam Brasil</span> Official skills, part of the Solana AI Kit
+            </h2>
+            <div class="grid">
+              {stSkills.map((s) => (
+                <div
+                  class="filterable"
+                  data-name={s.name}
+                  data-text={`${s.name} ${s.description} ${s.setName} superteam brasil brazil ${CATEGORY_LABELS[s.category] ?? ''} ${s.category}`.toLowerCase()}
+                  data-cat={s.category}
+                  data-official="false"
+                  data-superteam="true"
+                >
+                  <a href={s.page} class="card eco-card">
+                    <div class="eco-top">
+                      <code class="mono eco-name">{s.name}</code>
+                    </div>
+                    <p>{s.description}</p>
+                    <div class="card-meta">
+                      <span class="badge st-badge">Superteam Brasil</span>
+                      <span>{s.setName}</span>
+                    </div>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      }
 
       <div class="group" id="group-eco">
         <h2 class="group-title"><span class="badge">Ecosystem</span> Indexed from the community</h2>
@@ -189,7 +239,11 @@ const usedCategories = new Set([
   const search = document.getElementById('skill-search') as HTMLInputElement;
   const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('#category-chips .chip'));
   const cards = Array.from(document.querySelectorAll<HTMLElement>('.filterable'));
-  const groups = [document.getElementById('group-official'), document.getElementById('group-eco')];
+  const groups = [
+    document.getElementById('group-official'),
+    document.getElementById('group-superteam'),
+    document.getElementById('group-eco'),
+  ];
   const emptyState = document.getElementById('empty-state');
   const countEl = document.getElementById('result-count');
   let activeCat = 'all';
@@ -205,7 +259,9 @@ const usedCategories = new Set([
         activeCat === 'all' ||
         (activeCat === 'official'
           ? card.dataset.official === 'true'
-          : card.dataset.cat === activeCat);
+          : activeCat === 'superteam'
+            ? card.dataset.superteam === 'true'
+            : card.dataset.cat === activeCat);
       const show = matchesQ && matchesCat;
       card.classList.toggle('skeleton-hide', !show);
       if (show) visible++;
@@ -384,5 +440,10 @@ const usedCategories = new Set([
   .empty-actions {
     display: flex;
     gap: 10px;
+  }
+  .st-badge {
+    background: rgba(255, 210, 63, 0.12);
+    color: #ffd23f;
+    border-color: rgba(255, 210, 63, 0.35);
   }
 </style>

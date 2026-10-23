@@ -38,6 +38,7 @@ export interface OfficialSkill {
   hostedPath: string;
   stars: number | null;
   pushedAt: string | null;
+  contributors?: string[];
 }
 
 export interface EcosystemSkill {
@@ -109,6 +110,7 @@ export interface EcosystemRepo {
   highlightsOnly: boolean;
   /** Self-hosted GitHub org avatar, e.g. /logos/sendaifun.png. */
   logo?: string | null;
+  contributors?: string[];
   skills: EcosystemSkill[];
 }
 
@@ -133,11 +135,63 @@ export interface CommunityEntry {
   pinnedAt?: string | null;
 }
 
+export interface SuperteamSubskill {
+  kind: "skill" | "command" | "agent";
+  /** Path without SKILL.md/.md, e.g. skills/pitch-deck or commands/hunt. */
+  slug: string;
+  path: string;
+  name: string;
+  description: string | null;
+  /** The skill directory's own reference files (skill subskills only). */
+  files: string[];
+}
+
+export interface InstallOption {
+  label: string;
+  note: string;
+  commands: string[];
+  /** false: commands typed in the agent (e.g. /plugin), so no $ prompt. */
+  prompt?: boolean;
+}
+
+/** A Superteam Brasil skill: mirrored whole, with a page per subskill. */
+export interface SuperteamEntry {
+  id: string;
+  repo: string;
+  displayName: string;
+  tagline: string;
+  summary: string;
+  category: string;
+  /** Rendered on the skill's page: SKILL.md, or README.md for a skill set. */
+  main: string | null;
+  kitPack: string;
+  kitTier: "core" | "extension";
+  install: InstallOption[];
+  url: string;
+  stars: number | null;
+  pushedAt: string | null;
+  license: string | null;
+  description: string | null;
+  commitSha?: string | null;
+  commitDate?: string | null;
+  pinnedAt?: string | null;
+  tag?: string;
+  logo?: string | null;
+  contributors?: string[];
+  /** Every mirrored .md, relative to the repo root; served at /s/<id>/<path>. */
+  files: string[];
+  integrity: Record<string, string>;
+  subskills: SuperteamSubskill[];
+  counts: Record<string, number>;
+  words: number | null;
+}
+
 export interface Registry {
   updated: string;
   /** Timestamp of the refresh run that took the current pins (ISO 8601). */
   pinnedAt?: string;
   official: OfficialSkill[];
+  superteam: SuperteamEntry[];
   ecosystem: EcosystemRepo[];
   foundationResources: FoundationResource[];
   communityIndex: CommunityEntry[];
@@ -161,7 +215,38 @@ export const CATEGORY_LABELS: Record<string, string> = {
 /** Skills actually browsable on this site (not upstream marketing totals). */
 export const totalSkills = () =>
   registry.official.length +
+  registry.superteam.reduce(
+    (n, s) => n + (s.main === "SKILL.md" ? 1 : 0) + s.subskills.filter((x) => x.kind === "skill").length,
+    0,
+  ) +
   registry.ecosystem.reduce((n, r) => n + r.skills.length, 0);
+
+/** Distinct GitHub contributors across every repo the site indexes. */
+export const contributorCount = () =>
+  new Set(
+    [...registry.official, ...registry.superteam, ...registry.ecosystem].flatMap(
+      (e) => e.contributors ?? [],
+    ),
+  ).size;
+
+/** The Solana AI Kit's ecosystem entry: its stats feed the Superteam pages. */
+export const kitEntry = () => registry.ecosystem.find((e) => e.id === "solana-ai-kit");
+
+export const superteamPage = (s: SuperteamEntry, sub?: SuperteamSubskill) =>
+  sub ? `/superteam/${s.id}/${sub.slug}` : `/superteam/${s.id}`;
+
+/** Where a mirrored Superteam file is served, site-relative. */
+export const superteamFileUrl = (s: SuperteamEntry, path: string) => `/s/${s.id}/${path}`;
+
+/** The file on GitHub at the pinned commit. */
+export const superteamGithubUrl = (s: SuperteamEntry, path: string) =>
+  `https://github.com/${s.repo}/blob/${s.commitSha ?? "HEAD"}/${path}`;
+
+/** A readable name from a mirrored file's path: a skill directory's name, or the file name without its number. */
+export function fileTitle(path: string): string {
+  const base = (path.split("/").pop() ?? path).replace(/\.md$/, "");
+  return base === "SKILL" ? (path.split("/").slice(-2, -1)[0] ?? base) : base.replace(/^\d+[-_]/, "").replace(/[-_]/g, " ");
+}
 
 /**
  * Whole-skill-dir install pinned to the indexed commit. degit cannot resolve

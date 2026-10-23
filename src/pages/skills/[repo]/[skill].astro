@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import CopyBlock from '../../../components/CopyBlock.astro';
+import MdActions from '../../../components/MdActions.astro';
 import { registry, ecoInstallCommands, CATEGORY_LABELS, SITE_URL } from '../../../lib/registry';
 
 export async function getStaticPaths() {
@@ -37,6 +38,8 @@ const TYPE_LABELS: Record<string, string> = {
 const dirPart = skill.dir ? '/' + skill.dir : '';
 const externalFileUrl = (f: string) =>
   'https://github.com/' + repo.repo + '/blob/' + (skill.commitSha ?? pinnedRef ?? 'HEAD') + dirPart + '/' + f;
+const rawFileUrl = (f: string) =>
+  'https://raw.githubusercontent.com/' + repo.repo + '/' + (skill.commitSha ?? pinnedRef ?? 'HEAD') + dirPart + '/' + f;
 const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpperCase();
 ---
 
@@ -170,7 +173,10 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
           </div>
         </div>
 
-        <h2 class="contents-title">Skill contents</h2>
+        <div class="contents-title contents-head">
+          <h2>Skill contents</h2>
+          <MdActions url={install.fetchable} name="SKILL.md" />
+        </div>
         {
           Content ? (
             <div class="prose" id="skill-prose">
@@ -352,6 +358,17 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
                           {f}
                           {!hostedHere && <span class="ext-mark" aria-hidden="true"> ↗</span>}
                         </a>
+                        {f.endsWith('.md') && (
+                          <button
+                            type="button"
+                            class="file-copy"
+                            data-copy-url={hostedHere ? `/s/${repo.id}/${skill.slug}/${f}` : rawFileUrl(f)}
+                            aria-label={`Copy ${f} as Markdown`}
+                            title="Copy .md"
+                          >
+                            <span class="md-label">Copy .md</span>
+                          </button>
+                        )}
                       </li>
                     );
                   })}
@@ -528,6 +545,33 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
     border-left: 2px solid var(--purple);
     background: rgba(153, 69, 255, 0.06);
     border-radius: 0 8px 8px 0;
+  }
+  .contents-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .contents-head h2 {
+    font-size: inherit;
+    margin: 0;
+  }
+  .file-copy {
+    margin-left: 8px;
+    padding: 1px 7px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--text-3);
+    font-size: 0.68rem;
+    cursor: pointer;
+  }
+  .file-copy:hover {
+    color: var(--text);
+    border-color: var(--green);
+  }
+  .file-copy.copied {
+    color: var(--green);
   }
   .contents-title {
     margin: 44px 0 8px;

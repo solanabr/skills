@@ -1,10 +1,11 @@
 ---
 import SolanaMark from './SolanaMark.astro';
 
-const nav = [
+const nav: { href: string; label: string; short?: string; wide?: boolean }[] = [
   { href: '/skills', label: 'Skills' },
   { href: '/ecosystem', label: 'Ecosystem' },
-  { href: '/#use', label: 'How it works' },
+  { href: '/superteam', label: 'Superteam Brasil', short: 'Superteam' },
+  { href: '/#use', label: 'How it works', wide: true },
 ];
 const path = Astro.url.pathname;
 ---
@@ -19,12 +20,19 @@ const path = Astro.url.pathname;
       <ul class="nav-list">
         {
           nav.map((item) => (
-            <li>
+            <li class:list={{ 'wide-only': item.wide }}>
               <a
                 href={item.href}
                 class:list={['nav-link', { active: path.startsWith(item.href) && item.href !== '/#use' }]}
               >
-                {item.label}
+                {item.short ? (
+                  <>
+                    <span class="label-full">{item.label}</span>
+                    <span class="label-short">{item.short}</span>
+                  </>
+                ) : (
+                  item.label
+                )}
               </a>
             </li>
           ))
@@ -83,6 +91,10 @@ const path = Astro.url.pathname;
   }
   nav {
     flex: 1;
+    min-width: 0;
+  }
+  .label-short {
+    display: none;
   }
   .nav-list {
     display: flex;
@@ -120,6 +132,20 @@ const path = Astro.url.pathname;
     .nav-link {
       padding: 7px 9px;
       font-size: 0.85rem;
+    }
+    .label-full {
+      display: none;
+    }
+    .label-short {
+      display: inline;
+    }
+  }
+  /* Phones: the three sections fit without scrolling; "How it works" is an
+     anchor on the homepage. */
+  @media (max-width: 480px) {
+    .wide-only,
+    .brand-thin {
+      display: none;
     }
   }
 </style>

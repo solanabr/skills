@@ -24,4 +24,15 @@ const ecoSkills = defineCollection({
   schema: z.object({}).passthrough(),
 });
 
-export const collections = { skills, ecoSkills };
+// Superteam Brasil skills: the main file and each subskill, frontmatter
+// stripped by refresh → entry id "<id>/<path without .md>".
+const stbr = defineCollection({
+  loader: glob({
+    pattern: "**/*.md",
+    base: "./src/data/stbr-render",
+    generateId: ({ entry }) => entry.replace(/\.md$/, ""),
+  }),
+  schema: z.object({}).passthrough(),
+});
+
+export const collections = { skills, ecoSkills, stbr };

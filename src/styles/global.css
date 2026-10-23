@@ -120,28 +120,6 @@ h4 {
   color: transparent;
 }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.8rem;
-  font-weight: 560;
-  letter-spacing: 0.02em;
-  color: var(--text-2);
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 999px;
-  padding: 6px 14px;
-}
-
-.eyebrow .dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 10px rgba(20, 241, 149, 0.9);
-}
-
 .section-title {
   font-size: clamp(1.6rem, 3vw, 2.1rem);
 }

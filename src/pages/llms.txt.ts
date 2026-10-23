@@ -22,6 +22,13 @@ export const GET: APIRoute = () => {
     ];
   });
 
+  const stLines = registry.superteam.flatMap((s) => [
+    `- [${s.displayName}](${SITE_URL}/superteam/${s.id}): ${s.tagline}${s.main ? ` Entry file: ${SITE_URL}/s/${s.id}/${s.main}` : ""} (pinned @ ${s.commitSha?.slice(0, 7) ?? "HEAD"}${s.tag ? `, ${s.tag}` : ""}; every .md in the repo is at ${SITE_URL}/s/${s.id}/<path>)`,
+    ...s.subskills.map(
+      (x) => `  - [${x.name}](${SITE_URL}/s/${s.id}/${x.path})${x.description ? `: ${x.description.slice(0, 160)}` : ""}`,
+    ),
+  ]);
+
   const ecoLines = registry.ecosystem.map((r) => {
     const n = r.skills.length;
     const hosted = r.skills.filter((s) => s.hosted).length;
@@ -70,6 +77,12 @@ npx skills use solana-foundation/solana-dev-skill@solana-dev | claude
 ## Official skills (Solana Foundation)
 
 ${officialLines.join("\n")}
+
+## Superteam Brasil skills
+
+Official skills from Superteam Brasil, built as part of the Solana AI Kit (https://github.com/solanabr/ai-kit). Each subskill below is one markdown file you can fetch directly:
+
+${stLines.join("\n")}
 
 ## Ecosystem skill repositories
 

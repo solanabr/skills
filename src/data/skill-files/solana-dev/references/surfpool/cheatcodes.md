@@ -5,7 +5,7 @@ description: Full reference for all surfnet_* RPC methods to manipulate time, ac
 
 # Surfpool Cheatcodes Reference
 
-All 26 `surfnet_*` JSON-RPC methods available on the surfnet RPC endpoint (default `http://127.0.0.1:8899`), as of Surfpool v1.5.0.
+All 28 `surfnet_*` JSON-RPC methods available on the surfnet RPC endpoint (default `http://127.0.0.1:8899`), as of Surfpool v1.6.1. v1.6.0 added the two confidential-balance methods; nothing was removed or renamed since v1.5.0.
 
 In TypeScript, call these through `client.cheatcodes` from the Kit plugin instead of hand-rolling JSON-RPC — method names drop the `surfnet_` prefix and responses arrive unwrapped. See [kit-plugin.md](kit-plugin.md#typed-cheatcodes). The schemas below are the wire format, shared by both paths.
 
@@ -14,12 +14,19 @@ In TypeScript, call these through `client.cheatcodes` from the Kit plugin instea
 | Method | Description |
 |---|---|
 | `surfnet_setAccount` | Set or update an account's lamports, data, owner, and executable status directly without transactions. |
-| `surfnet_setTokenAccount` | Set or update an SPL token account's balance, delegate, state, and close authority for any mint. |
+| `surfnet_setTokenAccount` | Set or update an SPL token account's balance, delegate, state, and close authority for any mint. Since v1.6.0 it can also set confidential-transfer state on Token-2022 accounts. |
 | `surfnet_resetAccount` | Reset an account to its original state from the remote datasource. Optionally cascades to owned accounts. |
 | `surfnet_streamAccount` | Register an account for live streaming — re-fetches from remote datasource on every access instead of caching. |
 | `surfnet_streamAccounts` | Register multiple accounts for live streaming in a single call. |
 | `surfnet_getStreamedAccounts` | List all accounts currently registered for streaming. |
 | `surfnet_offlineAccount` | Pin an account as local-only — it is never re-fetched from the remote datasource. |
+
+## Confidential Balances (v1.6.0+)
+
+| Method | Description |
+|---|---|
+| [`surfnet_deriveConfidentialKeys`](#surfnet_deriveconfidentialkeys) | Derive an owner's confidential-transfer keys from the owner's signature. Returns base58 `elgamalPubkey` (for `surfnet_setTokenAccount`), `elgamalSecretKey` (for `surfnet_getConfidentialBalance`), and `aesKey` (for both), so a test needs no client-side ZK crypto. |
+| [`surfnet_getConfidentialBalance`](#surfnet_getconfidentialbalance) | Decrypt a Token-2022 confidential account's `available` and `pending` balances with the supplied `aesKey` / `elgamalSecretKey`. Also returns `pendingBalanceCreditCounter`; non-zero means an `ApplyPendingBalance` is still needed. |
 
 ## Program Management
 
@@ -87,12 +94,57 @@ curl -X POST http://127.0.0.1:8899 -H "Content-Type: application/json" \
 
 ### surfnet_setTokenAccount
 
-`["<owner>", "<mint>", {"amount"?, "delegate"?, "state"?, "delegated_amount"?, "close_authority"?}, token_program?]`
+`["<owner>", "<mint>", {"amount"?, "delegate"?, "state"?, "delegatedAmount"?, "closeAuthority"?, "confidential"?}, token_program?]`
+
+Field names are camelCase; snake_case keys are ignored. `delegate` and `closeAuthority` take a base58 pubkey, or the string `"null"` to clear it.
+
+`confidential` (Token-2022 only, v1.6.0+) fabricates a configured — and optionally funded — `ConfidentialTransferAccount` extension, skipping the configure / deposit / apply-pending-balance instruction flow:
+
+| Field | Required | Default | Meaning |
+|---|---|---|---|
+| `elgamalPubkey` | yes | — | Owner's ElGamal public key, base58 or base64, 32 bytes. The balance is encrypted to it |
+| `aesKey` | yes | — | Owner's AES key, base58 or base64, 16 bytes. Produces `decryptable_available_balance`; needed even for a zero-balance account |
+| `amount` | no | `0` | Confidential available balance |
+| `approved` | no | `true` | Account approved for confidential transfers |
+| `allowConfidentialCredits` | no | `true` | Accepts incoming confidential credits |
+| `allowNonConfidentialCredits` | no | `true` | Accepts incoming non-confidential credits |
+| `maximumPendingBalanceCreditCounter` | no | `65536` | Pending-balance credit counter cap |
 
 ```bash
 curl -X POST http://127.0.0.1:8899 -H "Content-Type: application/json" \
   -d '{"jsonrpc":"2.0","id":1,"method":"surfnet_setTokenAccount","params":["<OWNER>","<MINT>",{"amount":1000000000,"state":"initialized"}]}'
 ```
+
+### surfnet_deriveConfidentialKeys
+
+`["<signature>"]` — the owner's 64-byte signature, base58 or base64, over `"solana-conf-bal/v1"` followed by the seed bytes. The seed is normally the token account address, which scopes the keys to that account. Only the signature crosses the wire, never the signing key, so hardware signers work. Keys come from the same HKDF-SHA512 derivation as `solana_zk_sdk::encryption::derivation::derive_confidential_keys`.
+
+Returns `{elgamalPubkey, elgamalSecretKey, aesKey}`, all base58.
+
+### surfnet_getConfidentialBalance
+
+`["<token_account>", {"aesKey"?, "elgamalSecretKey"?}]` — at least one key is required. `aesKey` (16 bytes) decrypts `available`; `elgamalSecretKey` (32 bytes, the *secret* key, not the account's public key) decrypts `pending`. Both accept base58 or base64.
+
+Returns `{available, pending, pendingBalanceCreditCounter}`. A balance is `null` when its key was not supplied, and a non-zero counter means an `ApplyPendingBalance` is still needed.
+
+**Round trip** (Token-2022 mint with the confidential-transfer extension). `surfnet_setTokenAccount` writes the owner's associated token account for the given token program, so `<TOKEN_ACCOUNT>` is that ATA. Use its address as the seed when you sign locally, then derive, fund, and read back:
+
+```bash
+# 1. Derive keys from the owner's signature over "solana-conf-bal/v1" || <TOKEN_ACCOUNT> bytes
+curl -X POST http://127.0.0.1:8899 -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"surfnet_deriveConfidentialKeys","params":["<SIGNATURE>"]}'
+
+# 2. Create the token account with 1000 confidential tokens, using elgamalPubkey + aesKey from step 1
+curl -X POST http://127.0.0.1:8899 -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"surfnet_setTokenAccount","params":["<OWNER>","<MINT>",{"confidential":{"elgamalPubkey":"<ELGAMAL_PUBKEY>","aesKey":"<AES_KEY>","amount":1000}},"TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"]}'
+
+# 3. Decrypt it, using aesKey + elgamalSecretKey from step 1
+curl -X POST http://127.0.0.1:8899 -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"surfnet_getConfidentialBalance","params":["<TOKEN_ACCOUNT>",{"aesKey":"<AES_KEY>","elgamalSecretKey":"<ELGAMAL_SECRET_KEY>"}]}'
+# → {"available":1000,"pending":0,"pendingBalanceCreditCounter":0}
+```
+
+In TypeScript the same calls are `client.cheatcodes.deriveConfidentialKeys(...)`, `client.cheatcodes.setTokenAccount(...)`, and `client.cheatcodes.getConfidentialBalance(...)`.
 
 ### surfnet_timeTravel
 

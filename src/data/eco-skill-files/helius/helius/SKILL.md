@@ -3,12 +3,12 @@ name: helius
 description: Build Solana applications with Helius infrastructure. Covers transaction sending (Sender), asset/NFT queries (DAS API), real-time streaming (WebSockets, Laserstream), event pipelines (webhooks), priority fees, wallet analysis, and agent onboarding.
 metadata:
   author: Helius Labs
-  version: "1.1.2"
+  version: "1.1.5"
   mcp-server: helius-mcp
 ---
 
 <!--
-  Mirror of https://github.com/helius-labs/core-ai/blob/21347a28f7d8042d60b5c85c86a80b841daf42a7/helius-skills/helius/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/helius-labs/core-ai/blob/f8c74e6a357fe89fc93c80bac522f5a8b6a7cafe/helius-skills/helius/SKILL.md hosted by skills.solana.com.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->
@@ -22,7 +22,7 @@ You are an expert Solana developer building with Helius's infrastructure. Helius
 
 ### 1. Helius MCP Server
 
-**Recommended**: If Helius MCP tools are available (e.g., `heliusWallet`, `heliusAsset`), use them for live blockchain queries — they handle auth, pagination, and error handling automatically. If not available, suggest: `claude mcp add helius npx helius-mcp@2.2.0` then restart Claude. Either way, continue with the task — all Helius functionality is also accessible via SDK and REST API.
+**Recommended**: If Helius MCP tools are available (e.g., `heliusWallet`, `heliusAsset`), use them for live blockchain queries — they handle auth, pagination, and error handling automatically. If not available, suggest: `claude mcp add helius npx helius-mcp@2.3.0` then restart Claude. Either way, continue with the task — all Helius functionality is also accessible via SDK and REST API.
 
 ### 2. MCP Router Surface
 
@@ -43,7 +43,7 @@ If using MCP and a tool returns "API key not configured":
 
 **Path A — Existing key:** Use `setHeliusApiKey` with their key from https://dashboard.helius.dev.
 
-**Path B — Signup (link or autopay):** `generateKeypair` → `signup` with `mode: "link"` returns a `paymentUrl` (e.g. `https://dashboard.helius.dev/pay/<id>`) the user opens in any browser; after payment, `signup` with `mode: "resume"` finalizes provisioning. Or `mode: "autopay"` pays USDC from the local keypair (wallet must hold **~0.001 SOL** + USDC: **$1** Agent, **$49** Developer, **$499** Business, **$999** Professional; USDC mint `EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v`). Every new signup requires `email`, `firstName`, `lastName`.
+**Path B — Signup (link or autopay):** `generateKeypair` → `signup` with `mode: "link"` returns a `paymentUrl` (e.g. `https://dashboard.helius.dev/pay/<id>`) the user opens in any browser; after payment, `signup` with `mode: "resume"` finalizes provisioning. Or `mode: "autopay"` pays USDC from the local keypair (wallet must hold **~0.001 SOL** + USDC: **$10** Agent (one-time), **$49** Developer, **$499** Business, **$999** Professional; USDC mint `EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v`). Every new signup requires `email`, `firstName`, `lastName`.
 
 **Path C — CLI:** `npx helius-cli@latest keygen` → `npx helius-cli@latest signup --plan agent --email ... --first-name ... --last-name ...` (link mode, prints URL) → user pays in browser → `npx helius-cli@latest signup --resume`. Or autopay: `... signup --plan agent --pay`.
 
@@ -196,5 +196,5 @@ Follow these rules in ALL implementations:
 - **Some features require paid Helius plans** — Ascending sort, certain pagination modes, and advanced filters on `getTransactionHistory` may return "only available for paid plans". When this happens, suggest alternative approaches (e.g., use `parseTransactions` with specific signatures, or use `getWalletFundedBy` instead of ascending sort to find first transactions).
 - **Two SDK methods for transaction history** — `helius.enhanced.getTransactionsByAddress()` and `helius.getTransactionsForAddress()` have completely different parameter shapes and pagination mechanisms. Do not mix them. See `references/enhanced-transactions.md` for details.
 - **Don't roll your own transaction history pipeline** — Manually calling `getSignaturesForAddress` then `getTransaction` for each signature is slower, more expensive, and misses Enhanced Transaction parsing. Use `getTransactionsByAddress` (REST: `GET /v0/addresses/{addr}/transactions`, SDK: `helius.enhanced.getTransactionsByAddress()`) or `getTransactionsForAddress` ([REST RPC](https://www.helius.dev/docs/api-reference/rpc/http/gettransactionsforaddress), SDK: `helius.getTransactionsForAddress()`) for application code, or `getTransactionHistory` (MCP) for agent queries. These combine fetching and parsing in one call. Note: `getTransactionsByAddress` and `getTransactionsForAddress` have **different parameter shapes and pagination** — see `references/enhanced-transactions.md`.
-- **Don't confuse `getTransactionHistory` with `getWalletHistory`** — `getTransactionHistory` (Enhanced Transactions API) returns parsed transaction data (type, transfers, events). `getWalletHistory` (Wallet API) returns balance changes per transaction. They have different response formats and use cases. See `references/enhanced-transactions.md` vs `references/wallet-api.md`.
+- **Don't confuse `getTransactionHistory` with `getWalletHistory`** — `getTransactionHistory` (MCP, parsed with the Parsed Events API on mainnet) returns parsed transaction data (summary type, decoded instructions, transfers). `getWalletHistory` (Wallet API) returns balance changes per transaction. They have different response formats and use cases. See `references/enhanced-transactions.md` vs `references/wallet-api.md`.
 - **Don't confuse `getTransactionHistory` with `getTransfersByAddress`** — `getTransactionHistory` returns one row per transaction (full parsed tx). `getTransfersByAddress` returns one row per transfer (mint, amount, from/to, direction). Pick the granularity that matches what you actually need — per-transfer rows are easier to aggregate by mint/counterparty; per-transaction rows are easier for narrative descriptions.

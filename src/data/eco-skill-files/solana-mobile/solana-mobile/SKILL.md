@@ -4,7 +4,7 @@ description: Scaffold, configure, and troubleshoot Solana Mobile apps for Androi
 ---
 
 <!--
-  Mirror of https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile/SKILL.md hosted by skills.solana.com.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->
@@ -36,7 +36,7 @@ reuse an older cached version.
 | `templates` | Maintaining a template repository — template authors only |
 | `webshell` | Wrapping an existing web app in an Android WebView shell |
 
-Every flag of every command: [references/cli.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile/references/cli.md). Do not guess at flags —
+Every flag of every command: [references/cli.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile/references/cli.md). Do not guess at flags —
 the CLI ships its own help, and `--help` on any command is authoritative.
 
 ## Non-negotiable constraint
@@ -53,7 +53,7 @@ Android is the only platform with wallet support. iOS builds run, but no MWA.
 | Situation | Do this |
 | --- | --- |
 | No project yet | [Create a new project](#create-a-new-project) |
-| Existing Expo app, no Solana | Read [references/add-to-existing-app.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile/references/add-to-existing-app.md) |
+| Existing Expo app, no Solana | Read [references/add-to-existing-app.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile/references/add-to-existing-app.md) |
 | Project exists, build or toolchain broken | [Check the environment](#check-the-environment) |
 | Project exists, needs wallet features | Use the `solana-mobile-wallet` skill |
 | Wallet connect or signing needs testing | [Test a wallet without an app](#test-a-wallet-without-an-app) |
@@ -234,11 +234,11 @@ installed — `device install fakewallet` if there is none.
 
 ## Reference material
 
-- [references/cli.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile/references/cli.md) — every `solana-mobile` command and flag, including
+- [references/cli.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile/references/cli.md) — every `solana-mobile` command and flag, including
   `templates` and `webshell`
-- [references/add-to-existing-app.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile/references/add-to-existing-app.md) — wiring Solana
+- [references/add-to-existing-app.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile/references/add-to-existing-app.md) — wiring Solana
   into an Expo app that already exists: crypto polyfill, providers, dependencies
-- [references/troubleshooting.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile/references/troubleshooting.md) — build, polyfill, and
+- [references/troubleshooting.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile/references/troubleshooting.md) — build, polyfill, and
   emulator failures with known causes
 
 ## Related skills

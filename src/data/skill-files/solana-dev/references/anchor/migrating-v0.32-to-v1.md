@@ -79,14 +79,14 @@ avm use 1.0.0
 
 Otherwise bootstrap via `cargo`:
 ```bash
-cargo install avm --git https://github.com/solana-foundation/anchor --tag v1.0.0 --locked
+cargo install avm --git https://github.com/otter-sec/anchor --tag v1.0.0 --locked
 avm install 1.0.0
 avm use 1.0.0
 ```
 
 **Without AVM** — install `anchor-cli` directly:
 ```bash
-cargo install --git https://github.com/solana-foundation/anchor --tag v1.0.0 anchor-cli --locked
+cargo install --git https://github.com/otter-sec/anchor --tag v1.0.0 anchor-cli --locked
 ```
 
 **Update Solana CLI** (if below 3.x):
@@ -137,7 +137,8 @@ When you bump `solana-*` crates to `^3`, also bump `litesvm` in `[dev-dependenci
 |---------|---------------------------|-------------|
 | `0.8.2` | `~3.0` | `solana-hash ~3.0`, `solana-vote-interface 4.0`, `solana-system-interface 2.0` |
 | `0.9.1` | `~3.1`–`~3.3` | `solana-hash 4.0`, `solana-vote-interface 5.0`, `solana-system-interface 3.0` |
-| `>0.10.0` | `3.3+` | follow latest releases when on cutting-edge solana-* deps |
+| `0.11.x` | `3.x` | `solana-program-runtime ^3.0`; the version `anchor-litesvm 0.4` targets |
+| `0.13+` | Agave 4.x | `solana-program-runtime ^4`; see the [compatibility matrix](../compatibility-matrix.md#litesvm-rust-crate--version-selection) for 0.13–0.18 |
 
 ```toml
 # [dev-dependencies] — pick the row that matches your solana-* versions
@@ -146,6 +147,7 @@ litesvm = "0.8.2"   # solana-* ~3.0
 
 # If using the Anchor wrapper:
 anchor-litesvm = "0.3"   # requires anchor-lang ^1.0.0 and litesvm ^0.8.2
+# anchor-litesvm = "0.4" # requires anchor-lang ^1.0.0 and litesvm ^0.11.0 — no release yet for litesvm 0.13+
 ```
 
 > **Tip:** run `cargo tree -d` after bumping — a duplicate `solana-*` in the dependency tree at two incompatible minor versions is the most common sign you've picked the wrong `litesvm` version.

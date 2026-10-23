@@ -24,7 +24,7 @@ description: A drop-in replacement for solana-test-validator with sub-second sta
 
 ## What is Surfpool
 
-Surfpool ([solana-foundation/surfpool](https://github.com/solana-foundation/surfpool), docs at [solana.com/docs/tools](https://solana.com/docs/tools/surfpool), latest release **v1.5.0**) is a drop-in replacement for `solana-test-validator` built on [LiteSVM](https://github.com/LiteSVM/litesvm). It provides a local Solana network (called a "surfnet") with sub-second startup, automatic mainnet state cloning, transaction profiling, and a built-in web UI (Studio).
+Surfpool ([solana-foundation/surfpool](https://github.com/solana-foundation/surfpool), docs at [solana.com/docs/tools](https://solana.com/docs/tools/surfpool), latest release **v1.6.1**) is a drop-in replacement for `solana-test-validator` built on [LiteSVM](https://github.com/LiteSVM/litesvm). It provides a local Solana network (called a "surfnet") with sub-second startup, automatic mainnet state cloning, transaction profiling, and a built-in web UI (Studio).
 
 Key differences from `solana-test-validator`:
 - **Instant startup** — no genesis ledger to bootstrap; the SVM runs in-process.
@@ -136,12 +136,18 @@ Run as a background daemon (Linux only):
 surfpool start --ci --daemon
 ```
 
+Stop a running instance (v1.6.0+) — `--port` is required unless `--rpc-url` is given; `--host` defaults to localhost:
+
+```bash
+surfpool stop --port 8899
+```
+
 ## Embedded SDK (@solana/surfpool)
 
 Since v1.2.0, a full surfnet can be embedded in-process — no shelling out, no fixed ports. Ideal for integration test suites.
 
-- **TypeScript**: npm package `@solana/surfpool` (1.5.0; napi-rs native bindings for macOS x64/arm64, Linux x64 GNU). Ships a Kit plugin at the `@solana/surfpool/kit` subpath.
-- **Rust**: crate `surfpool-sdk = "1.5.0"` — `Surfnet::builder()` with options such as `BlockProductionMode`
+- **TypeScript**: npm package `@solana/surfpool` (1.6.1; napi-rs native bindings for macOS x64/arm64, Linux x64 GNU). Ships a Kit plugin at the `@solana/surfpool/kit` subpath.
+- **Rust**: crate `surfpool-sdk = "1.6.1"` — `Surfnet::builder()` with options such as `BlockProductionMode`
 
 With `@solana/kit`, use the plugin rather than the raw class — it boots the surfnet, installs a pre-funded payer and the RPC stack, and adds a typed cheatcodes RPC in one call:
 
@@ -302,11 +308,11 @@ Start a local Solana network (surfnet). Alias: `surfpool simnet`.
 
 | Flag | Short | Default | Description |
 |---|---|---|---|
-| `--slot-time` | `-t` | `400` | Slot time in milliseconds |
+| `--slot-time` | `-t` | `250` | Slot time in milliseconds (default was `400` before v1.6.1) |
 | `--block-production-mode` | `-b` | `clock` | Block production mode: `clock`, `transaction`, `manual` |
 
 Modes:
-- `clock` — advance slots at a fixed interval (default, `400ms`)
+- `clock` — advance slots at a fixed interval (default, `250ms` since v1.6.1)
 - `transaction` — advance a slot only when a transaction is received
 - `manual` — slots only advance via explicit RPC calls
 

@@ -33,14 +33,14 @@ anchor: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.39' not found (require
 1. **Upgrade OS** (best): Ubuntu 24.04+ has GLIBC 2.39
 2. **Build from source:**
    ```bash
-   # For Anchor 1.1.x (current):
-   cargo install --git https://github.com/solana-foundation/anchor --tag v1.1.2 anchor-cli
+   # For Anchor 1.2.x (current):
+   cargo install --git https://github.com/otter-sec/anchor --tag v1.2.1 anchor-cli
 
    # For Anchor 0.31.x:
-   cargo install --git https://github.com/solana-foundation/anchor --tag v0.31.1 anchor-cli
+   cargo install --git https://github.com/otter-sec/anchor --tag v0.31.2 anchor-cli
 
    # For Anchor 0.32.x:
-   cargo install --git https://github.com/solana-foundation/anchor --tag v0.32.1 anchor-cli
+   cargo install --git https://github.com/otter-sec/anchor --tag v0.32.2 anchor-cli
    ```
 3. **Use Docker:**
    ```bash
@@ -181,7 +181,7 @@ error[E0599]: no method named `local_file` found for struct `proc_macro2::Span`
 **Cause:** proc-macro2 API change in newer nightly Rust.
 
 **Solutions:**
-1. Upgrade to Anchor 0.31.1+ (fixed in [#3663](https://github.com/solana-foundation/anchor/pull/3663))
+1. Upgrade to Anchor 0.31.1+ (fixed in [#3663](https://github.com/otter-sec/anchor/pull/3663))
 2. Use stable Rust: `RUSTUP_TOOLCHAIN=stable anchor build`
 3. Pin proc-macro2: `cargo update -p proc-macro2 --precise 1.0.86`
 
@@ -475,23 +475,20 @@ Error: Cannot find native binding.
 cause: litesvm.linux-x64-gnu.node: undefined symbol: __isoc23_strtol
 ```
 
-**Root cause:** LiteSVM 0.5.0 native binary is compiled against GLIBC 2.38+. The `__isoc23_strtol` symbol was introduced in GLIBC 2.38 (C23 standard functions). Systems with GLIBC < 2.38 (Ubuntu 22.04, Debian 12, etc.) cannot load this binary.
+**Root cause:** the old LiteSVM 0.5.0 npm binary was compiled against GLIBC 2.38+. The `__isoc23_strtol` symbol was introduced in GLIBC 2.38 (C23 standard functions), so systems with GLIBC < 2.38 (Ubuntu 22.04, Debian 12, etc.) could not load it.
 
-**Verified on:** Debian 12 (GLIBC 2.36) — Jan 2026
+**Verified on:** Debian 12 (GLIBC 2.36) with `litesvm` 0.5.0 — Jan 2026
 
 **Solutions:**
-1. **Upgrade OS** to Ubuntu 24.04+ or Debian 13+ (recommended)
+1. **Upgrade `litesvm`** to the current 1.x (1.6.0 as of Oct 2026). Its gnu binaries are cross-built on Ubuntu 22.04 runners, and musl builds (`litesvm-linux-{x64,arm64}-musl`) ship alongside them. Delete `node_modules` and the lockfile entry so the right optional binary is installed.
 2. **Use Docker:**
    ```dockerfile
    FROM ubuntu:24.04
    RUN apt-get update && apt-get install -y nodejs npm
    ```
-3. **Fall back to `solana-bankrun`** if you can't upgrade:
-   ```bash
-   pnpm remove litesvm anchor-litesvm
-   pnpm add -D solana-bankrun anchor-bankrun
-   ```
-4. **Try litesvm 0.3.x** which may work on older GLIBC versions
+3. **Upgrade the OS** to Ubuntu 24.04+ or Debian 13+.
+
+Do not switch to `solana-bankrun`: it is deprecated in favor of LiteSVM.
 
 ### `Cannot find module './litesvm.linux-x64-gnu.node'`
 ```
@@ -691,8 +688,8 @@ Environment: Rust 1.93, Solana CLI 2.2.16, Anchor CLI 0.30.1, Node 22.22.0, GLIB
 | Platform tools corruption | `cargo build-sbf` on fresh install | ❌ FAIL then PASS | Initial corruption due to disk space; fixed with `--force-tools-install` on adequate disk |
 
 ### Key Findings
-1. **litesvm 0.5.0 npm is BROKEN on Debian 12** (GLIBC 2.36) — use `solana-bankrun` as fallback
-2. **solana-bankrun works perfectly** on GLIBC 2.36 — recommended for Debian 12
+1. **litesvm 0.5.0 npm was broken on Debian 12** (GLIBC 2.36) — upgrade to litesvm 1.x, which ships cross-built gnu and musl binaries
+2. **solana-bankrun loaded** on GLIBC 2.36, but it is now deprecated — do not adopt it for new work
 3. **Platform-tools v1.48 needs ~2GB disk** for extraction — symlink `~/.cache/solana/` to a larger partition if root is small
 4. **Anchor CLI 0.30.1 successfully builds anchor-lang 0.32.1** — warnings only, no errors
 5. **Node 22 has full ESM+CJS support** for all Solana JS packages tested

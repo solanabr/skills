@@ -4,7 +4,7 @@ description: Add Privy authentication to a Solana Expo Android app on top of Mob
 ---
 
 <!--
-  Mirror of https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/integration-privy/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/integration-privy/SKILL.md hosted by skills.solana.com.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->
@@ -75,7 +75,7 @@ Three pieces of native wiring are required, and the SDK fails in a different pla
 - `expo-secure-store` and `expo-web-browser` in `app.json` plugins
 - A Metro resolver override so `jose` resolves to its browser build
 
-Full contents for each, and how to confirm they took: [references/setup.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/integration-privy/references/setup.md).
+Full contents for each, and how to confirm they took: [references/setup.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/integration-privy/references/setup.md).
 Rebuild natively (`npx expo run:android`) after this step — a JS reload will not pick up the
 new native modules.
 
@@ -194,7 +194,7 @@ full URI and is normally your app's deep link. Keep both stable — they are emb
 signed message the user sees in their wallet.
 
 Linking a wallet to an account that already exists, and verifying the session on a server:
-[references/siws.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/integration-privy/references/siws.md).
+[references/siws.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/integration-privy/references/siws.md).
 
 ## Step 6: sign out of both
 
@@ -226,11 +226,11 @@ but not signed in", which is where the sign-in button belongs.
 
 ## Reference material
 
-- [references/setup.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/integration-privy/references/setup.md) — polyfills, Metro config, `app.json` plugins,
+- [references/setup.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/integration-privy/references/setup.md) — polyfills, Metro config, `app.json` plugins,
   environment variables, and how to verify each one landed
-- [references/siws.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/integration-privy/references/siws.md) — the SIWS exchange in depth, linking additional
+- [references/siws.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/integration-privy/references/siws.md) — the SIWS exchange in depth, linking additional
   wallets, server-side token verification, and the raw-protocol variant without Wallet UI
-- [references/troubleshooting.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/integration-privy/references/troubleshooting.md) — Privy-specific failures and
+- [references/troubleshooting.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/integration-privy/references/troubleshooting.md) — Privy-specific failures and
   their causes
 
 The patterns here follow

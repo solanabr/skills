@@ -26,11 +26,12 @@ description: Authoritative Solana learning platforms, documentation, tooling ref
 - [@solana/kit Repository](https://github.com/anza-xyz/kit)
 - [Solana Kit Docs](https://www.solanakit.com/) (createClient, plugins, getting started)
 - [Kit Plugins Repository](https://github.com/anza-xyz/kit-plugins) (rpc, signer, wallet, litesvm, instruction-plan — rpc/litesvm 0.19+ plan transaction v1, wallet 0.20+ reports wallet v1 support)
-- [Solana Kit Docs on solana.com](https://solana.com/docs/clients/kit)
+- [Solana Kit Docs](https://www.solanakit.com/docs)
 
 ## web3.js v3 (classic API on Kit internals)
-- [solana-web3.js v3.x branch](https://github.com/solana-foundation/solana-web3.js/tree/v3.x)
-- [v1 → v3 Migration Guide](https://github.com/solana-foundation/solana-web3.js/blob/v3.x/docs/web3js-v1-to-v3-migration.md)
+- [solana-web3.js (v3 on `main`)](https://github.com/solana-foundation/solana-web3.js)
+- [v1 → v3 Migration Guide](https://github.com/solana-foundation/solana-web3.js/blob/main/docs/web3js-v1-to-v3-migration.md)
+- [3.0.0 Release Notes](https://github.com/solana-foundation/solana-web3.js/blob/main/packages/web3.js/RELEASE_NOTES.md)
 - [Sunrising Web3.js announcement](https://blueshift.gg/research/sunrising-web3js-reuniting-solanas-typescript-ecosystem)
 - [web3.js API docs](https://solana-foundation.github.io/solana-web3.js/)
 
@@ -40,7 +41,7 @@ description: Authoritative Solana learning platforms, documentation, tooling ref
 ## Program Frameworks
 
 ### Anchor
-- [Anchor Repository](https://github.com/solana-foundation/anchor)
+- [Anchor Repository](https://github.com/otter-sec/anchor)
 - [Anchor Documentation](https://www.anchor-lang.com/)
 - [Anchor Version Manager (AVM)](https://www.anchor-lang.com/docs/avm)
 
@@ -74,7 +75,7 @@ description: Authoritative Solana learning platforms, documentation, tooling ref
 
 ## IDLs and Codegen
 - [Codama Repository](https://github.com/codama-idl/codama)
-- [Codama Generating Clients](https://solana.com/docs/programs/codama-generating-clients)
+- [Codama Generating Clients](https://solana.com/docs/programs/codama/clients)
 - [Shank (Metaplex)](https://github.com/metaplex-foundation/shank)
 
 ## Tokens and NFTs
@@ -83,8 +84,8 @@ description: Authoritative Solana learning platforms, documentation, tooling ref
 - [Metaplex Documentation](https://developers.metaplex.com/)
 
 ## Payments
-- [Kora Documentation](https://docs.kora.network/)
-- [Solana Pay](https://docs.solanapay.com/)
+- [Kora Documentation](https://solana.com/docs/tools/kora)
+- [Solana Pay](https://solana.com/docs/tools/solana-pay)
 
 ## Security
 - [Blueshift Program Security Course](https://learn.blueshift.gg/en/courses/program-security)
@@ -109,4 +110,4 @@ Well-built production programs to read for structure and conventions:
 ## Agent Skills
 - [Agent Skills Specification](https://agentskills.io/specification)
 - [skills.sh (skill discovery + installer)](https://www.skills.sh/)
-- [web3.js v1→v3 migration skill](https://github.com/solana-foundation/solana-web3.js/tree/v3.x/skills/web3js-v1-to-v3-migration)
+- [web3.js v1→v3 migration skill](https://github.com/solana-foundation/solana-web3.js/tree/main/skills/web3js-v1-to-v3-migration)

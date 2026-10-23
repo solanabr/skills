@@ -80,7 +80,7 @@ const client = await createClient()
   .use(airdropSigner(lamports(1_000_000_000n)));
 ```
 
-**Surfpool**'s `surfpool()` plugin forwards `transactionConfig` to the `solanaLocalRpc` it wraps, so `surfpool({ transactionConfig: { version: 1 } })` plans v1 when the resolved `@solana/kit-plugin-rpc` is 0.19+. `@solana/surfpool` 1.5.0 still declares `@solana/kit ^7` and `@solana/kit-plugin-rpc ^0.15` as optional peers, so expect a peer-range warning until it re-pins — see [surfpool/kit-plugin.md](surfpool/kit-plugin.md).
+**Surfpool**'s `surfpool()` plugin forwards `transactionConfig` to the `solanaLocalRpc` it wraps, so `surfpool({ transactionConfig: { version: 1 } })` plans v1 when the resolved `@solana/kit-plugin-rpc` is 0.19+. `@solana/surfpool` 1.6.1 still declares `@solana/kit-plugin-rpc ^0.18` and `@solana/kit-plugin-signer ^0.18` as optional peers, which exclude 0.19, so expect a peer-range warning until it re-pins — see [surfpool/kit-plugin.md](surfpool/kit-plugin.md).
 
 `client.rpc` is an ordinary kit RPC, so reading the transaction back still needs `maxSupportedTransactionVersion: 1` and, over 1232 bytes, `encoding: 'base64'`.
 
@@ -372,15 +372,16 @@ Matching readers: `getTransactionMessageComputeUnitLimit`, `getTransactionMessag
 
 | Library | Status |
 |---|---|
-| `@solana/kit` | **8.0.0+** (current 8.3.0) — full support. 7.1.1 has the codecs, setters, and `maxSupportedTransactionVersion: 1`, but not the types for `createTransactionMessage({ version: 1 })` |
+| `@solana/kit` | **8.0.0+** (current 8.5.0) — full support. 7.1.1 has the codecs, setters, and `maxSupportedTransactionVersion: 1`, but not the types for `createTransactionMessage({ version: 1 })` |
 | `@solana/kit-plugin-rpc` | **0.19.0+** — `solanaRpc({ transactionConfig: { version: 1 } })` plans, estimates, and sends v1. 0.18 and earlier throw `Version 1 transactions are not yet supported by rpcTransactionPlanner` |
 | `@solana/kit-plugin-litesvm` | **0.19.0+** — `litesvm({ transactionConfig: { version: 1 } })`; writes maximum limits instead of estimating |
 | `@solana/kit-plugin-wallet` | **0.20.0+** — `connected.supportedTransactionVersions` typed to include `1` (via `@solana/wallet-standard-features` 1.5) |
-| `@solana/web3.js@rc` (v3) | **`3.0.0-rc.3`** — `compileToV1Message`, send and read |
+| `@solana/web3.js` v3 | **`3.0.0`+** (released 2026-10-01; current 3.0.2) — `compileToV1Message`, send and read |
 | `@solana/web3.js` 1.x | **`1.99.0`** — **read only**. 1.x never builds, signs, serializes, or sends v1; migrate to kit 8 for that |
-| Rust `solana-*` | **4.x** (`solana-message` 4.1.0 added `v1::Message`; 4.2.x adds the inherent `Message::serialize()`). Anchor 1.1.x still pins the 3.x crate line for *programs*; the 4.x requirement is client-side |
+| `@anchor-lang/core` | **0.32.2 / 0.31.2** read v1 through web3.js 1.99.0. 1.x through 1.2.1 still fetch with `maxSupportedTransactionVersion: 0`; v1 support is [#4977](https://github.com/otter-sec/anchor/pull/4977) (open) |
+| Rust `solana-*` | **4.x** (`solana-message` 4.1.0 added `v1::Message`; 4.2.x adds the inherent `Message::serialize()`). Anchor programs default to the 3.x crate line; Anchor 1.2.1 can opt into 4.x with the `solana-v4` feature. The 4.x requirement is client-side |
 | Python `solders` | 0.29.0+ — read and send. Earlier releases have neither |
-| Go `solana-go` | **v2.0.0+** — [PR #481](https://github.com/solana-foundation/solana-go/pull/481) adds `solana.TransactionConfig`, `solana.MessageVersionV1`, and `solana.TransactionV1Config` |
+| Go `solana-go` | **v2.0.0+** (`github.com/solana-foundation/solana-go/v2`, current v2.1.0) or **v1.23.0+** (`github.com/gagliardetto/solana-go`, current v1.25.0) — [PR #481](https://github.com/solana-foundation/solana-go/pull/481) adds `solana.TransactionConfig`, `solana.MessageVersionV1`, and `solana.TransactionV1Config`. Both lines need Go 1.25+ from v2.1.0 / v1.24.0 |
 | Anza CLI / Agave | **4.2.2** is the mainnet activation release; 4.2.0+ for v1 and `maxSupportedTransactionVersion: 1` |
 
 Runnable examples in all four languages — sending, decoding, reading blocks, indexing over gRPC, plus offline and live tests: [`solana-foundation/transaction-v1-examples`](https://github.com/solana-foundation/transaction-v1-examples).
@@ -454,7 +455,7 @@ Decompiling a v1 compiled message fetches no accounts, since v1 cannot use addre
 - Audit for ComputeBudget instruction scanning; read `transactionConfig` instead, and persist it — it has no v0 equivalent.
 - Treat `blockSubscribe`'s `block: null` with an error as a failure, not an empty block.
 - Regenerate protobuf stubs and discriminate on `config` presence, never on the `versioned` boolean.
-- Move to Agave 4.2.x-generation client dependencies (`solana-*` 4.x crates). On web3.js 1.x, upgrade to 1.99.0 — it reads v1 but cannot send it, so anything that *sends* needs `@solana/kit` 8 or web3.js v3 (rc.3+).
+- Move to Agave 4.2.x-generation client dependencies (`solana-*` 4.x crates). On web3.js 1.x, upgrade to 1.99.0 — it reads v1 but cannot send it, so anything that *sends* needs `@solana/kit` 8 or web3.js v3 (3.0.0+).
 
 **If you send transactions:**
 

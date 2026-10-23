@@ -247,5 +247,5 @@ For Next.js: keep server components server-side; only leaf components that call 
 
 ## Legacy apps
 
-- App built on web3.js v1 + wallet-adapter? Migrate to web3.js v3 (Kit internals, same classes; currently RC) first — see [kit-web3-interop.md](kit-web3-interop.md) for routing to the official migration skill — then adopt Kit plugins incrementally.
+- App built on web3.js v1 + wallet-adapter? Migrate to web3.js v3 (Kit internals, same classes; 3.0 since Oct 2026) first — see [kit-web3-interop.md](kit-web3-interop.md) for routing to the official migration skill — then adopt Kit plugins incrementally.
 - Found `@solana/client` / `@solana/react-hooks` (framework-kit)? Migrate to the Kit plugin client + `@solana/react`: `createClient({ endpoint, walletConnectors })` becomes `createClient().use(walletSigner(...)).use(solanaRpc(...))`, and framework-kit hooks map to the `@solana/kit-plugin-wallet/react` hooks or `client.wallet` state.

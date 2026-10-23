@@ -39,7 +39,7 @@ A lightweight Solana Virtual Machine that runs directly in your test process. Su
 ### Rust Setup
 
 ```bash
-cargo add --dev litesvm   # 0.14.x, Agave 4.1-based
+cargo add --dev litesvm   # 0.18.x, Agave 4.3-based, MSRV 1.97.1 (0.17.x builds on 1.89)
 ```
 
 ```rust
@@ -71,7 +71,9 @@ fn test_deposit() {
 }
 ```
 
-For CPI call-tree assertions, see the companion `litesvm-cpi-tree` crate (added in litesvm 0.14).
+For CPI call-tree assertions, see the companion `litesvm-cpi-tree` crate (added in litesvm 0.14, released in lockstep with litesvm).
+
+Upgrading from 0.14: 0.17 removes `LiteSVM::get_feature_set` and the `internal-test` feature and makes `serde` an optional feature. 0.18 adds the `TransactionMetadata::loaded_accounts_data_size` field, so struct literals must set it. 0.18 also applies the SIMD-0437/0438 rent gates, so the `Rent` sysvar reports 5080 lamports per byte as mainnet does. Tests that hard-code the old rent-exempt minimums will see different values; compute them with `svm.minimum_balance_for_rent_exemption(len)`.
 
 ### TypeScript Setup (Kit litesvm plugin)
 
@@ -128,7 +130,9 @@ println!("CUs used: {}", result.compute_units_consumed);
 
 ## Unit Tests: Mollusk
 
-A lightweight test harness (`mollusk-svm` 0.14.x) providing a direct interface to program execution without full validator runtime. Best for Rust-only testing with fine-grained control.
+A lightweight test harness (`mollusk-svm` 0.16.x, Agave 4.3-based) providing a direct interface to program execution without full validator runtime. Best for Rust-only testing with fine-grained control.
+
+Upgrading from 0.14: 0.15 adds a fee-payer address argument to `process_transaction_instructions*`, and 0.16 turns rent-exemption checks on by default in every harness. Accounts left below the rent-exempt minimum now fail the check; set `mollusk.config.rent_exempt_checks = false` only for tests that deliberately exercise rent-paying accounts.
 
 ### When to Use Mollusk
 
@@ -142,6 +146,7 @@ A lightweight test harness (`mollusk-svm` 0.14.x) providing a direct interface t
 ```bash
 cargo add --dev mollusk-svm
 cargo add --dev mollusk-svm-programs-token  # For SPL token helpers
+cargo add --dev mollusk-svm-account         # 0.16.2+: Token/Mint/Stake/System account builders
 cargo add --dev solana-sdk solana-program
 ```
 
@@ -231,7 +236,7 @@ surfpool update
 ### Two Ways to Run
 
 1. **CLI-spawned**: `NO_DNA=1 surfpool start` (or `--ci --daemon` in CI). Tests connect to `http://127.0.0.1:8899`.
-2. **Embedded SDK** (v1.2.0+): run a full surfnet in-process from the test file itself — no daemon, no port conflicts (dynamic ports). npm: `@solana/surfpool` (1.5.0); Rust: `surfpool-sdk = "1.5.0"`.
+2. **Embedded SDK** (v1.2.0+): run a full surfnet in-process from the test file itself — no daemon, no port conflicts (dynamic ports). npm: `@solana/surfpool` (1.6.1); Rust: `surfpool-sdk = "1.6.1"`.
 
 Prefer the embedded SDK for test suites: each suite owns its surfnet lifecycle and CI needs no service orchestration.
 
@@ -367,7 +372,7 @@ NO_DNA=1 surfpool start --rpc-url https://my-rpc-provider.com
 
 ### Anchor Projects
 
-Anchor 1.0+ uses surfpool as the default test runner: `anchor test` and `anchor localnet` spawn a surfnet automatically (current Anchor: 1.1.2, paired with Solana CLI 3.1.10). Running `surfpool start` in a project root detects both **Anchor and Pinocchio** projects and scaffolds txtx deployment runbooks (program names read from `Anchor.toml`).
+Anchor 1.0+ uses surfpool as the default test runner: `anchor test` and `anchor localnet` spawn a surfnet automatically (current Anchor: 1.2.1, CI-tested with Solana CLI 4.1.2 and Surfpool 1.5.0). Running `surfpool start` in a project root detects both **Anchor and Pinocchio** projects and scaffolds txtx deployment runbooks (program names read from `Anchor.toml`).
 
 For older test suites written against `solana-test-validator` semantics:
 

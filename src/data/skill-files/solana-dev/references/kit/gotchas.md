@@ -144,6 +144,20 @@ const rpc = createSolanaRpc('https://api.devnet.solana.com');
 
 ## Runtime Errors
 
+### `SOLANA_ERROR__KEYS__VERIFICATION_REQUIRES_EXTRACTABLE_PUBLIC_KEY` from `verifySignature()`
+
+**Cause:** `@solana/kit` 8.5.0 made `verifySignature()` strict: it now rejects small-order public keys and `R` values, so it has to read the public key's bytes. A `CryptoKey` imported with `extractable: false` now makes it throw. (Kit's own key helpers always return extractable public keys; `getPublicKeyFromPrivateKey()` ignores its deprecated `extractable` argument.)
+
+```ts
+// ❌ Throws on kit 8.5+
+const publicKey = await crypto.subtle.importKey('raw', bytes, 'Ed25519', false, ['verify']);
+await verifySignature(publicKey, signature, data);
+
+// ✅ Fix: import public keys as extractable
+const publicKey = await crypto.subtle.importKey('raw', bytes, 'Ed25519', true, ['verify']);
+await verifySignature(publicKey, signature, data);
+```
+
 ### "Account does not exist"
 
 **Cause:** Decoding account that may not exist.

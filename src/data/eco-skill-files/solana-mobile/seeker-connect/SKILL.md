@@ -1,16 +1,16 @@
 ---
 name: seeker-connect
-description: Connect a web dapp to the Seeker device's built-in wallet with Seeker Connect. Use when adding wallet connection, sign-in with Solana, message signing, or transaction signing to a website that runs in the browser on a Seeker phone, registering the "Seeker Connect" Wallet Standard wallet, setting the Nostr relay for relayDomain, using the seeker-connect-button element, or debugging SeekerConnectError codes like association-failed.
+description: Connect a web, React Native, or Kotlin dapp to the Seeker device's built-in wallet with Seeker Connect. Use when adding wallet connection, sign-in with Solana, message signing, or transaction signing to an Expo or React Native app on a Seeker phone, a Kotlin app on it, or a website that runs in its browser, registering the "Seeker Connect" Wallet Standard wallet, setting the Nostr relay for relayDomain, using the seeker-connect-button element or the SeekerConnectButton native view, installing @solana-mobile/seeker-connect-react-native or com.solanamobile:seeker-connect, or debugging SeekerConnectError codes like association-failed.
 ---
 
 <!--
-  Mirror of https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/seeker-connect/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/seeker-connect/SKILL.md hosted by skills.solana.com.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->
 
 
-# Seeker Connect for web dapps
+# Seeker Connect
 
 Seeker Connect links a web page open in the browser **on the device** to a Solana Mobile
 certified device's own wallet — Seeker is the first such device. It is a dapp-only SDK built
@@ -21,9 +21,15 @@ App Link) mechanism, carries the session over a Nostr relay, and ships Seeker-br
 progress and error UI — all exposed to the app as an ordinary Wallet Standard wallet named
 **"Seeker Connect"**.
 
-Targets: **Web is available today.** React Native and Android (Kotlin) are planned. Until
-they ship, wallet connection inside an Expo or React Native app uses the
-`solana-mobile-wallet` skill instead.
+Targets: **Expo / React Native, Kotlin, and web are all available.** For an Expo or React
+Native app, read the mental model below, then follow
+[references/react-native.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/seeker-connect/references/react-native.md); for a Kotlin app,
+[references/kotlin.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/seeker-connect/references/kotlin.md). The `expo-kit-minimal` and
+`kotlin-compose-minimal` templates of `npx solana-mobile@latest create` ship each path wired
+up. Both expose the same client API as the web, with no relay to configure and the branded UI
+drawn natively. The rest of this file walks the web
+path. Plain Mobile Wallet Adapter in React Native, without Seeker Connect, is the
+`solana-mobile-wallet` skill.
 
 ## The mental model — read this before writing code
 
@@ -61,6 +67,10 @@ the snippets below import from:
 ```bash
 npm install @solana-mobile/seeker-connect-wallet-standard @solana/wallet-standard-features @wallet-standard/app @wallet-standard/features
 ```
+
+Use `0.1.2` or later. Earlier releases sit on Mobile Wallet Adapter 2.x, which can leave a
+wallet call pending forever when the session drops; `0.1.2` moves to MWA 3.0, which rejects
+it with `session-closed` instead.
 
 The Wallet Standard package pulls in the other Seeker Connect packages (`core`, `ui`, `web`)
 as dependencies. They are not re-exported, though — so also install any of them the app
@@ -116,12 +126,12 @@ Configuration:
 | --- | --- | --- |
 | `associationTimeoutMs` | no | How long a launch may take before `association-failed`. Default 30s |
 | `chain` | no | Chain requested at authorization. Default `solana:mainnet` |
-| `firstConnectWalletBaseUri` | no | **Leave unset** unless Solana Mobile publishes a value to paste. Unset, first connects use the generic `solana-wallet:` scheme; set, the page navigates to that host — see [references/troubleshooting.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/seeker-connect/references/troubleshooting.md#first-connect-opens-a-generic-wallet-chooser) |
+| `firstConnectWalletBaseUri` | no | **Leave unset** unless Solana Mobile publishes a value to paste. Unset, first connects use the generic `solana-wallet:` scheme; set, the page navigates to that host — see [references/troubleshooting.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/seeker-connect/references/troubleshooting.md#first-connect-opens-a-generic-wallet-chooser) |
 | `identity` | yes | `name`, `uri`, optional `icon`. Shown in the wallet's consent UI |
 | `relayDomain` | yes | Nostr relay that carries the session traffic. Use `relay.solanamobile.com` — Step 2 |
 
 `registerSeekerConnect` also accepts `seekerLink`, `authorizationCache`, and `presenter`
-overrides — see [references/imperative-api.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/seeker-connect/references/imperative-api.md).
+overrides — see [references/imperative-api.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/seeker-connect/references/imperative-api.md).
 
 ## Step 4: use it like any other wallet
 
@@ -196,7 +206,7 @@ Wallet outcomes reject with a `SeekerConnectError` carrying a `code`:
 | `authorization-declined` | The user declined authorization. The cached token is wiped; the next connect prompts fresh consent |
 | `cancelled` | The user dismissed the progress overlay. **A normal outcome — never surface it as an error** |
 | `request-declined` | The wallet declined to sign or submit |
-| `session-closed` | The session ended before the interaction completed |
+| `session-closed` | The session ended before the interaction completed. After `signAndSendTransaction` the transaction may still have landed, and the error carries no signature — never retry automatically — see [references/troubleshooting.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/seeker-connect/references/troubleshooting.md#a-wallet-call-never-settles) |
 | `wallet-error` | Any other wallet-reported error |
 
 Three failures are plain `Error`s instead, and they are misuse rather than wallet outcomes:
@@ -250,10 +260,15 @@ connect or sign-in call yourself — the button is presentation only.
 
 ## Reference material
 
-- [references/imperative-api.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/seeker-connect/references/imperative-api.md) — the non-Wallet-Standard
+- [references/kotlin.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/seeker-connect/references/kotlin.md) — the Kotlin SDK: Gradle setup, the
+  `SeekerConnect` constructor, the client methods, the Compose button and dialogs, and
+  `SeekerConnectException` codes
+- [references/react-native.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/seeker-connect/references/react-native.md) — the React Native package:
+  install, `https` identity requirement, the client methods, and the native button
+- [references/imperative-api.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/seeker-connect/references/imperative-api.md) — the non-Wallet-Standard
   path via `createNostrSeekerLink().transact`, and the `seekerLink` /
   `authorizationCache` / `presenter` overrides
-- [references/troubleshooting.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/seeker-connect/references/troubleshooting.md) — association failures,
+- [references/troubleshooting.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/seeker-connect/references/troubleshooting.md) — association failures,
   desktop testing, capability-derived features, cache behavior
 
 ## Related skills
@@ -261,8 +276,8 @@ connect or sign-in call yourself — the button is presentation only.
 - `seeker-domains` — display `.skr` names instead of raw addresses
 - `seeker-genesis-token` — verify Seeker device ownership after connecting
 - `solana-mobile` — the CLI, templates, and toolchain behind `solana-mobile create`
-- `solana-mobile-wallet` — wallet connection in React Native apps (Mobile Wallet Adapter
-  directly)
+- `solana-mobile-wallet` — wallet connection in React Native apps through Mobile Wallet
+  Adapter directly, without Seeker Connect
 
 ## Links
 

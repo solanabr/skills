@@ -4,7 +4,7 @@ description: Connect Solana wallets and sign or send transactions in React Nativ
 ---
 
 <!--
-  Mirror of https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-wallet/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-wallet/SKILL.md hosted by skills.solana.com.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->
@@ -28,9 +28,9 @@ Check `package.json` first.
 
 | `package.json` says | Do this |
 | --- | --- |
-| `@wallet-ui/react-native-kit`, or no Solana client yet | Kit. This file, plus [references/kit.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-wallet/references/kit.md) |
-| `@wallet-ui/react-native-web3js` is the app's Solana client | [references/web3js.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-wallet/references/web3js.md) |
-| The user explicitly asked for web3.js | [references/web3js.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-wallet/references/web3js.md), and say why kit would be better |
+| `@wallet-ui/react-native-kit`, or no Solana client yet | Kit. This file, plus [references/kit.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-wallet/references/kit.md) |
+| `@wallet-ui/react-native-web3js` is the app's Solana client | [references/web3js.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-wallet/references/web3js.md) |
+| The user explicitly asked for web3.js | [references/web3js.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-wallet/references/web3js.md), and say why kit would be better |
 
 Do not introduce web3.js into a kit project, or mix the two in one app. Their provider props,
 hook return values, and transaction construction all differ, so code from one silently fails on
@@ -148,7 +148,7 @@ export function ConnectButton() {
 
 Always wrap `connect()` in try/catch — cancelling the wallet picker rejects the promise.
 Cancellation is a normal outcome, not an error state worth alarming the user about; see
-[references/kit.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-wallet/references/kit.md) for how to tell cancellation apart from real
+[references/kit.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-wallet/references/kit.md) for how to tell cancellation apart from real
 failures.
 
 Authorization is cached, so the app reconnects on restart without a new prompt.
@@ -199,20 +199,20 @@ const signature = await sendTransactions(instructions)
 
 `sendTransactions` handles blockhash, `minContextSlot`, fee payer, and signature decoding. It
 returns as soon as the wallet has submitted, so confirm the signature before treating the
-transaction as done — [references/kit.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-wallet/references/kit.md#confirming-a-transaction) has the
+transaction as done — [references/kit.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-wallet/references/kit.md#confirming-a-transaction) has the
 helper.
 
 Reach for the explicit `pipe` form only when you need fee-payer control, a specific blockhash
 lifetime, or a fee pre-check. Full worked example, with the balance-versus-fee assertion and
-signature decoding: [references/kit.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-wallet/references/kit.md).
+signature decoding: [references/kit.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-wallet/references/kit.md).
 
 ## Reference material
 
-- [references/kit.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-wallet/references/kit.md) — kit stack: clusters and config, reading chain data,
+- [references/kit.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-wallet/references/kit.md) — kit stack: clusters and config, reading chain data,
   transactions, sign-in with Solana, message signing, error handling
-- [references/web3js.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-wallet/references/web3js.md) — legacy `@solana/web3.js` stack, and a migration
+- [references/web3js.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-wallet/references/web3js.md) — legacy `@solana/web3.js` stack, and a migration
   sketch
-- [references/troubleshooting.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-wallet/references/troubleshooting.md) — connection and signing
+- [references/troubleshooting.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-wallet/references/troubleshooting.md) — connection and signing
   failures with known causes
 
 When something here is ambiguous, read the template. The patterns in this skill follow

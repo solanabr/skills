@@ -35,10 +35,10 @@ No port to pick, no payer to generate and fund, no separate `surfpool start` pro
 npm install --save-dev @solana/kit @solana/kit-plugin-rpc @solana/kit-plugin-signer @solana/surfpool
 ```
 
-The three Kit packages are optional peer dependencies of `@solana/surfpool` (`@solana/kit` ^7, `@solana/kit-plugin-rpc` ^0.15, `@solana/kit-plugin-signer` ^0.13). Skip them if you only use the `Surfnet` class; importing `@solana/surfpool/kit` requires at least `@solana/kit` and `@solana/kit-plugin-rpc`.
+The three Kit packages are optional peer dependencies of `@solana/surfpool` (as of 1.6.1: `@solana/kit` ^8, `@solana/kit-plugin-rpc` ^0.18, `@solana/kit-plugin-signer` ^0.18). Skip them if you only use the `Surfnet` class; importing `@solana/surfpool/kit` requires at least `@solana/kit` and `@solana/kit-plugin-rpc`.
 
 Requirements:
-- **Node.js 20.18+** — the floor `@solana/kit` v7 declares. `@solana/surfpool` itself runs on 18+, but the Kit packages do not, and some program plugins want more (`@solana-program/token` declares 24+).
+- **Node.js 20.18+** — the floor `@solana/kit` declares. `@solana/surfpool` itself runs on 18+, but the Kit packages do not, and some program plugins want more (`@solana-program/token` declares 24+).
 - **macOS x64/arm64, or Linux x64 GNU** for embedded mode, which loads a native (napi-rs) binary. Everything else — Linux arm64, musl/Alpine, Windows — has no prebuilt binary; use attach mode there.
 
 Two footguns follow from that list. Docker on Apple Silicon defaults to arm64 Linux containers, which have no binary even though the macOS host does. And a platform package with no artifact is an *optional* dependency, so install succeeds silently and only fails at `require` time with a module-not-found rather than a clear "unsupported platform" message.
@@ -79,9 +79,9 @@ test('transfers SOL on an embedded surfnet', async () => {
 
 Vitest and Jest work identically with their own `afterAll` hooks.
 
-### Teardown Is Not Automatic
+### Teardown
 
-As of `@solana/surfpool` 1.5.0, call `client.surfnet.stop()` in teardown so ports and servers are released. The client implements no disposal protocol, so a client held at module scope — the usual test-file pattern — is never cleaned up; without a teardown hook the process can hang or log `connection reset` warnings as the OS tears down sockets at exit. The plugin does stop the surfnet if setup itself throws.
+Since `@solana/surfpool` 1.6.0 an embedded client is disposable: disposing it stops the in-process surfnet. Scope a client with `using client = await createClient().use(surfpool(...))` and it is stopped when the block exits (Node 20+; on runtimes without `Symbol.dispose` no disposer is attached). A client held at module scope — the usual test-file pattern — is never disposed, so still call `client.surfnet.stop()` in an `after`/`afterAll` hook; without one the process can hang or log `connection reset` warnings as the OS tears down sockets at exit. The plugin also stops the surfnet if setup itself throws.
 
 `stop()` is idempotent and synchronous — it returns once the runtime has actually closed. Stopping is final: creating another client boots a fresh instance.
 
@@ -186,7 +186,7 @@ const client = createClient().use(surfnetCheatcodes());
 
 ## Configuration
 
-Surfnet startup options go under the `surfnet` key and are forwarded to `Surfnet.startWithConfig()`. Everything else is forwarded to the local Solana RPC plugin, including `transactionConfig: { version: 1 }` for v1 transactions (needs the resolved `@solana/kit-plugin-rpc` to be 0.19+; 1.5.0 still declares `^0.15` as an optional peer, so expect a range warning). See [transactions-v1.md](../transactions-v1.md):
+Surfnet startup options go under the `surfnet` key and are forwarded to `Surfnet.startWithConfig()`. Everything else is forwarded to the local Solana RPC plugin, including `transactionConfig: { version: 1 }` for v1 transactions (needs the resolved `@solana/kit-plugin-rpc` to be 0.19+; 1.6.1 still declares `^0.18` as an optional peer, so expect a range warning). See [transactions-v1.md](../transactions-v1.md):
 
 ```ts
 const client = await createClient().use(

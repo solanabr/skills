@@ -1,11 +1,11 @@
 ---
 name: solana-dev
-description: 'Use when user asks to "build a Solana dapp", "write an Anchor program", "create a token", "debug Solana errors", "set up wallet connection", "test my Solana program", "fuzz my Solana program", "deploy to devnet", "send a v1 transaction", "support larger transactions", "fix maxSupportedTransactionVersion", or "explain Solana concepts" (rent, accounts, PDAs, CPIs). Also for program architecture — state layout, reducing compute units, throughput bottlenecks, instruction naming — and quick on-chain lookups via public RPC + curl (balance, transaction, token account). End-to-end playbook: wallet connection, Anchor/Pinocchio programs, Codama clients, Surfpool/LiteSVM/Mollusk testing, security review, and the v1 transaction format (SIMD-0385, 4096-byte transactions). Prefers @solana/kit 8 plugin clients (createClient + .use()) building transaction v1 by default, @solana/kit-plugin-wallet + @solana/react for wallets, web3.js v3 (RC) as the legacy migration target, and Surfpool for local networks.'
+description: 'Use when user asks to "build a Solana dapp", "write an Anchor program", "create a token", "debug Solana errors", "set up wallet connection", "test my Solana program", "fuzz my Solana program", "deploy to devnet", "send a v1 transaction", "support larger transactions", "fix maxSupportedTransactionVersion", or "explain Solana concepts" (rent, accounts, PDAs, CPIs). Also for program architecture — state layout, reducing compute units, throughput bottlenecks, instruction naming — and quick on-chain lookups via public RPC + curl (balance, transaction, token account). End-to-end playbook: wallet connection, Anchor/Pinocchio programs, Codama clients, Surfpool/LiteSVM/Mollusk testing, security review, and the v1 transaction format (SIMD-0385, 4096-byte transactions). Prefers @solana/kit 8 plugin clients (createClient + .use()) building transaction v1 by default, @solana/kit-plugin-wallet + @solana/react for wallets, web3.js v3 as the legacy migration target, and Surfpool for local networks.'
 license: MIT
 compatibility: Requires Node.js 20.18+, Rust toolchain, Solana CLI, Anchor CLI
 metadata:
   author: Solana Foundation
-  version: "2.5.1"
+  version: "2.7.0"
 ---
 
 # Solana Development Skill
@@ -52,14 +52,14 @@ Use this Skill when the user asks for:
 - Client bindings via `@solana/react` 8 (`ClientProvider`, typed `useClient<AppClient>`, data hooks, SWR/TanStack adapters). Its legacy Wallet Standard hooks are being deprecated — don't use them.
 - Do **not** use `@solana/client` / `@solana/react-hooks` (framework-kit) or `@solana/wallet-adapter-*` for new work.
 
-3) **Legacy compatibility: web3.js v3 (RC)**
-- web3.js v3 (`@solana/web3.js@rc`) is the classic class-based API rebuilt on Kit internals. It is still a release candidate — treat it as the migration target for v1 codebases, not a default recommendation for new work.
+3) **Legacy compatibility: web3.js v3**
+- web3.js v3 (`@solana/web3.js@3`, 3.0.0 released 2026-10-01) is the classic class-based API rebuilt on Kit internals. Treat it as the migration target for v1 codebases, not a default recommendation for new work. Until npm moves `latest` to 3.x (scheduled for 2026-10-19), a bare `@solana/web3.js` install still resolves to 1.99.0 — pin `@3` explicitly.
 - Migrating a v1 codebase: use the official migration skill from the solana-web3.js repo rather than hand-migrating — see [kit-web3-interop.md](references/kit-web3-interop.md) for routing.
 - Do not introduce `@solana/web3-compat` in new work — it is superseded.
 - Do not let legacy class types leak across the entire app; contain them to adapter modules.
 
 4) **Programs**
-- Default: Anchor 1.1.x (fast iteration, IDL generation, mature tooling).
+- Default: Anchor 1.2.x (fast iteration, IDL generation, mature tooling).
 - Performance/footprint: Pinocchio (0.11+) when you need CU optimization, minimal binary size,
   zero dependencies, or fine-grained control over parsing/allocations.
 

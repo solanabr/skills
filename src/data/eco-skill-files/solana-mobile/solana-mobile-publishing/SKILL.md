@@ -4,7 +4,7 @@ description: Build, sign, and publish an Android APK to the Solana dApp Store wi
 ---
 
 <!--
-  Mirror of https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-publishing/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-publishing/SKILL.md hosted by skills.solana.com.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->
@@ -46,7 +46,7 @@ means a compromise or loss takes out both listings at once.
 | No publisher account yet | [One-time setup](#one-time-setup) |
 | Publisher exists, shipping a release | [Build a signed APK](#build-a-signed-apk), then [Publish](#publish) |
 | Shipping an update to a live app | [Shipping an update](#shipping-an-update) |
-| Release build crashes but debug is fine | Read [references/signing.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-publishing/references/signing.md#release-only-failures) |
+| Release build crashes but debug is fine | Read [references/signing.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-publishing/references/signing.md#release-only-failures) |
 | A publish died partway through | [Resume a failed publish](#resume-a-failed-publish) |
 | App is a wrapped web app, not React Native | [Web apps](#web-apps) |
 
@@ -77,7 +77,7 @@ should only ever be handed the path.
 
 Treat that file exactly like the release keystore: it is as permanent as the App NFT it
 controls, so it belongs in a secrets store or a password manager, never in the repository. See
-[references/signing.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-publishing/references/signing.md#create-the-keystore) for the same reasoning
+[references/signing.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-publishing/references/signing.md#create-the-keystore) for the same reasoning
 applied to the Android key.
 
 ### Then register the publisher
@@ -127,7 +127,7 @@ any portal URL that is not local, so it is not the way to reach a hosted staging
 ## Build a signed APK
 
 Which command applies depends on who holds the keystore — the same split as
-[references/signing.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-publishing/references/signing.md#which-signing-path-applies).
+[references/signing.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-publishing/references/signing.md#which-signing-path-applies).
 
 **EAS-managed credentials.** Build with the `dapp-store` profile, which forces an APK:
 
@@ -173,7 +173,7 @@ with no recovery path.
 variant to the *debug* keystore, so an unconfigured release APK is signed — just with the wrong
 key. `apksigner verify` passes it happily. If the printed DN is `CN=Android Debug`, the signing
 config never took effect; see
-[references/signing.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-publishing/references/signing.md#gradle-signing-config).
+[references/signing.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-publishing/references/signing.md#gradle-signing-config).
 
 One more thing worth checking before upload: a default React Native release APK bundles every
 ABI and runs to well over 100 MB. Building for one architecture
@@ -181,7 +181,7 @@ ABI and runs to well over 100 MB. Building for one architecture
 more than half.
 
 Keystore creation, the Gradle signing config, the EAS build profile, and the failure modes that
-only appear in release builds: [references/signing.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-publishing/references/signing.md).
+only appear in release builds: [references/signing.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-publishing/references/signing.md).
 
 ## Publish
 
@@ -301,16 +301,27 @@ and it changes — read it rather than guessing.
 
 ## Web apps
 
-A wrapped web app takes a different route: a web manifest, a Bubblewrap build, and Digital Asset
-Links published at `/.well-known/assetlinks.json`. Only go there if the app genuinely is a PWA
-being wrapped. A React Native app follows the native APK path above, and Bubblewrap will only
-add a layer that breaks Mobile Wallet Adapter.
+A wrapped web app takes a different route: `npx solana-mobile@latest webshell init` and
+`webshell build`, which put the site in an Android WebView and create the signing keystore. Only
+go there if the app genuinely is a web app being wrapped. A React Native app follows the native
+APK path above.
+
+Do not use Bubblewrap. Its Trusted Web Activity runs in Chrome, and Chrome's Local Network Access
+restrictions block Mobile Wallet Adapter or put a permission prompt in front of it. Webshell
+hands wallet requests to the wallet app through Android instead, and needs no Digital Asset
+Links. The page needs `@solana-mobile/wallet-standard-mobile` 0.5.1 or later to skip the prompt.
+
+Migrating from Bubblewrap: pass the existing `twa-manifest.json` to `webshell init --manifest`.
+It carries over the package id, version numbers and signing key, so the existing listing updates
+in place. The imported `versionCode` is reused as-is, so pass `--version-code` higher than the
+listing's current one or the store will not accept it as an update. Flags are in the
+`solana-mobile` skill's CLI reference.
 
 Full walkthrough: https://docs.solanamobile.com/recipes/general/publishing-a-web-app
 
 ## Reference material
 
-- [references/signing.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/cb22465fc4954f9b1a3ca0ce5cd57fd8f2c51171/skills/solana-mobile-publishing/references/signing.md) — keystore creation, Gradle signing config,
+- [references/signing.md](https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/solana-mobile-publishing/references/signing.md) — keystore creation, Gradle signing config,
   the EAS build profile, and release-only failures including the ProGuard footgun
 
 ## Related skills

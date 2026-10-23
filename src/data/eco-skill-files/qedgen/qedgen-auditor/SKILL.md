@@ -4,7 +4,7 @@ description: Audit Anchor, Pinocchio, native Rust, or qedgen-generated Solana pr
 ---
 
 <!--
-  Mirror of https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

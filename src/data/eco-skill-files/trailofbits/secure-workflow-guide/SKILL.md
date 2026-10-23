@@ -4,7 +4,7 @@ description: Guides through Trail of Bits' 5-step secure development workflow. R
 ---
 
 <!--
-  Mirror of https://github.com/trailofbits/skills/blob/e6066e7db1fd57cb35f9a534781ceec595327feb/plugins/building-secure-contracts/skills/secure-workflow-guide/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/trailofbits/skills/blob/e6066e7db1fd57cb35f9a534781ceec595327feb/plugins/building-secure-contracts/skills/secure-workflow-guide/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

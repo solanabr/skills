@@ -4,7 +4,7 @@ description: "Use when working on Solana software, including one or more of: Sol
 ---
 
 <!--
-  Mirror of https://github.com/quiknode-labs/solana-anchor-claude-skill/blob/a440e16f752139031840d606e1363637404e5d01/skills/solana/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/quiknode-labs/solana-anchor-claude-skill/blob/a440e16f752139031840d606e1363637404e5d01/skills/solana/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

@@ -41,7 +41,7 @@ const sha256 = (data) => createHash("sha256").update(data).digest("hex");
 
 const API_HEADERS = {
   Accept: "application/vnd.github+json",
-  "User-Agent": "skills-solana-com-refresh",
+  "User-Agent": "kit-superteam-codes-refresh",
   ...(process.env.GITHUB_TOKEN
     ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` }
     : {}),
@@ -404,7 +404,7 @@ function partialMirror(txt, repo, ref, dir) {
   const rewritten = rewriteRelativeLinks(txt, base);
   // A path containing "-->" must not terminate the provenance comment early.
   const safeBase = `${base}SKILL.md`.replaceAll("-->", "");
-  const note = `<!--\n  Mirror of ${safeBase} hosted by skills.solana.com.\n  Relative links were rewritten to GitHub URLs pinned to the mirrored commit —\n  companion files are not hosted here; the upstream repo is the source of truth.\n-->\n\n`;
+  const note = `<!--\n  Mirror of ${safeBase} hosted by kit.superteam.codes.\n  Relative links were rewritten to GitHub URLs pinned to the mirrored commit —\n  companion files are not hosted here; the upstream repo is the source of truth.\n-->\n\n`;
   const fm = rewritten.match(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/);
   return fm ? fm[0] + "\n" + note + rewritten.slice(fm[0].length) : note + rewritten;
 }

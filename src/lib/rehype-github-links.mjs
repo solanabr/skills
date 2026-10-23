@@ -96,7 +96,7 @@ export default function rehypeGithubLinks() {
     const meta = metaForFile(file.path);
     if (!meta) return;
     const { githubBase, hostedPrefix, hosted } = meta;
-    const hostedBase = `https://skills.solana.com${hostedPrefix}`;
+    const hostedBase = `https://kit.superteam.codes${hostedPrefix}`;
 
     walk(tree, (node) => {
       if (node.type !== "element") return;

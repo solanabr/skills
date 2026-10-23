@@ -4,7 +4,7 @@ description: Provides guidance for property-based testing across multiple langua
 ---
 
 <!--
-  Mirror of https://github.com/trailofbits/skills/blob/e6066e7db1fd57cb35f9a534781ceec595327feb/plugins/property-based-testing/skills/property-based-testing/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/trailofbits/skills/blob/e6066e7db1fd57cb35f9a534781ceec595327feb/plugins/property-based-testing/skills/property-based-testing/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

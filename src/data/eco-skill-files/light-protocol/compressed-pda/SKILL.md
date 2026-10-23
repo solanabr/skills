@@ -13,7 +13,7 @@ allowed-tools: Bash(git:*), Bash(cargo:*), Bash(anchor:*), Bash(light:*), Read, 
 ---
 
 <!--
-  Mirror of https://github.com/Lightprotocol/skills/blob/0f52958edd1872d43c9d94fd58f558abb250789a/skills/compressed-pda/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/Lightprotocol/skills/blob/0f52958edd1872d43c9d94fd58f558abb250789a/skills/compressed-pda/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

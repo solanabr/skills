@@ -5094,7 +5094,7 @@
           "blobSha": "7f27367bdbe3ca86bce6cf9408bdbf33c2cede7e",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "dbcbe0d5a6af15024a5f5a8e0e8665ff4843cd375d5c8ad48d22e5f6bc710007"
+            "SKILL.md": "50749ea7d17dc9591d43f8ebfd866e96b2e00f9700dd557e464e332100331206"
           },
           "hostedPath": "/s/helius/helius-dflow/SKILL.md"
         },
@@ -5136,7 +5136,7 @@
           "blobSha": "82bf3c4eb9bb99ddab9afcfac6bb41f4a0e3a0b8",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "fdb5d4cdddb103909a28b54ffb2a2dab6930903281db81a667c9ad6bbd4e27f4"
+            "SKILL.md": "41660a748df4fb94157f3f319da394ce95a2378392321fa91bb1af62a02f2189"
           },
           "hostedPath": "/s/helius/helius-jupiter/SKILL.md"
         },
@@ -5163,7 +5163,7 @@
           "blobSha": "62f650fc420eee61d20018c5f034a4b56ab7ec2b",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "5ad9437a817888ef4ae8e7dc542c6f9d2ae1c614ec7ef81ce2fd122f113a4691"
+            "SKILL.md": "377b2d2f2f14482d955a155d332da6a9535994d17cf3740452514bacfb6a50d7"
           },
           "hostedPath": "/s/helius/helius-okx/SKILL.md"
         },
@@ -5205,7 +5205,7 @@
           "blobSha": "e93ce505b42d2f9a36c00926f735c2caffb48646",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "27b6eb93542ca9b5f2a8ffd0a38e0b02c16a6d16f0c59896c31ffb511bbb33bf"
+            "SKILL.md": "5873d2d71376170a5b28fbeb320bd56799cd5b60a9c64ebf046c4fececc2d6c0"
           },
           "hostedPath": "/s/helius/helius-phantom/SKILL.md"
         },
@@ -5241,7 +5241,7 @@
           "blobSha": "ac8875569e7e48d71f41637ce0bca9182c3f23c0",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "4623d506858ab73ae63757bf0929082616367588b22650ce57511b0ce1fef027"
+            "SKILL.md": "45d41304d2c967909b93f528afbb774b39b2dd2eb22ba41aa40a4d1df760c8e2"
           },
           "hostedPath": "/s/helius/helius/SKILL.md"
         },
@@ -5277,7 +5277,7 @@
           "blobSha": "7824d543015a0079efdfec31c0169d85c17e56d9",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "34a3d3b21eca34f68e3cb455d57323a3b86de48552a2c9010685d762719b6886"
+            "SKILL.md": "68ba597e75b473c92ccc3e6dae001382d98b2361dd9a97de23887746f3de8636"
           },
           "hostedPath": "/s/helius/svm/SKILL.md"
         }
@@ -5345,7 +5345,7 @@
           "blobSha": "56383019b2a7eabfba2f6a1a10518c608dfad22f",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "620f9a1ad114091e53a098a8f88997e808b6762bfbc5d259953d1f9c0091d99a"
+            "SKILL.md": "73ae1a60d750f099729979f3baadfdfcc287b3bded57c969c4a7be9052b8ad37"
           },
           "hostedPath": "/s/jupiter/integrating-jupiter/SKILL.md"
         },
@@ -5369,7 +5369,7 @@
           "blobSha": "aa08f155022dabef167d4b6b2444a7336db192fe",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "f52ab94018316f96aa392d401af6a42fc70feaac6efd7439f16867d2ccb85b98"
+            "SKILL.md": "a00e148fccd2b889210f56c9ebd0ac812a97d9634cb68831143574047805ccc1"
           },
           "hostedPath": "/s/jupiter/jupiter-lend/SKILL.md"
         },
@@ -5397,7 +5397,7 @@
           "blobSha": "e64b1ba179a39bd5f5c197f7950dc52a449bda09",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "b75f440696500d2a094124a6ec8911f6b9f48458a37846d759c2c1cf9b99ec06"
+            "SKILL.md": "e68ba8eb15fb513a1acec2c7837330e051837b43433c52bb6ada9c7c0091aa55"
           },
           "hostedPath": "/s/jupiter/jupiter-swap-migration/SKILL.md"
         },
@@ -5425,7 +5425,7 @@
           "blobSha": "641759d0acd1b243da65be5dbdb9e4232988a1c6",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "c13cdfbdeef20feb0512a081269a67636e28ab252912ed58097965f33174d634"
+            "SKILL.md": "2834660046d20b8144a6cdc29763c702eeda34a380f0c48c3443e6160fca0db7"
           },
           "hostedPath": "/s/jupiter/jupiter-vrfd/SKILL.md"
         }
@@ -5557,7 +5557,7 @@
           "blobSha": "33fe9ac67aafef86ac43143e1c83beb566f34140",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "0679b9d1c26e615b32d28c830aef9b1326d7e56fd80982dbd1f5448ab1e732ac"
+            "SKILL.md": "70ab22010b4304bca0e4bd608cebf7aae20312ab1e7907465556d24a7327d1fd"
           },
           "hostedPath": "/s/solana-mobile/integration-privy/SKILL.md"
         },
@@ -5585,7 +5585,7 @@
           "blobSha": "0d7609f05ab2298519f47d19881a6175e75ccce6",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "097343e7dbf7ada3d3fcd83e8bc4f38f1a0452016e2d98214f6889a33d411b94"
+            "SKILL.md": "557a426bab295a966aba45ceea461efb268d2d60e5de19ee1c8e0da10f4f2e12"
           },
           "hostedPath": "/s/solana-mobile/seeker-connect/SKILL.md"
         },
@@ -5611,7 +5611,7 @@
           "blobSha": "65a0f9886fa0f4545b3ffbfa996c2bd046fae822",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "f2cfe72996af6bea4bbe6e70cd0c168ef2aaa8d8b23728df52d69fbe564895dc"
+            "SKILL.md": "ef95e021ba4fb346db25ae38815af3779612a07ca5b92a4b557683c50336442c"
           },
           "hostedPath": "/s/solana-mobile/seeker-domains/SKILL.md"
         },
@@ -5633,7 +5633,7 @@
           "blobSha": "38b61128d0886c3ab29876f1968a47e4f81ab58d",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "6183460d0e2bd48ac8d8297b596215f1f0e485ba1a7ac437f9358dbe1d6be1dc"
+            "SKILL.md": "b89097fbcf19dc69f7646b5dd75b90eaaa5ed6562ce62af5f5dadcaf6a95da5c"
           },
           "hostedPath": "/s/solana-mobile/seeker-genesis-token/SKILL.md"
         },
@@ -5658,7 +5658,7 @@
           "blobSha": "efb2726fc7aabe8b6adcc10d7a401eb9a754dae5",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "b1d05fb29963d22a30f26986b806f2213f92fbc0231a64d20230977d02eb8f61"
+            "SKILL.md": "14292f7f00cb91a573b9f04a6f762baa520b0921f4622ce8a82a99bb08212fe2"
           },
           "hostedPath": "/s/solana-mobile/solana-mobile-publishing/SKILL.md"
         },
@@ -5685,7 +5685,7 @@
           "blobSha": "142c365a7ca4db5d22d68b708a93bd7ff042e6ef",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "81e0a1ac344262541e3c1fb1555cf0b1afe7623f86523a6545d8ac8808fa94f5"
+            "SKILL.md": "0ad4a872728cfd388e9ef2d2b293d69ea3f62d9989f9711432e27dd41a6a3eae"
           },
           "hostedPath": "/s/solana-mobile/solana-mobile-wallet/SKILL.md"
         },
@@ -5712,7 +5712,7 @@
           "blobSha": "3c66f9cb7e9f5a10ace7cbfeba217008234d9b38",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "136f68ee144f0dd50167f6f887880374b4fb380bac93e2d56a795406502874a0"
+            "SKILL.md": "ba41aeba1b560f7ab349f14c90b46534df5f78e5f4116f94d310d1e4620281e4"
           },
           "hostedPath": "/s/solana-mobile/solana-mobile/SKILL.md"
         }
@@ -5774,7 +5774,7 @@
           "blobSha": "aa63fdced2ec8d0be3c580ee1c1d5be4ad9f311a",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "e0796219e9bcb32f1173f6fdeb590a33448728d9e1b04c5cebdd248b25fbc1fe"
+            "SKILL.md": "3a172251e1f3f5697d3aea765c8aaf0443b3bf3cb82fe301d34e662f43979d0b"
           },
           "hostedPath": "/s/quicknode-anchor/solana/SKILL.md"
         }
@@ -5912,7 +5912,7 @@
           "blobSha": "d672b98d4577142f762fa6e5052950313a95d688",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "1ea1561c5d23eff2a003a97097f93d11b633b4ff6538e38c955b3b3c65e08d74"
+            "SKILL.md": "58f73c9de076f8a8fe7579a54dba001c7c3f03449c51bd509ff251ec4d0a0efe"
           },
           "hostedPath": "/s/qedgen/qedgen-auditor-bench/SKILL.md"
         },
@@ -5990,7 +5990,7 @@
           "blobSha": "f91eb49a9735236937c9cd8a9fa3826d3bf4a28f",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "9602f0ef273d5f2a31e024972b8579f33498cc5f3c7cb199e9d103aff7546b67"
+            "SKILL.md": "7d32c9f87c7a8bf6683b4945fa5883bdaa1590829b6c459776a8cf264f0accc2"
           },
           "hostedPath": "/s/qedgen/qedgen-auditor/SKILL.md"
         },
@@ -6068,7 +6068,7 @@
           "blobSha": "b6dde70c7e0eb86729d161f3133928818005a9b6",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "296caee031f96c39fc60b9be7b84f752b88029537e0f3ed1c6cf85ea9eed98a2"
+            "SKILL.md": "e7024954ad72be0621d00eb83a1aa19ff3ea6c15a1cb9eb3d407dd81ccd009fb"
           },
           "hostedPath": "/s/qedgen/qedgen/SKILL.md"
         }
@@ -6193,7 +6193,7 @@
           "blobSha": "42f80c5ce24408beceb1d1cec2cb093222bc4b46",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "fcd1d9211c4fece79c794445c671d48f042810670bc7e608db784f636c4ba015"
+            "SKILL.md": "232b973a0935eae77bf04ae8da58b6111e5d196f724255f74b075cb729b135c7"
           },
           "hostedPath": "/s/solana-game-skill/solana-game/SKILL.md"
         }
@@ -6249,7 +6249,7 @@
           "blobSha": "13796324aecad3e446bbc72ad614e1127033edde",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "9560682cb829cbe682b2ee61e2ceabda1e64b1c62815f011d5a5532135e2c6ff"
+            "SKILL.md": "f2602c3232be9d671a5098749cb841d3eb83cb872bf119f91f5089e6361f1e7a"
           },
           "hostedPath": "/s/trailofbits/audit-prep-assistant/SKILL.md"
         },
@@ -6280,7 +6280,7 @@
           "blobSha": "8e8e9c2c1ea098134e1c847981275115e7f74680",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "bda56118c40cf8074533cdfe326c2949737cfca37e18cfd4c2e26fdf8f9b3727"
+            "SKILL.md": "9d23e585f7074ac314369641a95781654c20fe607eb261686912a631af16f437"
           },
           "hostedPath": "/s/trailofbits/code-maturity-assessor/SKILL.md"
         },
@@ -6310,7 +6310,7 @@
           "blobSha": "bb727cf19606f7697b893efe584c1013c762891c",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "d27391c044b1e161bb1323c2c04356bec58571ec38f4f0bfd55881a630dc50aa"
+            "SKILL.md": "79b20da0a4fd6cf8231d6802ec8c013a0665ee8c1b975d19babdbbd57ee9c2c0"
           },
           "hostedPath": "/s/trailofbits/secure-workflow-guide/SKILL.md"
         },
@@ -6339,7 +6339,7 @@
           "blobSha": "c9fe66886db012924d0683f65e332ac5788ab993",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "7986b7fc1ff35090a35cbf37d7a285b6aa1e03c3ca817807f7a8f26419ac6181"
+            "SKILL.md": "9101969c160bf991c69e97516a92cc810a6c95ecffb4dbd169b6cbcb89cdfaab"
           },
           "hostedPath": "/s/trailofbits/solana-vulnerability-scanner/SKILL.md"
         },
@@ -6369,7 +6369,7 @@
           "blobSha": "c9034401fc695ab3596fba0f3d0dab923e3750e6",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "10ccbb35a051c0475c40e5f2ee9936d47f94a7a50ffd5c3dcc24dfcead60d3ba"
+            "SKILL.md": "7f4063cec7153ac58236030fe9ff37eddc845e537b37a065b1df948d8288af59"
           },
           "hostedPath": "/s/trailofbits/token-integration-analyzer/SKILL.md"
         },
@@ -6400,7 +6400,7 @@
           "blobSha": "3755d4773d231cd13b7bfd1ecd6ad243150480bd",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "4bc14cb3db0a9079bd6c81748205f850937b5ace18251667da404295f684358b"
+            "SKILL.md": "a3050ad7d7e8971f14d7cade4e30a4f1be9d581af92ced8f4b3ffe69dfb05062"
           },
           "hostedPath": "/s/trailofbits/differential-review/SKILL.md"
         },
@@ -6436,7 +6436,7 @@
           "blobSha": "d95a564d52a0fdb0108c92e4e78cf098eaa3c238",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "aca1e3bb855aa94e10557750723bc15c6f553bff2da7ce4e49a72abeaec0951b"
+            "SKILL.md": "5abc8d563e5495be5f73105fc4666a2846077167925533bcd825b9e95cfcefa6"
           },
           "hostedPath": "/s/trailofbits/property-based-testing/SKILL.md"
         },
@@ -6463,7 +6463,7 @@
           "blobSha": "443377a30150cbc74728b228da719380874e8034",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "d158eb911244e1fab745370ad758452c07d7ccaa77d60aa66896d759ee2da8ed"
+            "SKILL.md": "f724654013cd68a9cb4066a8506a8d20a05c260d63a4d52a13095635eb20897d"
           },
           "hostedPath": "/s/trailofbits/cargo-fuzz/SKILL.md"
         }
@@ -6600,7 +6600,7 @@
           "blobSha": "edcfa1f004f37fdc6ace0a03c04d42e8764111f4",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "9b5b990b8bcc1bdf022669497b77ed4da1c44e51fb522362eec0dedbed84ecf7"
+            "SKILL.md": "e54ba86529c5a59ee73e90da8fca8756ba3e3c26c645ab5fd4b54608d415dbb1"
           },
           "hostedPath": "/s/magicblock/magicblock/SKILL.md"
         }
@@ -6679,7 +6679,7 @@
           "blobSha": "c16ac2e9ed69dffd2f04b277a792c14b35a2554b",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "4b86645648b76f58c40fe8889ab70117328290c5b318bcb0dd8fb8ffa6b89e0c"
+            "SKILL.md": "0c00e443623fc8a7aa91157aaeddb643a4c2a4428c9c3b0da5988c764ff6b3b4"
           },
           "hostedPath": "/s/meteora/meteora/SKILL.md"
         }
@@ -6762,7 +6762,7 @@
           "blobSha": "167c5b87636f392c86e09b5bdc547dadc09fa3e9",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "208742ef77cee6b8d1064ad26bada3c8774daba5611f78235ef0359c73698038"
+            "SKILL.md": "c5ed4d86acd150432b70cca60cae05a03443e2e8022d573927cfec4342d72c90"
           },
           "hostedPath": "/s/alchemy/agentic-gateway/SKILL.md"
         },
@@ -6864,7 +6864,7 @@
           "blobSha": "f679dd099d7dfff5359ec6b9c7110b2cd77a030e",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "1f32ea136f893877d568eb2c2693132c3997856ea208f8f0f2769f247fda163c"
+            "SKILL.md": "52b5b9dde8cad2e92c895dc60fa9d4789e9c447cb6f8cc74de675fe820c67136"
           },
           "hostedPath": "/s/alchemy/alchemy-api/SKILL.md"
         },
@@ -6890,7 +6890,7 @@
           "blobSha": "507d603e6341337ac15a42ee8839ab3fc99f59f7",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "a66722b3ecce2509a24b44ac186805c227b35e4ad8424bb3ec3a815ccf48a3ef"
+            "SKILL.md": "7964fa2efd34c05ff33263d4bb862bc96fa350e4d2ac721cf7629c459e77c66c"
           },
           "hostedPath": "/s/alchemy/alchemy-cli/SKILL.md"
         },
@@ -6916,7 +6916,7 @@
           "blobSha": "aebda9529fa14deac500a3c9f60f2470304a1fb7",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "8531b97a0d9447c781684a40d9aaaa9dcc290a76f334743e26e46c183de56840"
+            "SKILL.md": "1bdfc9d2f6038670f02607598e4995168bb43a296764f22295ec1077e1c0e62f"
           },
           "hostedPath": "/s/alchemy/alchemy-mcp/SKILL.md"
         },
@@ -6946,7 +6946,7 @@
           "blobSha": "c4c8baa5bbd165c305d588d2e6820003643f13bc",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "7f0150f6a17a2ec5f0714e940c9fc31d517de943975e04ccd1e320564d149b27"
+            "SKILL.md": "5ee255519ca23b4fdf1d9638922bd985d1598a27c3b1988787f661c74f8d53f3"
           },
           "hostedPath": "/s/alchemy/allium/SKILL.md"
         },
@@ -6974,7 +6974,7 @@
           "blobSha": "c5e7df1bf07a96b194b14c1bc8d11cccfc1ad6f3",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "690f7716c3f4ef6f032af6b7b67334f36fdcc23fc3e048d0a78a57dc816255b6"
+            "SKILL.md": "8f8eb65fad10892aa6cb9c8a5eda4378e743f60b80c84528fe76ebad49bedba6"
           },
           "hostedPath": "/s/alchemy/opensea/SKILL.md"
         }
@@ -7040,7 +7040,7 @@
           "blobSha": "aa6ebfeb8f3a194a8e6d7fde0f066316ba99c749",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "cc8518c773bd2902603fa560d0d9a673cb32e11da62a334d17593a858551fc9b"
+            "SKILL.md": "05a94bab4b1d4531fca8808ae20d94c30f8c76078694357094bbfbf099f156f8"
           },
           "hostedPath": "/s/phantom/phantom-connect/SKILL.md"
         },
@@ -7062,7 +7062,7 @@
           "blobSha": "239aacbfaf68ad3d3437bc40e278cd6a37077839",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "a062dc95971915e07bfaf2161263c08305ce3b14c19193ecf3caace0edd041b3"
+            "SKILL.md": "e9197de332cd21b0896cbd815958f641fbd07ba8522428bbbe8dde94d83268fa"
           },
           "hostedPath": "/s/phantom/add-social-login/SKILL.md"
         },
@@ -7084,7 +7084,7 @@
           "blobSha": "48c68ef53f4ebf93977ded345e4a7a90357c74e3",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "e03082035c3736ec896a82cc0b2e5319b0d9f462ef3e2bbcc12e96aa9af4c74f"
+            "SKILL.md": "2f0a6d9375e89c9a4871a7ce6ee78aa0460353f9b269318dffe92cd41e462df3"
           },
           "hostedPath": "/s/phantom/phantom-wallet-mcp/SKILL.md"
         },
@@ -7106,7 +7106,7 @@
           "blobSha": "1b7b29a81d3b01cd7ae38f45f3bba007798fd192",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "8d62fca31fbcb66ad1c43a6f65432e3bab6842188699a118514d1def95c9c56c"
+            "SKILL.md": "f76e72e63915fd6422845880a5dc8f4aeeba2279308abbbcd6ee08f0f58ef761"
           },
           "hostedPath": "/s/phantom/send-sol-transaction/SKILL.md"
         },
@@ -7128,7 +7128,7 @@
           "blobSha": "7f07a46dfcf4dd5e6bd2e9816deedcdae7f5499f",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "1d43773e72afc870bbf80110ce1459534d1881083f9aa2de760eae69616c411e"
+            "SKILL.md": "50673a04e3bf77548f1b3e0a858b43207d14bd3d88e116fee26b1e4b5f72c806"
           },
           "hostedPath": "/s/phantom/setup-browser-app/SKILL.md"
         },
@@ -7150,7 +7150,7 @@
           "blobSha": "e5a9a3c2454b6bf5723a2ff47e3b8debe395c00c",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "c65b4557b7d4a087296b9d6ee10ab42f65c7c9246885adc81a8bf70f5b81bb1a"
+            "SKILL.md": "20e2776319f8a2e8e0d63378b2d83dc9a770cdf70357f02e7c436c49b58be933"
           },
           "hostedPath": "/s/phantom/setup-react-app/SKILL.md"
         },
@@ -7172,7 +7172,7 @@
           "blobSha": "021a3976b4b2a5d8e080358b451f136194201681",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "4b05073220e58e947574bf469398c8bc1c50c848d9048a4454888181e7566a36"
+            "SKILL.md": "f773688c22f18fb6fdb8664a4a4bec7eb19504dd000ea637f62d41c1297fcdfe"
           },
           "hostedPath": "/s/phantom/setup-react-native-app/SKILL.md"
         },
@@ -7194,7 +7194,7 @@
           "blobSha": "3f255df95b1a7df468f376663886793c9444ca14",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "901f263a14289153ed2c3ef8f6f47b660a0381ac2370d14171605e09c3bc29c3"
+            "SKILL.md": "6700e351d55664766778fc47f1e0ea0919ae286829ca331bdd3a40f0f98a8e2c"
           },
           "hostedPath": "/s/phantom/sign-message/SKILL.md"
         }
@@ -7244,7 +7244,7 @@
           "blobSha": "1150a971ab155f4c0f6aa1b98dd6e3283e14e315",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "d7a64acbb2951c3eba892c8a48c86c501204bb7013e84ce767ea960df249f1e8"
+            "SKILL.md": "413c2eb987868a39769c6cda38081106f5704b721923000914707af1da5937e3"
           },
           "hostedPath": "/s/light-protocol/ask-mcp/SKILL.md"
         },
@@ -7272,7 +7272,7 @@
           "blobSha": "526bbfd0fa32ce2acd2bfb81a63f80d2737d9ce0",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "447cee0b5aed66fe187625bf12eb3bac386c961b6822826347d31d63b43a3ab1"
+            "SKILL.md": "0f96c3f0ecefbfb0fa3d51dd74a5a85c72bd7de8f5a16e1b0652d32666afa720"
           },
           "hostedPath": "/s/light-protocol/compressed-pda/SKILL.md"
         },
@@ -7305,7 +7305,7 @@
           "blobSha": "51b9b538ce44d3c6b83d20c7f513ceaeb131f78c",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "a4f98b8d905597288248f1b57e82d929d93d2025568b373be4ac0bfb17629d8c"
+            "SKILL.md": "2932a5f4d48deedb83514ee241696d2b2f5705cb1078a57f111ad9df56b7a094"
           },
           "hostedPath": "/s/light-protocol/compressed-token/SKILL.md"
         },
@@ -7333,7 +7333,7 @@
           "blobSha": "50af227bd7c237e6dbb69c200f7f76f8c8b53e6a",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "09a1d45c75ddc9ce461eb84fdcb6b14d96dd7d692ca67aff61af6f9a3c42c70e"
+            "SKILL.md": "fd3129986edd5066b2b9cb08cecf5a149f9440183c389ca2e9572b9d163f9727"
           },
           "hostedPath": "/s/light-protocol/testing/SKILL.md"
         },
@@ -7355,7 +7355,7 @@
           "blobSha": "5378cf70355b7f82a88e5aa4d3be8a454dac9a9f",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "126575c0d38edfe956c6287a5c2ab36f3c376d54ee39487ebac62b35a32e47ed"
+            "SKILL.md": "c3456342c25d3065b058b146eef8d90906f0169d4a8d1ef4cfbb39e821c17b2f"
           },
           "hostedPath": "/s/light-protocol/zk/SKILL.md"
         }
@@ -7405,7 +7405,7 @@
           "blobSha": "bc0f557852a47ab02a3cf81d48c6743dcd37849b",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "d8c078c75349916b2ac0240d65908e02f23b14f117219500d205f25e7b1d3794"
+            "SKILL.md": "4b27c8780442fc040954433effa7cadadd04d383985112f50c2402ca6ab778b1"
           },
           "hostedPath": "/s/dflow/phantom-wallet-mcp/SKILL.md"
         },
@@ -7438,7 +7438,7 @@
           "blobSha": "b91e57757d0371534eef1a0a395fbdc83176edc6",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "e941d5324c10c391135df93695e5df5a424db2c653b7206b3a7917da568b80f5"
+            "SKILL.md": "050b8dd722cad35be916aa98bad2b82037b16d07eb0712f306f9457d854e0e4f"
           },
           "hostedPath": "/s/dflow/dflow-phantom-connect/SKILL.md"
         }
@@ -7515,7 +7515,7 @@
           "blobSha": "e787aebc385486767f73b11883b61d87388b1f8e",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "3efb9699a9ea6ddeaaa65a9235cce1a6458e89a0852096309c5567f6473e248b"
+            "SKILL.md": "0ec909a6deba193570be623fe9ddf328f0e83bb36ccd2d92f2a4b71d997fe2c3"
           },
           "hostedPath": "/s/quicknode-blockchain/quicknode-skill/SKILL.md"
         }
@@ -7736,7 +7736,7 @@
           "lastAuthor": "ayush-agarwal-09",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "727279f4a22277e2fdbd8fd090fd380adfb54b29e2228b314383a31feb7d7683"
+            "SKILL.md": "5994c392e6ce314cd72624cddb59370320aaea3f35cbcd048ffb401cb88ad59e"
           },
           "hostedPath": "/s/debridge/debridge-analytics/SKILL.md"
         },
@@ -7772,7 +7772,7 @@
           "lastAuthor": "ongrid",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "6c4ce041572c8d22bb77e8bb39cd2a90e866ab723bafd56a774253c153fefa28"
+            "SKILL.md": "bf8568eccfc322cdc0c0c911eefd9d6b90b60d4d87733a1f598030e910957bbd"
           },
           "hostedPath": "/s/debridge/debridge-common/SKILL.md"
         },
@@ -7804,7 +7804,7 @@
           "lastAuthor": "rustairov",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "909822e9da55ef7899f6f8f237f722045aeee3635c1b9e4bca7926925e9f01d7"
+            "SKILL.md": "997e1f29d3b8fcc033007655781b23e0961c16daef93fddaa6e4ed4fa81e20df"
           },
           "hostedPath": "/s/debridge/debridge-signing/SKILL.md"
         },
@@ -7828,7 +7828,7 @@
           "lastAuthor": "ongrid",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "ca3e402e19414fbde163ba03c26fc553231383cb50fc759e361389f2ff03793a"
+            "SKILL.md": "395113481645e39dfb2c0cb01484e6e5610f4b549f77c57c7c729b33cb27b3e7"
           },
           "hostedPath": "/s/debridge/debridge-swap/SKILL.md"
         },
@@ -7852,7 +7852,7 @@
           "lastAuthor": "ayush-agarwal-09",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "d56c692d3f7c5cd6def0108c3732c9dda1d66e84a35732886b13e58b8f60d0fd"
+            "SKILL.md": "6ecefe8499e9d83dd4a50c02d66203e9bc2f328f8fa63301e3a68c789a8c1d1d"
           },
           "hostedPath": "/s/debridge/debridge-wallets/SKILL.md"
         }
@@ -8465,7 +8465,7 @@
           "blobSha": "e9b502a775b28566fbcc6b92babd8805955f304c",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "a0470940e88a46c00b6175e471e8722271271818279a6030a59423e1d0eaecc0"
+            "SKILL.md": "5ff814229e22e859c627fc580d35d049a8fc169def91c338a79b7b5e938e764f"
           },
           "hostedPath": "/s/chainstack/pumpclaw/SKILL.md"
         }
@@ -8555,7 +8555,7 @@
           "blobSha": "800b483b9e427473d1905853e0483b3576977656",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "0efd61d635057b04024b37a7a552a9c6ce5e7df3efdd07d242e974df8b39aa98"
+            "SKILL.md": "85f456bafd3001c856c44b77af180519a4069da59aeac8ff93034928c3583f10"
           },
           "hostedPath": "/s/orquestra/orquestra-mcp-connect/SKILL.md"
         },
@@ -8577,7 +8577,7 @@
           "blobSha": "68fc7beac479ffd1d009745ee7730ab96ec5bf2f",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "4cf3f3215244ca4d5862d68162d6a2fda73189a3b7a6047c45553320cb0c0f1d"
+            "SKILL.md": "305c9669306769346e266711ef80fab33dac2d8dbe61e711496ed7718c9bc31a"
           },
           "hostedPath": "/s/orquestra/orquestra-mcp-tools/SKILL.md"
         },
@@ -8599,7 +8599,7 @@
           "blobSha": "4adf4452ae7128e5570996dc07183f50a007e2be",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "03cb787375d225e66f0f9f5cd155de26f3aefb6a1b5bc8843bcb2d2ac1929b45"
+            "SKILL.md": "72dcde94158319b2c138d15bec4884fe0a0088770f621ca53340173ab27f0b70"
           },
           "hostedPath": "/s/orquestra/orquestra-solana/SKILL.md"
         },
@@ -8621,7 +8621,7 @@
           "blobSha": "6b368684886e38bb4cc22121ba80224e48dd4042",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "c84163d318d291407e5ab6785b600a5f31007b63c42bf81f957d9507e34c6b12"
+            "SKILL.md": "4c49e1bc292f7d2a22822ef1a5a9dd97f310be0879015fe8b77aa5491aaf457c"
           },
           "hostedPath": "/s/orquestra/orquestra-pda-explorer/SKILL.md"
         },
@@ -8643,7 +8643,7 @@
           "blobSha": "2f0e3bf9fdbe01f15040d837abde002a2c4634ce",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "097ba2ac243917c5b682987fc290342224f1abfd1e30fb847dd10d5f83603aad"
+            "SKILL.md": "b539f251f2e853d4ac5ac32f57639fee6a2854e064a1572f6d73f5eb9327a90e"
           },
           "hostedPath": "/s/orquestra/orquestra-researcher/SKILL.md"
         },
@@ -8682,7 +8682,7 @@
           "blobSha": "27630a712ff8f9b4146b021647a474972d38e15c",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "76cfd05d9d7439032f3f9575721c9a6a2de647923f0b73c44892f610a8553ef4"
+            "SKILL.md": "093d593ceb1550dff5e6a74c42735f2471539b0748ad8f294ddf2d2f9a867577"
           },
           "hostedPath": "/s/orquestra/orquestra-simulator/SKILL.md"
         },
@@ -8704,7 +8704,7 @@
           "blobSha": "8e9f39225863d1b6e09d34d56cda821283527872",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "792e32a8143206e2504a9b46bc2719b45296345df577ced73417737535bd7664"
+            "SKILL.md": "90466e7b888c41bb1c175e5e5067fd2f0d79ecace78a0c3f85d98f8b29f83c48"
           },
           "hostedPath": "/s/orquestra/orquestra-tx-builder/SKILL.md"
         }
@@ -8783,7 +8783,7 @@
           "blobSha": "43514d2584c394776a61a3371ca23053da0d15f3",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "ad9b3db7bfd542f2ec692de2be9afdec8045219daf1fabef743fe304c085c033"
+            "SKILL.md": "553b0225706164a6f14c94f1cf46d96105114a05467a3bb18f8149aab84d450f"
           },
           "hostedPath": "/s/solana-auditor/solana-auditor/SKILL.md"
         }
@@ -8842,7 +8842,7 @@
           "blobSha": "0a4044f25f8e1551f70ae9c9d26e14ec817b528d",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "f32ba3a80fa95d60de4b39b4aa423431f809ec570090583959d78c5a2f373927"
+            "SKILL.md": "aff1f2678beb8532fc2757b234c0ad23a0e63562081b4cfd91b68e6e2c4e549b"
           },
           "hostedPath": "/s/agi-trading/helius-api/SKILL.md"
         },
@@ -8872,7 +8872,7 @@
           "blobSha": "66da090e7a3b029c67339f4f92e1143aa5cd2a80",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "0091d407b46c962db3082f63eec6443addd16d5ade78c087ada5690dd3e4c8e2"
+            "SKILL.md": "41492ec56e64bffd3978e45d26358c3ff06128985e59e56b0b7fed687c65b4e5"
           },
           "hostedPath": "/s/agi-trading/jito-bundles/SKILL.md"
         },
@@ -8902,7 +8902,7 @@
           "blobSha": "d9bec1bd6dd50750d33292d687902060c87dae37",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "42e114bdad8de393be045a4414f395f0f65bffac6c3715e7d449d10038bf1c00"
+            "SKILL.md": "b28b75d10645f3a0d725abc27fd53f92ff51b629019bc43b06dfb66751a3bfd8"
           },
           "hostedPath": "/s/agi-trading/pumpfun-mechanics/SKILL.md"
         },
@@ -8932,7 +8932,7 @@
           "blobSha": "5f39606cb856e62c41acbbfdb4056e17ae10ee8d",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "695131c6789336a92d1e30d5478e5799b7fa0bc74f23d18541c31cded8736a7d"
+            "SKILL.md": "8f332815ca41bb7fa210bc2e5e06d84a18f804a59c54a2f3b6f19b33bcfbd4dd"
           },
           "hostedPath": "/s/agi-trading/shredstream/SKILL.md"
         },
@@ -8962,7 +8962,7 @@
           "blobSha": "4c42fdeaeb5257aa30731b6bad0266762a4ac3e3",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "6b797db9a7a80dee3d874acd1a55c5bf3ed0035fa2028084787265f4a0032e09"
+            "SKILL.md": "4ff4f33ed01807247bace2a98367d828b0c53438c55269a83f8fac7181adfd46"
           },
           "hostedPath": "/s/agi-trading/solana-rpc/SKILL.md"
         }
@@ -9015,7 +9015,7 @@
           "blobSha": "11c1b4d283b6854933dbb21e6898425ab1258914",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "3eb1cf14d623326ceb8f80dc764aec533bc9c78d911d7f77d855aa2e38834289"
+            "SKILL.md": "e9f2c0975cbf85f5d9b5c9267299250f8edee7a45ba4b813ebddd4a1f9abb074"
           },
           "hostedPath": "/s/chaingpt/drift/SKILL.md"
         },
@@ -9037,7 +9037,7 @@
           "blobSha": "3b49ac60ed6963fcd4bda2e84e8f2c6bdf8d7b6f",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "a443c395ccca81d94ced382dfc5389a38a5901fa4cabc98fc667998ce56029ec"
+            "SKILL.md": "11b3aec59547ee099d1ab504cd7ee8b1aefc45605475acccfbc272c5a9288101"
           },
           "hostedPath": "/s/chaingpt/solana/SKILL.md"
         }

@@ -198,7 +198,7 @@ export interface Registry {
 }
 
 export const registry = registryJson as unknown as Registry;
-export const SITE_URL = "https://skills.solana.com";
+export const SITE_URL = "https://kit.superteam.codes";
 
 export const CATEGORY_LABELS: Record<string, string> = {
   development: "Development",

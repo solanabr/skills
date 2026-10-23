@@ -10,7 +10,7 @@ metadata:
 ---
 
 <!--
-  Mirror of https://github.com/DFlowProtocol/dflow_phantom-connect-skill/blob/153966b81b501729259bde3e9c2e9b7cc9d6f36e/skill/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/DFlowProtocol/dflow_phantom-connect-skill/blob/153966b81b501729259bde3e9c2e9b7cc9d6f36e/skill/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

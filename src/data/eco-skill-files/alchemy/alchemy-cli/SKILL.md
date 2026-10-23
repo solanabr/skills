@@ -9,7 +9,7 @@ metadata:
 ---
 
 <!--
-  Mirror of https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/alchemy-cli/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/alchemy-cli/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

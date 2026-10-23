@@ -5,7 +5,7 @@ user-invocable: true
 ---
 
 <!--
-  Mirror of https://github.com/solanabr/solana-game-skill/blob/762b3b28e62b4c6cabc01ae179d316958a852a07/skill/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/solanabr/solana-game-skill/blob/762b3b28e62b4c6cabc01ae179d316958a852a07/skill/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

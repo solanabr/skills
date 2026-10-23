@@ -4,7 +4,7 @@ description: Find the bugs your tests miss. Define what your Solana program must
 ---
 
 <!--
-  Mirror of https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

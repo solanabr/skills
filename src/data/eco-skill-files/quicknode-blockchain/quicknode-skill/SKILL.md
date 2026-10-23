@@ -4,7 +4,7 @@ description: "Quicknode blockchain infrastructure for 80+ chains: Core RPC API, 
 ---
 
 <!--
-  Mirror of https://github.com/quiknode-labs/blockchain-skills/blob/7d76454c89ed791b9a6d4479595ca0469483f616/skills/quicknode-skill/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/quiknode-labs/blockchain-skills/blob/7d76454c89ed791b9a6d4479595ca0469483f616/skills/quicknode-skill/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

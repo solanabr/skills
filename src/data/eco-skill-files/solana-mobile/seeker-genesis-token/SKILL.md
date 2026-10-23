@@ -4,7 +4,7 @@ description: Verify Seeker device ownership by checking for the Seeker Genesis T
 ---
 
 <!--
-  Mirror of https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/seeker-genesis-token/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/solana-mobile/solana-mobile-dev-skill/blob/8664b5be49d16b6962129b53def20f6dfa99443d/skills/seeker-genesis-token/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

@@ -4,7 +4,7 @@ description: Design, implement, and debug MagicBlock applications on Solana. Cov
 ---
 
 <!--
-  Mirror of https://github.com/magicblock-labs/magicblock-dev-skill/blob/de3c62bcf39b72a8b1ffd7e65c434be3c9f0edc8/skill/SKILL.md hosted by skills.solana.com.
+  Mirror of https://github.com/magicblock-labs/magicblock-dev-skill/blob/de3c62bcf39b72a8b1ffd7e65c434be3c9f0edc8/skill/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

@@ -1,0 +1,110 @@
+---
+import Base from '../../layouts/Base.astro';
+import MdActions from '../../components/MdActions.astro';
+import KitBand from '../../components/superteam/KitBand.astro';
+import '../../styles/superteam.css';
+import { registry, kitEntry, superteamPage, superteamFileUrl } from '../../lib/registry';
+
+const skills = registry.superteam;
+const kit = kitEntry();
+const people = new Set([...skills, ...(kit ? [kit] : [])].flatMap((e) => e.contributors ?? [])).size;
+const subskillCount = skills.reduce((n, s) => n + s.subskills.length, 0);
+const fileCount = skills.reduce((n, s) => n + s.files.length, 0);
+const KIND_LABEL: Record<string, string> = { skill: 'skills', command: 'commands', agent: 'agents' };
+const kindsOf = (s: (typeof skills)[number]) =>
+  Object.entries(
+    s.subskills.reduce<Record<string, number>>((m, x) => ((m[x.kind] = (m[x.kind] ?? 0) + 1), m), {}),
+  ).map(([k, n]) => `${n} ${KIND_LABEL[k] ?? k}`);
+---
+
+<Base
+  title="Superteam Brasil skills · Solana Skills"
+  description="Official skills from Superteam Brasil, part of the Solana AI Kit: a full security audit firm and a startup operations playbook for your agent. Every file hosted as markdown, ready to copy."
+  ogImage="/og/superteam.png"
+>
+  <section class="st-head st-hero">
+    <div class="container">
+      <div class="st-badges">
+        <span class="badge badge-st">Superteam Brasil</span>
+        <span class="badge">Official skills</span>
+      </div>
+      <h1 class="display st-title">
+        Official skills from<br /><span class="gradient-text">Superteam Brasil</span>
+      </h1>
+      <p class="st-lead">
+        Superteam Brasil builds and maintains these skills as part of the Solana AI Kit. They are
+        open source and MIT-licensed. Each one is mirrored here at a pinned commit, with every
+        skill, subskill and reference file on its own URL as markdown, ready to copy or hand to an
+        agent.
+      </p>
+      <dl class="st-stats">
+        <div><dt>Skills</dt><dd>{skills.length}</dd></div>
+        <div><dt>Subskills, commands and agents</dt><dd>{subskillCount}</dd></div>
+        <div><dt>Markdown files hosted</dt><dd>{fileCount}</dd></div>
+        <div><dt>Contributors</dt><dd>{people}</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="st-body">
+    <div class="container">
+      <div class="st-feature-grid">
+        {
+          skills.map((s) => (
+            <article class="st-feature">
+              <div class="st-badges" style="margin:0">
+                <span class="badge badge-st">Superteam Brasil</span>
+                {s.tag && <span class="badge">{s.tag}</span>}
+                <span class="badge">{s.kitTier === 'core' ? 'Core pack of the kit' : 'Kit add-on pack'}</span>
+              </div>
+              <h3>
+                <a href={superteamPage(s)}>{s.displayName}</a>
+              </h3>
+              <p>{s.tagline}</p>
+              <div class="st-chips">
+                {kindsOf(s).map((k) => (
+                  <span>{k}</span>
+                ))}
+                {s.counts.checklists ? <span>{s.counts.checklists} checklists</span> : null}
+                {s.counts.knownVectors ? <span>{s.counts.knownVectors} known attack vectors</span> : null}
+                {s.counts.references ? <span>{s.counts.references} reference files</span> : null}
+                {s.stars !== null && <span>★ {s.stars}</span>}
+              </div>
+              <div class="st-kit-actions" style="margin-top:4px">
+                <a class="btn btn-primary btn-sm" href={superteamPage(s)}>
+                  Explore {s.displayName}
+                </a>
+                {s.main && <MdActions url={superteamFileUrl(s, s.main)} name={`${s.displayName} ${s.main}`} />}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      {
+        skills.map((s) => (
+          <section>
+            <div class="st-section-title st-section-head">
+              <h2>{s.displayName}</h2>
+              <a class="btn btn-ghost btn-sm" href={superteamPage(s)}>Open</a>
+            </div>
+            <p class="st-section-sub">{s.summary}</p>
+            <div class="st-cards">
+              {s.subskills.map((x) => (
+                <div class="st-card">
+                  <a class="st-card-main" href={superteamPage(s, x)}>
+                    <span class="st-card-name">{x.name}</span>
+                    {x.description && <span class="st-card-desc">{x.description}</span>}
+                  </a>
+                  <MdActions url={superteamFileUrl(s, x.path)} name={x.name} size="sm" />
+                </div>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+
+      <KitBand />
+    </div>
+  </section>
+</Base>

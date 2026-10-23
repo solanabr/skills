@@ -1,0 +1,182 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import MdActions from '../../components/MdActions.astro';
+import KitBand from '../../components/superteam/KitBand.astro';
+import InstallPanel from '../../components/superteam/InstallPanel.astro';
+import FileLibrary from '../../components/superteam/FileLibrary.astro';
+import '../../styles/superteam.css';
+import {
+  registry,
+  SITE_URL,
+  CATEGORY_LABELS,
+  superteamPage,
+  superteamFileUrl,
+  superteamGithubUrl,
+} from '../../lib/registry';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('stbr');
+  return registry.superteam.map((skill) => ({
+    params: { id: skill.id },
+    props: {
+      skill,
+      entry: skill.main ? entries.find((e) => e.id === `${skill.id}/${skill.main!.replace(/\.md$/, '')}`) : undefined,
+    },
+  }));
+}
+
+const { skill, entry } = Astro.props;
+const { Content } = entry ? await render(entry) : { Content: null };
+const mainUrl = skill.main ? superteamFileUrl(skill, skill.main) : null;
+const KIND: Record<string, { title: string; sub: string }> = {
+  skill: { title: 'Skills', sub: 'Each one a SKILL.md with its own reference files. Open a page, copy the markdown, or point your agent at the hosted file.' },
+  command: { title: 'Commands', sub: 'Slash commands, each a markdown file your agent runs on request.' },
+  agent: { title: 'Agents', sub: 'Subagents the commands hand work to, each defined in one markdown file.' },
+};
+const byKind = ['skill', 'command', 'agent']
+  .map((k) => ({ kind: k, items: skill.subskills.filter((x) => x.kind === k) }))
+  .filter((g) => g.items.length > 0);
+const COUNT_LABEL: Record<string, string> = {
+  commands: 'Commands',
+  agents: 'Agents',
+  checklists: 'Checklists',
+  knownVectors: 'Known attack vectors',
+  skills: 'Skills',
+  references: 'Reference files',
+};
+const pinDate = skill.commitDate
+  ? new Date(skill.commitDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
+  : null;
+---
+
+<Base
+  title={`${skill.displayName} by Superteam Brasil · Solana Skills`}
+  description={skill.tagline}
+  ogImage={`/og/superteam/${skill.id}.png`}
+>
+  <section class="st-head">
+    <div class="container">
+      <nav class="st-breadcrumb" aria-label="Breadcrumb">
+        <a href="/superteam">Superteam Brasil</a>
+        <span aria-hidden="true">/</span>
+        <span>{skill.displayName}</span>
+      </nav>
+      <div class="st-badges">
+        <span class="badge badge-st">Superteam Brasil · Official</span>
+        <span class="badge">{CATEGORY_LABELS[skill.category] ?? skill.category}</span>
+        <span class="badge">{skill.kitTier === 'core' ? 'Core pack of the Solana AI Kit' : 'Solana AI Kit add-on pack'}</span>
+      </div>
+      <h1 class="st-title">{skill.displayName}</h1>
+      <div class="st-byline">
+        <span>by Superteam Brasil</span>
+        <span aria-hidden="true">·</span>
+        <a href={skill.url} target="_blank" rel="noopener">{skill.repo}</a>
+        {skill.tag && (<><span aria-hidden="true">·</span><span>{skill.tag}</span></>)}
+        {skill.stars !== null && (<><span aria-hidden="true">·</span><span>★ {skill.stars}</span></>)}
+      </div>
+      <p class="st-lead">{skill.tagline} {skill.summary}</p>
+      <p class="st-note">
+        An official Superteam Brasil skill, built and maintained by the team behind the Solana AI
+        Kit. Every file is mirrored here byte-for-byte at commit
+        <code class="mono">{skill.commitSha?.slice(0, 7)}</code>; copy any of them as markdown or open
+        it raw.
+      </p>
+      <dl class="st-stats">
+        {
+          Object.entries(skill.counts).map(([k, n]) => (
+            <div>
+              <dt>{COUNT_LABEL[k] ?? k}</dt>
+              <dd>{n}</dd>
+            </div>
+          ))
+        }
+        <div><dt>Markdown files</dt><dd>{skill.files.length}</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="st-body">
+    <div class="container st-grid">
+      <article>
+        <InstallPanel options={skill.install} fetchable={mainUrl ? SITE_URL + mainUrl : null} />
+
+        {
+          byKind.map((g) => (
+            <section>
+              <h2 class="st-section-title">
+                {KIND[g.kind].title} ({g.items.length})
+              </h2>
+              <p class="st-section-sub">{KIND[g.kind].sub}</p>
+              <div class="st-cards">
+                {g.items.map((x) => (
+                  <div class="st-card">
+                    <a class="st-card-main" href={superteamPage(skill, x)}>
+                      <span class="st-card-name">{x.name}</span>
+                      {x.description && <span class="st-card-desc">{x.description}</span>}
+                    </a>
+                    <MdActions url={superteamFileUrl(skill, x.path)} name={x.name} size="sm" />
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))
+        }
+
+        {
+          Content && skill.main && mainUrl && (
+            <section>
+              <div class="st-section-title st-section-head">
+                <h2>{skill.main}</h2>
+                <MdActions url={mainUrl} name={skill.main} />
+              </div>
+              <div class="prose" id="skill-prose">
+                <Content />
+              </div>
+            </section>
+          )
+        }
+
+        <KitBand />
+      </article>
+
+      <aside class="st-aside">
+        <div class="st-meta">
+          <h3>Details</h3>
+          <dl>
+            <div><dt>Maintainer</dt><dd>Superteam Brasil</dd></div>
+            <div><dt>Repository</dt><dd><a href={skill.url} target="_blank" rel="noopener">{skill.repo}</a></dd></div>
+            <div><dt>License</dt><dd>{skill.license ?? 'None declared'}</dd></div>
+            {skill.tag && <div><dt>Release</dt><dd>{skill.tag}</dd></div>}
+            <div>
+              <dt>Pinned commit</dt>
+              <dd>
+                <a class="mono" href={`https://github.com/${skill.repo}/tree/${skill.commitSha}`} target="_blank" rel="noopener">{skill.commitSha?.slice(0, 7)}</a>
+                {pinDate && ` · ${pinDate}`}
+              </dd>
+            </div>
+            <div><dt>Contributors</dt><dd>{skill.contributors?.length ?? '—'}</dd></div>
+            <div><dt>In the Solana AI Kit</dt><dd>{skill.kitTier === 'core' ? 'Core, installed by default' : 'Add-on'}</dd></div>
+          </dl>
+          <div class="st-meta-actions">
+            <a class="btn btn-ghost btn-sm" href={skill.url} target="_blank" rel="noopener">View on GitHub</a>
+            <a class="btn btn-ghost btn-sm" href={`https://github.com/${skill.repo}/issues`} target="_blank" rel="noopener">Report issue</a>
+          </div>
+        </div>
+        <div class="st-meta">
+          <h3>Every file ({skill.files.length})</h3>
+          <p class="muted" style="font-size:0.8rem">
+            All markdown in the repo, hosted at <code class="mono">/s/{skill.id}/</code>. Relative
+            links between files resolve on this domain.
+          </p>
+          <FileLibrary skill={skill} />
+          {skill.main && (
+            <a class="muted" style="font-size:0.78rem" href={superteamGithubUrl(skill, skill.main)} target="_blank" rel="noopener">
+              Source on GitHub ↗
+            </a>
+          )}
+        </div>
+      </aside>
+    </div>
+  </section>
+</Base>

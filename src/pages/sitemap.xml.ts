@@ -6,7 +6,12 @@ export const GET: APIRoute = () => {
     "/",
     "/skills",
     "/ecosystem",
+    "/superteam",
     ...registry.official.map((s) => `/skills/${s.id}`),
+    ...registry.superteam.flatMap((s) => [
+      `/superteam/${s.id}`,
+      ...s.subskills.map((x) => `/superteam/${s.id}/${x.slug}`),
+    ]),
     ...registry.ecosystem.flatMap((r) =>
       r.skills.filter((s) => s.slug).map((s) => `/skills/${r.id}/${s.slug}`),
     ),

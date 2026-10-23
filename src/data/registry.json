@@ -139,7 +139,26 @@
         "references/testing.md": "5b6586ab343370c23ca9032701793502fbc9f4f9a4ebf5fad8b59a583ec877cd",
         "references/transactions-v1.md": "48dbd262a43db13eb88fb4cefba0e8f1a9d4da3d406f299450447b820982753a"
       },
-      "lastAuthor": "HealthyBuilder"
+      "lastAuthor": "HealthyBuilder",
+      "contributors": [
+        "amanhij",
+        "amilz",
+        "arihantbansal",
+        "Arrowana",
+        "beeman",
+        "catmcgee",
+        "daog1",
+        "dev-jodee",
+        "gitteri",
+        "GuiBibeau",
+        "HealthyBuilder",
+        "lgalabru",
+        "metasal1",
+        "MicaiahReid",
+        "solana-clawd",
+        "tiago18c",
+        "unive3sal"
+      ]
     },
     {
       "id": "eth-to-sol",
@@ -267,7 +286,1244 @@
         "translation/stdlib-mapping.md": "c31f237d36efe2a8687f5d24ec17063a3921c335e8a4e17706ee55c95393b6de",
         "translation/type-mapping.md": "5a14362b62ab80ab5c4fa97d5fcac63b0ecfb692e3d658404806b30846e8829a"
       },
-      "lastAuthor": "catmcgee"
+      "lastAuthor": "catmcgee",
+      "contributors": [
+        "catmcgee"
+      ]
+    }
+  ],
+  "superteam": [
+    {
+      "id": "auditor-skill",
+      "repo": "solanabr/auditor-skill",
+      "displayName": "Auditor Skill",
+      "tagline": "A full audit firm inside your agent: Solana programs and every line of code around them.",
+      "summary": "Intake, threat model, item-by-item checklists, known attack vectors, executable proofs of concept and fix patches, then a report your team can ship. It covers Anchor and Pinocchio programs plus TypeScript, Python, Go, Rust services, CI/CD and AI agents, and works post-incident too: /auditor:hunt and /auditor:respond read transaction history and program logs.",
+      "category": "security",
+      "pin": "release-tag",
+      "main": "SKILL.md",
+      "kitPack": "auditor-skill",
+      "kitTier": "core",
+      "subskillRules": [
+        {
+          "kind": "command",
+          "pattern": "^commands/[^/]+\\.md$"
+        },
+        {
+          "kind": "agent",
+          "pattern": "^agents/[^/]+\\.md$"
+        }
+      ],
+      "countRules": {
+        "commands": "^commands/[^/]+\\.md$",
+        "agents": "^agents/[^/]+\\.md$",
+        "checklists": "^checklists/\\d",
+        "knownVectors": "^known-vectors/\\d"
+      },
+      "install": [
+        {
+          "label": "Claude Code plugin",
+          "note": "Recommended. Installs every /auditor:* command and agent, outside any repository you audit.",
+          "commands": [
+            "/plugin marketplace add solanabr/auditor-skill",
+            "/plugin install auditor"
+          ],
+          "prompt": false
+        },
+        {
+          "label": "Install script",
+          "note": "A user-level skill, outside the repositories you audit. Read the script first: it is a security tool.",
+          "commands": [
+            "curl -fsSL https://raw.githubusercontent.com/solanabr/auditor-skill/main/install.sh | bash -s -- ~/.claude/skills/auditor-skill"
+          ]
+        },
+        {
+          "label": "Solana AI Kit",
+          "note": "A core pack of the kit: installed with it, nothing else to run.",
+          "commands": [
+            "curl -fsSL https://aikit.superteam.codes | bash"
+          ]
+        }
+      ],
+      "stars": 60,
+      "pushedAt": "2026-10-22",
+      "license": "MIT",
+      "description": "Claude Code / agentic security skill for Solana programs and software. Full audit-firm lifecycle, executable PoC + fix-patch delivery, a Rust pre-scanner + cross-audit memory, 1,346 checks across 20 checklists, and 131 real-world attack vectors.",
+      "contributors": [
+        "frcd10",
+        "kauenet",
+        "panditdhamdhere"
+      ],
+      "files": [
+        "AGENTS.md",
+        "ATTRIBUTION.md",
+        "CONTRIBUTING.md",
+        "COSTS.md",
+        "FULL-AUDIT.md",
+        "OUTPUT-RULES.md",
+        "QUESTIONS.md",
+        "README.md",
+        "SECURITY.md",
+        "SKILL.md",
+        "agents/audit-reporter.md",
+        "agents/context-builder.md",
+        "agents/economic-analyst.md",
+        "agents/incident-responder.md",
+        "agents/patch-engineer.md",
+        "agents/peer-reviewer.md",
+        "agents/poc-engineer.md",
+        "agents/threat-modeler.md",
+        "agents/vuln-hunter.md",
+        "checklists/01-program-account-validation.md",
+        "checklists/02-program-access-control.md",
+        "checklists/03-program-arithmetic-safety.md",
+        "checklists/04-program-cpi-pda.md",
+        "checklists/05-program-state-machine.md",
+        "checklists/06-program-economic-logic.md",
+        "checklists/07-program-opsec-governance.md",
+        "checklists/08-typescript-safety.md",
+        "checklists/09-backend-security.md",
+        "checklists/10-frontend-security.md",
+        "checklists/11-supply-chain.md",
+        "checklists/12-secrets-opsec.md",
+        "checklists/13-deployment-infrastructure.md",
+        "checklists/14-python-safety.md",
+        "checklists/15-general-language-safety.md",
+        "checklists/16-formal-verification-testing.md",
+        "checklists/17-logging-monitoring-incident-response.md",
+        "checklists/18-privacy-compliance-change-management.md",
+        "checklists/19-ai-agent-security.md",
+        "checklists/20-rust-offchain-services.md",
+        "commands/audit-assist.md",
+        "commands/audit-cycle.md",
+        "commands/audit-report.md",
+        "commands/audit.md",
+        "commands/deep-review.md",
+        "commands/diff-audit.md",
+        "commands/economic-sim.md",
+        "commands/hunt.md",
+        "commands/intake.md",
+        "commands/patch.md",
+        "commands/poc.md",
+        "commands/quick-scan.md",
+        "commands/re-audit.md",
+        "commands/respond.md",
+        "commands/spec-audit.md",
+        "commands/threat-model.md",
+        "commands/triage.md",
+        "discovery/file-map.md",
+        "discovery/grep-commands.md",
+        "docs/README.md",
+        "docs/agents.md",
+        "docs/audit-flows.md",
+        "docs/commands.md",
+        "docs/detection-response.md",
+        "docs/getting-started.md",
+        "docs/output-and-rigor.md",
+        "docs/poc-and-patches.md",
+        "docs/power-tools.md",
+        "known-vectors/001-private-key-leak.md",
+        "known-vectors/002-flash-loan-price-manipulation.md",
+        "known-vectors/003-reentrancy-cpi.md",
+        "known-vectors/004-missing-access-control.md",
+        "known-vectors/005-oracle-manipulation.md",
+        "known-vectors/006-first-depositor-share-inflation.md",
+        "known-vectors/007-mev-sandwich-attack.md",
+        "known-vectors/008-rug-pull-admin-backdoor.md",
+        "known-vectors/009-unchecked-cpi-target.md",
+        "known-vectors/010-pda-confusion-type-cosplay.md",
+        "known-vectors/011-integer-overflow-underflow.md",
+        "known-vectors/012-arithmetic-rounding-exploit.md",
+        "known-vectors/013-missing-signer-check.md",
+        "known-vectors/014-account-reinitialization.md",
+        "known-vectors/015-unchecked-account-owner.md",
+        "known-vectors/016-token-account-mismatch.md",
+        "known-vectors/017-vault-donation-attack.md",
+        "known-vectors/018-fee-on-transfer-token-exploit.md",
+        "known-vectors/019-freeze-authority-griefing.md",
+        "known-vectors/020-program-upgrade-hijack.md",
+        "known-vectors/021-governance-attack-vote-buying.md",
+        "known-vectors/022-bridge-exploit-fake-proof.md",
+        "known-vectors/023-token-2022-transfer-hook-attack.md",
+        "known-vectors/024-stale-missing-account-close.md",
+        "known-vectors/025-compute-budget-exhaustion-dos.md",
+        "known-vectors/026-pda-seed-collision.md",
+        "known-vectors/027-missing-discriminator-check.md",
+        "known-vectors/028-front-running-transaction.md",
+        "known-vectors/029-withdraw-before-update-race.md",
+        "known-vectors/030-infinite-mint-uncapped-supply.md",
+        "known-vectors/031-nosql-injection-mongodb.md",
+        "known-vectors/032-sql-injection.md",
+        "known-vectors/033-mass-assignment-vibe-coding.md",
+        "known-vectors/034-baas-auth-bypass-supabase-firebase.md",
+        "known-vectors/035-jwt-algorithm-confusion.md",
+        "known-vectors/036-ssrf-server-side-request-forgery.md",
+        "known-vectors/037-cors-misconfiguration.md",
+        "known-vectors/038-idor-insecure-direct-object-reference.md",
+        "known-vectors/039-rate-limiting-bypass.md",
+        "known-vectors/040-command-injection.md",
+        "known-vectors/041-path-traversal-lfi.md",
+        "known-vectors/042-xml-external-entity-xxe.md",
+        "known-vectors/043-prototype-pollution.md",
+        "known-vectors/044-server-side-template-injection.md",
+        "known-vectors/045-webhook-forgery.md",
+        "known-vectors/046-graphql-introspection-depth-attack.md",
+        "known-vectors/047-websocket-hijacking.md",
+        "known-vectors/048-redos-regex-denial-of-service.md",
+        "known-vectors/049-http-response-splitting.md",
+        "known-vectors/050-session-fixation.md",
+        "known-vectors/051-account-enumeration.md",
+        "known-vectors/052-unbounded-request-body-dos.md",
+        "known-vectors/053-missing-wallet-signature-verification.md",
+        "known-vectors/054-default-credentials-in-production.md",
+        "known-vectors/055-exposed-debug-admin-endpoints.md",
+        "known-vectors/056-xss-via-svg-image-injection.md",
+        "known-vectors/057-stored-xss-user-content.md",
+        "known-vectors/058-dom-based-xss.md",
+        "known-vectors/059-clickjacking.md",
+        "known-vectors/060-oauth-state-forgery-csrf-via-oauth.md",
+        "known-vectors/061-sensitive-data-in-url-parameters.md",
+        "known-vectors/062-client-side-auth-bypass.md",
+        "known-vectors/063-postmessage-origin-bypass.md",
+        "known-vectors/064-localstorage-token-theft.md",
+        "known-vectors/065-clipboard-hijacking-crypto-address.md",
+        "known-vectors/066-css-exfiltration.md",
+        "known-vectors/067-wallet-blind-signing-exploit.md",
+        "known-vectors/068-subresource-integrity-bypass.md",
+        "known-vectors/069-third-party-script-compromise.md",
+        "known-vectors/070-open-redirect.md",
+        "known-vectors/071-missing-csp-content-security-policy.md",
+        "known-vectors/072-api-key-exposure-in-client-bundle.md",
+        "known-vectors/073-dangling-dns-subdomain-takeover.md",
+        "known-vectors/074-insecure-external-link-no-rel.md",
+        "known-vectors/075-console-data-leak-in-production.md",
+        "known-vectors/076-dependency-confusion-substitution-attack.md",
+        "known-vectors/077-malicious-npm-package-typosquatting.md",
+        "known-vectors/078-secrets-in-git-history.md",
+        "known-vectors/079-env-file-committed-to-repo.md",
+        "known-vectors/080-ci-cd-pipeline-injection.md",
+        "known-vectors/081-insecure-docker-configuration.md",
+        "known-vectors/082-exposed-admin-debug-endpoints-in-production.md",
+        "known-vectors/083-missing-rate-limiting-on-critical-endpoints.md",
+        "known-vectors/084-prototype-pollution.md",
+        "known-vectors/085-server-side-request-forgery-ssrf.md",
+        "known-vectors/086-insecure-deserialization.md",
+        "known-vectors/087-insufficient-logging-monitoring.md",
+        "known-vectors/088-insecure-cors-configuration.md",
+        "known-vectors/089-unpatched-server-dependencies.md",
+        "known-vectors/090-missing-https-tls-misconfiguration.md",
+        "known-vectors/091-upgrade-authority-not-secured.md",
+        "known-vectors/092-dns-hijacking-domain-takeover.md",
+        "known-vectors/093-improper-error-handling-error-leak.md",
+        "known-vectors/094-missing-input-length-limits.md",
+        "known-vectors/095-insecure-randomness.md",
+        "known-vectors/096-missing-security-headers.md",
+        "known-vectors/097-stale-leaked-development-credentials.md",
+        "known-vectors/098-broken-access-control-on-api-endpoints.md",
+        "known-vectors/099-insecure-websocket-connections.md",
+        "known-vectors/100-insufficient-backup-disaster-recovery.md",
+        "known-vectors/101-sysvar-spoofing-instructions-introspection.md",
+        "known-vectors/102-precompile-signature-verification-bypass.md",
+        "known-vectors/103-address-lookup-table-manipulation.md",
+        "known-vectors/104-non-canonical-bump-pda-derivation-confusion.md",
+        "known-vectors/105-token-2022-extension-abuse.md",
+        "known-vectors/106-account-revival-zombie-after-close.md",
+        "known-vectors/107-fake-non-canonical-associated-token-account.md",
+        "known-vectors/108-token-decimals-cross-mint-amount-confusion.md",
+        "known-vectors/109-pinocchio-ptoken-missing-manual-validation.md",
+        "known-vectors/110-agent-wallet-key-custody-spend-caps.md",
+        "known-vectors/111-bpf-stack-frame-overflow-dos.md",
+        "known-vectors/112-in-memory-secret-non-zeroization.md",
+        "known-vectors/113-autonomous-agent-blind-signing.md",
+        "known-vectors/114-mcp-tool-poisoning.md",
+        "known-vectors/115-onchain-data-prompt-injection.md",
+        "known-vectors/116-ai-coding-agent-ci-deploy-key.md",
+        "known-vectors/117-agent-delegation-scope-creep.md",
+        "known-vectors/118-stake-account-authority-hijack.md",
+        "known-vectors/119-durable-nonce-pre-signed-governance-abuse.md",
+        "known-vectors/120-onchain-randomness-predictability.md",
+        "known-vectors/121-cnft-account-compression-merkle-proof.md",
+        "known-vectors/122-inner-instruction-event-log-spoofing.md",
+        "known-vectors/123-lamport-donation-account-bricking.md",
+        "known-vectors/124-wallet-cleartext-key-export.md",
+        "known-vectors/125-bonding-curve-launchpad-graduation-abuse.md",
+        "known-vectors/126-session-token-as-custody.md",
+        "known-vectors/127-ata-account-precreation-dos.md",
+        "known-vectors/128-onchain-floating-point-math.md",
+        "known-vectors/129-keeper-request-execute-frontrunning.md",
+        "known-vectors/130-clmm-tick-boundary-liquidity-math.md",
+        "known-vectors/131-write-lock-account-contention-dos.md",
+        "known-vectors/132-canonical-asset-token-list-spoofing.md",
+        "known-vectors/133-token-risk-score-metric-farming.md",
+        "known-vectors/134-token-acl-gate-program-bypass.md",
+        "known-vectors/135-transaction-v1-fee-sponsor-cap-bypass.md",
+        "known-vectors/136-transaction-v1-reader-wedge-zero-budget-indexing.md",
+        "known-vectors/137-vendored-program-version-drift.md",
+        "known-vectors/138-slot-denominated-time-assumptions.md",
+        "known-vectors/139-comment-triggered-workflow-author-gating.md",
+        "known-vectors/140-workflow-run-pwn-request-artifact-cache-poisoning.md",
+        "known-vectors/INDEX.md",
+        "references/audit-lifecycle/firm-coverage.md",
+        "references/audit-lifecycle/methodology.md",
+        "references/audit-lifecycle/threat-model-bootstrap.md",
+        "references/detection-response/README.md",
+        "references/detection-response/containment-playbook.md",
+        "references/detection-response/incidents-schema.md",
+        "references/detection-response/log-sources.md",
+        "references/false-positives.md",
+        "references/framework-idioms/anchor.md",
+        "references/framework-idioms/build-and-tooling.md",
+        "references/framework-idioms/native.md",
+        "references/framework-idioms/pinocchio.md",
+        "references/invariant-catalog.md",
+        "references/methodologies/amm-clmm.md",
+        "references/methodologies/bridges.md",
+        "references/methodologies/governance.md",
+        "references/methodologies/launchpads.md",
+        "references/methodologies/lending.md",
+        "references/methodologies/liquid-staking.md",
+        "references/methodologies/nft-marketplaces.md",
+        "references/methodologies/oracles.md",
+        "references/methodologies/perps.md",
+        "references/methodologies/stablecoin.md",
+        "references/methodologies/token-2022.md",
+        "references/methodologies/token-registry-risk.md",
+        "references/methodologies/wallets-multisig-custody.md",
+        "references/orchestration/boundary-map.md",
+        "references/orchestration/poc-harness.md",
+        "references/orchestration/pre-scan.md",
+        "references/report-format.md",
+        "references/vuln-classes/github-actions.md",
+        "references/vuln-classes/transaction-v1.md",
+        "references/vuln-classes/zk-and-compression.md",
+        "scripts/dnr/README.md",
+        "templates/audit-report.md",
+        "templates/context-worksheet.md",
+        "templates/hunt-ledger.md",
+        "templates/incident-report.md",
+        "templates/instruction-worksheet.md",
+        "templates/intake.md",
+        "templates/patch/VERIFICATION.md",
+        "templates/patch/patch.md",
+        "templates/poc/README.md",
+        "templates/report-template.md",
+        "templates/response-plan.md",
+        "templates/threat-model.md",
+        "tools/auditor-tools/README.md"
+      ],
+      "integrity": {
+        "AGENTS.md": "e7e3629e7e0798b0647721589324fe8bbbbbc0a23ba9534e7307a2f5e0dfd577",
+        "ATTRIBUTION.md": "118008414a5f4fabdf742150c418ab578028f96d256abc3d45494a7ca17abd66",
+        "CONTRIBUTING.md": "e94088899e8b6507467c6cabec349d93e3d470432fdfafacbff59729d35a05ec",
+        "COSTS.md": "aa9b806e7862d20c4334f68e109d195c2c72b11e9e55d89447f4eec407f82b04",
+        "FULL-AUDIT.md": "49880dbfcdb2f9521042aedc864da77cfce730d20721dc40a70f382c329ccaba",
+        "OUTPUT-RULES.md": "f1874c6f7b4e1f30549e1f722e3ed2c3e5f31bc741a0da47616d05d7a3c8b565",
+        "QUESTIONS.md": "0d49fec649aa2ec1cc4d1e6ea1ff64ee828751a5b78ff3e56b52e2eebaf7dfab",
+        "README.md": "08f50d1b592a5b8a48c818049a48ad8a49b1149a518cf2b16899387c69bbcbe9",
+        "SECURITY.md": "65250cd282220c4f08870c1357c8f6aabf77419cade0a62fda2bb68c42e76e28",
+        "SKILL.md": "404baec77ed8ab06316624fe77524c9947acdcd6d721b30d22be315b9c3d2e81",
+        "agents/audit-reporter.md": "b8cdb2a9a0a2627f763c30daf209e0804965b469b9cb79acacddf9cb4dd658ad",
+        "agents/context-builder.md": "ee1100b667fe079b449e52e220d0c02fbb5ea12a2f730026da5346e594c4a191",
+        "agents/economic-analyst.md": "0cc14e638d45763c764d423f643fdf017b0891390f12eefc043b089bd308bc2b",
+        "agents/incident-responder.md": "fc89730d5628eaee3a7a4e6fd38e0ee0cada04f9c162ef6c807edc37f77878fd",
+        "agents/patch-engineer.md": "a8a0493619148af9803207f348a0319a7e5d204c1dafb3ce4abb94ffa3a95e21",
+        "agents/peer-reviewer.md": "8d7a41c83bf9820a802dfd9e2f6f7590f248ca7f2ac11a4d85387a287ce03118",
+        "agents/poc-engineer.md": "abfaf3267f4fdf112081653fdef01e97fa1345fecf7efaad365eecd60ab10272",
+        "agents/threat-modeler.md": "4474d484f5e1d84b35a2ce4b87dd301bb01191ecd8c01f03013f02f9ce159f4a",
+        "agents/vuln-hunter.md": "db60e652eb59eef04d458956d68dcdbd838929b14a8f486bb8fc4cbbdcfb4b3f",
+        "checklists/01-program-account-validation.md": "8ba4b248f4301de5014d1456d49c099a9096c471f8d2839da87f68f2fc732f9b",
+        "checklists/02-program-access-control.md": "6930591850c2178679e58ac5db812349ba16afb6cc3941245fac81b8052ae1f8",
+        "checklists/03-program-arithmetic-safety.md": "7fc01554c226922151141fc795a22cc515d44ca47e8f201ced615f4591296e1f",
+        "checklists/04-program-cpi-pda.md": "a8bc53d17894fd3fdab0c103f0dd85880289abd8c0fd32eaa16719e2dd38e483",
+        "checklists/05-program-state-machine.md": "fb0dd03b3613377e6bde8d0f99b4ec8a6ed4c2828c64fd5f88ebe4f7b417a5d8",
+        "checklists/06-program-economic-logic.md": "47210595b68504fbfd7c17eb701ffc32c0eb554fb8c311725cebbb63fad15bfe",
+        "checklists/07-program-opsec-governance.md": "689d52195c4fac91a58f61e548e7a43f62b5b65b2b65b2a8b3d8d4e5f5e1f693",
+        "checklists/08-typescript-safety.md": "b227fc1d35b609fb61433e8e691fd064b3143c97d51cf02c533a52ebd60476e5",
+        "checklists/09-backend-security.md": "e39c93d168a74d78ede8ddf28b39010ead80046e61f394acba1f879ba54aa177",
+        "checklists/10-frontend-security.md": "faed988b8c92bddc530bfee6a3feb6654fbecbeafaf6c92400339bb2fe90b8b0",
+        "checklists/11-supply-chain.md": "5de29acdb8cb48cc35d1ec3c2e658752999cb69d696e6cdf1a3f565bdff7e13e",
+        "checklists/12-secrets-opsec.md": "633cd50476e4eefde62838d24b712a1938974d958a931cf10ee4655423639390",
+        "checklists/13-deployment-infrastructure.md": "c269072f6a8ccbd0526284f918a1476c9c1e60657f8c1e0fd6d9f167d970c979",
+        "checklists/14-python-safety.md": "fcfc7513bd4c20bab884eeee271e4a3e6c4449e84b36756b227aa615a415e506",
+        "checklists/15-general-language-safety.md": "0e1b9ec2787d8f75089ae41959cb69b71bc774ec39190de11c8a4c1017d9924a",
+        "checklists/16-formal-verification-testing.md": "6651b3b339e5327b5fe8a3ec8ce9275eb7d3bdfafa477294d87950710aeb87f5",
+        "checklists/17-logging-monitoring-incident-response.md": "28003ec5978ad783b5ff85badde88b0c56472bf1c26d7e990a4a07205fdd67a1",
+        "checklists/18-privacy-compliance-change-management.md": "9f72cc39e7cdcab592c2f517e7d84d8a94f85d0c853fa3624e500edaf3b0b9e2",
+        "checklists/19-ai-agent-security.md": "29feab1ad38b96b680842751c90d2302abca85cc00f1d7654048f29917dd6da1",
+        "checklists/20-rust-offchain-services.md": "e6f8d1e55ceeb80145dccc13a491c808aef83804efb1fb3edd703a34392b5f68",
+        "commands/audit-assist.md": "bfe1bf3b2bf45ad0e89a49663b78bf46185b3d10483cf09d18cf686bd326caab",
+        "commands/audit-cycle.md": "cde6532a3b4e93e29ff3dbceba2823f1b3e14a00d00a2d7912b74a4d420d56c4",
+        "commands/audit-report.md": "a9a4eb7f3426d94f197943f4521b2208014d6e540e4108ea3ebab571ef7be9fe",
+        "commands/audit.md": "fac3412367161225c0850a80bfb8b1e30bf733e03edd89a7448e3c48a519bde4",
+        "commands/deep-review.md": "ed6f1c764ab824269eca8a2d48842f2a85f7392d3c80b1739c3471b9292767be",
+        "commands/diff-audit.md": "4e5d81e7581f0085ccaa1df46e765ff0f1599c6cd18fdfd7a641e2ec49358234",
+        "commands/economic-sim.md": "42c86ac4a74252e7800f84a81a387481c83038700116d4327cc4dfd1ccd283a9",
+        "commands/hunt.md": "7ef5443cb93a5c6b37356aca2679e94b1c50a234eb4e403ba40e98df8a8502c8",
+        "commands/intake.md": "94e3403a69d77078e5c4cb26b7ddd7ecccecd5fb6c2d366053cd6c49ecd768ae",
+        "commands/patch.md": "bfb6a6585b9a9e4e293254815eb10a6ffdc385243d2153e8dae2f9c92b1ea56e",
+        "commands/poc.md": "5540e14577f743e0cf385b8c4eef123d15ab4f34508d0c7a57bb62c003d60d4c",
+        "commands/quick-scan.md": "43b2868c975ad60b86aeddd537313112c5934a29c5beb1adb285b1bca1eb9698",
+        "commands/re-audit.md": "218000e711850135ae1c08ae1b7d12d9a3a1bbe469ede94ba4219e0367edadcd",
+        "commands/respond.md": "861d1ad372d537706da591f0f8ea3ca859fc3184c17f6adbfa304728985f0cef",
+        "commands/spec-audit.md": "f7c5a7331203219841c4c1fe5996f25b7e7b476b461a662e28acdfb17609eda5",
+        "commands/threat-model.md": "95f9c00befffc2f763a157af5574b965874b972e06330ce27d8b65238519fd90",
+        "commands/triage.md": "4aa15bc721e40aa90a2f62ebe7235b2755cf84e99e1e05ab3c642f42c69ea744",
+        "discovery/file-map.md": "b6092483df9a7033676dff6f6b8e8d84d10f2e815e8ad079e6acd81595ecfded",
+        "discovery/grep-commands.md": "08446ee9c12540dd0a23988e15e09ab240233a688ab15417aa1838a22ca74fbc",
+        "docs/README.md": "fac136f9425cc7a535bd5b062bcdea323b9047c9dd12c42856720298460b8e39",
+        "docs/agents.md": "f82e559aa6ff8108309f11ab623efcb97961fc6ae5876c8b12bec231260cb3c9",
+        "docs/audit-flows.md": "49a59412873bf951c2edd6b46dc784846441e42f49766a5a5ec101f931c0e3f5",
+        "docs/commands.md": "4ee904fe62f9404ed2ec35de363b8920ca65b19aca86f080e80768a009d0876e",
+        "docs/detection-response.md": "c4331d43c8cade6839c0c3a25c962bedaae9324c9baa42461eac44fb8e44d87a",
+        "docs/getting-started.md": "ba49eb6f78f227c2577dbdc845312fe88bad13c682405318478fcf67eab07133",
+        "docs/output-and-rigor.md": "54ee323fdd407acf47d7fc6f9ee1ec69d712ad890c2d33ce180aec110ab454ae",
+        "docs/poc-and-patches.md": "2f3d3e6e12900f65271485e8b4dc81d849f239ecb22f2a7816bfd88b1d58fb80",
+        "docs/power-tools.md": "ee3c08a0cfc81d31fd9e4c288ba3c0e3f393f2ac489da526e3458ccfb3e5b6e5",
+        "known-vectors/001-private-key-leak.md": "4d3c411ac5eaf5837e51472c94df2205eb0a94e38078f7d1c914c1b5d1df155a",
+        "known-vectors/002-flash-loan-price-manipulation.md": "ff10ca7e8bb1384d90c61bacd06e0214a987a939a3765f89b7dac3c0ea3ef191",
+        "known-vectors/003-reentrancy-cpi.md": "9d1da00f23fbbba7c72895b64e095d66865dbcc6d0b20b3b13c90c3d6a0f11d8",
+        "known-vectors/004-missing-access-control.md": "57170f32705ab593dde7f0b983b3551a7321b45101778142e693b56e64eb3dc4",
+        "known-vectors/005-oracle-manipulation.md": "fe65d100dc5b92487548c3e2c411658bc8ec233457f2ba1497e42e2db37d10a8",
+        "known-vectors/006-first-depositor-share-inflation.md": "55a5321eebb820f6cfcc7c5087ca9423076fcf42dd718b15dfb4c0ba98b1f10b",
+        "known-vectors/007-mev-sandwich-attack.md": "acd922e2bccdd57492b1c7dbf6a9321a17ef78bbec31f8d325a9ce52fbf0ca5c",
+        "known-vectors/008-rug-pull-admin-backdoor.md": "7260e77272c1c582c06683d1a6feeee106312c0800f49411efea83d709c03c3d",
+        "known-vectors/009-unchecked-cpi-target.md": "64a6ea36f6562c1bac54c9d648b34549e74abaf46061f14c2a2ad8f7227d8e90",
+        "known-vectors/010-pda-confusion-type-cosplay.md": "ea905271b23df42a8085d79be9c9a62575b191ea1d0de4125d168b7caaf8148a",
+        "known-vectors/011-integer-overflow-underflow.md": "ef82006f7eb96964e49fbca21c38b2d4852af4975c79882648c8d62d9907525a",
+        "known-vectors/012-arithmetic-rounding-exploit.md": "985aa6836c1a2032fa89c0ac3c3dc846488f2ad0aaeeaa81899030cdf505c169",
+        "known-vectors/013-missing-signer-check.md": "4a23db18815427bae5a2482c464f72086b23902ccc6dfe180b41536364c3261d",
+        "known-vectors/014-account-reinitialization.md": "70bff94c9fbb8644b0f970b6fa2c68253600f9fb03cedb5e1dda848b93569a71",
+        "known-vectors/015-unchecked-account-owner.md": "0d54a4c7d2f3ebed0876f79518c42df5b263ac2ea5669c5af1b334b933415301",
+        "known-vectors/016-token-account-mismatch.md": "5701ea047c60bc3a80a72c0fe6c10ea72220556973863865eee3cd4dd29cf4d6",
+        "known-vectors/017-vault-donation-attack.md": "0696dac8843c418d7e5d51f5f280789f8d1e3c1c29b2afcc229f7b20fcc4bb06",
+        "known-vectors/018-fee-on-transfer-token-exploit.md": "b95fb41d02263493d40776fbfb2707c9e129cb11fd1089983228dd042957ec19",
+        "known-vectors/019-freeze-authority-griefing.md": "c55b649df98c38dcc891361716dbcca338bd260a689098fea701d912c32f792b",
+        "known-vectors/020-program-upgrade-hijack.md": "ed469e551bf5a43809c1ee0b1b7a0cd64589c20828738c13b0a20aeedfb687cc",
+        "known-vectors/021-governance-attack-vote-buying.md": "bf86ae9d4117b497ae7f8f267248a7ba44c16b3ac47ceffee5ff06e47b6be715",
+        "known-vectors/022-bridge-exploit-fake-proof.md": "b041c40a20bdf3d8a54e01349b528db35b3c91cc4b709c8a304c0ef3b853a07e",
+        "known-vectors/023-token-2022-transfer-hook-attack.md": "0e7d6febf40414e18d6a38d8e3025151dd70a467a2c10a6e56583f2fab621ed6",
+        "known-vectors/024-stale-missing-account-close.md": "7418cb9791c321c7fabf940283c049d9fabbb70d0f48c59c5f89deb64536ac45",
+        "known-vectors/025-compute-budget-exhaustion-dos.md": "8fb04522c47222218287caa718c00f23fed4ae73cdc1a502591f96b233cf91a5",
+        "known-vectors/026-pda-seed-collision.md": "fd9fe3bb702beff6cfe574c378749760fb0a54edad71abf267b27ac13e42da9b",
+        "known-vectors/027-missing-discriminator-check.md": "5c533461b25574624853450921ca2822c22554395d8ff8f0c6bf1928e2671cdf",
+        "known-vectors/028-front-running-transaction.md": "19039f4cb79f8f90b5da15783cc6651ad6cdcf28292ffc1b6326509770f9e3de",
+        "known-vectors/029-withdraw-before-update-race.md": "e3bd715f6b288442b1826b8dd1e4518cd2f3494cdd55f4aed3017931c6997c7b",
+        "known-vectors/030-infinite-mint-uncapped-supply.md": "7a956a3fadf4dd2a36c53d6a66a3e70676b888674dc5ebb57c7c7b6337e39675",
+        "known-vectors/031-nosql-injection-mongodb.md": "85562a9321b8aaa7e6fe55c187e392f5140f6e2ec07abefcd56926ddedc8f971",
+        "known-vectors/032-sql-injection.md": "525982cc75cceb4201acb03e375788ca5be7bdaa40066e86d1becfc63dfa6c73",
+        "known-vectors/033-mass-assignment-vibe-coding.md": "5c807247ef9171499563127b8ef7d24187b2b71ff009fc35e2abcf026206e55e",
+        "known-vectors/034-baas-auth-bypass-supabase-firebase.md": "2e7e784d7a366da78bed756e36f75ecfb7c96e8b2fbb980fc2409478b7aa8b75",
+        "known-vectors/035-jwt-algorithm-confusion.md": "99e333767302c3c94d5ae55ae5883be4fa1ea2e355c0d23cab616653a34ff5ac",
+        "known-vectors/036-ssrf-server-side-request-forgery.md": "76d9726600be7f5848619a90fa2d2bc92e2074d347aa936df2b176f529a48c11",
+        "known-vectors/037-cors-misconfiguration.md": "1a03d37691968f760b01d775058749c0c9d686e105866ed285b4679b9f3ce6f3",
+        "known-vectors/038-idor-insecure-direct-object-reference.md": "f59be5967dd8879063243bf451221c9781c37cb927f362de9dcf64408e8c0dca",
+        "known-vectors/039-rate-limiting-bypass.md": "cf6beb220571a3ac5f3e24dd99fe7804d2c503783515bff47deafb17972c3cc0",
+        "known-vectors/040-command-injection.md": "757e25926c3c21d7393f243962b8924fa72d6cb6de8746a7c27209dd90d1b4ee",
+        "known-vectors/041-path-traversal-lfi.md": "0a4093cfc49a216822f26180ac5c5334a03e6bceb1bffdc407e39680623eb19c",
+        "known-vectors/042-xml-external-entity-xxe.md": "16ced9c09a1aaa98e9ace856494e0944c276680a0cb289a15ba1851928e15f3d",
+        "known-vectors/043-prototype-pollution.md": "ad33184e8fe6d0d2e4c51a2bfbf42eaecf04e62dd4321506cd641a429797c394",
+        "known-vectors/044-server-side-template-injection.md": "5ed7be2ac8eb4beac737a339c4b3d982c14b4d24d2c04c6f14004e109b033619",
+        "known-vectors/045-webhook-forgery.md": "e07eefd4cf0ef05ccf923946b2212a43fa233a006fccbec2d0b8ec6ac82fee8e",
+        "known-vectors/046-graphql-introspection-depth-attack.md": "270a30516144c145a7cfbb75a0ca7e89de86815afc702fe4280a7491823ead7d",
+        "known-vectors/047-websocket-hijacking.md": "8df6c7cf81d94b19c8cdbf2ed77804300718c4a6d6dd63a243da6ea3a0d607bb",
+        "known-vectors/048-redos-regex-denial-of-service.md": "181ccd1b86b577ae529e1af3b42426b3c3cdebf4c996efb2df612a99f39546e8",
+        "known-vectors/049-http-response-splitting.md": "b7574aa69408780d4e9398f57e8255ea11998d5b2e87113f0dd53c6e84e5ccfb",
+        "known-vectors/050-session-fixation.md": "2d022549ffcc2f7fab3acaf134d2755799c30a74dcdb98fa35c1a228a69003b6",
+        "known-vectors/051-account-enumeration.md": "9a56ac7f4d071a47b9d5fb9a1d1d66c838dcf768c1b60721c4159d507b16c58a",
+        "known-vectors/052-unbounded-request-body-dos.md": "4dfaac7500824b2ca300808006774f5285d13e6e0df7ed116a245926541a2306",
+        "known-vectors/053-missing-wallet-signature-verification.md": "3246be099e77bfa7d0b7bf2f0aa856ea6dd74e180b3f9c5ae3fb4bb548a420e5",
+        "known-vectors/054-default-credentials-in-production.md": "b2ee62b30ec8cb82af9b8d9ce3a0ff11f0033b8fecabb4cfe152891efdd7d965",
+        "known-vectors/055-exposed-debug-admin-endpoints.md": "33d62bec8eded3b68d88b97995400b56997b2bda4e847724bb16684b490e6b66",
+        "known-vectors/056-xss-via-svg-image-injection.md": "d420b0a440640d067854e85f4b78c208d3237eb5adceda3c4a0f38988947c8e0",
+        "known-vectors/057-stored-xss-user-content.md": "14fa5d37ebbe70de0d4e9304685a2a9a7ca99479c7185fbdba72eb8232a958d4",
+        "known-vectors/058-dom-based-xss.md": "2f590646232dca0bd60ab9fb6bdd43120d715ebc6aff2a0fe89518ed93a02bd1",
+        "known-vectors/059-clickjacking.md": "57e01a046c8f95a8dd050ab47b136c7a6a39b1a1da8ae8d6a8894718e543649c",
+        "known-vectors/060-oauth-state-forgery-csrf-via-oauth.md": "d3ab94d042bd41d1b6319fc14192dde3fabb7b1ab7a159a9396ff8df01254936",
+        "known-vectors/061-sensitive-data-in-url-parameters.md": "1799ed1f5d6a75944b926d50f00bf3263db54cce99882cc4f658e706923c9307",
+        "known-vectors/062-client-side-auth-bypass.md": "cb040a49b2e75ea50519f125ac3392e622b3f8cec4efc0be00e47948cc23a3ef",
+        "known-vectors/063-postmessage-origin-bypass.md": "82abc532b4da696e7512d240658f50b9e1cdb55431f6715e8c8b9142cf57e2bf",
+        "known-vectors/064-localstorage-token-theft.md": "5c551088e539d093c262d9aaf4b5e241f0d9b59f7d6c50b75e660c121758d9a4",
+        "known-vectors/065-clipboard-hijacking-crypto-address.md": "4d157104d27b6ae51e3564194179ea0192577e8072b63cc23ec0e929e99d8213",
+        "known-vectors/066-css-exfiltration.md": "15f1c2c9f800b97776b66f40398ee0784bd6a0c668fba5255d6c538805b0bd7d",
+        "known-vectors/067-wallet-blind-signing-exploit.md": "00e73798f5d767d4c2804d8a657b34417ccff15fba4abc85d5259e85eb65dcaf",
+        "known-vectors/068-subresource-integrity-bypass.md": "abbafb8f7690c2fc83d16c72cc055c1eb8de976fa505de4161df37ec1ddbc33c",
+        "known-vectors/069-third-party-script-compromise.md": "4f66795ce27003a1799f822f19fc07a9e28b54152919fc931b2ae9993f6c0dab",
+        "known-vectors/070-open-redirect.md": "e8c26c085b16d827ca529598322961ecd3b67ccd8fdd9c00972102683eb493ed",
+        "known-vectors/071-missing-csp-content-security-policy.md": "9f1549609652e6aa0874cad6a10351e31fa9edc535c4e0fe93ef37e0145fd0e9",
+        "known-vectors/072-api-key-exposure-in-client-bundle.md": "30b6e3ba585344c46a065bd6c6ca91f92cafebc8f4e5c7d21b6b0fec14638a2a",
+        "known-vectors/073-dangling-dns-subdomain-takeover.md": "bc3bd29cb7a9481215601f08da6d149ae7668b9764cda5a7ba5114343904176c",
+        "known-vectors/074-insecure-external-link-no-rel.md": "b6e83d775f8ed4253b1a1671f868151ce83dbd892a0541102ca79bf4e7b94fee",
+        "known-vectors/075-console-data-leak-in-production.md": "4e1386bd2846490c8905ff46e27b94e6c59cd5e1adf81ab8ee12646de7b141af",
+        "known-vectors/076-dependency-confusion-substitution-attack.md": "8ee83ebd6b5a47cd2df09657c439bcf36627adaf098a9ed0663be9b68ddd6f29",
+        "known-vectors/077-malicious-npm-package-typosquatting.md": "8366dde52c08387b0594f1ab598a0865428cbd3ef8a18b71ffb2cd1f0489642f",
+        "known-vectors/078-secrets-in-git-history.md": "de2fef5afa9352b38019aa7adf4d40a9bceb0cc72b99dc71962ba308d92a18a2",
+        "known-vectors/079-env-file-committed-to-repo.md": "a9c59ceb8e867a081573068275ecff7163ee2598078fd5503bda551d5b38f7ec",
+        "known-vectors/080-ci-cd-pipeline-injection.md": "fb90e0299f2a97b1166c354b87d0e28198bc50178fd67af02e7f21d879fb4b4b",
+        "known-vectors/081-insecure-docker-configuration.md": "00c425a950d95338c564272fde4b9be0f71d26d9d0d7adde196deb81b4df9516",
+        "known-vectors/082-exposed-admin-debug-endpoints-in-production.md": "8940eac7200df2ecbe691193a8f4e2dcfeb3b1454c48a4c8ff90843a680339c1",
+        "known-vectors/083-missing-rate-limiting-on-critical-endpoints.md": "00ce95d0ebc25793b39d9584c003991b1c2536559818584d4b57aa15c48bdd91",
+        "known-vectors/084-prototype-pollution.md": "459edd0f5747bc1e87e3799a44e9d1286a99200d2ab226270453aca1806a210e",
+        "known-vectors/085-server-side-request-forgery-ssrf.md": "1bf683a3e8b5c72c42b4f76afc242bf1e38c1f537683a4de9b0d3ab296b19b03",
+        "known-vectors/086-insecure-deserialization.md": "bf154efbdd376038789311a2c9f19a9961d186238e81ba5a9ff10162af25b6cb",
+        "known-vectors/087-insufficient-logging-monitoring.md": "fe123f6ed18dc1d839b656b1a81b30371765b09e886c8ee39a838a9c3bc1a1ed",
+        "known-vectors/088-insecure-cors-configuration.md": "b32cddb750954d673e1e8879f2b32ef8bdf261070ec9b4a0a238baf52f1e7411",
+        "known-vectors/089-unpatched-server-dependencies.md": "563e031c2d74bf0912ac4234a71219e2ffea1765565a7de31d03929fb45abc8e",
+        "known-vectors/090-missing-https-tls-misconfiguration.md": "75560a1eee9d79c39bd5883d3d4fb7f56d48e982c971aac532e04102c8ff073a",
+        "known-vectors/091-upgrade-authority-not-secured.md": "eb339ccb5f083f3cf5625792fcc2f75412fba83600e54e546d7deaef2f36824d",
+        "known-vectors/092-dns-hijacking-domain-takeover.md": "2800b95bd4704d53d711733f3d1123eb0af925656749749fd1a38de4e63683af",
+        "known-vectors/093-improper-error-handling-error-leak.md": "50f3d7b3df0cc65fda7f7bee4536c169b67ddf4082d3d2a2f0dbcde87266d9f7",
+        "known-vectors/094-missing-input-length-limits.md": "9ef1df39348871cf195f4b9634f254bc3d7f3970616b30900bc85ea76cd029c9",
+        "known-vectors/095-insecure-randomness.md": "e61b36f3dc2b9e4933c492cfacb1fb1e15a306cdc0bd94f2b8075ddcde67c53f",
+        "known-vectors/096-missing-security-headers.md": "a267742bcce5e8fb35f89c93297d240bc5274726b1497acfbf86d036689d2e98",
+        "known-vectors/097-stale-leaked-development-credentials.md": "2fa7a610a2edd6cb9635621e2f2eb821219e882d46cd16c1b4f04ead078668f5",
+        "known-vectors/098-broken-access-control-on-api-endpoints.md": "0087e5c7da5a1713e485e892270900150d28faa46106ef9b5e29f73a425ab63b",
+        "known-vectors/099-insecure-websocket-connections.md": "6b44434bac3f94246a8d648a52c663c51df4a9f1e3e2db8e1da299fe66592741",
+        "known-vectors/100-insufficient-backup-disaster-recovery.md": "301fb68edc306e7f29901ff987b06e4f3ffc34b84ad776db01986a754c04a19d",
+        "known-vectors/101-sysvar-spoofing-instructions-introspection.md": "bafce8f2c7676bafbc5fac284d962df1bbdb5ab69f730b06c7d43e843f679b5e",
+        "known-vectors/102-precompile-signature-verification-bypass.md": "c61a39d0046827c8180b0096f852459841ef75051b4b608770c38697c5d4d133",
+        "known-vectors/103-address-lookup-table-manipulation.md": "e6e4460351f76c427c1271085f9b70ce3bc8fe74d5968f325eaf79daee237194",
+        "known-vectors/104-non-canonical-bump-pda-derivation-confusion.md": "a452d89753fa9e03977d9c2bf88f1607baaacdb2e2fff82ba6294ce95c22baaa",
+        "known-vectors/105-token-2022-extension-abuse.md": "283674d005cf74005d7f1126208718cd17b6586f2214e81165bfb055e3c13cbd",
+        "known-vectors/106-account-revival-zombie-after-close.md": "b0867877091c32e7566153b7757a073888a8347ac69b42626f4ba131ce67b4d9",
+        "known-vectors/107-fake-non-canonical-associated-token-account.md": "a5e2e38064c343de8e0625430258f0fe708e02f945e6e82c7c0c9bab5034c13c",
+        "known-vectors/108-token-decimals-cross-mint-amount-confusion.md": "981c5041790ef188c627adc19e869e284784e845b3c2f1d420bc74e10ede20ee",
+        "known-vectors/109-pinocchio-ptoken-missing-manual-validation.md": "720dcddd3604ec46c76fc6bc7bd315447ff4144002c93962c080c1baef8f7732",
+        "known-vectors/110-agent-wallet-key-custody-spend-caps.md": "6488bbcce8f7367de9e6a1bbc05a9add9814a29ae4032d98ee3258f84a136e8a",
+        "known-vectors/111-bpf-stack-frame-overflow-dos.md": "aefc5277ef92204f423372facb88c0040af3a43cd1aed3864f1d8705ff7cfc24",
+        "known-vectors/112-in-memory-secret-non-zeroization.md": "b41c3bd4b4045d109744d518d81bc4ef0f6db5170e92549a583b7e5fe40272ff",
+        "known-vectors/113-autonomous-agent-blind-signing.md": "7c0fc04b2f3ca46e092fbdf3aca8a491fc8662dfd136c6e5fad16d2e25d55f5a",
+        "known-vectors/114-mcp-tool-poisoning.md": "199ebc4735261eb5e4df0d7584c9595009895dbff3986e289de9b287c881e1f0",
+        "known-vectors/115-onchain-data-prompt-injection.md": "4c5df0b78e1852223b69b5e572f853dcc89f582c2c04c51c8d057b3908fe037e",
+        "known-vectors/116-ai-coding-agent-ci-deploy-key.md": "0ae44e53e40baf408bf995a129ecbdd24eaf62bbe72037297a6264c417c31c3b",
+        "known-vectors/117-agent-delegation-scope-creep.md": "71c56c366155391ee653fd4566c73ab35f8addee1453302245644d445a99d720",
+        "known-vectors/118-stake-account-authority-hijack.md": "fe22d51449649c7045e79cabb61cf22827f8e771ac4f8ecdfe464436b9bd7f1f",
+        "known-vectors/119-durable-nonce-pre-signed-governance-abuse.md": "4a4bd31261464129c3c53e567d3a3ddb3e6a13727b282839304329b1f1043bb3",
+        "known-vectors/120-onchain-randomness-predictability.md": "27cca7624bcc67ed8947039c3c162bd5f5ca9172fc8379426bf54081c311228f",
+        "known-vectors/121-cnft-account-compression-merkle-proof.md": "6d199375456ef8b5c07f0b11850a5d90ad3ff1fcc4b5f66897f2693e7b4b12aa",
+        "known-vectors/122-inner-instruction-event-log-spoofing.md": "37f9adb72ae2de83288dd43f50fb5d792cfe68fc3bccbd5e9281118e69b25360",
+        "known-vectors/123-lamport-donation-account-bricking.md": "82d9866371a4f6539eb5a0923e33ab4721dee918715dcae29099633da75627c5",
+        "known-vectors/124-wallet-cleartext-key-export.md": "a2cdeb7cc995fde304f18f9a455e1f08daeea92c0a70b4229d5e9d669348798c",
+        "known-vectors/125-bonding-curve-launchpad-graduation-abuse.md": "9c750408f376e188cb631e7f1f0f2865522aa37c8345be895e099642d4567dfe",
+        "known-vectors/126-session-token-as-custody.md": "78c89cfa5fe10bb0c0935d1b39c1f5838983fdce5c20c4e082a1e920c5bc0fed",
+        "known-vectors/127-ata-account-precreation-dos.md": "ed1f430ba0cad5e6a8b249446c4b73ea51dd60d897faf4876307d4335ff1ea5a",
+        "known-vectors/128-onchain-floating-point-math.md": "599562cca1e74031e6dc1aa80c1b802c2e200642041ac232f8cbcc2a45197c22",
+        "known-vectors/129-keeper-request-execute-frontrunning.md": "a9b422be179722abb10563bfa35b62405a7f3b4dd97783e15ac213f79537c7e1",
+        "known-vectors/130-clmm-tick-boundary-liquidity-math.md": "0e4f58744b3cb3866f7299436e6036ca014395043e4490551e00c11942afc43a",
+        "known-vectors/131-write-lock-account-contention-dos.md": "8b6b7e2ac304cc69581c49fe26e9c5436c7ffe937df6ff4a8a7683d0daa770ab",
+        "known-vectors/132-canonical-asset-token-list-spoofing.md": "f6e114e67ce085a1e2e505da4e5538ffd33927c719f02293382b2e1b4940ea6c",
+        "known-vectors/133-token-risk-score-metric-farming.md": "4dc6df2c65736726b01d4fcd0df0f3de5109cf5bbac656bcfbba243654e24c74",
+        "known-vectors/134-token-acl-gate-program-bypass.md": "c44eb0b86ca8abb623508582a6fff6da6a8fa7926029bd2c7729ecb2bd835ba8",
+        "known-vectors/135-transaction-v1-fee-sponsor-cap-bypass.md": "43bf89bcbd0d2b53101001925f785bd83ddc12659b2a04ce0702ca907807b87a",
+        "known-vectors/136-transaction-v1-reader-wedge-zero-budget-indexing.md": "e3f5d5ebf5c59cfc7909e5694be386db9321994240c78d23d45d249b5835cd38",
+        "known-vectors/137-vendored-program-version-drift.md": "cf8c8ee09696c430d8a07306d8bcb3c86bfc5da046f501654add991c2afa4a99",
+        "known-vectors/138-slot-denominated-time-assumptions.md": "11ee46c92c9376fb134c69e4fa580fb07529767b4204868bfc93dc92d43b90fc",
+        "known-vectors/139-comment-triggered-workflow-author-gating.md": "ec1a56303ab9d867eb1109dcb37e91ea4917461226dfd318877e77159651344a",
+        "known-vectors/140-workflow-run-pwn-request-artifact-cache-poisoning.md": "dda1eff1591abe2f1efb5186a3893147a3bad4c8399775eb6ddb537685cfc781",
+        "known-vectors/INDEX.md": "7ca98827c28d6712de3d1f66048a4788fc426948134afd844d427790012ea476",
+        "references/audit-lifecycle/firm-coverage.md": "57f443f54df0d5911695ec8414449f17d5ebe88a0064a53b89f4756ba53d66a6",
+        "references/audit-lifecycle/methodology.md": "24b2e7a9946c396dcbbd20dbc529cf19d291222bf2c46a59a3f92851a6e80724",
+        "references/audit-lifecycle/threat-model-bootstrap.md": "7f7342ec7a5f6a77ded42106880bb341c2294f290c33712c5c885efb9f841cda",
+        "references/detection-response/README.md": "22b7e2bfd70bb013a628f110200245f178908c77ca087a4ff747aaeb9f3cf01c",
+        "references/detection-response/containment-playbook.md": "29482e7c67b01d6839238a5293d6cf675b18de68170de786b947b7cee9ec27ce",
+        "references/detection-response/incidents-schema.md": "999bc52a8bf65abc032fe1ddf3ca510e6d1184648b33584c6016bcfa36a4c3aa",
+        "references/detection-response/log-sources.md": "2dc72b2de6e9b740d7766b816baccf3492f9090c295b4dcb349dddf68f0f4e20",
+        "references/false-positives.md": "47033955583e3f5a9d0810a303d46e2eb4c06e09f8e05c957da849b3a5822b8a",
+        "references/framework-idioms/anchor.md": "cda36e5885d9520dd50d2b51aecd8106370c0298ec90278d7c4d0f4f6e6be72f",
+        "references/framework-idioms/build-and-tooling.md": "065278a16e12deae3e131b80c1fd91730fe6059d760a127235e9709526033c39",
+        "references/framework-idioms/native.md": "771bc22e9b51a57a924cd0a64f73ccf3da2ff17848d6df093fd8c14f7f711c87",
+        "references/framework-idioms/pinocchio.md": "e46cfc04d8254f9d71672aeaa1541992891bd567192a924c5df9c88730846506",
+        "references/invariant-catalog.md": "e11a920600e22e538bca302a6681453c5bf74d53649167e6ea78884d71ba71d2",
+        "references/methodologies/amm-clmm.md": "12b0d10766208ddea03a97379dd83c848ae41eddb5d1a36e86734b0e3ddfb852",
+        "references/methodologies/bridges.md": "587ef9ee1ef02f4ed77d866de881fbb3e28e385675bdfd472e9d6f24d4542b12",
+        "references/methodologies/governance.md": "8f4e3a57378b3df5d745dcbd6cbbe165e0b52a190085a76ff83bbc4813d93960",
+        "references/methodologies/launchpads.md": "34a288607aebb775dcd9fe34826039b2a4a652b770602d3400703a5a7977f365",
+        "references/methodologies/lending.md": "3f76cd6cae6e9dec460b9777bcf9f10df1747b824ffc4802262ce676888c4f34",
+        "references/methodologies/liquid-staking.md": "67b9b69c1d8fb088e56721ddd92426ac20b885ec481f256dd08766c1453948c1",
+        "references/methodologies/nft-marketplaces.md": "a75a4f07f5339e96676838ab6382da9ddbd65de95c68d5ede1942553da9777a1",
+        "references/methodologies/oracles.md": "556a3f4d01736daa9834972afeab59ffed4d835a5338d6fae5ad1f47f7dc7476",
+        "references/methodologies/perps.md": "f370b7e56271650a7a1244ab57212651b50529e6abf17674078716bd8b1c1b5a",
+        "references/methodologies/stablecoin.md": "bc083e78752cf2c2422e5354b87e5889ed470e35fea4e832a3b0821d5f2ea13f",
+        "references/methodologies/token-2022.md": "62d4c97b6b34f8dadac43a8d6f81a4b037e9da1ffd267dff5c9d83253c8cc844",
+        "references/methodologies/token-registry-risk.md": "0ca261ad9a370d79ab73e92f7a0f92d654adb2967923e077d248a42dbe444794",
+        "references/methodologies/wallets-multisig-custody.md": "23a1366524c087fdddad42eaa423760b23fc2fbb5c6cc3233a041344f6827028",
+        "references/orchestration/boundary-map.md": "f77161247125323d9a4f2e0633fdba851b0e9788cb08aa566f8233a6491cef01",
+        "references/orchestration/poc-harness.md": "ee0657e9a03ac5e7812882a31982b1a6a02eaebe4f97b1b2cf422e24d1f266f5",
+        "references/orchestration/pre-scan.md": "d30446295effa3d70c128feaa12e906a091e0abb8abc1a3d91ccd21e8f365519",
+        "references/report-format.md": "e56abc77cd0bda346c8f4400c682cd3aba8f6842a14feef3fcc1e982147df03b",
+        "references/vuln-classes/github-actions.md": "aa0b3fdef5ec43c3e429b5b052793b9de4b014654476c5fda10b19bf871d9838",
+        "references/vuln-classes/transaction-v1.md": "b299ce51819fa0adb826e22d67ee5ed137c063f4adcdec9d83ebb47025ba1000",
+        "references/vuln-classes/zk-and-compression.md": "4f8adc7d9bd9f6bbfaa9ce6b40d4399871775db1667d34154e2e2d3d9442b258",
+        "scripts/dnr/README.md": "b98568832731e0165a2ae953aadc1525a24e92168922ee259bfa42e49bd16797",
+        "templates/audit-report.md": "f4f7cb784bd1b6c340fa12020d52fae904703ff6983b26f5bbe06c68d36af5a3",
+        "templates/context-worksheet.md": "6aad402527a277ac624b34a3c41533453590e2fd121201e8ddcfc183de974df1",
+        "templates/hunt-ledger.md": "a08f9914cc5a5d0bbc76062d65acc1c298dbba55ea9fde936ecc8afcdfd29fbf",
+        "templates/incident-report.md": "14adfdeb61f94338f19bc7a44c75849c253077058bac8e8c52e92c69269388e0",
+        "templates/instruction-worksheet.md": "1465739748aeb680bf43ba807825c4bb8756a1cd273056df1c25b383d77fa27e",
+        "templates/intake.md": "81c291cc3931760e0de0d8d22c599151dbf8c9ea4f591d93e625b2d19bc57172",
+        "templates/patch/VERIFICATION.md": "840796f3acadc0a5ddb57c93a0dccd7c7b86562993f31a666c7308fafa4cec19",
+        "templates/patch/patch.md": "974d948983bf1ac3609514a9d5107d8227d18ac2aa7829c3dd351ac9b72a1c6b",
+        "templates/poc/README.md": "840458182feaa9ce127a7c249b44b6f70d88d10df274d5d6014cb3245e2334a4",
+        "templates/report-template.md": "f2ff949ef67827d2b486d6b8c107da8bea25180adec4469b0b6cfed3b681cd0b",
+        "templates/response-plan.md": "1594cac087aa12584324113c088e5f40b25565eb544f14ea9c4629f3000aa29f",
+        "templates/threat-model.md": "2d6d89d5e31e4c3178239aca3dac448d5105fba2894961604623a2de676da5b1",
+        "tools/auditor-tools/README.md": "69f7b117fd320c531e1be8a88009e214ab796bec63296ef6b5fc79bf6481a54e"
+      },
+      "subskills": [
+        {
+          "kind": "command",
+          "slug": "commands/audit-assist",
+          "path": "commands/audit-assist.md",
+          "name": "auditor:audit-assist",
+          "description": "Flow B — AI-assisted iterative audit with a human in the loop. Same lifecycle as audit-cycle, but pauses at checkpoints to surface confirmed findings, the next-focus plan, and targeted questions only the human can answer (business context, trust model, severity calls). The human steers; the agent re-synthesizes toward the audit document.",
+          "files": []
+        },
+        {
+          "kind": "command",
+          "slug": "commands/audit-cycle",
+          "path": "commands/audit-cycle.md",
+          "name": "auditor:audit-cycle",
+          "description": "Flow A — fully automated audit-firm lifecycle. Runs scope → context → tool-assisted first pass → domain-partitioned manual review → independent reconciliation → client report end-to-end, and delivers a professional audit report (MD + optional PDF). Audit-shaped automation, not a substitute for a human firm audit.",
+          "files": []
+        },
+        {
+          "kind": "command",
+          "slug": "commands/audit-report",
+          "path": "commands/audit-report.md",
+          "name": "auditor:audit-report",
+          "description": "Aggregate audit checkpoints into the final report — executive summary, Scope Coverage, findings by severity, maturity scorecard, and remediation roadmap.",
+          "files": []
+        },
+        {
+          "kind": "command",
+          "slug": "commands/audit",
+          "path": "commands/audit.md",
+          "name": "auditor:audit",
+          "description": "Full scope-gated security audit of a Solana / full-stack repository — discovery, context reconstruction, per-item checklist verdicts, false-positive validation, and a severity-ranked report.",
+          "files": []
+        },
+        {
+          "kind": "command",
+          "slug": "commands/deep-review",
+          "path": "commands/deep-review.md",
+          "name": "auditor:deep-review",
+          "description": "Deep single-instruction / single-function security review using the instruction worksheet, context reconstruction, and adversarial exploit modeling.",
+          "files": []
+        },
+        {
+          "kind": "command",
+          "slug": "commands/diff-audit",
+          "path": "commands/diff-audit.md",
+          "name": "auditor:diff-audit",
+          "description": "PR / commit-scoped differential audit — audits only changed functions (plus 1-hop callers) and the published-code delta of changed dependencies, flags removed security checks, and prioritizes by risk × blast radius.",
+          "files": []
+        },
+        {
+          "kind": "command",
+          "slug": "commands/economic-sim",
+          "path": "commands/economic-sim.md",
+          "name": "auditor:economic-sim",
+          "description": "Quantify a candidate economic finding — compute attack cost vs extractable value and, when possible, reproduce deposit→manipulate→withdraw against a Surfpool mainnet-fork for a real P/L figure.",
+          "files": []
+        },
+        {
+          "kind": "command",
+          "slug": "commands/hunt",
+          "path": "commands/hunt.md",
+          "name": "auditor:hunt",
+          "description": "Post-incident threat hunt for when no alert has fired: baseline a Solana program's transaction history and program logs, record each hypothesis and its query in a ledger, check each suspect against the source deployed at the incident slot, replay the attack locally on the real program bytes, and write incident_<n>/INCIDENTS.json and INCIDENT_REPORT.md. Proposes only; never signs, sends, or acts on-chain.",
+          "files": []
+        },
+        {
+          "kind": "command",
+          "slug": "commands/intake",
+          "path": "commands/intake.md",
+          "name": "auditor:intake",
+          "description": "Interactive engagement intake (alias /scope). Walks QUESTIONS.md and persists the answers to audit_<n>/intake.md — the durable intake artifact both audit-cycle and audit-assist read, instead of answers living only in conversation state. Captures scope + commit pin, languages/frameworks, protocol class, compliance, severity calibration, the trust-model inputs that feed the report's Trust Model and Assumptions sections, and the execution mode for target-controlled code (OUTPUT-RULES Rule 11a). Interactive mode asks; automated mode records the applied default.",
+          "files": []
+        },
+        {
+          "kind": "command",
+          "slug": "commands/patch",
+          "path": "commands/patch.md",
+          "name": "auditor:patch",
+          "description": "Draft and verify a fix for a confirmed finding — a MINIMAL idiomatic unified diff against the pinned audited commit, applied to a scratch worktree and proven by re-running the finding's PoC (it must now revert). Proposal only; the auditor stays read-only on the client tree. Optional mutation + blast-radius evidence. Emits [FIX-VERIFIED] / [FIX-INSUFFICIENT] / [FIX-PROPOSED].",
+          "files": []
+        },
+        {
+          "kind": "command",
+          "slug": "commands/poc",
+          "path": "commands/poc.md",
+          "name": "auditor:poc",
+          "description": "Generate an executable proof-of-concept exploit for a confirmed High/Critical finding — detect the toolchain, pick the harness framework by finding type, spawn poc-engineer, and emit a one-command runnable crate plus the earned [PoC-*] evidence tier. Never hard-fails: on toolchain absence it downgrades to [PoC-ATTEMPTED] and keeps the existing prose PoC.",
+          "files": []
+        },
+        {
+          "kind": "command",
+          "slug": "commands/quick-scan",
+          "path": "commands/quick-scan.md",
+          "name": "auditor:quick-scan",
+          "description": "Fast security triage — discovery + static analysis + the highest-severity vector subset, without the full item-by-item walk. Use for a first look or a CI gate.",
+          "files": []
+        },
+        {
+          "kind": "command",
+          "slug": "commands/re-audit",
+          "path": "commands/re-audit.md",
+          "name": "auditor:re-audit",
+          "description": "Fix-review / re-audit. Takes a prior audit report + the current tree and classifies every prior finding FIXED / PARTIALLY-FIXED / STILL-OPEN / REGRESSED / ACKNOWLEDGED / DISPUTED (re-running Rule 5b on the fix, citing the remediation commit/PR hash), audits the changed surface for NEW findings via the diff-audit path, and runs a sibling-patch-propagation sweep for un-patched copies of every fixed anti-pattern. Emits a finding-diff.",
+          "files": []
+        },
+        {
+          "kind": "command",
+          "slug": "commands/respond",
+          "path": "commands/respond.md",
+          "name": "auditor:respond",
+          "description": "Investigate one incident lead (a transaction signature, an address, an alert, an indicator of compromise, or an INC id from /auditor:hunt) through Solana transaction history — work out whether the attack landed and how far it reached, pin the root cause in the deployed code and reproduce it locally, then draft containment, remediation and recovery steps for humans to carry out. This command changes nothing on-chain.",
+          "files": []
+        },
+        {
+          "kind": "command",
+          "slug": "commands/spec-audit",
+          "path": "commands/spec-audit.md",
+          "name": "auditor:spec-audit",
+          "description": "Spec-vs-code compliance audit — extracts requirements from a spec / whitepaper / RFC and matches each to the implementation with typed verdicts.",
+          "files": []
+        },
+        {
+          "kind": "command",
+          "slug": "commands/threat-model",
+          "path": "commands/threat-model.md",
+          "name": "auditor:threat-model",
+          "description": "Builds the pre-review threat model as audit_<n>/threat-model.md — an asset inventory (crown-jewel funds/authority/data and where they live), an actor x capability table (each actor → what they can do → what they must NOT be able to do), and a trust-boundary map (which CPIs/accounts/inputs cross a trust boundary). No verdicts — attacker-goal enumeration that seeds report §4.4/§4.6/§4.7 and gives vuln-hunter/economic-analyst concrete goals to falsify. Automated flow drives it via the threat-modeler agent; interactive flow asks the human. --bootstrap also seeds goals from git history, a fork parent, prior audits, post-mortems and incidents, each cited in an Evidence column.",
+          "files": []
+        },
+        {
+          "kind": "command",
+          "slug": "commands/triage",
+          "path": "commands/triage.md",
+          "name": "auditor:triage",
+          "description": "Re-runnable batch triage checkpoint over the candidate finding set (fixes triage being diffused across agents). Dedups by root-cause signature (reusing /re-audit's signature idea; audit-mem auto-suppresses prior-ruled false positives and flags regressions when built), enforces Rule 5b calibration (every N≥6 carries its validation block or is downgraded to [UNCONFIRMED]/[UNDETERMINED], with any economic/reachability downgrade quantified per the false-positives \"quantify the barrier\" rule), and splits real security findings (severity 1–10) from the Notes & Nitpicks list. Emits a triaged finding set plus a suppression appendix recording what was withheld and why.",
+          "files": []
+        },
+        {
+          "kind": "agent",
+          "slug": "agents/audit-reporter",
+          "path": "agents/audit-reporter.md",
+          "name": "audit-reporter",
+          "description": "Deterministic report assembly — aggregates verdicts and findings, builds the Scope Coverage table, severity rollup, maturity scorecard, and remediation roadmap. No code reasoning; keeps report generation cheap.",
+          "files": []
+        },
+        {
+          "kind": "agent",
+          "slug": "agents/context-builder",
+          "path": "agents/context-builder.md",
+          "name": "context-builder",
+          "description": "Builds architectural understanding before any verdict — runs Phase 0 setup and Phase 0.5 Context Reconstruction, producing the instruction matrix, state model, and per-function worksheets. Spawned first in a full audit.",
+          "files": []
+        },
+        {
+          "kind": "agent",
+          "slug": "agents/economic-analyst",
+          "path": "agents/economic-analyst.md",
+          "name": "economic-analyst",
+          "description": "Owns checklist 06 (economic & logic) and the economic known-vectors — flash loans, first-depositor, MEV, oracle manipulation, reward accounting. Drives economic simulation to quantify profitability.",
+          "files": []
+        },
+        {
+          "kind": "agent",
+          "slug": "agents/incident-responder",
+          "path": "agents/incident-responder.md",
+          "name": "incident-responder",
+          "description": "Does all reading and analysis of the incident corpus for /auditor:hunt and /auditor:respond — profiles a Solana transaction corpus, keeps the hypothesis ledger, scopes a lead, verdicts whether an attack succeeded, quantifies blast radius, and writes incident_<n>/INCIDENTS.json plus the incident report or a proposed (never executed) response plan. Proposes containment, never performs it.",
+          "files": []
+        },
+        {
+          "kind": "agent",
+          "slug": "agents/patch-engineer",
+          "path": "agents/patch-engineer.md",
+          "name": "patch-engineer",
+          "description": "Drafts a minimal idiomatic unified diff that closes exactly the cited bound, then verifies it by re-running the finding's PoC against a scratch worktree — the exploit must now revert. Optional mutation + blast-radius evidence. Emits [FIX-VERIFIED] / [FIX-INSUFFICIENT] / [FIX-PROPOSED]; never claims FIX-VERIFIED without an executed revert.",
+          "files": []
+        },
+        {
+          "kind": "agent",
+          "slug": "agents/peer-reviewer",
+          "path": "agents/peer-reviewer.md",
+          "name": "peer-reviewer",
+          "description": "Independent reconciliation reviewer — the dual-review second pass. Takes the top-severity confirmed findings and re-derives each one from the code (not from the primary's write-up), reusing the context worksheets to avoid re-reconstruction. Emits CONFIRM / DISPUTE / DOWNGRADE per finding; a DISPUTE forces the finding back through Rule 5b or to [UNCONFIRMED]. Scoped to top-severity only to bound cost.",
+          "files": []
+        },
+        {
+          "kind": "agent",
+          "slug": "agents/poc-engineer",
+          "path": "agents/poc-engineer.md",
+          "name": "poc-engineer",
+          "description": "Given a confirmed finding + its context worksheet, produces the smallest self-contained crate that reproduces the flaw — feature-gated vulnerable/fixed arms, asserting the exploit succeeds on the vulnerable arm and is rejected on the fixed arm. Emits the [PoC-*] evidence tier; downgrades to [PoC-ATTEMPTED] + prose on any blocker, never fabricates a passing test.",
+          "files": []
+        },
+        {
+          "kind": "agent",
+          "slug": "agents/threat-modeler",
+          "path": "agents/threat-modeler.md",
+          "name": "threat-modeler",
+          "description": "Builds the pre-review threat model before any verdict — asset inventory, actor x capability table, and trust-boundary map — reconstructed from the code and the context worksheets, and in bootstrap mode seeded from the collector's history output (git history, fork parent, prior audits, post-mortems, incidents). Drives /auditor:threat-model in a full audit, analogous to how context-builder drives Phase 0.5. No verdicts; attacker-goal enumeration only.",
+          "files": []
+        },
+        {
+          "kind": "agent",
+          "slug": "agents/vuln-hunter",
+          "path": "agents/vuln-hunter.md",
+          "name": "vuln-hunter",
+          "description": "Walks in-scope files item-by-item against the gated checklists and phase-triggered known-vectors, recording an explicit verdict for every item and routing high-severity findings through the Rule 5b validation gate. The core audit worker.",
+          "files": []
+        }
+      ],
+      "words": 2903,
+      "counts": {
+        "commands": 17,
+        "agents": 9,
+        "checklists": 20,
+        "knownVectors": 140
+      },
+      "commitSha": "5c203c84fa265777e35db96e39803247375396cd",
+      "commitDate": "2026-10-22T16:38:33Z",
+      "pinnedAt": "2026-10-23T22:03:19.551Z",
+      "tag": "v7.6.0",
+      "url": "https://github.com/solanabr/auditor-skill",
+      "logo": "/logos/solanabr.png"
+    },
+    {
+      "id": "startup-builder-skill",
+      "repo": "solanabr/startup-builder-skill",
+      "displayName": "Startup Builder",
+      "tagline": "The non-program half of shipping on Solana: idea, positioning, pricing, pitch, fundraising, launch.",
+      "summary": "Twelve skills for the work a small team hits around the code. They chain through files in .claude/context/: run idea-sprint and build-status first, and the deck, the data room and the launch post all quote the same numbers instead of re-interviewing you.",
+      "category": "research",
+      "main": "README.md",
+      "kitPack": "startup-builder",
+      "kitTier": "extension",
+      "subskillRules": [
+        {
+          "kind": "skill",
+          "pattern": "^skills/[^/]+/SKILL\\.md$"
+        }
+      ],
+      "countRules": {
+        "skills": "^skills/[^/]+/SKILL\\.md$",
+        "references": "^skills/[^/]+/references/"
+      },
+      "install": [
+        {
+          "label": "skills CLI",
+          "note": "Claude Code, Cursor, Codex and other agents. Take the whole set: the skills link to each other's format files.",
+          "commands": [
+            "npx skills add solanabr/startup-builder-skill"
+          ]
+        },
+        {
+          "label": "Git",
+          "note": "Copy every skill into your project. Use .agents/skills/ instead for Codex, Cursor and Copilot.",
+          "commands": [
+            "git clone https://github.com/solanabr/startup-builder-skill && cp -r startup-builder-skill/skills/* .claude/skills/"
+          ]
+        },
+        {
+          "label": "Solana AI Kit",
+          "note": "An add-on pack of the kit: one command inside a kit project.",
+          "commands": [
+            "bash .claude/bin/skills.sh add startup-builder"
+          ]
+        }
+      ],
+      "stars": 2,
+      "pushedAt": "2026-10-22",
+      "license": "MIT",
+      "description": "Agentic skill set for startup research, market sizing, GTM, animation, graphics, and anything else important for the solo builder.",
+      "contributors": [
+        "kauenet",
+        "lucatrevisanii",
+        "Potolski"
+      ],
+      "files": [
+        "README.md",
+        "THIRD_PARTY_NOTICES.md",
+        "skills/build-status/SKILL.md",
+        "skills/build-status/references/build-md-format.md",
+        "skills/build-status/references/traction-sources.md",
+        "skills/ecosystem-bd/SKILL.md",
+        "skills/ecosystem-bd/references/ask.md",
+        "skills/ecosystem-bd/references/diligence.md",
+        "skills/ecosystem-bd/references/partner-map.md",
+        "skills/ecosystem-bd/references/readiness.md",
+        "skills/ecosystem-bd/references/surfaces.md",
+        "skills/fundraising/SKILL.md",
+        "skills/fundraising/references/data-room.md",
+        "skills/fundraising/references/diligence-bank.md",
+        "skills/fundraising/references/investor-update.md",
+        "skills/fundraising/references/token-vs-equity.md",
+        "skills/hackathon/SKILL.md",
+        "skills/hackathon/references/demo-video-script.md",
+        "skills/hackathon/references/judging-criteria.md",
+        "skills/hackathon/references/pitch-rhetoric.md",
+        "skills/hackathon/references/submission-guide.md",
+        "skills/hackathon/references/upstream-packs.md",
+        "skills/hackathon/references/what-separates-winners.md",
+        "skills/hackathon/references/winners.md",
+        "skills/idea-sprint/SKILL.md",
+        "skills/idea-sprint/references/crypto-necessity-test.md",
+        "skills/idea-sprint/references/customer-signal-rubric.md",
+        "skills/idea-sprint/references/idea-md.md",
+        "skills/idea-sprint/references/interview-framework.md",
+        "skills/idea-sprint/references/pivot-or-persist.md",
+        "skills/idea-sprint/references/scoring-rubric.md",
+        "skills/idea-sprint/references/upstream-packs.md",
+        "skills/incident-comms/SKILL.md",
+        "skills/incident-comms/references/exploit-track.md",
+        "skills/incident-comms/references/known-issue.md",
+        "skills/incident-comms/references/severity.md",
+        "skills/incident-comms/references/updates.md",
+        "skills/launch/SKILL.md",
+        "skills/launch/references/artifacts.md",
+        "skills/launch/references/channels.md",
+        "skills/launch/references/runbook.md",
+        "skills/launch/references/slip-and-abort.md",
+        "skills/market-sizing/SKILL.md",
+        "skills/market-sizing/references/accelerates-x.md",
+        "skills/market-sizing/references/market-md-format.md",
+        "skills/market-sizing/references/method-sources.md",
+        "skills/market-sizing/references/money-types.md",
+        "skills/market-sizing/references/number-with-source.md",
+        "skills/market-sizing/references/qxa-rubric.md",
+        "skills/market-sizing/references/result-page.md",
+        "skills/market-sizing/references/search-front-prompt.md",
+        "skills/market-sizing/references/traps.md",
+        "skills/market-sizing/references/wedge-card.md",
+        "skills/pitch-deck/SKILL.md",
+        "skills/pitch-deck/references/crypto-pitch-mistakes.md",
+        "skills/pitch-deck/references/deck-design-system.md",
+        "skills/pitch-deck/references/investor-audience-guide.md",
+        "skills/pitch-deck/references/library-accelerator-pitches.md",
+        "skills/pitch-deck/references/library-crypto-pitches.md",
+        "skills/pitch-deck/references/library-deck-arcs.md",
+        "skills/pitch-deck/references/library-flow-slide.md",
+        "skills/pitch-deck/references/library-hard-tech-explainers.md",
+        "skills/pitch-deck/references/library-investor-advice.md",
+        "skills/pitch-deck/references/library-investor-studies.md",
+        "skills/pitch-deck/references/library-teardown-catalog.md",
+        "skills/pitch-deck/references/library-teardown-ruler.md",
+        "skills/pitch-deck/references/library.md",
+        "skills/pitch-deck/references/onchain-metrics.md",
+        "skills/pitch-deck/references/pitch-structure.md",
+        "skills/pitch-deck/references/slide-templates.md",
+        "skills/pitch-deck/references/storytelling-frameworks.md",
+        "skills/pitch-deck/references/upstream-packs.md",
+        "skills/pitch-review/SKILL.md",
+        "skills/pitch-review/references/anonymize.md",
+        "skills/pitch-review/references/blind-reader.md",
+        "skills/pitch-review/references/funnel.md",
+        "skills/pitch-review/references/paired-set.md",
+        "skills/pitch-review/references/personas.md",
+        "skills/pitch-review/references/reader-prompts.md",
+        "skills/pitch-review/references/review-md-format.md",
+        "skills/positioning/SKILL.md",
+        "skills/positioning/references/alternatives.md",
+        "skills/positioning/references/crypto-icp.md",
+        "skills/positioning/references/positioning-md-format.md",
+        "skills/pricing/SKILL.md",
+        "skills/pricing/references/changing-price.md",
+        "skills/pricing/references/fee-surfaces.md",
+        "skills/pricing/references/floor-costs.md",
+        "skills/pricing/references/pricing-format.md",
+        "skills/pricing/references/wtp-methods.md"
+      ],
+      "integrity": {
+        "README.md": "6d76c30ac60d29aeb508f04f98c7272677fd7848a56d5d446ed82478064cd4b7",
+        "THIRD_PARTY_NOTICES.md": "5014ae5023d7bfc2f08ab10d1cbdac48c2a432279fb745bb78a886db19c0e317",
+        "skills/build-status/SKILL.md": "abbbe6f19947be170fc1068b209cc61003ac60b2e8af4b159b9cd86148904f15",
+        "skills/build-status/references/build-md-format.md": "39f73cb271f99737029c485cace7192f2c559fbd8ed20107f2fc0a527c115fe8",
+        "skills/build-status/references/traction-sources.md": "3c2f781e7b037a79f605f6a4f7b4f45682e575cdbbe25c8bb95f314489026a7c",
+        "skills/ecosystem-bd/SKILL.md": "23d16c8aa09f96ebcacf8cbae3af15f236dc83f5f44e8ced335419b292dfd80c",
+        "skills/ecosystem-bd/references/ask.md": "3dab9e29e8eef398f889c965616e09f4a79a90e7b474acc5f5e4df6f405ec76e",
+        "skills/ecosystem-bd/references/diligence.md": "755920e8793241d47cc784a5c99bc715a6b0744d08c4b4cff06c19b74a8271dd",
+        "skills/ecosystem-bd/references/partner-map.md": "c3f052d1adb196fd7fdcb7bffa530cee13bd52f0c5a9983cde6e62f68850e81b",
+        "skills/ecosystem-bd/references/readiness.md": "48aa9ca48212d038ae97b45ce8514e17a75dbe429c3c05d847b465732126b68a",
+        "skills/ecosystem-bd/references/surfaces.md": "a4e77607253ccf5dd2d47d4af2b07b11fd94931f427b2995ad4e4b14188e01b9",
+        "skills/fundraising/SKILL.md": "652fc8606f5f9f48d2731736faf98a7b21a7a761f4fdd308321db107a9846276",
+        "skills/fundraising/references/data-room.md": "b287aae8d4748327d190548c7936e8d527f2aaa059210b561692d13bd1e3c02e",
+        "skills/fundraising/references/diligence-bank.md": "f2b650d39170b07d6aaee5d28b01e9af3da7a3084a2e12f45e679679a6a3cde5",
+        "skills/fundraising/references/investor-update.md": "5b966e7a85072ed2cdec4af5bc6c802fb02a96d3b39f0e3346623a7b1d0e4c51",
+        "skills/fundraising/references/token-vs-equity.md": "12dd7ce374b51e89ebc747d3fde46a009070be0d1df63a68b689c09f0470f184",
+        "skills/hackathon/SKILL.md": "6406de058e30dfbad990e2a251c5e329def66669b431e0a8904097b032734c36",
+        "skills/hackathon/references/demo-video-script.md": "d6fc841d3010a9e6175eeff275c4d537eaffa56708969cf61e17b50ed70419ab",
+        "skills/hackathon/references/judging-criteria.md": "a74e4055fd6fa5a41a7c2295b8a8ae81a5eaf891cf9c2325db0a24d6353df026",
+        "skills/hackathon/references/pitch-rhetoric.md": "15ab0debabd41b64b7fe47bc8da74157b5b8259b2850694548309e5561f51bff",
+        "skills/hackathon/references/submission-guide.md": "cd46f3d5f2fcc9333899ea9f182508a3b2c8443a6bf93c2256ec6dc6d2711b98",
+        "skills/hackathon/references/upstream-packs.md": "632ae47b78f13113f69978b074879831b9c21d87a5c2a4c0eed36040842d9614",
+        "skills/hackathon/references/what-separates-winners.md": "39f9b912274b486b2c0534f1e65e2bc0a74b661caf4501c3bb32a1a995363887",
+        "skills/hackathon/references/winners.md": "9e4f4b09a5996f12c0cfb02ecead703bd01fbf4959222187bcf516949e597589",
+        "skills/idea-sprint/SKILL.md": "97922f4b5305098bd1b8695ae2e0b83e0a5de7f35921f2641533655be441b19c",
+        "skills/idea-sprint/references/crypto-necessity-test.md": "5d52779d4429d965b686dd7eed3148fe42d8ec5492ead7a53e0cffe3a56b0be4",
+        "skills/idea-sprint/references/customer-signal-rubric.md": "40f81f9773e6a58d439b4da4dbb71f8a80b21391ee8161ca784b96a1c50d1a95",
+        "skills/idea-sprint/references/idea-md.md": "f481a76845af10b36b5f5fcd782f6dc35b7a5c56318646aa2af0aa1d1e062f6a",
+        "skills/idea-sprint/references/interview-framework.md": "559e6648ee1e005de1a23ead1452b2e577925811e5a453cc346d198a8d8177dd",
+        "skills/idea-sprint/references/pivot-or-persist.md": "b6c120da5731b705e4ee89ca23a454a24cbddb0882609ccc7616b3322f3a0f45",
+        "skills/idea-sprint/references/scoring-rubric.md": "3ab234fd2c595383af5005506d485c1a7c853d172e3a11cd1dd77e3d678ed6be",
+        "skills/idea-sprint/references/upstream-packs.md": "5e8366e9dd035eb549d22d14cb74a9030e68a0c4995d89871f268f7a5e970505",
+        "skills/incident-comms/SKILL.md": "b1317f25ccba452e7b1bb1858da17bfd1fbdd0fae4b60d87ea05af2660aca672",
+        "skills/incident-comms/references/exploit-track.md": "60dd8ef863bf982cf3ef76b6859fde0e92223c145bdef766a81a4ca7535cd565",
+        "skills/incident-comms/references/known-issue.md": "576f58744ffca42b44d9dccedb501be099fb18fdf947209c18fc0bc8586fbcc4",
+        "skills/incident-comms/references/severity.md": "7ce6b6aa3b895a7782c18532f4933128c7bcca2738f732bc1d6f1907b3de4462",
+        "skills/incident-comms/references/updates.md": "1b8499db57c31be82b1720bc470093227a13c88a0905cbca75f05328c2f1d82f",
+        "skills/launch/SKILL.md": "bb3a867b673c3dff8f146b540c663ede3874ea8330e171adfcfc4d929ca21cb0",
+        "skills/launch/references/artifacts.md": "c21c2f58f7cf31a943e3086d9796c3fbc9d6f1385f928fa17d1bd31858689a30",
+        "skills/launch/references/channels.md": "d59a349846903f0570e1c0366889187584fba7b5e76afcc3f4d18ce2e9094af0",
+        "skills/launch/references/runbook.md": "c01fa1ae7d24b688a67a525693c8f10ef2c4dd86f8d4e5e6436d93b875ec1099",
+        "skills/launch/references/slip-and-abort.md": "4edf9d1f99ec6aa735bcca597483276de83fc29c462a8807a5628d1600037225",
+        "skills/market-sizing/SKILL.md": "0f7c15204fc05d62f8f205b9cb724d29bacc817edb3cd720f834df5803835fdc",
+        "skills/market-sizing/references/accelerates-x.md": "f5f677be4466339313f942f8dbb1a30d95a82d50382e2d775ecfd07b20eb24a7",
+        "skills/market-sizing/references/market-md-format.md": "2abdee17551198d040e7cdcd6058bc32eb958e72ecfb01068488d22289733fb4",
+        "skills/market-sizing/references/method-sources.md": "b79e696736a2fc7d27f197a002600cd25471e68acf6216fb4497becc7476163a",
+        "skills/market-sizing/references/money-types.md": "a0385604f7a5715750c097039da61d708e55c1c65c6562830ef713474018093c",
+        "skills/market-sizing/references/number-with-source.md": "263a0ecdc5c465a6e4f49441c3165bd3b23b6cfecc73b7b1c815c1a584480aed",
+        "skills/market-sizing/references/qxa-rubric.md": "07eee207d337d02e5e55fb568b89920dbae68c4244c414b122dd0c851d55b22d",
+        "skills/market-sizing/references/result-page.md": "cd96c3481f1b2fa319a20fe67a05a3755c66b9f483d7cb15abc21d0630804704",
+        "skills/market-sizing/references/search-front-prompt.md": "fbd4bae461df32070d7c9997921a94e523b19f91a9ae0b78182a1051d2bad427",
+        "skills/market-sizing/references/traps.md": "9007811c16e2d22c279d11123aa90d4a7378c44b76579bbe3c20512ec1b75d0a",
+        "skills/market-sizing/references/wedge-card.md": "6b6c0a956c4b0935f5c8c8073cd5a82d772c5a2cb8677a12edafc76347aaffe0",
+        "skills/pitch-deck/SKILL.md": "83a8ab7d9b1f580cc221bba4e36a906d46cbca190b5f940e12152752f9588451",
+        "skills/pitch-deck/references/crypto-pitch-mistakes.md": "297b1d1c6b8b9f3ab87d67db50a7c4dff2f153db57db9ca5c2813d202c3dd88b",
+        "skills/pitch-deck/references/deck-design-system.md": "50986dcd37aaf9173ab7370c0c1e0b1aad0e1094abefa7a49e3d04baf4204468",
+        "skills/pitch-deck/references/investor-audience-guide.md": "982c506a34dd8f5e5e352c64985eeec2da73d6d86233d9aaf589825c5b46f0c9",
+        "skills/pitch-deck/references/library-accelerator-pitches.md": "d62712ab464d0a8da919bcfcbafba4c71130093a0f548c1c620b5e1ef42f4f1e",
+        "skills/pitch-deck/references/library-crypto-pitches.md": "c2b0862130ec743167347495f326fc44a0c7519eaa61791b05b9f07e2d8699db",
+        "skills/pitch-deck/references/library-deck-arcs.md": "fc86e7b99472fc9e0e8fafff79f7db2773fde81bdd25ab7c10efe9f9db1cb684",
+        "skills/pitch-deck/references/library-flow-slide.md": "256be42b825509a34b837c2eed9e760ae3663309d7ba51da6e16c4cbecc926ef",
+        "skills/pitch-deck/references/library-hard-tech-explainers.md": "35e45dc845e6f77b5a0d37df0d9f2b3d486eb1db536609d63d2f6f28718be8a8",
+        "skills/pitch-deck/references/library-investor-advice.md": "e08f1cdde152042b8a020db7f3843935e0a5b950a183b8c5fda4da8c9d0257b5",
+        "skills/pitch-deck/references/library-investor-studies.md": "039c6cbcdd593baa4588cd5746471ce49e426e2273dcb6131debb4466586e3e7",
+        "skills/pitch-deck/references/library-teardown-catalog.md": "30d2e78087cea250de80a92437a2e6c3e135f5f965fe0ad5529898ae21bfb01c",
+        "skills/pitch-deck/references/library-teardown-ruler.md": "cbcbf3dbadb6be7e714665be778286e76a3b96ccab3ef71228c3e1a59fc2434c",
+        "skills/pitch-deck/references/library.md": "13040e50e2c820eb479a45dda9f44dcedfab1ee3c1eaa29a14d1e60a7dc288a2",
+        "skills/pitch-deck/references/onchain-metrics.md": "f59a9673a14f7c7effbef8451045a44aab6d0e7a3f29d5c79ccb93db47958eed",
+        "skills/pitch-deck/references/pitch-structure.md": "cf54f61ae262fbd66a74f720786973786e64a5f9c3bf75532e4de75df9a8229e",
+        "skills/pitch-deck/references/slide-templates.md": "f1a3b2d8c7d4533a75ded2733f0ec42ae9c81d34cb78c332f6ec3973c6b06624",
+        "skills/pitch-deck/references/storytelling-frameworks.md": "b7c328976fc85d8e1266610cdaa106045245ae607f6f17df49cd0b5adb046a96",
+        "skills/pitch-deck/references/upstream-packs.md": "1b2bd8b0a1c1c4f081fbf1a089a91a32ac4f53996db23351aba76aafa6a5c584",
+        "skills/pitch-review/SKILL.md": "dc1f90792bf81e012c2ca1eeb6a009604da7c3bee63398e58d8e3eea611e6069",
+        "skills/pitch-review/references/anonymize.md": "bd5181fe343033e6748c7588a6c105bd36c97b498c67c20cce51e8423b234043",
+        "skills/pitch-review/references/blind-reader.md": "e58809c9b546618b57d2fd0ba828c13e2cbd98f1d12cea891759764e99b3043e",
+        "skills/pitch-review/references/funnel.md": "22b4ed2c6999b6b3d92a45835a8a89ec92e3c9632a5cf4ca6b4a8e930502fd60",
+        "skills/pitch-review/references/paired-set.md": "ce3499dc66d8edf5fa94109d911c9daceb367cc19349146ace3f06d6785e0981",
+        "skills/pitch-review/references/personas.md": "dac31527f7d4ec5c6cb4e35aa8381d117c70b2b5d6d4ad1a70d1e50f3e1e06a9",
+        "skills/pitch-review/references/reader-prompts.md": "19f350497c6ca6e49ce2bf686776e3be91ccda3021706a2179e021410e3142ed",
+        "skills/pitch-review/references/review-md-format.md": "ce5dc07fdcce92af96467d33e0194c41d616951126cb6825dc14c5b1a6980aff",
+        "skills/positioning/SKILL.md": "50563f853ea783dfda5e430c0ab0ce2ef9bddcd1fd0ac5c91cf1d5cf117ddab7",
+        "skills/positioning/references/alternatives.md": "a7d967ce9b6e43b7435c7f7836a0cb169f4620424d2f1358340032abfd669e24",
+        "skills/positioning/references/crypto-icp.md": "56e87e96adb4d0515ca87a09491e15f697f2e432916a00d7818ac480c1df9b86",
+        "skills/positioning/references/positioning-md-format.md": "d598ae748e6dc97531e81b2bd566f24c5ff77a4b2d6339da0695632b6da0b30a",
+        "skills/pricing/SKILL.md": "92fee3253c2edc7318cba72271f28b3ada6569c7a95bbe9338db627a1726b9d4",
+        "skills/pricing/references/changing-price.md": "ad742b05799bb43b84b16df44b5f43cb0d8a3f15b0bfad880b9cb392d9f2359d",
+        "skills/pricing/references/fee-surfaces.md": "14ebd965a0237607e3a56821429a00d4b2873a6b519890195a15b8a35b6fde90",
+        "skills/pricing/references/floor-costs.md": "15a6bd2fdbefbe33b0a103e471251902c2acc1d7bc76c8f4f6fb86819d892657",
+        "skills/pricing/references/pricing-format.md": "3e3e6853f123a0bd8677a781e451c994ddc57727e5aeb72188882d7f70b2f477",
+        "skills/pricing/references/wtp-methods.md": "eb42dd9cfcf56b208c75cd0d4f9f0059ff03080ce5793a53e57cedcb3692bfc7"
+      },
+      "subskills": [
+        {
+          "kind": "skill",
+          "slug": "skills/build-status",
+          "path": "skills/build-status/SKILL.md",
+          "name": "build-status",
+          "description": "Capture what is built, deployed and used into .claude/context/build.md — program IDs, verified build, audit state, what works today, and traction with the query behind each number. Use before a deck, hackathon submission, grant or investor update, or when asked \"what have we shipped\".",
+          "files": [
+            "skills/build-status/references/build-md-format.md",
+            "skills/build-status/references/traction-sources.md"
+          ]
+        },
+        {
+          "kind": "skill",
+          "slug": "skills/ecosystem-bd",
+          "path": "skills/ecosystem-bd/SKILL.md",
+          "name": "ecosystem-bd",
+          "description": "Get a Solana product listed, routed and integrated by others (Jupiter, wallets, explorers, DefiLlama, Superteam, Foundation): a dated map of what each surface requires, readiness gaps, two-way diligence and the partner ask. Use for \"get listed on Jupiter\", \"partnerships\", \"integration BD\".",
+          "files": [
+            "skills/ecosystem-bd/references/ask.md",
+            "skills/ecosystem-bd/references/diligence.md",
+            "skills/ecosystem-bd/references/partner-map.md",
+            "skills/ecosystem-bd/references/readiness.md",
+            "skills/ecosystem-bd/references/surfaces.md"
+          ]
+        },
+        {
+          "kind": "skill",
+          "slug": "skills/fundraising",
+          "path": "skills/fundraising/SKILL.md",
+          "name": "fundraising",
+          "description": "Fundraising beyond the deck for a crypto team - data room index, diligence questions with honest answers, investor updates, token-vs-equity orientation. Writes .claude/context/data-room.md. Use for \"data room\", \"due diligence\", \"investor update\", \"token and equity\".",
+          "files": [
+            "skills/fundraising/references/data-room.md",
+            "skills/fundraising/references/diligence-bank.md",
+            "skills/fundraising/references/investor-update.md",
+            "skills/fundraising/references/token-vs-equity.md"
+          ]
+        },
+        {
+          "kind": "skill",
+          "slug": "skills/hackathon",
+          "path": "skills/hackathon/SKILL.md",
+          "name": "hackathon",
+          "description": "Prepare a winning hackathon submission. Use when the user says \"hackathon submission\", \"submit to hackathon\", \"demo script\", \"demo video\", \"which track should I enter\", \"Colosseum\", \"help me win the hackathon\", or asks about hackathon grants and Superteam Earn.",
+          "files": [
+            "skills/hackathon/references/demo-video-script.md",
+            "skills/hackathon/references/judging-criteria.md",
+            "skills/hackathon/references/pitch-rhetoric.md",
+            "skills/hackathon/references/submission-guide.md",
+            "skills/hackathon/references/upstream-packs.md",
+            "skills/hackathon/references/what-separates-winners.md",
+            "skills/hackathon/references/winners.md"
+          ]
+        },
+        {
+          "kind": "skill",
+          "slug": "skills/idea-sprint",
+          "path": "skills/idea-sprint/SKILL.md",
+          "name": "idea-sprint",
+          "description": "Find and validate what to build in crypto. Use when the user asks \"what should I build\", \"validate this idea\", \"is this worth building\", \"find me a startup idea\", \"crypto idea\", or wants blunt feedback on a project concept before writing code.",
+          "files": [
+            "skills/idea-sprint/references/crypto-necessity-test.md",
+            "skills/idea-sprint/references/customer-signal-rubric.md",
+            "skills/idea-sprint/references/idea-md.md",
+            "skills/idea-sprint/references/interview-framework.md",
+            "skills/idea-sprint/references/pivot-or-persist.md",
+            "skills/idea-sprint/references/scoring-rubric.md",
+            "skills/idea-sprint/references/upstream-packs.md"
+          ]
+        },
+        {
+          "kind": "skill",
+          "slug": "skills/incident-comms",
+          "path": "skills/incident-comms/SKILL.md",
+          "name": "incident-comms",
+          "description": "Tell users about a Solana product incident (failing txs, paused program, broken upgrade, exploit) with a severity ladder tied to onchain state, pre-written updates, an HTML status page and a user-facing postmortem. Use for \"incident\", \"outage\", \"status page\", \"exploit comms\" or \"postmortem\".",
+          "files": [
+            "skills/incident-comms/references/exploit-track.md",
+            "skills/incident-comms/references/known-issue.md",
+            "skills/incident-comms/references/severity.md",
+            "skills/incident-comms/references/updates.md"
+          ]
+        },
+        {
+          "kind": "skill",
+          "slug": "skills/launch",
+          "path": "skills/launch/SKILL.md",
+          "name": "launch",
+          "description": "Plan and run a Solana launch day as a runbook gated on the onchain event (deploy, mint, TGE, liquidity add, audit release), with T-minus gates, slip and abort rules, channel order and pre-staged copy. Use for \"/launch\", \"launch day plan\", \"announcement sequence\" or \"the deploy slipped\".",
+          "files": [
+            "skills/launch/references/artifacts.md",
+            "skills/launch/references/channels.md",
+            "skills/launch/references/runbook.md",
+            "skills/launch/references/slip-and-abort.md"
+          ]
+        },
+        {
+          "kind": "skill",
+          "slug": "skills/market-sizing",
+          "path": "skills/market-sizing/SKILL.md",
+          "name": "market-sizing",
+          "description": "Size the market bottom-up with a source on every number, and rank entry wedges by problem quality × how much each builds the vision. Writes .claude/context/market.md. Use for \"TAM\", \"market size\", \"market slide\", \"beachhead\", \"wedge\", \"where do we start\".",
+          "files": [
+            "skills/market-sizing/references/accelerates-x.md",
+            "skills/market-sizing/references/market-md-format.md",
+            "skills/market-sizing/references/method-sources.md",
+            "skills/market-sizing/references/money-types.md",
+            "skills/market-sizing/references/number-with-source.md",
+            "skills/market-sizing/references/qxa-rubric.md",
+            "skills/market-sizing/references/result-page.md",
+            "skills/market-sizing/references/search-front-prompt.md",
+            "skills/market-sizing/references/traps.md",
+            "skills/market-sizing/references/wedge-card.md"
+          ]
+        },
+        {
+          "kind": "skill",
+          "slug": "skills/pitch-deck",
+          "path": "skills/pitch-deck/SKILL.md",
+          "name": "pitch-deck",
+          "description": "Build a pitch deck for a crypto project. Use when the user says \"pitch deck\", \"demo day\", \"investor presentation\", \"grant application slides\", \"accelerator application\", \"help me pitch\", or needs slides for a hackathon final.",
+          "files": [
+            "skills/pitch-deck/references/crypto-pitch-mistakes.md",
+            "skills/pitch-deck/references/deck-design-system.md",
+            "skills/pitch-deck/references/investor-audience-guide.md",
+            "skills/pitch-deck/references/library-accelerator-pitches.md",
+            "skills/pitch-deck/references/library-crypto-pitches.md",
+            "skills/pitch-deck/references/library-deck-arcs.md",
+            "skills/pitch-deck/references/library-flow-slide.md",
+            "skills/pitch-deck/references/library-hard-tech-explainers.md",
+            "skills/pitch-deck/references/library-investor-advice.md",
+            "skills/pitch-deck/references/library-investor-studies.md",
+            "skills/pitch-deck/references/library-teardown-catalog.md",
+            "skills/pitch-deck/references/library-teardown-ruler.md",
+            "skills/pitch-deck/references/library.md",
+            "skills/pitch-deck/references/onchain-metrics.md",
+            "skills/pitch-deck/references/pitch-structure.md",
+            "skills/pitch-deck/references/slide-templates.md",
+            "skills/pitch-deck/references/storytelling-frameworks.md",
+            "skills/pitch-deck/references/upstream-packs.md"
+          ]
+        },
+        {
+          "kind": "skill",
+          "slug": "skills/pitch-review",
+          "path": "skills/pitch-review/SKILL.md",
+          "name": "pitch-review",
+          "description": "Blind-test a deck, spoken script or pitch video before it goes out - answer key first, anonymized copy, readers with no context, ranked against decks that raised - and write .claude/context/review.md. Use for \"review my deck\", \"is the deck clear\", \"blind review\", \"pitch feedback\".",
+          "files": [
+            "skills/pitch-review/references/anonymize.md",
+            "skills/pitch-review/references/blind-reader.md",
+            "skills/pitch-review/references/funnel.md",
+            "skills/pitch-review/references/paired-set.md",
+            "skills/pitch-review/references/personas.md",
+            "skills/pitch-review/references/reader-prompts.md",
+            "skills/pitch-review/references/review-md-format.md"
+          ]
+        },
+        {
+          "kind": "skill",
+          "slug": "skills/positioning",
+          "path": "skills/positioning/SKILL.md",
+          "name": "positioning",
+          "description": "Write the one-liner, ICP with disqualifiers, job to be done, three named alternatives and proof points once, into .claude/context/positioning.md, so the deck, site, docs and launch post say the same thing. Use for \"positioning\", \"ICP\", \"who is this for\", \"value prop\", \"how do we describe this\".",
+          "files": [
+            "skills/positioning/references/alternatives.md",
+            "skills/positioning/references/crypto-icp.md",
+            "skills/positioning/references/positioning-md-format.md"
+          ]
+        },
+        {
+          "kind": "skill",
+          "slug": "skills/pricing",
+          "path": "skills/pricing/SKILL.md",
+          "name": "pricing",
+          "description": "Decide what an onchain product charges and how it is packaged - fee surface, payer, number, floor-cost math, comparables, falsification test - and write .claude/context/pricing.md. Use for \"what should we charge\", \"protocol fee\", \"bps\", \"take rate\", \"token-gated tier\", \"pricing page\".",
+          "files": [
+            "skills/pricing/references/changing-price.md",
+            "skills/pricing/references/fee-surfaces.md",
+            "skills/pricing/references/floor-costs.md",
+            "skills/pricing/references/pricing-format.md",
+            "skills/pricing/references/wtp-methods.md"
+          ]
+        }
+      ],
+      "words": 1244,
+      "counts": {
+        "skills": 12,
+        "references": 76
+      },
+      "commitSha": "51d362f0f7b16f3e118f94ee6415d0556483deef",
+      "commitDate": "2026-10-22T15:21:04Z",
+      "pinnedAt": "2026-10-23T22:03:19.551Z",
+      "url": "https://github.com/solanabr/startup-builder-skill",
+      "logo": "/logos/solanabr.png"
     }
   ],
   "ecosystem": [
@@ -2734,7 +3990,34 @@
       "commitSha": "06b36b8b420e705ffd57b29e463f01093959d8d4",
       "logo": "/logos/sendaifun.png",
       "commitDate": "2026-07-31T15:41:32Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "0xanmol",
+        "0xIchigo",
+        "0xsergen",
+        "abelmarnk",
+        "arihantbansal",
+        "brucexu-eth",
+        "dattb-birdeye",
+        "Debanjannnn",
+        "deepakA18",
+        "fabiofederici",
+        "gesarki",
+        "jlkramer16",
+        "mooncitydev",
+        "piske-alex",
+        "raunit-dev",
+        "Saviour1001",
+        "scriptscrypt",
+        "Sharathxct",
+        "Th3Ya0vi",
+        "thearyanag",
+        "Ukkometa",
+        "vshamanov",
+        "yashhsm",
+        "yashhsm9",
+        "zpalmtree"
+      ]
     },
     {
       "id": "solana-new",
@@ -3642,7 +4925,22 @@
       "commitSha": "38a494a21a3b0673e2fd581623a7f80861abd83b",
       "logo": "/logos/sendaifun.png",
       "commitDate": "2026-10-02T17:45:22Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "4manj",
+        "abhijitsahoo99",
+        "abishekk92",
+        "bogidotcom",
+        "brucexu-eth",
+        "raunit-dev",
+        "scriptscrypt",
+        "Sharathxct",
+        "sporicle",
+        "thearyanag",
+        "Uttam-Singhh",
+        "yashhsm",
+        "yashhsm9"
+      ]
     },
     {
       "id": "solana-ai-kit",
@@ -3732,7 +5030,14 @@
         "extensionPacks": 42,
         "packs": 46
       },
-      "tag": "v2.4.0"
+      "tag": "v2.4.0",
+      "contributors": [
+        "AiltonSavio",
+        "ernanibmurtinho",
+        "kauenet",
+        "Potolski",
+        "riotavares"
+      ]
     },
     {
       "id": "helius",
@@ -3980,7 +5285,20 @@
       "commitSha": "f8c74e6a357fe89fc93c80bac522f5a8b6a7cafe",
       "logo": "/logos/helius-labs.png",
       "commitDate": "2026-10-22T19:19:21Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "0xIchigo",
+        "0xtom1",
+        "alelpoan",
+        "bernardogv",
+        "fomichfm",
+        "hetdagli234",
+        "maxim-schmidt",
+        "mooncitydev",
+        "nathanliow",
+        "plutohan",
+        "vijaygopalbalasa"
+      ]
     },
     {
       "id": "jupiter",
@@ -4115,7 +5433,15 @@
       "commitSha": "a2211e3f6a7caa03310c7a9a8d816e723b0bdc5f",
       "logo": "/logos/jup-ag.png",
       "commitDate": "2026-07-07T07:39:15Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "0xanmol",
+        "AetherSPL",
+        "fewwwww",
+        "lifeofpavs",
+        "nghanyi",
+        "rluque8"
+      ]
     },
     {
       "id": "metaplex",
@@ -4182,7 +5508,12 @@
       "commitSha": "b981b0db6eedd5cb93b67d73a957d6a46915138f",
       "logo": "/logos/metaplex-foundation.png",
       "commitDate": "2026-10-21T13:18:36Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "blockiosaurus",
+        "MarkSackerberg",
+        "tonyboylehub"
+      ]
     },
     {
       "id": "solana-mobile",
@@ -4389,7 +5720,13 @@
       "commitSha": "8664b5be49d16b6962129b53def20f6dfa99443d",
       "logo": "/logos/solana-mobile.png",
       "commitDate": "2026-10-21T05:05:57Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "0xanmol",
+        "beeman",
+        "Michaelsulistio",
+        "oliveeyay"
+      ]
     },
     {
       "id": "quicknode-anchor",
@@ -4445,7 +5782,12 @@
       "commitSha": "a440e16f752139031840d606e1363637404e5d01",
       "logo": "/logos/quiknode-labs.png",
       "commitDate": "2026-10-04T23:27:08Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "claude",
+        "mikemaccana",
+        "rx294"
+      ]
     },
     {
       "id": "colosseum",
@@ -4503,7 +5845,11 @@
       "commitSha": "17e9bf07759d25fcec9cc3a751a081e448bc602c",
       "logo": "/logos/ColosseumOrg.png",
       "commitDate": "2026-10-05T16:51:12Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "mxmnci",
+        "natelevine"
+      ]
     },
     {
       "id": "qedgen",
@@ -4730,7 +6076,15 @@
       "commitSha": "712cbb91a3ee8ad009069359951e77cbd9d75ff9",
       "logo": "/logos/QEDGen.png",
       "commitDate": "2026-10-01T07:40:50Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "0xharp",
+        "abishekk92",
+        "candyflipline",
+        "lmvdz",
+        "saicharanpogul",
+        "tanmay4l"
+      ]
     },
     {
       "id": "safe-solana-builder",
@@ -4783,7 +6137,13 @@
       "commitSha": "6154caba7fb3b92d549fb3f38ffaf77645e7045f",
       "logo": "/logos/frankcastleauditor.png",
       "commitDate": "2026-10-05T10:03:38Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "Abduovv",
+        "Arrowana",
+        "Frankcastleauditor",
+        "zzzuhaibmohd"
+      ]
     },
     {
       "id": "solana-game-skill",
@@ -4841,7 +6201,10 @@
       "commitSha": "762b3b28e62b4c6cabc01ae179d316958a852a07",
       "logo": "/logos/solanabr.png",
       "commitDate": "2026-01-30T00:05:51Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "kauenet"
+      ]
     },
     {
       "id": "trailofbits",
@@ -5108,7 +6471,71 @@
       "commitSha": "196a9073ab10d35bacf111f945e02c00b2c6883a",
       "logo": "/logos/trailofbits.png",
       "commitDate": "2026-10-23T09:26:17Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "2023Anita",
+        "ahpaleus",
+        "artemdinaburg",
+        "bohendo",
+        "bsamuels453",
+        "chatgpt-tob",
+        "computerality",
+        "cpu",
+        "dan-redcupit",
+        "dariushoule",
+        "DarkaMaul",
+        "dguido",
+        "dmaynor",
+        "e-q",
+        "ekilmer",
+        "emilushi",
+        "ESultanik",
+        "fegge",
+        "frabert",
+        "GrosQuildu",
+        "gsutherland-trailofbits",
+        "hbrodin",
+        "icemonster",
+        "iflov",
+        "johnniemorrow",
+        "jonathanhefner",
+        "jonathanreedmevs",
+        "jvdprng",
+        "KernelClint",
+        "kevin-valerio",
+        "kumarak",
+        "kz-tob",
+        "lightcap",
+        "mathcelo",
+        "mkzung",
+        "mosajjal",
+        "mschwager",
+        "nicksellier",
+        "Ninja3047",
+        "nisedo",
+        "NucleiAv",
+        "omarinuwa",
+        "reytchison",
+        "rhanooman12",
+        "roli-lpci",
+        "sblackshear",
+        "semgrep-jamie",
+        "smoelius",
+        "sushant-me",
+        "tarunbhm",
+        "thomas-chauchefoin-tob",
+        "tob-joe",
+        "tob-scott-a",
+        "udsy19",
+        "vanhauser-thc",
+        "VirtualTim",
+        "WilfredTA",
+        "wizardengineer",
+        "Xenomega",
+        "xr843",
+        "zi0Black",
+        "zichen0116"
+      ]
     },
     {
       "id": "magicblock",
@@ -5180,7 +6607,14 @@
       ],
       "logo": "/logos/magicblock-labs.png",
       "commitDate": "2026-10-23T08:17:16Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "dhruvja",
+        "GabrielePicco",
+        "jonasXchen",
+        "pierredotsol",
+        "sporicle"
+      ]
     },
     {
       "id": "meteora",
@@ -5252,7 +6686,14 @@
       ],
       "logo": "/logos/MeteoraAg.png",
       "commitDate": "2026-09-20T18:16:49Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "avicoder",
+        "dannxbt",
+        "dirty-w0rk",
+        "JoshuaRaccoons",
+        "Manice18"
+      ]
     },
     {
       "id": "alchemy",
@@ -5540,7 +6981,17 @@
       ],
       "logo": "/logos/alchemyplatform.png",
       "commitDate": "2026-08-26T18:28:17Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "0xmts",
+        "alchemy-bot",
+        "CodesMcCabe",
+        "hmvien",
+        "JackReacher0807",
+        "lohnim",
+        "Onewaysidewalks",
+        "SahilAujla"
+      ]
     },
     {
       "id": "phantom",
@@ -5750,7 +7201,10 @@
       ],
       "logo": "/logos/phantom.png",
       "commitDate": "2026-03-09T17:00:55Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "Th3Ya0vi"
+      ]
     },
     {
       "id": "light-protocol",
@@ -5908,7 +7362,10 @@
       ],
       "logo": "/logos/Lightprotocol.png",
       "commitDate": "2026-06-08T23:42:04Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "tilo-14"
+      ]
     },
     {
       "id": "dflow",
@@ -5988,7 +7445,11 @@
       ],
       "logo": "/logos/DFlowProtocol.png",
       "commitDate": "2026-10-08T20:02:16Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "lukecd",
+        "Th3Ya0vi"
+      ]
     },
     {
       "id": "quicknode-blockchain",
@@ -6061,7 +7522,15 @@
       ],
       "logo": "/logos/quiknode-labs.png",
       "commitDate": "2026-08-12T15:36:22Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "0xsergen",
+        "rx294",
+        "sandeeppainuly",
+        "Some1Uknow",
+        "Vittitow",
+        "zer0cache"
+      ]
     },
     {
       "id": "pump-fun",
@@ -6215,7 +7684,10 @@
       "commitSha": "c8aaa6a8fb766b2765d2663744515bbf88d04380",
       "logo": "/logos/pump-fun.png",
       "commitDate": "2026-04-23T16:28:52Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "sushant-baton"
+      ]
     },
     {
       "id": "debridge",
@@ -6388,7 +7860,12 @@
       "commitSha": "b3bc79abefd7e7fa7092c810c5f4f02136567d4e",
       "logo": "/logos/debridge-finance.png",
       "commitDate": "2026-04-01T18:53:34Z",
-      "pinnedAt": "2026-10-05T13:46:22.295Z"
+      "pinnedAt": "2026-10-05T13:46:22.295Z",
+      "contributors": [
+        "ayush-agarwal-09",
+        "ongrid",
+        "rustairov"
+      ]
     },
     {
       "id": "pyth",
@@ -6568,7 +8045,10 @@
       "commitSha": "6365a9d22062f3e13e5206281aeddb45e6b36d3d",
       "logo": "/logos/pyth-network.png",
       "commitDate": "2026-03-18T13:29:27Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "aditya520"
+      ]
     },
     {
       "id": "okx",
@@ -6908,7 +8388,37 @@
       "commitSha": "73856f4ac90b2d9c59f44d35d2f7ee79ef298a4c",
       "logo": "/logos/okx.png",
       "commitDate": "2026-10-22T14:35:56Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "BlueBd",
+        "DingMing-okx",
+        "HulkBlock",
+        "imagine-yao",
+        "JackLiu1000",
+        "Keon-Zhang",
+        "kevin-li-okg",
+        "leixjin",
+        "lilyDong",
+        "manjiechen",
+        "MinganZhao",
+        "mingtao955",
+        "Noah3595",
+        "ok-james-01",
+        "okxboon",
+        "okxokxokxokx",
+        "okxzongyao",
+        "rwsevenokx",
+        "SamSee-314",
+        "SherlockHomer",
+        "ToodLiang",
+        "UponGao",
+        "XHFkindergarten",
+        "xiongfei12",
+        "yangbingxun",
+        "zero-trust-game",
+        "ZhaoJingyi-okg",
+        "zhengyuhui94"
+      ]
     },
     {
       "id": "chainstack",
@@ -6963,7 +8473,10 @@
       "commitSha": "80706ea9381fc97d87215b3b1d51cbc16492101b",
       "logo": "/logos/chainstacklabs.png",
       "commitDate": "2026-03-20T18:45:37Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": [
+        "smypmsa"
+      ]
     },
     {
       "id": "para",
@@ -7005,7 +8518,8 @@
       "commitSha": "86b0343e8c4351e87b2470e785d11acb99180722",
       "logo": "/logos/getpara.png",
       "commitDate": "2026-02-16T20:40:50Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "contributors": []
     },
     {
       "id": "orquestra",
@@ -7202,7 +8716,11 @@
       "commitSha": "47d8961e34ca8015fa84864c023b1f59385b4fc3",
       "commitDate": "2026-08-17T18:22:52Z",
       "pinnedAt": "2026-10-23T21:49:29.604Z",
-      "logo": "/logos/berkayoztunc.png"
+      "logo": "/logos/berkayoztunc.png",
+      "contributors": [
+        "berkayoztunc",
+        "ernanibmurtinho"
+      ]
     },
     {
       "id": "solana-auditor",
@@ -7277,7 +8795,10 @@
       "commitSha": "e501915ff4953ed25ff40bd9e776de370b350e8d",
       "commitDate": "2026-03-23T10:29:17Z",
       "pinnedAt": "2026-10-23T21:49:29.604Z",
-      "logo": "/logos/sanbir.png"
+      "logo": "/logos/sanbir.png",
+      "contributors": [
+        "sanbir"
+      ]
     },
     {
       "id": "agi-trading",
@@ -7453,7 +8974,12 @@
       "commitSha": "981e1d736cdc02bdc1c55c74ec9224e956414706",
       "commitDate": "2026-09-03T02:19:34Z",
       "pinnedAt": "2026-10-23T21:49:29.604Z",
-      "logo": "/logos/agiprolabs.png"
+      "logo": "/logos/agiprolabs.png",
+      "contributors": [
+        "agiprolabs",
+        "gyx09212214-prog",
+        "k1ubi"
+      ]
     },
     {
       "id": "chaingpt",
@@ -7523,7 +9049,10 @@
       "commitSha": "ae19957d7665127f442b43951f372be19baa2489",
       "commitDate": "2026-09-09T09:39:15Z",
       "pinnedAt": "2026-10-23T21:49:29.604Z",
-      "logo": "/logos/ChainGPT-org.png"
+      "logo": "/logos/ChainGPT-org.png",
+      "contributors": [
+        "ceoguy"
+      ]
     }
   ],
   "foundationResources": [

@@ -16,6 +16,30 @@ for (const repo of registry.ecosystem) {
   }
 }
 
+const stbrById = Object.fromEntries((registry.superteam ?? []).map((s) => [s.id, s]));
+
+/**
+ * Superteam Brasil files (src/data/stbr-render/<id>/<path>): a link to a
+ * subskill or the main file goes to its page, any other mirrored .md to its
+ * /s/ copy, everything else to GitHub at the pinned commit.
+ */
+function stbrResolver(path) {
+  const m = String(path ?? "").replaceAll("\\", "/").match(/\/stbr-render\/([^/]+)\/(.+)$/);
+  const st = m && stbrById[m[1]];
+  if (!st) return null;
+  const pages = new Map(st.subskills.map((x) => [x.path, `/superteam/${st.id}/${x.slug}`]));
+  if (st.main) pages.set(st.main, `/superteam/${st.id}`);
+  const files = new Set(st.files);
+  const base = `https://repo.invalid/${m[2]}`;
+  return (val) => {
+    const u = new URL(val, base);
+    const rel = decodeURIComponent(u.pathname.slice(1));
+    if (pages.has(rel)) return `${pages.get(rel)}${u.hash}`;
+    if (files.has(rel)) return `/s/${st.id}/${rel}${u.hash}`;
+    return `https://github.com/${st.repo}/blob/${st.commitSha ?? "HEAD"}/${rel}${u.hash}`;
+  };
+}
+
 const isRelative = (url) => !!url && !/^([a-z][a-z0-9+.-]*:|\/|#)/i.test(url);
 
 function walk(node, fn) {
@@ -52,6 +76,23 @@ function metaForFile(path) {
 
 export default function rehypeGithubLinks() {
   return (tree, file) => {
+    const stbr = stbrResolver(file.path);
+    if (stbr) {
+      walk(tree, (node) => {
+        if (node.type !== "element") return;
+        const h = node.tagName?.match(/^h([1-5])$/);
+        if (h) node.tagName = `h${Number(h[1]) + 1}`;
+        for (const attr of ["href", "src"]) {
+          const val = node.properties?.[attr];
+          if (typeof val === "string" && isRelative(val)) node.properties[attr] = stbr(val);
+        }
+        if (node.tagName === "a" && String(node.properties?.href ?? "").startsWith("http")) {
+          node.properties.target = "_blank";
+          node.properties.rel = "noopener";
+        }
+      });
+      return;
+    }
     const meta = metaForFile(file.path);
     if (!meta) return;
     const { githubBase, hostedPrefix, hosted } = meta;

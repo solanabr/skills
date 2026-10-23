@@ -26,6 +26,8 @@ Built with [Astro](https://astro.build) as a fully static site. No client framew
 - **Sanitized rendering** — mirrored markdown is third-party content; `rehype-sanitize` strips raw HTML from every rendered detail page (the raw `.md` mirrors under `/s/` are served untouched as `text/markdown`). (`npx skills add` pulls the repo's current HEAD — diff against the pin if that matters to you.)
 - **Integrity hashes** — every file mirrored on this domain publishes its `sha256` in `/api/skills.json` (`integrity`, keyed by relative path). Verify any mirror with `curl -fsSL <url> | shasum -a 256`; CI recomputes every hash against the built site on every PR and every refresh.
 - **Contributor attribution** — each skill records the GitHub login that last touched its `SKILL.md` as of the pin (`lastAuthor` in the API, "Last updated by" on detail pages), so monorepo skills credit the person who actually wrote them, not just the org.
+- **`/superteam`** — official Superteam Brasil skills, part of the Solana AI Kit: a page per skill (`/superteam/<id>`) and per subskill (`/superteam/<id>/<path>`: auditor-skill's commands and agents, startup-builder-skill's skills). Every `.md` in those repos is served at `/s/<id>/<path>`, and every page carries **Copy .md** / **Open .md** buttons, as do official and ecosystem skill pages and their reference files.
+- **Contributors** — the homepage counts distinct GitHub contributors (bots excluded) across every indexed repo, from each entry's `contributors` list.
 - **`/ecosystem`** — ecosystem repo explorer grouped by aggregators/toolkits, teams & protocols, community; expandable per-repo skill lists that deep-link to the on-site detail pages.
 - **`/api/skills.json`** — machine-readable index of everything (CORS-enabled); `/api/skills-min.json` is the token-lean variant with one fetchable URL per skill (on-domain mirror preferred).
 - **`/llms.txt`** — plain-text site map for AI agents.
@@ -42,6 +44,8 @@ src/data/registry.json                    # official skills + ecosystem repos/sk
 src/data/skills/*.md                      # verbatim mirrors of official SKILL.md files
 src/data/skill-files/<id>/…               # verbatim mirrors of official companion .md files (reference library)
 src/data/eco-skill-files/<repo>/<skill>/… # ecosystem mirrors (full or partial — see hosting tiers above)
+src/data/stbr-files/<id>/…                # Superteam Brasil: every .md in the repo, verbatim
+src/data/stbr-render/<id>/…               # the same main file and subskills, frontmatter removed, for page rendering
 public/logos/<owner>.png                  # GitHub org avatars, refreshed with the registry
 ```
 
@@ -58,7 +62,11 @@ node scripts/refresh.mjs --meta   # cheap: stars + pushed_at only
 
 The `solana-ai-kit` entry tracks [solanabr/ai-kit](https://github.com/solanabr/ai-kit) at its highest `vX.Y.Z` tag (`"pin": "release-tag"`), which is what the kit's installer ships, not its branch head. `"kitStats": true` reads the kit at that tag: agents and commands from `.claude/agents/*.md` and `.claude/commands/*.md`, MCP servers from `.mcp.json`, core and extension packs from `.claude/skills/skill-registry.json`, the version from `.claude/VERSION`. They fill the placeholders in the entry's `blurbTemplate`, so the card's numbers are never typed by hand.
 
-`.github/workflows/kit-sync.yml` runs `node scripts/refresh.mjs --only solana-ai-kit` every day at 07:23 UTC, about five API calls. It commits only when the kit's content changed (a new tag, skill or count), not for a star-count move. The kit can trigger it at release time with a `repository_dispatch` of type `kit-release`, sent with a token that can reach this repo. It shares a concurrency group with the weekly refresh, so the two never push at once.
+`.github/workflows/kit-sync.yml` runs `node scripts/refresh.mjs --only solana-ai-kit,auditor-skill,startup-builder-skill` every day at 07:23 UTC, about twenty API calls. It commits only when content changed (a new tag, skill, file or count), not for a star-count move. The kit can trigger it at release time with a `repository_dispatch` of type `kit-release`, sent with a token that can reach this repo. It shares a concurrency group with the weekly refresh, so the two never push at once.
+
+### Superteam Brasil skills
+
+`registry.json → superteam` entries are mirrored whole: `refresh.mjs` copies every `.md` (except `.github/`) at the pin, `"pin": "release-tag"` for a repo that tags releases. `subskillRules` (kind + path regex) pick the files that get their own page, `countRules` the figures on the skill page, `main` the file rendered there (`SKILL.md`, or `README.md` for a skill set), and `install` the tabs. A file whose frontmatter strict YAML rejects is still mirrored; pages render from the stripped copy, so it cannot break the build. To add one, append an entry with those fields plus `id`, `repo`, `displayName`, `tagline`, `summary`, `category`, `kitPack`, `kitTier`, then `node scripts/refresh.mjs --only <id>` and add the id to `IDS` in `kit-sync.yml`.
 
 ### Adding an official skill
 

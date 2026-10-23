@@ -1,0 +1,69 @@
+---
+// Copy a markdown file's contents, or open it raw. The copy fetches the file
+// on click, so a page can offer it for every reference without inlining them.
+interface Props {
+  /** The .md to copy: a site path (/s/…) or a raw GitHub URL. */
+  url: string;
+  /** Names the file for screen readers, e.g. "SKILL.md" or "pitch-deck". */
+  name?: string;
+  size?: 'sm' | 'md';
+}
+const { url, name = 'this file', size = 'md' } = Astro.props;
+const external = url.startsWith('http');
+---
+
+<span class:list={['md-actions', `md-${size}`]}>
+  <button type="button" class="md-btn" data-copy-url={url} aria-label={`Copy ${name} as Markdown`}>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+    </svg>
+    <span class="md-label">Copy .md</span>
+  </button>
+  <a class="md-btn" href={url} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} aria-label={`Open ${name} as raw Markdown`}>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M14 3h7v7"></path><path d="M10 14 21 3"></path><path d="M21 14v7H3V3h7"></path>
+    </svg>
+    <span>Open .md</span>
+  </a>
+</span>
+
+<style>
+  .md-actions {
+    display: inline-flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .md-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-2);
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .md-btn:hover {
+    color: var(--text);
+    border-color: var(--green);
+  }
+  .md-btn.copied {
+    color: var(--green);
+    border-color: var(--green);
+  }
+  .md-btn.failed {
+    color: #ff8a8a;
+    border-color: #ff8a8a;
+  }
+  .md-sm .md-btn {
+    padding: 4px 9px;
+    font-size: 0.74rem;
+  }
+</style>

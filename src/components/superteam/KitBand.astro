@@ -1,0 +1,37 @@
+---
+import CopyBlock from '../CopyBlock.astro';
+import { kitEntry } from '../../lib/registry';
+
+// The Solana AI Kit, for the foot of every Superteam Brasil page: the skills
+// here ship with it, so each page points at the whole kit.
+interface Props {
+  /** Lead sentence; defaults to the generic one. */
+  lead?: string;
+}
+const kit = kitEntry();
+const s = kit?.stats;
+const { lead = 'Superteam Brasil builds these skills as part of the Solana AI Kit, its open-source Claude Code and Codex kit for Solana.' } = Astro.props;
+---
+
+{
+  kit && s && (
+    <section class="st-kit" aria-labelledby="kit-band-title">
+      <span class="badge badge-st">Solana AI Kit {kit.tag ?? `v${s.version}`}</span>
+      <h2 id="kit-band-title" style="margin-top:14px">One install for the whole kit</h2>
+      <p>
+        {`${lead} ${s.agents} specialist agents, ${s.commands} commands, ${s.mcpServers} MCP servers and ${s.packs} skill packs, behind a firewall that keeps agents away from wallet keypairs.`}
+      </p>
+      <dl class="st-stats">
+        <div><dt>Specialist agents</dt><dd>{s.agents}</dd></div>
+        <div><dt>Commands</dt><dd>{s.commands}</dd></div>
+        <div><dt>Skill packs</dt><dd>{s.packs}</dd></div>
+        <div><dt>MCP servers</dt><dd>{s.mcpServers}</dd></div>
+      </dl>
+      {kit.install && <CopyBlock command={kit.install} />}
+      <div class="st-kit-actions">
+        <a class="btn btn-primary btn-sm" href={kit.url} target="_blank" rel="noopener">Solana AI Kit on GitHub</a>
+        <a class="btn btn-ghost btn-sm" href="/superteam">All Superteam Brasil skills</a>
+      </div>
+    </section>
+  )
+}

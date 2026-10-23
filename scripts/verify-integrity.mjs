@@ -64,6 +64,16 @@ for (const r of registry.ecosystem) {
   }
 }
 
+for (const st of registry.superteam ?? []) {
+  const got = Object.keys(st.integrity ?? {}).length;
+  if (got !== (st.files ?? []).length) {
+    failures.push(`superteam ${st.id}: integrity covers ${got}/${(st.files ?? []).length} hosted files`);
+  }
+  for (const [rel, hash] of Object.entries(st.integrity ?? {})) {
+    verify(`s/${st.id}/${rel}`, hash, `superteam ${st.id}`);
+  }
+}
+
 if (failures.length > 0) {
   console.error(`✗ ${failures.length} integrity failures:`);
   for (const f of failures) console.error(`  ${f}`);

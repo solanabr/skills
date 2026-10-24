@@ -345,8 +345,8 @@
           ]
         }
       ],
-      "stars": 60,
-      "pushedAt": "2026-10-22",
+      "stars": 61,
+      "pushedAt": "2026-10-24",
       "license": "MIT",
       "description": "Claude Code / agentic security skill for Solana programs and software. Full audit-firm lifecycle, executable PoC + fix-patch delivery, a Rust pre-scanner + cross-audit memory, 1,346 checks across 20 checklists, and 131 real-world attack vectors.",
       "contributors": [
@@ -1087,7 +1087,7 @@
       },
       "commitSha": "5c203c84fa265777e35db96e39803247375396cd",
       "commitDate": "2026-10-22T16:38:33Z",
-      "pinnedAt": "2026-10-23T22:03:19.551Z",
+      "pinnedAt": "2026-10-24T12:06:20.881Z",
       "tag": "v7.6.0",
       "url": "https://github.com/solanabr/auditor-skill",
       "logo": "/logos/solanabr.png"
@@ -1136,7 +1136,7 @@
         }
       ],
       "stars": 2,
-      "pushedAt": "2026-10-22",
+      "pushedAt": "2026-10-23",
       "license": "MIT",
       "description": "Agentic skill set for startup research, market sizing, GTM, animation, graphics, and anything else important for the solo builder.",
       "contributors": [
@@ -1242,7 +1242,7 @@
         "skills/build-status/SKILL.md": "abbbe6f19947be170fc1068b209cc61003ac60b2e8af4b159b9cd86148904f15",
         "skills/build-status/references/build-md-format.md": "39f73cb271f99737029c485cace7192f2c559fbd8ed20107f2fc0a527c115fe8",
         "skills/build-status/references/traction-sources.md": "3c2f781e7b037a79f605f6a4f7b4f45682e575cdbbe25c8bb95f314489026a7c",
-        "skills/ecosystem-bd/SKILL.md": "23d16c8aa09f96ebcacf8cbae3af15f236dc83f5f44e8ced335419b292dfd80c",
+        "skills/ecosystem-bd/SKILL.md": "9c3727038f8da1d2c2bcb67b1fa1c21e9af2b86e12c46b91f959ea9ae5ece4e3",
         "skills/ecosystem-bd/references/ask.md": "3dab9e29e8eef398f889c965616e09f4a79a90e7b474acc5f5e4df6f405ec76e",
         "skills/ecosystem-bd/references/diligence.md": "755920e8793241d47cc784a5c99bc715a6b0744d08c4b4cff06c19b74a8271dd",
         "skills/ecosystem-bd/references/partner-map.md": "c3f052d1adb196fd7fdcb7bffa530cee13bd52f0c5a9983cde6e62f68850e81b",
@@ -1519,9 +1519,9 @@
         "skills": 12,
         "references": 76
       },
-      "commitSha": "51d362f0f7b16f3e118f94ee6415d0556483deef",
-      "commitDate": "2026-10-22T15:21:04Z",
-      "pinnedAt": "2026-10-23T22:03:19.551Z",
+      "commitSha": "a738bc8f54fcc39d40647ca791a5af375025c72d",
+      "commitDate": "2026-10-23T22:34:08Z",
+      "pinnedAt": "2026-10-24T12:06:20.881Z",
       "url": "https://github.com/solanabr/startup-builder-skill",
       "logo": "/logos/solanabr.png"
     }
@@ -4961,7 +4961,7 @@
       "pin": "release-tag",
       "kitStats": true,
       "stars": 111,
-      "pushedAt": "2026-10-23",
+      "pushedAt": "2026-10-24",
       "license": "MIT",
       "description": "Claude Code / Codex / AI configs for the expert Solana builder. CLAUDE.md, agents, commands, hooks, rules, skills and settings across Web, Anchor, Pinnochio, Unity, Mobile, security and more.",
       "skillCount": 1,
@@ -5020,7 +5020,7 @@
       "commitSha": "6dcd31a475a77c952138e387d8fe4b9ed52262b6",
       "logo": "/logos/solanabr.png",
       "commitDate": "2026-10-09T16:31:43Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-24T12:06:20.881Z",
       "stats": {
         "version": "2.4.0",
         "agents": 15,

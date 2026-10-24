@@ -1,6 +1,6 @@
 ---
 name: ecosystem-bd
-description: Get a Solana product listed, routed and integrated by others (Jupiter, wallets, explorers, DefiLlama, Superteam, Foundation): a dated map of what each surface requires, readiness gaps, two-way diligence and the partner ask. Use for "get listed on Jupiter", "partnerships", "integration BD".
+description: 'Get a Solana product listed, routed and integrated by others (Jupiter, wallets, explorers, DefiLlama, Superteam, Foundation): a dated map of what each surface requires, readiness gaps, two-way diligence and the partner ask. Use for "get listed on Jupiter", "partnerships", "integration BD".'
 user-invocable: true
 ---
 

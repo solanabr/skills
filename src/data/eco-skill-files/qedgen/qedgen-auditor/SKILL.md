@@ -4,7 +4,7 @@ description: Audit Anchor, Pinocchio, native Rust, or qedgen-generated Solana pr
 ---
 
 <!--
-  Mirror of https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/SKILL.md hosted by kit.superteam.codes.
+  Mirror of https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->
@@ -44,7 +44,7 @@ current working directory. Run:
 <skill-root>/scripts/preflight.sh --root <program-root> [--spec <path>] [--qedgen <binary>]
 ```
 
-Read [runtime detection](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/runtime-detection.md) if detection is
+Read [runtime detection](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/runtime-detection.md) if detection is
 ambiguous or the target contains assembly. Report the resolved root, runtime,
 mode, spec, QEDGen version, and available repro lanes before making findings.
 
@@ -67,7 +67,7 @@ cancel invariant extraction or be reported as evidence that no bugs exist.
 
 Use `standard` unless the user requested a quick look or high assurance.
 Select the model by capability rather than venue name. Read
-[model selection](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/model-selection.md) before dispatching an
+[model selection](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/model-selection.md) before dispatching an
 independent audit worker or benchmark run.
 
 | Profile | Independent passes | Resource ceiling |
@@ -79,7 +79,7 @@ independent audit worker or benchmark run.
 Do not start an unbounded convergence loop. Parallel or independent workers are
 an optional venue capability, never a requirement. Use them only when the venue
 permits them and the user or governing instructions authorize delegation.
-See [orchestration profiles](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/orchestration-profiles.md).
+See [orchestration profiles](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/orchestration-profiles.md).
 
 ### 3. Build the work list
 
@@ -125,7 +125,7 @@ fails. Capture asset flows, quantities and units, lifecycle transitions,
 authority capabilities, candidate economic equations, external assumptions,
 source anchors, and confidence. Use the dossier for manual review and intent
 ratification immediately; preserve it for spec drafting and later executable
-verification when blocked lanes recover. Read [domain invariant extraction](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/domain-invariant-extraction.md)
+verification when blocked lanes recover. Read [domain invariant extraction](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/domain-invariant-extraction.md)
 before interviewing the user or drafting domain properties.
 
 Write both `.qed/audit/<timestamp>/domain-dossier.json` and its human-readable
@@ -191,32 +191,32 @@ remain absent for the instruction to create.
 
 Read only the relevant detailed references:
 
-- [category catalog](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/category-catalog.md): per-category
+- [category catalog](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/category-catalog.md): per-category
   predicates, runtime-specific patterns, and the composition cookbook. For
   every Rust program, walk `sbpf_v3_stack_overrun_no_fault`: V0 also loses its
   stack frame gaps once SIMD-0460 is active. When the program is or will be
   built as sBPF v3 (every upgrade once SIMD-0500 is active), also walk the
   other `sbpf_v3_*` entries.
-- [manual review passes](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/manual-review-passes.md): the detailed
+- [manual review passes](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/manual-review-passes.md): the detailed
   investigation workflow when the compact steps here need expansion.
-- [report and grading](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/report-and-grading.md): classification
+- [report and grading](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/report-and-grading.md): classification
   rules, the severity grading procedure, and the report format.
-- [audit handbook](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/audit-handbook.md): adversarial mindset, tool
+- [audit handbook](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/audit-handbook.md): adversarial mindset, tool
   surface, and the reproducer-only contract.
-- [known non-findings](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/known-non-findings.md): always before filing
+- [known non-findings](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/known-non-findings.md): always before filing
   a reentrancy, closed-account-discriminator, float-determinism, token
   self-transfer, instruction-introspection, partial-state-commitment,
   unchecked-CPI-return, unresolved-syscall, or sBPF v3 finding on a V0
   program.
-- [trust-surface primitives](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/trust_surface_primitives.md): only when
+- [trust-surface primitives](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/trust_surface_primitives.md): only when
   a small dependency supplies a security-critical primitive.
-- [data-structure dependency invariants](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/data_structure_dep_invariants.md):
+- [data-structure dependency invariants](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/data_structure_dep_invariants.md):
   only when a niche collection or zero-copy dependency controls fund movement.
-- [domain invariant extraction](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/domain-invariant-extraction.md): always
+- [domain invariant extraction](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/domain-invariant-extraction.md): always
   for spec-less audits and whenever the existing spec is partial or only structural.
-- [probe orchestration](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/probe_orchestration.md): only when using
+- [probe orchestration](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/probe_orchestration.md): only when using
   Mollusk, Miri, or Crucible repro lanes.
-- [model selection](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/model-selection.md): before dispatching audit,
+- [model selection](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/model-selection.md): before dispatching audit,
   benchmark, or reconciliation workers.
 
 Framework wrappers are evidence, not syntax to ignore. Confirm what the active
@@ -241,7 +241,7 @@ confirmed invariant is `checking` until a backend runs; only impl-bound
 evidence supports `#[qed(verified)]`.
 
 Phase numbers refer to the orchestration in
-[manual review passes](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/manual-review-passes.md): Phase 1 autonomous
+[manual review passes](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/manual-review-passes.md): Phase 1 autonomous
 discovery, Phase 2 intent interview, Phase 3 refined second wave.
 
 Crucible has three bounded entry points:
@@ -256,7 +256,7 @@ Crucible has three bounded entry points:
 If QEDGen, compilation, runtime metadata, or a fuzz harness is unavailable,
 mark that entry point blocked and continue with source review and agent-authored
 tests where possible. Never weaken or reject an invariant because Crucible could
-not run. See [probe orchestration](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/probe_orchestration.md).
+not run. See [probe orchestration](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/probe_orchestration.md).
 
 ### 4. Classify evidence before severity
 
@@ -268,9 +268,9 @@ Assign exactly one evidence state:
 - `hypothesis`: intent, reachability, or a required precondition is unresolved.
 - `rejected`: disproved, framework-protected, unreachable, or suppressed. Name
   the specific guarantee that rejects it; see
-  [known non-findings](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/known-non-findings.md).
+  [known non-findings](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/known-non-findings.md).
 
-Then grade impact using [severity and evidence](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/severity-and-evidence.md).
+Then grade impact using [severity and evidence](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/severity-and-evidence.md).
 Hypotheses are not vulnerability findings and must appear in a separate
 open-questions section, if useful at all.
 
@@ -306,7 +306,7 @@ Apply these outcomes:
 - Ambiguous result: mark `hypothesis`, not `structural`.
 
 MEDIUM and LOW findings may be structural without a repro, but still require a
-concrete reachable path. See [reproducer contract](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/reproducer-contract.md).
+concrete reachable path. See [reproducer contract](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/reproducer-contract.md).
 
 ### 6. Write artifacts and report
 
@@ -321,7 +321,7 @@ verification lane was unavailable while source review continued), or
 redirected the analysis). If an audit worker halts mid-run — refusal,
 truncation, or silent stop — the run is `policy-interfered`: report what was
 covered before the stop, switch to a worker that completes audit workloads
-(see [model selection](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/model-selection.md)), and never present a
+(see [model selection](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/model-selection.md)), and never present a
 partial pass as complete coverage.
 
 Order the digest:
@@ -349,7 +349,7 @@ Every surfaced finding must include:
 When handing findings into specification, author three layers in order:
 structural contracts, ratified domain properties, then finding-derived
 regression guards. An audit is not fully specified merely because every finding
-has a guard. See [finding to spec](https://github.com/QEDGen/solana-skills/blob/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor/references/finding_to_spec.md).
+has a guard. See [finding to spec](https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor/references/finding_to_spec.md).
 
 Do not edit the audited program unless the user separately asks for fixes. Do
 not publish third-party HIGH/CRITICAL findings; recommend responsible disclosure.

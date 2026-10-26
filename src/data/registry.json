@@ -1,6 +1,6 @@
 {
   "$schema": "./registry.schema.json",
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "official": [
     {
       "id": "solana-dev",
@@ -103,7 +103,7 @@
       "refsBytes": 452691,
       "logo": "/logos/solana-foundation.png",
       "commitDate": "2026-10-16T18:12:57Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "integrity": {
         "SKILL.md": "ae28dffcf08175db72b2b5b67bdbd5f72124a7e45e94fcbac14f892cdf43d45c",
         "references/anchor/migrating-v0.32-to-v1.md": "cb2e99f4c4e5105ec4f61a5eb224b24b19385c0c44a76b87b2a90b4ecb1a5898",
@@ -257,7 +257,7 @@
       "refsBytes": 262657,
       "logo": "/logos/solana-foundation.png",
       "commitDate": "2026-06-19T14:39:34Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "integrity": {
         "SKILL.md": "37caf86d47444d570feaff67c302aa27a8179b4ea144af443aba0da899d1f4be",
         "examples/erc4626-vault/04-diff.md": "bb2d3eac96d1681d496f04c1dbc4bd24925b43280106ee91eba70448b4836ee2",
@@ -346,7 +346,7 @@
         }
       ],
       "stars": 61,
-      "pushedAt": "2026-10-24",
+      "pushedAt": "2026-10-25",
       "license": "MIT",
       "description": "Claude Code / agentic security skill for Solana programs and software. Full audit-firm lifecycle, executable PoC + fix-patch delivery, a Rust pre-scanner + cross-audit memory, 1,346 checks across 20 checklists, and 131 real-world attack vectors.",
       "contributors": [
@@ -1087,7 +1087,7 @@
       },
       "commitSha": "5c203c84fa265777e35db96e39803247375396cd",
       "commitDate": "2026-10-22T16:38:33Z",
-      "pinnedAt": "2026-10-24T12:06:20.881Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "tag": "v7.6.0",
       "url": "https://github.com/solanabr/auditor-skill",
       "logo": "/logos/solanabr.png"
@@ -1521,7 +1521,7 @@
       },
       "commitSha": "a738bc8f54fcc39d40647ca791a5af375025c72d",
       "commitDate": "2026-10-23T22:34:08Z",
-      "pinnedAt": "2026-10-24T12:06:20.881Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "url": "https://github.com/solanabr/startup-builder-skill",
       "logo": "/logos/solanabr.png"
     }
@@ -3990,7 +3990,7 @@
       "commitSha": "06b36b8b420e705ffd57b29e463f01093959d8d4",
       "logo": "/logos/sendaifun.png",
       "commitDate": "2026-07-31T15:41:32Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "0xanmol",
         "0xIchigo",
@@ -4032,7 +4032,7 @@
       ],
       "blurb": "One-command Solana workspace: idea → build → launch workflow skills (validate ideas, scaffold projects, debug programs, launch tokens, pitch decks) plus curated repo/MCP catalogs.",
       "url": "https://github.com/sendaifun/solana-new",
-      "stars": 180,
+      "stars": 179,
       "pushedAt": "2026-10-02",
       "license": "MIT",
       "description": "think. build. ship. tasteful & useful crypto apps. using a curated skills + knowledge base for AI agents on solana contracts & integrations",
@@ -4925,7 +4925,7 @@
       "commitSha": "38a494a21a3b0673e2fd581623a7f80861abd83b",
       "logo": "/logos/sendaifun.png",
       "commitDate": "2026-10-02T17:45:22Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "4manj",
         "abhijitsahoo99",
@@ -4961,7 +4961,7 @@
       "pin": "release-tag",
       "kitStats": true,
       "stars": 111,
-      "pushedAt": "2026-10-24",
+      "pushedAt": "2026-10-26",
       "license": "MIT",
       "description": "Claude Code / Codex / AI configs for the expert Solana builder. CLAUDE.md, agents, commands, hooks, rules, skills and settings across Web, Anchor, Pinnochio, Unity, Mobile, security and more.",
       "skillCount": 1,
@@ -5020,7 +5020,7 @@
       "commitSha": "6dcd31a475a77c952138e387d8fe4b9ed52262b6",
       "logo": "/logos/solanabr.png",
       "commitDate": "2026-10-09T16:31:43Z",
-      "pinnedAt": "2026-10-24T12:06:20.881Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "stats": {
         "version": "2.4.0",
         "agents": 15,
@@ -5053,7 +5053,7 @@
       "blurb": "Helius’s AI toolbox: skills for the Helius RPC/DAS stack plus SVM fundamentals, DFlow, Jupiter, OKX and Phantom integrations — shipped alongside their CLI, MCP server, and Claude plugin.",
       "url": "https://github.com/helius-labs/core-ai",
       "stars": 29,
-      "pushedAt": "2026-10-22",
+      "pushedAt": "2026-10-24",
       "license": "MIT",
       "description": "Official Helius AI tooling repository ",
       "skillCount": 6,
@@ -5285,7 +5285,7 @@
       "commitSha": "f8c74e6a357fe89fc93c80bac522f5a8b6a7cafe",
       "logo": "/logos/helius-labs.png",
       "commitDate": "2026-10-22T19:19:21Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "0xIchigo",
         "0xtom1",
@@ -5433,7 +5433,7 @@
       "commitSha": "a2211e3f6a7caa03310c7a9a8d816e723b0bdc5f",
       "logo": "/logos/jup-ag.png",
       "commitDate": "2026-07-07T07:39:15Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "0xanmol",
         "AetherSPL",
@@ -5508,7 +5508,7 @@
       "commitSha": "b981b0db6eedd5cb93b67d73a957d6a46915138f",
       "logo": "/logos/metaplex-foundation.png",
       "commitDate": "2026-10-21T13:18:36Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "blockiosaurus",
         "MarkSackerberg",
@@ -5720,7 +5720,7 @@
       "commitSha": "8664b5be49d16b6962129b53def20f6dfa99443d",
       "logo": "/logos/solana-mobile.png",
       "commitDate": "2026-10-21T05:05:57Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "0xanmol",
         "beeman",
@@ -5740,7 +5740,7 @@
       ],
       "blurb": "QuickNode’s Solana/Anchor development skill — program patterns and summaries tuned for their RPC and Streams stack.",
       "url": "https://github.com/quiknode-labs/solana-anchor-claude-skill",
-      "stars": 100,
+      "stars": 101,
       "pushedAt": "2026-10-23",
       "license": "MIT",
       "description": "The Solana and Anchor Claude skill",
@@ -5782,7 +5782,7 @@
       "commitSha": "a440e16f752139031840d606e1363637404e5d01",
       "logo": "/logos/quiknode-labs.png",
       "commitDate": "2026-10-04T23:27:08Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "claude",
         "mikemaccana",
@@ -5845,7 +5845,7 @@
       "commitSha": "17e9bf07759d25fcec9cc3a751a081e448bc602c",
       "logo": "/logos/ColosseumOrg.png",
       "commitDate": "2026-10-05T16:51:12Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "mxmnci",
         "natelevine"
@@ -5865,7 +5865,7 @@
       "blurb": "Formal verification for Solana programs in Lean — generate and check proofs of program properties, plus an auditor skill that hunts for violations.",
       "url": "https://github.com/QEDGen/solana-skills",
       "stars": 69,
-      "pushedAt": "2026-10-01",
+      "pushedAt": "2026-10-26",
       "license": "MIT",
       "description": "Ship without fear. Proofs, not promises.",
       "skillCount": 3,
@@ -5875,7 +5875,7 @@
           "name": "qedgen-auditor-bench",
           "description": "Benchmark the QEDGen auditor against sanitized Solana programs with labeled third-party or independently verified findings. Use when the user asks to benchmark, evaluate, regression-test, measure recall or precision, compare auditor versions, or compare auditor models. Produces per-run and union recall, precision, severity agreement, evidence quality, reproducer fire rate, cost, and latency without leaking ground truth to audit workers.",
           "category": "security",
-          "url": "https://github.com/QEDGen/solana-skills/tree/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor-bench",
+          "url": "https://github.com/QEDGen/solana-skills/tree/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor-bench",
           "multiFile": true,
           "hosted": true,
           "dir": "skills/qedgen-auditor-bench",
@@ -5906,13 +5906,13 @@
             "schemas/score.schema.json",
             "schemas/validate.sh"
           ],
-          "commitSha": "712cbb91a3ee8ad009069359951e77cbd9d75ff9",
-          "commitDate": "2026-10-01T07:40:50Z",
+          "commitSha": "d282e001ec7cf6d7788115843615c7ddf80404f3",
+          "commitDate": "2026-10-26T10:10:09Z",
           "lastAuthor": "abishekk92",
           "blobSha": "d672b98d4577142f762fa6e5052950313a95d688",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "58f73c9de076f8a8fe7579a54dba001c7c3f03449c51bd509ff251ec4d0a0efe"
+            "SKILL.md": "7392e0e1a5ae370ee9c7f2c33ecb8d2df5063104aa17e532cb6ac3e9da0aa40f"
           },
           "hostedPath": "/s/qedgen/qedgen-auditor-bench/SKILL.md"
         },
@@ -5920,7 +5920,7 @@
           "name": "qedgen-auditor",
           "description": "Audit a Solana program for vulnerabilities. Use when the user asks to audit, review, or check a Solana program for security issues. Surfaces real vulnerabilities first; spec-coverage gaps second.",
           "category": "security",
-          "url": "https://github.com/QEDGen/solana-skills/tree/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen-auditor",
+          "url": "https://github.com/QEDGen/solana-skills/tree/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor",
           "multiFile": true,
           "hosted": true,
           "dir": "skills/qedgen-auditor",
@@ -5984,13 +5984,13 @@
             "test-fixtures/domain-artifacts/valid-resolved-domain-sequences.json",
             "test-fixtures/domain-artifacts/valid-spec-handoff.json"
           ],
-          "commitSha": "712cbb91a3ee8ad009069359951e77cbd9d75ff9",
-          "commitDate": "2026-10-01T07:40:50Z",
+          "commitSha": "d282e001ec7cf6d7788115843615c7ddf80404f3",
+          "commitDate": "2026-10-26T10:10:09Z",
           "lastAuthor": "abishekk92",
           "blobSha": "f91eb49a9735236937c9cd8a9fa3826d3bf4a28f",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "7d32c9f87c7a8bf6683b4945fa5883bdaa1590829b6c459776a8cf264f0accc2"
+            "SKILL.md": "b636735fac2963f04b8c08b63d144ba19a3f0c8847a925503d4578e8f9e419fc"
           },
           "hostedPath": "/s/qedgen/qedgen-auditor/SKILL.md"
         },
@@ -5998,16 +5998,16 @@
           "name": "qedgen",
           "description": "Find the bugs your tests miss. Define what your Solana program must guarantee in a .qedspec; QEDGen validates it, generates tests and proofs, and scaffolds agent-fill Rust code. Trigger when the user asks for \"qedgen\", \"qedspec\", \"verify my code\", \"prove correctness\", formal verification, property testing, generated Kani/proptest/Lean artifacts, or Solana program correctness.",
           "category": null,
-          "url": "https://github.com/QEDGen/solana-skills/tree/712cbb91a3ee8ad009069359951e77cbd9d75ff9/skills/qedgen",
+          "url": "https://github.com/QEDGen/solana-skills/tree/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen",
           "multiFile": true,
           "hosted": true,
           "dir": "skills/qedgen",
           "slug": "qedgen",
-          "commitSha": "712cbb91a3ee8ad009069359951e77cbd9d75ff9",
-          "commitDate": "2026-10-01T07:40:50Z",
+          "commitSha": "d282e001ec7cf6d7788115843615c7ddf80404f3",
+          "commitDate": "2026-10-26T10:10:09Z",
           "lastAuthor": "abishekk92",
-          "bytes": 26012,
-          "words": 3503,
+          "bytes": 26512,
+          "words": 3580,
           "files": [
             "LICENSE",
             "VERSION",
@@ -6065,18 +6065,18 @@
             "tools/",
             "tools/qedgen"
           ],
-          "blobSha": "b6dde70c7e0eb86729d161f3133928818005a9b6",
+          "blobSha": "7cb451e0a3dc0729770e9a0b92342568f0a8d9aa",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "e7024954ad72be0621d00eb83a1aa19ff3ea6c15a1cb9eb3d407dd81ccd009fb"
+            "SKILL.md": "5b8316b53c3bfb5af62272a0f8e836b3d433e87674a888eb415be492b25ee25d"
           },
           "hostedPath": "/s/qedgen/qedgen/SKILL.md"
         }
       ],
-      "commitSha": "712cbb91a3ee8ad009069359951e77cbd9d75ff9",
+      "commitSha": "d282e001ec7cf6d7788115843615c7ddf80404f3",
       "logo": "/logos/QEDGen.png",
-      "commitDate": "2026-10-01T07:40:50Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "commitDate": "2026-10-26T10:10:09Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "0xharp",
         "abishekk92",
@@ -6137,7 +6137,7 @@
       "commitSha": "6154caba7fb3b92d549fb3f38ffaf77645e7045f",
       "logo": "/logos/frankcastleauditor.png",
       "commitDate": "2026-10-05T10:03:38Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "Abduovv",
         "Arrowana",
@@ -6201,7 +6201,7 @@
       "commitSha": "762b3b28e62b4c6cabc01ae179d316958a852a07",
       "logo": "/logos/solanabr.png",
       "commitDate": "2026-01-30T00:05:51Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "kauenet"
       ]
@@ -6219,8 +6219,8 @@
       ],
       "blurb": "The security firm’s public skill set — we index the Solana-relevant picks: a vulnerability scanner distilled from their audit practice, plus audit-prep, code-maturity, fuzzing and static-analysis skills that apply to any Rust program.",
       "url": "https://github.com/trailofbits/skills",
-      "stars": 7758,
-      "pushedAt": "2026-10-23",
+      "stars": 7807,
+      "pushedAt": "2026-10-24",
       "license": "CC-BY-SA-4.0",
       "description": "Trail of Bits skills for security research, vulnerability detection, and audit workflows",
       "skillCount": 74,
@@ -6471,7 +6471,7 @@
       "commitSha": "196a9073ab10d35bacf111f945e02c00b2c6883a",
       "logo": "/logos/trailofbits.png",
       "commitDate": "2026-10-23T09:26:17Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "2023Anita",
         "ahpaleus",
@@ -6607,7 +6607,7 @@
       ],
       "logo": "/logos/magicblock-labs.png",
       "commitDate": "2026-10-23T08:17:16Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "dhruvja",
         "GabrielePicco",
@@ -6628,7 +6628,7 @@
       ],
       "blurb": "Official Meteora skill inside their invent monorepo: launch tokens on DBC, create and manage DAMM v1/v2 and DLMM pools, swap, claim fees, and script the Meteora SDKs.",
       "url": "https://github.com/MeteoraAg/meteora-invent",
-      "stars": 35,
+      "stars": 36,
       "pushedAt": "2026-09-20",
       "commitSha": "dd77ef3d5aede3f0ff21d566d052097200417f5e",
       "license": "MIT",
@@ -6686,7 +6686,7 @@
       ],
       "logo": "/logos/MeteoraAg.png",
       "commitDate": "2026-09-20T18:16:49Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "avicoder",
         "dannxbt",
@@ -6981,7 +6981,7 @@
       ],
       "logo": "/logos/alchemyplatform.png",
       "commitDate": "2026-08-26T18:28:17Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "0xmts",
         "alchemy-bot",
@@ -7201,7 +7201,7 @@
       ],
       "logo": "/logos/phantom.png",
       "commitDate": "2026-03-09T17:00:55Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "Th3Ya0vi"
       ]
@@ -7362,7 +7362,7 @@
       ],
       "logo": "/logos/Lightprotocol.png",
       "commitDate": "2026-06-08T23:42:04Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "tilo-14"
       ]
@@ -7445,7 +7445,7 @@
       ],
       "logo": "/logos/DFlowProtocol.png",
       "commitDate": "2026-10-08T20:02:16Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "lukecd",
         "Th3Ya0vi"
@@ -7522,7 +7522,7 @@
       ],
       "logo": "/logos/quiknode-labs.png",
       "commitDate": "2026-08-12T15:36:22Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "0xsergen",
         "rx294",
@@ -7544,7 +7544,7 @@
       ],
       "blurb": "Official pump.fun skills for creating coins, trading bonding-curve and PumpSwap AMM pools, managing creator fees, and building Tokenized Agents.",
       "url": "https://github.com/pump-fun/pump-fun-skills",
-      "stars": 33,
+      "stars": 34,
       "pushedAt": "2026-06-23",
       "license": null,
       "description": "This repo contains pump fun skills for AI agents",
@@ -7684,7 +7684,7 @@
       "commitSha": "c8aaa6a8fb766b2765d2663744515bbf88d04380",
       "logo": "/logos/pump-fun.png",
       "commitDate": "2026-04-23T16:28:52Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "sushant-baton"
       ]
@@ -8045,7 +8045,7 @@
       "commitSha": "6365a9d22062f3e13e5206281aeddb45e6b36d3d",
       "logo": "/logos/pyth-network.png",
       "commitDate": "2026-03-18T13:29:27Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "aditya520"
       ]
@@ -8064,8 +8064,8 @@
       ],
       "blurb": "OKX's official OnchainOS skills — agentic wallet, DEX market data, DeFi, portfolio, payments, and dapp discovery across Solana and 20+ chains, including pump.fun meme-launch tooling.",
       "url": "https://github.com/okx/onchainos-skills",
-      "stars": 342,
-      "pushedAt": "2026-10-22",
+      "stars": 344,
+      "pushedAt": "2026-10-26",
       "license": null,
       "description": "Skills for AI agents to integrate with the OKX OnchainOS API — Wallet, token discovery, market data, DEX swap, and transaction broadcasting.",
       "skillCount": 7,
@@ -8388,7 +8388,7 @@
       "commitSha": "73856f4ac90b2d9c59f44d35d2f7ee79ef298a4c",
       "logo": "/logos/okx.png",
       "commitDate": "2026-10-22T14:35:56Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "BlueBd",
         "DingMing-okx",
@@ -8473,7 +8473,7 @@
       "commitSha": "80706ea9381fc97d87215b3b1d51cbc16492101b",
       "logo": "/logos/chainstacklabs.png",
       "commitDate": "2026-03-20T18:45:37Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": [
         "smypmsa"
       ]
@@ -8518,7 +8518,7 @@
       "commitSha": "86b0343e8c4351e87b2470e785d11acb99180722",
       "logo": "/logos/getpara.png",
       "commitDate": "2026-02-16T20:40:50Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "contributors": []
     },
     {
@@ -8715,7 +8715,7 @@
       "description": "orquestra is a free, open-source platform that instantly converts Solana program IDLs into production-ready APIs & MCP server.",
       "commitSha": "47d8961e34ca8015fa84864c023b1f59385b4fc3",
       "commitDate": "2026-08-17T18:22:52Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "logo": "/logos/berkayoztunc.png",
       "contributors": [
         "berkayoztunc",
@@ -8794,7 +8794,7 @@
       "description": "Built on the v2 packaging and workflow model from pashov/skills, then adapted for Solana-specific security review.",
       "commitSha": "e501915ff4953ed25ff40bd9e776de370b350e8d",
       "commitDate": "2026-03-23T10:29:17Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "logo": "/logos/sanbir.png",
       "contributors": [
         "sanbir"
@@ -8967,13 +8967,13 @@
           "hostedPath": "/s/agi-trading/solana-rpc/SKILL.md"
         }
       ],
-      "stars": 436,
+      "stars": 443,
       "pushedAt": "2026-09-03",
       "license": "MIT",
       "description": "68 trading, DeFi, and quantitative finance Agent Skills. Works with Claude Code, Cursor, Codex, Gemini CLI, and 30+ other tools.",
       "commitSha": "981e1d736cdc02bdc1c55c74ec9224e956414706",
       "commitDate": "2026-09-03T02:19:34Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "logo": "/logos/agiprolabs.png",
       "contributors": [
         "agiprolabs",
@@ -9048,7 +9048,7 @@
       "description": "154 Web3 MCP tools for Claude Code, custody-free. Plus an agent wallet prompt injection can't drain: per-tx, daily, and on-chain (ERC-4337) spending caps the model can't bypass. EVM + Solana + Tron DEX/DeFi, perps, prediction markets, contract deploy + audit.",
       "commitSha": "ae19957d7665127f442b43951f372be19baa2489",
       "commitDate": "2026-09-09T09:39:15Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z",
       "logo": "/logos/ChainGPT-org.png",
       "contributors": [
         "ceoguy"
@@ -9088,7 +9088,7 @@
       "pushedAt": "2026-04-09",
       "commitSha": "747211bef454c79e7a6ae4ec2ab9f71b44ae739a",
       "commitDate": "2026-04-03T20:55:58Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-26T12:21:27.427Z"
     },
     {
       "name": "Octav API Skill",
@@ -9099,7 +9099,7 @@
       "pushedAt": "2026-08-05",
       "commitSha": "0c1a8632543a31dc36f82df1d93f6b2bba640d21",
       "commitDate": "2026-08-05T21:33:58Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-26T12:21:27.427Z"
     },
     {
       "name": "PNP Markets Skill",
@@ -9110,7 +9110,7 @@
       "pushedAt": "2026-04-11",
       "commitSha": "cd43f8019b0966ca4c672d056cea416ab86a8180",
       "commitDate": "2026-04-11T21:16:51Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-26T12:21:27.427Z"
     },
     {
       "name": "Solana Skills Plugin",
@@ -9118,10 +9118,10 @@
       "description": "Anchor/native program development, security auditing, ZK compression.",
       "logo": "/logos/tenequm.png",
       "stars": 40,
-      "pushedAt": "2026-10-23",
-      "commitSha": "7472ecc58083ddc2f1af6820670fdcb6ca36f8d7",
-      "commitDate": "2026-10-23T20:18:34Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pushedAt": "2026-10-24",
+      "commitSha": "b648a09c2a238d47fb690777c1095d210299ce58",
+      "commitDate": "2026-10-23T23:59:48Z",
+      "pinnedAt": "2026-10-26T12:21:27.427Z"
     },
     {
       "name": "Bitget Wallet Skill",
@@ -9132,7 +9132,7 @@
       "pushedAt": "2026-05-13",
       "commitSha": "920044e8aad3235f0cf10655f906320b5734334e",
       "commitDate": "2026-05-13T08:37:15Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-26T12:21:27.427Z"
     },
     {
       "name": "Project 0 Agents",
@@ -9143,7 +9143,7 @@
       "pushedAt": "2026-10-23",
       "commitSha": "9391567879677d08393622a1ac2002b999d354a5",
       "commitDate": "2026-10-23T11:11:33Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-26T12:21:27.427Z"
     },
     {
       "name": "Breeze Agent Kit",
@@ -9154,7 +9154,7 @@
       "pushedAt": "2026-03-30",
       "commitSha": "f59885a36fb5f398a09bc157033026ab3e17d53c",
       "commitDate": "2026-03-30T19:50:29Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-26T12:21:27.427Z"
     },
     {
       "name": "SP3ND Agent Skill",
@@ -9165,7 +9165,7 @@
       "pushedAt": "2026-09-16",
       "commitSha": "d90c465f67baf97c33cca2d747517e65dcab0168",
       "commitDate": "2026-09-16T17:48:28Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-26T12:21:27.427Z"
     },
     {
       "name": "Sentients",
@@ -9176,7 +9176,7 @@
       "pushedAt": "2026-02-15",
       "commitSha": "1a3c751316cd6ffacdb40cc19a8210e5ac7fb56b",
       "commitDate": "2026-02-15T18:24:51Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-26T12:21:27.427Z"
     },
     {
       "name": "MoonPay Skills",
@@ -9187,18 +9187,18 @@
       "pushedAt": "2026-10-20",
       "commitSha": "aa672ab120ce366c064b8facc4dc18bd465ac09d",
       "commitDate": "2026-05-20T17:58:02Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-26T12:21:27.427Z"
     },
     {
       "name": "Bankr Skills",
       "repo": "BankrBot/skills",
       "description": "Multi-chain agent-skill marketplace whose core trading skill runs Solana wallets and Raydium LaunchLab token launches.",
       "logo": "/logos/BankrBot.png",
-      "stars": 1205,
-      "pushedAt": "2026-10-23",
+      "stars": 1206,
+      "pushedAt": "2026-10-24",
       "commitSha": "7a06e93b6d860b0ec73ec5cc3339309eb3ac1bf4",
       "commitDate": "2026-10-23T11:28:03Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-26T12:21:27.427Z"
     },
     {
       "name": "Switchboard Agent Skills",
@@ -9209,7 +9209,7 @@
       "pushedAt": "2026-09-04",
       "commitSha": "6262810ebbc7feed25f04f6e98fcdeb53eaec833",
       "commitDate": "2026-09-04T18:47:27Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-26T12:21:27.427Z"
     },
     {
       "name": "Wormhole Interop Skill",
@@ -9220,7 +9220,7 @@
       "pushedAt": "2026-03-23",
       "commitSha": "5c5d1e324f8a6ae14114e5c70b9853a58b2d7bab",
       "commitDate": "2026-03-23T20:46:45Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-26T12:21:27.427Z"
     },
     {
       "name": "Solana Dev Skills",
@@ -9231,7 +9231,7 @@
       "pushedAt": "2026-05-22",
       "commitSha": "fac9cf1c88684411416d6fd41a8360d630741f8e",
       "commitDate": "2026-05-22T04:12:24Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-26T12:21:27.427Z"
     },
     {
       "name": "Sol CLI Skill",
@@ -9242,8 +9242,8 @@
       "pushedAt": "2026-03-04",
       "commitSha": "554f9e28df72b2482b6fee041b78f08cabba2377",
       "commitDate": "2026-03-04T18:10:20Z",
-      "pinnedAt": "2026-10-23T21:49:29.604Z"
+      "pinnedAt": "2026-10-26T12:21:27.427Z"
     }
   ],
-  "pinnedAt": "2026-10-23T21:49:29.604Z"
+  "pinnedAt": "2026-10-26T12:21:27.427Z"
 }

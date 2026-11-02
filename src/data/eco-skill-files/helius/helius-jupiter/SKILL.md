@@ -19,7 +19,7 @@ metadata:
 ---
 
 <!--
-  Mirror of https://github.com/helius-labs/core-ai/blob/f8c74e6a357fe89fc93c80bac522f5a8b6a7cafe/helius-skills/helius-jupiter/SKILL.md hosted by kit.superteam.codes.
+  Mirror of https://github.com/helius-labs/core-ai/blob/80bee664d1c2e32abbb1f765e7096ce162c83482/helius-skills/helius-jupiter/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

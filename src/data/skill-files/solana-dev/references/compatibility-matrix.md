@@ -343,7 +343,7 @@ Full reference: [transactions-v1.md](./transactions-v1.md). Feature gate `txv1aq
 | `@solana/kit-plugin-wallet` | **0.20.0** (current 0.21.0) | `connected.supportedTransactionVersions` typed to include `1` (`@solana/wallet-standard-features` 1.5). 0.21 peers on `@solana/react ^8.4.0` and `react ^19.3.0` |
 | `@solana/kit-plugin-signer` | 0.19.0 | Pairs with the 0.19 rpc/litesvm plugins |
 | `@solana/react` | 8.x | Kit 8 client bindings |
-| `@solana/web3.js` v3 | **3.0.0** (current 3.0.2) | `compileToV1Message`; send and read. On npm `next` until 2026-10-19, then `latest` |
+| `@solana/web3.js` v3 | **3.0.0** (current 3.1.1) | `compileToV1Message`; send and read. npm `latest` |
 | `@solana/web3.js` 1.x | **1.99.0** | ⚠️ Read-only — 1.x never sends v1 |
 | `@anchor-lang/core` | **0.32.2 / 0.31.2** | Read-only, via web3.js 1.99.0. ⚠️ 1.x through 1.2.1 still fetch with `maxSupportedTransactionVersion: 0`; v1 support is [#4977](https://github.com/otter-sec/anchor/pull/4977) (open) |
 | `solders` (Python) | **0.29.0** | Read and send. Earlier releases have neither |

@@ -4,7 +4,7 @@ description: Benchmark the QEDGen auditor against sanitized Solana programs with
 ---
 
 <!--
-  Mirror of https://github.com/QEDGen/solana-skills/blob/d282e001ec7cf6d7788115843615c7ddf80404f3/skills/qedgen-auditor-bench/SKILL.md hosted by kit.superteam.codes.
+  Mirror of https://github.com/QEDGen/solana-skills/blob/7b651b917ef7b5540b312f26ab07ab288f9ab0ee/skills/qedgen-auditor-bench/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

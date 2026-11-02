@@ -376,7 +376,7 @@ Matching readers: `getTransactionMessageComputeUnitLimit`, `getTransactionMessag
 | `@solana/kit-plugin-rpc` | **0.19.0+** — `solanaRpc({ transactionConfig: { version: 1 } })` plans, estimates, and sends v1. 0.18 and earlier throw `Version 1 transactions are not yet supported by rpcTransactionPlanner` |
 | `@solana/kit-plugin-litesvm` | **0.19.0+** — `litesvm({ transactionConfig: { version: 1 } })`; writes maximum limits instead of estimating |
 | `@solana/kit-plugin-wallet` | **0.20.0+** — `connected.supportedTransactionVersions` typed to include `1` (via `@solana/wallet-standard-features` 1.5) |
-| `@solana/web3.js` v3 | **`3.0.0`+** (released 2026-10-01; current 3.0.2) — `compileToV1Message`, send and read |
+| `@solana/web3.js` v3 | **`3.0.0`+** (released 2026-10-01; current 3.1.1) — `compileToV1Message`, send and read |
 | `@solana/web3.js` 1.x | **`1.99.0`** — **read only**. 1.x never builds, signs, serializes, or sends v1; migrate to kit 8 for that |
 | `@anchor-lang/core` | **0.32.2 / 0.31.2** read v1 through web3.js 1.99.0. 1.x through 1.2.1 still fetch with `maxSupportedTransactionVersion: 0`; v1 support is [#4977](https://github.com/otter-sec/anchor/pull/4977) (open) |
 | Rust `solana-*` | **4.x** (`solana-message` 4.1.0 added `v1::Message`; 4.2.x adds the inherent `Message::serialize()`). Anchor programs default to the 3.x crate line; Anchor 1.2.1 can opt into 4.x with the `solana-v4` feature. The 4.x requirement is client-side |

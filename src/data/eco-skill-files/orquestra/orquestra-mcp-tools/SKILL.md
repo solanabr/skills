@@ -11,7 +11,7 @@ description: |
 ---
 
 <!--
-  Mirror of https://github.com/berkayoztunc/orquestra/blob/47d8961e34ca8015fa84864c023b1f59385b4fc3/.claude/skills/orquestra-mcp-tools/SKILL.md hosted by kit.superteam.codes.
+  Mirror of https://github.com/berkayoztunc/orquestra/blob/a09bd18fc49dd479d944b5753929e9543868b64d/.claude/skills/orquestra-mcp-tools/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

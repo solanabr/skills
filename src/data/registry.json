@@ -1,6 +1,6 @@
 {
   "$schema": "./registry.schema.json",
-  "updated": "2026-11-02",
+  "updated": "2026-11-09",
   "official": [
     {
       "id": "solana-dev",
@@ -13,7 +13,7 @@
       "branch": "main",
       "dir": "skills/solana-dev",
       "license": "MIT",
-      "version": "2.7.0",
+      "version": "2.8.0",
       "compatibility": "Requires Node.js 20.18+, Rust toolchain, Solana CLI, Anchor CLI",
       "multiFile": true,
       "files": [
@@ -57,16 +57,17 @@
         "references/surfpool/kit-plugin.md",
         "references/surfpool/overview.md",
         "references/testing.md",
+        "references/tokens.md",
         "references/transactions-v1.md"
       ],
-      "words": 1898,
-      "githubUrl": "https://github.com/solana-foundation/solana-dev-skill/tree/a265d11fcc1b0cfbbbe9dfe9deda57fd3c210eee/skills/solana-dev",
-      "skillFileUrl": "https://github.com/solana-foundation/solana-dev-skill/blob/a265d11fcc1b0cfbbbe9dfe9deda57fd3c210eee/skills/solana-dev/SKILL.md",
-      "rawUrl": "https://raw.githubusercontent.com/solana-foundation/solana-dev-skill/a265d11fcc1b0cfbbbe9dfe9deda57fd3c210eee/skills/solana-dev/SKILL.md",
+      "words": 1911,
+      "githubUrl": "https://github.com/solana-foundation/solana-dev-skill/tree/c9da2624cc6baca5c8c2123ea50d92ef19f1c917/skills/solana-dev",
+      "skillFileUrl": "https://github.com/solana-foundation/solana-dev-skill/blob/c9da2624cc6baca5c8c2123ea50d92ef19f1c917/skills/solana-dev/SKILL.md",
+      "rawUrl": "https://raw.githubusercontent.com/solana-foundation/solana-dev-skill/c9da2624cc6baca5c8c2123ea50d92ef19f1c917/skills/solana-dev/SKILL.md",
       "hostedPath": "/s/solana-dev/SKILL.md",
-      "stars": 582,
-      "pushedAt": "2026-10-27",
-      "commitSha": "a265d11fcc1b0cfbbbe9dfe9deda57fd3c210eee",
+      "stars": 590,
+      "pushedAt": "2026-11-04",
+      "commitSha": "c9da2624cc6baca5c8c2123ea50d92ef19f1c917",
       "hostedFiles": [
         "references/anchor/migrating-v0.32-to-v1.md",
         "references/common-errors.md",
@@ -102,16 +103,17 @@
         "references/surfpool/kit-plugin.md",
         "references/surfpool/overview.md",
         "references/testing.md",
+        "references/tokens.md",
         "references/transactions-v1.md"
       ],
       "summary": "The Foundation's end-to-end development playbook: wallet connection, Anchor and Pinocchio programs, Codama client generation, Surfpool/LiteSVM testing, and security checklists — Kit-first, with 28 focused reference files.",
-      "bytes": 16476,
-      "refsBytes": 475002,
+      "bytes": 16604,
+      "refsBytes": 494011,
       "logo": "/logos/solana-foundation.png",
-      "commitDate": "2026-10-27T02:28:46Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "commitDate": "2026-11-04T18:41:13Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "integrity": {
-        "SKILL.md": "3f6c786b89d523d769052984d732f4f3e0f2fa906baed294eebf58d780df45fb",
+        "SKILL.md": "a0b75a296d408f2b88bf45b6633b4944f5ed00cde2bbb080c7f74b695d35d93a",
         "references/anchor/migrating-v0.32-to-v1.md": "cb2e99f4c4e5105ec4f61a5eb224b24b19385c0c44a76b87b2a90b4ecb1a5898",
         "references/common-errors.md": "2c1580363a1be9de74009426de77c025ebf0c198c4a97ed5e62f8f98a9971ebc",
         "references/compatibility-matrix.md": "4a4b92b0d3d6ca50fd6b6278383c865c6b15f299ff92b277051d551da6014d7c",
@@ -130,7 +132,7 @@
         "references/kit/plugins.md": "6843d804aae9f090fcaa65a1f5de4ae3fb56e7d6972dee2b373f9d815dc66a53",
         "references/kit/programs/compute-budget.md": "6f22ef3da11bb27b6da9b5d3b347332a7c47813c06090d4e191cd57d67987490",
         "references/kit/programs/system.md": "4eef80378ad000ad1f67d8e2694afe8d41ecb71b2305b25212fa09f23467603f",
-        "references/kit/programs/token-2022.md": "e0b31ff8baa286ce35e02f5834f6ad0764ef6d1852d6803c47ecdc69f729b2fc",
+        "references/kit/programs/token-2022.md": "f166d5b4a661b041fad563c1b22c88233feca3bc317642173c26f04141f2aac7",
         "references/kit/programs/token.md": "430ebbab11fe104fe3ea2af30dda69d915ccd1c45a566af9d7729f5c12220354",
         "references/kit/react.md": "2ed0aeab5a8ae8b6f481367b25ab5dbe0ac498557a8ea3a62fdf8c7361d0b25a",
         "references/kora.md": "59151bd4c9f1408b0c431fa7810da8d82d9baf58343817994473e0c90618be66",
@@ -146,9 +148,10 @@
         "references/surfpool/kit-plugin.md": "3f5788b256ab01bb482e6072388e3378d2ebe9e3a923b9c78d18991fecc95c1c",
         "references/surfpool/overview.md": "5203356d91d3fc897eca8fefdd87a85d0135b9286251482663f1103f95efd526",
         "references/testing.md": "24da8f60be683f6dcdbcca128bb27d126e347470e6915bb8fbde0a606bcdb820",
+        "references/tokens.md": "a08fb988d33d82712d0a383e2e1e366e83f7cd5f859e222f371092f7ec67b8bf",
         "references/transactions-v1.md": "938747000c700564a15e4b547435095ab9dfd09d884cb241088af646b8d1740d"
       },
-      "lastAuthor": "gitteri",
+      "lastAuthor": "amilz",
       "contributors": [
         "amanhij",
         "amilz",
@@ -266,7 +269,7 @@
       "refsBytes": 262657,
       "logo": "/logos/solana-foundation.png",
       "commitDate": "2026-06-19T14:39:34Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "integrity": {
         "SKILL.md": "37caf86d47444d570feaff67c302aa27a8179b4ea144af443aba0da899d1f4be",
         "examples/erc4626-vault/04-diff.md": "bb2d3eac96d1681d496f04c1dbc4bd24925b43280106ee91eba70448b4836ee2",
@@ -355,7 +358,7 @@
         }
       ],
       "stars": 63,
-      "pushedAt": "2026-11-01",
+      "pushedAt": "2026-11-09",
       "license": "MIT",
       "description": "Claude Code / agentic security skill for Solana programs and software. Full audit-firm lifecycle, executable PoC + fix-patch delivery, a Rust pre-scanner + cross-audit memory, 1,346 checks across 20 checklists, and 131 real-world attack vectors.",
       "contributors": [
@@ -1096,7 +1099,7 @@
       },
       "commitSha": "5c203c84fa265777e35db96e39803247375396cd",
       "commitDate": "2026-10-22T16:38:33Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "tag": "v7.6.0",
       "url": "https://github.com/solanabr/auditor-skill",
       "logo": "/logos/solanabr.png"
@@ -1530,7 +1533,7 @@
       },
       "commitSha": "a738bc8f54fcc39d40647ca791a5af375025c72d",
       "commitDate": "2026-10-23T22:34:08Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "url": "https://github.com/solanabr/startup-builder-skill",
       "logo": "/logos/solanabr.png"
     }
@@ -1551,7 +1554,7 @@
       ],
       "blurb": "The largest community aggregator of Solana protocol skills — Jupiter, Kamino, Meteora, Orca, Raydium, Pyth, Helius, Metaplex, Squads and 40+ more, one folder per protocol.",
       "url": "https://github.com/sendaifun/skills",
-      "stars": 131,
+      "stars": 130,
       "pushedAt": "2026-07-31",
       "license": "Apache-2.0",
       "description": "a public marketplace of all solana-related skills for agents to learn from!",
@@ -3999,7 +4002,7 @@
       "commitSha": "06b36b8b420e705ffd57b29e463f01093959d8d4",
       "logo": "/logos/sendaifun.png",
       "commitDate": "2026-07-31T15:41:32Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "0xanmol",
         "0xIchigo",
@@ -4934,7 +4937,7 @@
       "commitSha": "38a494a21a3b0673e2fd581623a7f80861abd83b",
       "logo": "/logos/sendaifun.png",
       "commitDate": "2026-10-02T17:45:22Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "4manj",
         "abhijitsahoo99",
@@ -4970,7 +4973,7 @@
       "pin": "release-tag",
       "kitStats": true,
       "stars": 111,
-      "pushedAt": "2026-10-27",
+      "pushedAt": "2026-11-02",
       "license": "MIT",
       "description": "Claude Code / Codex / AI configs for the expert Solana builder. CLAUDE.md, agents, commands, hooks, rules, skills and settings across Web, Anchor, Pinnochio, Unity, Mobile, security and more.",
       "skillCount": 1,
@@ -5029,7 +5032,7 @@
       "commitSha": "6dcd31a475a77c952138e387d8fe4b9ed52262b6",
       "logo": "/logos/solanabr.png",
       "commitDate": "2026-10-09T16:31:43Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "stats": {
         "version": "2.4.0",
         "agents": 15,
@@ -5061,8 +5064,8 @@
       ],
       "blurb": "Helius’s AI toolbox: skills for the Helius RPC/DAS stack plus SVM fundamentals, DFlow, Jupiter, OKX and Phantom integrations — shipped alongside their CLI, MCP server, and Claude plugin.",
       "url": "https://github.com/helius-labs/core-ai",
-      "stars": 29,
-      "pushedAt": "2026-10-31",
+      "stars": 30,
+      "pushedAt": "2026-11-09",
       "license": "MIT",
       "description": "Official Helius AI tooling repository ",
       "skillCount": 6,
@@ -5072,7 +5075,7 @@
           "name": "helius-dflow",
           "description": "Build Solana trading applications combining DFlow trading APIs with Helius infrastructure. Covers spot swaps (imperative and declarative), prediction markets, real-time market streaming, Proof KYC, the DFlow Agent CLI for autonomous trading, transaction submission via Sender, fee optimization, shred-level streaming via LaserStream, and wallet intelligence.",
           "category": "defi",
-          "url": "https://github.com/helius-labs/core-ai/tree/80bee664d1c2e32abbb1f765e7096ce162c83482/helius-skills/helius-dflow",
+          "url": "https://github.com/helius-labs/core-ai/tree/29201092483956619c09d02adf6e1d24c409e85d/helius-skills/helius-dflow",
           "multiFile": true,
           "hosted": true,
           "dir": "helius-skills/helius-dflow",
@@ -5097,13 +5100,13 @@
             "references/helius-websockets.md",
             "references/integration-patterns.md"
           ],
-          "commitSha": "80bee664d1c2e32abbb1f765e7096ce162c83482",
-          "commitDate": "2026-10-31T00:29:42Z",
+          "commitSha": "29201092483956619c09d02adf6e1d24c409e85d",
+          "commitDate": "2026-11-09T14:55:05Z",
           "lastAuthor": "0xIchigo",
-          "blobSha": "7f27367bdbe3ca86bce6cf9408bdbf33c2cede7e",
+          "blobSha": "891a0e319eb8a75c26fefcc346207573ab8eb71e",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "eceb2b9a5d54a3ecf92aa5d52214dbccfe929795c72b7786dc4d6bdcae45918f"
+            "SKILL.md": "aee27bfff95e0859b408f016d1949c38edd008c70097da1849d94f0394c62118"
           },
           "hostedPath": "/s/helius/helius-dflow/SKILL.md"
         },
@@ -5111,7 +5114,7 @@
           "name": "helius-jupiter",
           "description": "Build Solana DeFi applications combining Jupiter APIs with Helius infrastructure. Covers token swaps (Swap API V2), lending/borrowing (Lend protocol), limit orders (Trigger), DCA (Recurring), token/price data, transaction submission via Sender, fee optimization, real-time streaming, and wallet intelligence.",
           "category": "defi",
-          "url": "https://github.com/helius-labs/core-ai/tree/80bee664d1c2e32abbb1f765e7096ce162c83482/helius-skills/helius-jupiter",
+          "url": "https://github.com/helius-labs/core-ai/tree/29201092483956619c09d02adf6e1d24c409e85d/helius-skills/helius-jupiter",
           "multiFile": true,
           "hosted": true,
           "dir": "helius-skills/helius-jupiter",
@@ -5139,13 +5142,13 @@
             "references/jupiter-tokens-price.md",
             "references/jupiter-trigger.md"
           ],
-          "commitSha": "80bee664d1c2e32abbb1f765e7096ce162c83482",
-          "commitDate": "2026-10-31T00:29:42Z",
+          "commitSha": "29201092483956619c09d02adf6e1d24c409e85d",
+          "commitDate": "2026-11-09T14:55:05Z",
           "lastAuthor": "0xIchigo",
-          "blobSha": "82bf3c4eb9bb99ddab9afcfac6bb41f4a0e3a0b8",
+          "blobSha": "6e694f6cca3341643ba3a8e2b6f9025db320ba24",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "307a19682d822dc1c05e86cb0d93fd123cb9f28923df115d2af96e77c6de0f21"
+            "SKILL.md": "30d22931c465c72c761a95b7a140d7921997d876ec2d06b606bf9be667a93e61"
           },
           "hostedPath": "/s/helius/helius-jupiter/SKILL.md"
         },
@@ -5153,7 +5156,7 @@
           "name": "helius-okx",
           "description": "Build Solana trading and intelligence applications combining OKX DEX aggregation with Helius infrastructure. Integration-only layer — describes when and how to compose OKX tools with Helius tools for swaps, token discovery, smart money signals, meme token analysis, and portfolio intelligence.",
           "category": "defi",
-          "url": "https://github.com/helius-labs/core-ai/tree/80bee664d1c2e32abbb1f765e7096ce162c83482/helius-skills/helius-okx",
+          "url": "https://github.com/helius-labs/core-ai/tree/29201092483956619c09d02adf6e1d24c409e85d/helius-skills/helius-okx",
           "multiFile": true,
           "hosted": true,
           "dir": "helius-skills/helius-okx",
@@ -5166,13 +5169,13 @@
             "references/",
             "references/integration-patterns.md"
           ],
-          "commitSha": "80bee664d1c2e32abbb1f765e7096ce162c83482",
-          "commitDate": "2026-10-31T00:29:42Z",
+          "commitSha": "29201092483956619c09d02adf6e1d24c409e85d",
+          "commitDate": "2026-11-09T14:55:05Z",
           "lastAuthor": "0xIchigo",
-          "blobSha": "62f650fc420eee61d20018c5f034a4b56ab7ec2b",
+          "blobSha": "d2fe46a54b762a866c114571d824eb7ac1c97d6f",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "8627419e3b2e38b6c5db753a94379757bcc9a94d9b57ab64b514d4de97aedd1c"
+            "SKILL.md": "ee6512ff20ca53f9749e66817f6adfebf6bad25f1e281b2f11a537dab68047f5"
           },
           "hostedPath": "/s/helius/helius-okx/SKILL.md"
         },
@@ -5180,7 +5183,7 @@
           "name": "helius-phantom",
           "description": "Build frontend Solana applications with Phantom Connect SDK and Helius infrastructure. Covers React, React Native, and browser SDK integration, transaction signing via Helius Sender, API key proxying, token gating, NFT minting, crypto payments, real-time updates, and secure frontend architecture.",
           "category": "wallets-mobile",
-          "url": "https://github.com/helius-labs/core-ai/tree/80bee664d1c2e32abbb1f765e7096ce162c83482/helius-skills/helius-phantom",
+          "url": "https://github.com/helius-labs/core-ai/tree/29201092483956619c09d02adf6e1d24c409e85d/helius-skills/helius-phantom",
           "multiFile": true,
           "hosted": true,
           "dir": "helius-skills/helius-phantom",
@@ -5208,13 +5211,13 @@
             "references/token-gating.md",
             "references/transactions.md"
           ],
-          "commitSha": "80bee664d1c2e32abbb1f765e7096ce162c83482",
-          "commitDate": "2026-10-31T00:29:42Z",
+          "commitSha": "29201092483956619c09d02adf6e1d24c409e85d",
+          "commitDate": "2026-11-09T14:55:05Z",
           "lastAuthor": "0xIchigo",
-          "blobSha": "e93ce505b42d2f9a36c00926f735c2caffb48646",
+          "blobSha": "1a5d4ee846f00aef635dc16297f8a0c1df8e7281",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "39d03bd1e850d8a8745e3cff7f5e1e01e35aeac3064093a088dc60f340f16cd2"
+            "SKILL.md": "51a53c9d980e3bc3a29874a45140ea3b143eb0f8e0d3e9698785f8917edc4e83"
           },
           "hostedPath": "/s/helius/helius-phantom/SKILL.md"
         },
@@ -5222,13 +5225,13 @@
           "name": "helius",
           "description": "Build Solana applications with Helius infrastructure. Covers transaction sending (Sender), asset/NFT queries (DAS API), real-time streaming (WebSockets, Laserstream), event pipelines (webhooks), priority fees, wallet analysis, and agent onboarding.",
           "category": "infra-data",
-          "url": "https://github.com/helius-labs/core-ai/tree/80bee664d1c2e32abbb1f765e7096ce162c83482/helius-skills/helius",
+          "url": "https://github.com/helius-labs/core-ai/tree/29201092483956619c09d02adf6e1d24c409e85d/helius-skills/helius",
           "multiFile": true,
           "hosted": true,
           "dir": "helius-skills/helius",
           "slug": "helius",
-          "bytes": 16373,
-          "words": 1791,
+          "bytes": 17775,
+          "words": 1951,
           "files": [
             "LICENSE",
             "install.sh",
@@ -5244,13 +5247,13 @@
             "references/websockets.md",
             "references/zk-compression.md"
           ],
-          "commitSha": "80bee664d1c2e32abbb1f765e7096ce162c83482",
-          "commitDate": "2026-10-31T00:29:42Z",
+          "commitSha": "29201092483956619c09d02adf6e1d24c409e85d",
+          "commitDate": "2026-11-09T14:55:05Z",
           "lastAuthor": "0xIchigo",
-          "blobSha": "ac8875569e7e48d71f41637ce0bca9182c3f23c0",
+          "blobSha": "61b7e1e809f932f232c23347406370c0be48fff0",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "3f906e83b221430cd01bce11ba6cf17f86b9475c81e1aa7c1a0ed75f4c63c9ba"
+            "SKILL.md": "c160af7394d300cc2447544d8eaee4237ef36ff02718f3b35b00bc790a52543f"
           },
           "hostedPath": "/s/helius/helius/SKILL.md"
         },
@@ -5258,7 +5261,7 @@
           "name": "svm",
           "description": "Explore Solana's architecture and protocol internals. Covers the SVM execution engine, account model, consensus, transactions, validator economics, data layer, development tooling, and token extensions using the Helius blog, SIMDs, and Agave/Firedancer source code.",
           "category": "infra-data",
-          "url": "https://github.com/helius-labs/core-ai/tree/80bee664d1c2e32abbb1f765e7096ce162c83482/helius-skills/svm",
+          "url": "https://github.com/helius-labs/core-ai/tree/29201092483956619c09d02adf6e1d24c409e85d/helius-skills/svm",
           "multiFile": true,
           "hosted": true,
           "dir": "helius-skills/svm",
@@ -5280,25 +5283,26 @@
             "references/transactions.md",
             "references/validators.md"
           ],
-          "commitSha": "80bee664d1c2e32abbb1f765e7096ce162c83482",
-          "commitDate": "2026-10-31T00:29:42Z",
+          "commitSha": "29201092483956619c09d02adf6e1d24c409e85d",
+          "commitDate": "2026-11-09T14:55:05Z",
           "lastAuthor": "0xIchigo",
-          "blobSha": "7824d543015a0079efdfec31c0169d85c17e56d9",
+          "blobSha": "cf250f8ea40fe688482f5524bdd72e74dc113c9d",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "7f4786382475fe5b86d09bb7b4d5d972c60cd3a5b0cecd67a8d5f900a989b9c0"
+            "SKILL.md": "6926ca1ea2efb93f54cff6bb53eca0532b8630226a3623c2de7a3771b7917613"
           },
           "hostedPath": "/s/helius/svm/SKILL.md"
         }
       ],
-      "commitSha": "80bee664d1c2e32abbb1f765e7096ce162c83482",
+      "commitSha": "29201092483956619c09d02adf6e1d24c409e85d",
       "logo": "/logos/helius-labs.png",
-      "commitDate": "2026-10-31T00:29:42Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "commitDate": "2026-11-09T14:55:05Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "0xIchigo",
         "0xtom1",
         "alelpoan",
+        "ankittiwari-04",
         "bernardogv",
         "fomichfm",
         "hetdagli234",
@@ -5306,7 +5310,8 @@
         "mooncitydev",
         "nathanliow",
         "plutohan",
-        "vijaygopalbalasa"
+        "vijaygopalbalasa",
+        "web3xDev"
       ]
     },
     {
@@ -5442,7 +5447,7 @@
       "commitSha": "a2211e3f6a7caa03310c7a9a8d816e723b0bdc5f",
       "logo": "/logos/jup-ag.png",
       "commitDate": "2026-07-07T07:39:15Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "0xanmol",
         "AetherSPL",
@@ -5517,7 +5522,7 @@
       "commitSha": "23a17cbe848c0e38aa29ae565fabdcf8fdce7d4b",
       "logo": "/logos/metaplex-foundation.png",
       "commitDate": "2026-10-28T21:09:05Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "blockiosaurus",
         "MarkSackerberg",
@@ -5729,7 +5734,7 @@
       "commitSha": "8664b5be49d16b6962129b53def20f6dfa99443d",
       "logo": "/logos/solana-mobile.png",
       "commitDate": "2026-10-21T05:05:57Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "0xanmol",
         "beeman",
@@ -5750,7 +5755,7 @@
       "blurb": "QuickNode’s Solana/Anchor development skill — program patterns and summaries tuned for their RPC and Streams stack.",
       "url": "https://github.com/quiknode-labs/solana-anchor-claude-skill",
       "stars": 101,
-      "pushedAt": "2026-10-30",
+      "pushedAt": "2026-11-06",
       "license": "MIT",
       "description": "The Solana and Anchor Claude skill",
       "skillCount": 1,
@@ -5760,13 +5765,13 @@
           "name": "solana",
           "description": "Use when working on Solana software, including one or more of: Solana client code using TypeScript, Rust libraries that use Solana crates, Anchor programs, Quasar programs, LiteSVM tests, including Rust program files, TypeScript tests, and Anchor.toml or Quasar.toml configuration. Designed to create minimal, reusable code without unnecessary duplication.",
           "category": "development",
-          "url": "https://github.com/quiknode-labs/solana-anchor-claude-skill/tree/1f1656a9709d01e47e0daf6e638f0980e4bcba8a/skills/solana",
+          "url": "https://github.com/quiknode-labs/solana-anchor-claude-skill/tree/cb906098ff142080c85f71552c5d4a7e8612aed2/skills/solana",
           "multiFile": true,
           "hosted": true,
           "dir": "skills/solana",
           "slug": "solana",
-          "bytes": 54369,
-          "words": 8721,
+          "bytes": 55768,
+          "words": 8991,
           "files": [
             "ANCHOR-V2.md",
             "ANCHOR.md",
@@ -5778,21 +5783,21 @@
             "SUMMARIZING-PROGRAMS.md",
             "TYPESCRIPT.md"
           ],
-          "commitSha": "1f1656a9709d01e47e0daf6e638f0980e4bcba8a",
-          "commitDate": "2026-10-30T18:13:21Z",
-          "lastAuthor": null,
-          "blobSha": "170e8d94b09067aa5b5f5c1c3f82f4b69256b71d",
+          "commitSha": "cb906098ff142080c85f71552c5d4a7e8612aed2",
+          "commitDate": "2026-11-06T15:34:55Z",
+          "lastAuthor": "mikemaccana",
+          "blobSha": "125ac06c4f488d41b138931b5a6e6c2c817cf23a",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "052c7ec7e8b64e7876d27c65aef9eb15c26b2238b5ce8b7d78755574c3dbc256"
+            "SKILL.md": "d007ab40203932198fd370d20391b06f6bcab07f2b3e02d17c915fbb16732740"
           },
           "hostedPath": "/s/quicknode-anchor/solana/SKILL.md"
         }
       ],
-      "commitSha": "1f1656a9709d01e47e0daf6e638f0980e4bcba8a",
+      "commitSha": "cb906098ff142080c85f71552c5d4a7e8612aed2",
       "logo": "/logos/quiknode-labs.png",
-      "commitDate": "2026-10-30T18:13:21Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "commitDate": "2026-11-06T15:34:55Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "claude",
         "mikemaccana",
@@ -5813,7 +5818,7 @@
       "blurb": "Search and analyze 5,400+ Solana hackathon projects: winner patterns, gap analysis, similar-project lookup, and ML clusters from the Colosseum arena.",
       "url": "https://github.com/ColosseumOrg/colosseum-copilot",
       "stars": 15,
-      "pushedAt": "2026-10-29",
+      "pushedAt": "2026-11-04",
       "license": null,
       "description": "Colosseum Copilot — AI agent skill for crypto startup research",
       "skillCount": 1,
@@ -5823,13 +5828,13 @@
           "name": "colosseum-copilot",
           "description": "Research Solana/crypto startup opportunities using builder project history, crypto archives, investor theses, and market signals. Answers questions conversationally by default; runs the full 8-step deep research workflow on explicit opt-in (\"vet this idea\", \"deep dive\").",
           "category": "research",
-          "url": "https://github.com/ColosseumOrg/colosseum-copilot/tree/17e9bf07759d25fcec9cc3a751a081e448bc602c/skills/colosseum-copilot",
+          "url": "https://github.com/ColosseumOrg/colosseum-copilot/tree/02e810e39463b4f06ddfe3c291a272e5eacfb723/skills/colosseum-copilot",
           "multiFile": true,
           "hosted": false,
           "dir": "skills/colosseum-copilot",
           "slug": "colosseum-copilot",
-          "bytes": 29519,
-          "words": 4239,
+          "bytes": 29937,
+          "words": 4300,
           "files": [
             "references/",
             "references/api-analysis.md",
@@ -5846,16 +5851,16 @@
             "references/the-grid-skill.md",
             "references/tools.md"
           ],
-          "commitSha": "17e9bf07759d25fcec9cc3a751a081e448bc602c",
-          "commitDate": "2026-10-05T16:51:12Z",
+          "commitSha": "02e810e39463b4f06ddfe3c291a272e5eacfb723",
+          "commitDate": "2026-11-04T19:19:40Z",
           "lastAuthor": "mxmnci",
-          "blobSha": "e2c93838f6bb286156b951377b53f0501937888d"
+          "blobSha": "3df8f87b7524bb1f9b433341c3662be4d61f5c79"
         }
       ],
-      "commitSha": "17e9bf07759d25fcec9cc3a751a081e448bc602c",
+      "commitSha": "02e810e39463b4f06ddfe3c291a272e5eacfb723",
       "logo": "/logos/ColosseumOrg.png",
-      "commitDate": "2026-10-05T16:51:12Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "commitDate": "2026-11-04T19:19:40Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "mxmnci",
         "natelevine"
@@ -5874,7 +5879,7 @@
       ],
       "blurb": "Formal verification for Solana programs in Lean — generate and check proofs of program properties, plus an auditor skill that hunts for violations.",
       "url": "https://github.com/QEDGen/solana-skills",
-      "stars": 70,
+      "stars": 71,
       "pushedAt": "2026-10-29",
       "license": "MIT",
       "description": "Ship without fear. Proofs, not promises.",
@@ -6086,7 +6091,7 @@
       "commitSha": "7b651b917ef7b5540b312f26ab07ab288f9ab0ee",
       "logo": "/logos/QEDGen.png",
       "commitDate": "2026-10-29T08:36:05Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "0xharp",
         "abishekk92",
@@ -6108,7 +6113,7 @@
       ],
       "blurb": "Security-first building companion: exploit-pattern references and examples that keep common Solana vulnerability classes out of freshly generated programs.",
       "url": "https://github.com/frankcastleauditor/safe-solana-builder",
-      "stars": 145,
+      "stars": 149,
       "pushedAt": "2026-10-05",
       "license": null,
       "description": "The first Claude skill for writing production-grade, security-first Solana programs. Anchor & Native Rust. Built by Frank Castle.",
@@ -6147,7 +6152,7 @@
       "commitSha": "6154caba7fb3b92d549fb3f38ffaf77645e7045f",
       "logo": "/logos/frankcastleauditor.png",
       "commitDate": "2026-10-05T10:03:38Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "Abduovv",
         "Arrowana",
@@ -6211,7 +6216,7 @@
       "commitSha": "762b3b28e62b4c6cabc01ae179d316958a852a07",
       "logo": "/logos/solanabr.png",
       "commitDate": "2026-01-30T00:05:51Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "kauenet"
       ]
@@ -6229,8 +6234,8 @@
       ],
       "blurb": "The security firm’s public skill set — we index the Solana-relevant picks: a vulnerability scanner distilled from their audit practice, plus audit-prep, code-maturity, fuzzing and static-analysis skills that apply to any Rust program.",
       "url": "https://github.com/trailofbits/skills",
-      "stars": 7952,
-      "pushedAt": "2026-10-28",
+      "stars": 8085,
+      "pushedAt": "2026-11-06",
       "license": "CC-BY-SA-4.0",
       "description": "Trail of Bits skills for security research, vulnerability detection, and audit workflows",
       "skillCount": 74,
@@ -6478,10 +6483,10 @@
           "hostedPath": "/s/trailofbits/cargo-fuzz/SKILL.md"
         }
       ],
-      "commitSha": "2be6433b39e009cd2b6fd3be1895f6b1faa5af9a",
+      "commitSha": "e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff",
       "logo": "/logos/trailofbits.png",
-      "commitDate": "2026-10-28T18:38:54Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "commitDate": "2026-11-06T15:19:35Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "2023Anita",
         "ahpaleus",
@@ -6528,6 +6533,7 @@
         "omarinuwa",
         "reytchison",
         "rhanooman12",
+        "robertaustinbell",
         "roli-lpci",
         "sblackshear",
         "semgrep-jamie",
@@ -6561,7 +6567,7 @@
       ],
       "blurb": "End-to-end MagicBlock development: Ephemeral Rollups for sub-10ms Solana execution, plus VRFs, cranks, and session keys for latency-sensitive programs and games.",
       "url": "https://github.com/magicblock-labs/magicblock-dev-skill",
-      "stars": 9,
+      "stars": 12,
       "pushedAt": "2026-10-23",
       "commitSha": "de3c62bcf39b72a8b1ffd7e65c434be3c9f0edc8",
       "license": "MIT",
@@ -6618,7 +6624,7 @@
       ],
       "logo": "/logos/magicblock-labs.png",
       "commitDate": "2026-10-23T08:17:16Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "dhruvja",
         "GabrielePicco",
@@ -6639,9 +6645,9 @@
       ],
       "blurb": "Official Meteora skill inside their invent monorepo: launch tokens on DBC, create and manage DAMM v1/v2 and DLMM pools, swap, claim fees, and script the Meteora SDKs.",
       "url": "https://github.com/MeteoraAg/meteora-invent",
-      "stars": 36,
-      "pushedAt": "2026-11-02",
-      "commitSha": "99d1441e8e39a11752a13c16c12867dba0448c9d",
+      "stars": 37,
+      "pushedAt": "2026-11-06",
+      "commitSha": "e21555cff0d75b27a054535bf5f2b2b57c3bdb84",
       "license": "MIT",
       "description": "Launch anything on Meteora and do any onchain actions with Invent",
       "skillCount": 1,
@@ -6651,7 +6657,7 @@
           "name": "meteora",
           "description": "Do anything on Meteora, Solana's liquidity layer: launch tokens on Dynamic Bonding Curves (DBC), create and manage DAMM v1/v2 and DLMM pools, add or remove liquidity, swap, place DLMM limit orders, claim fees, migrate DBC pools to DAMM, run alpha and presale vaults, lock tokens on vesting schedules, stake for fees (M3M3) or into LP farms, zap single tokens into and out of positions, split fees across wallets, and write TypeScript against Meteora SDKs. Use for any Meteora, meteora-invent, DBC, DLMM, DAMM, alpha vault, presale, token vesting, fee sharing, staking, farming, zap, or Solana liquidity/LP task — including building launchpads, trading bots, and integrations.",
           "category": "defi",
-          "url": "https://github.com/MeteoraAg/meteora-invent/tree/99d1441e8e39a11752a13c16c12867dba0448c9d/skills/meteora",
+          "url": "https://github.com/MeteoraAg/meteora-invent/tree/e21555cff0d75b27a054535bf5f2b2b57c3bdb84/skills/meteora",
           "multiFile": true,
           "hosted": true,
           "dir": "skills/meteora",
@@ -6684,20 +6690,20 @@
             "references/troubleshooting.md",
             "references/wallets-and-txs.md"
           ],
-          "commitSha": "99d1441e8e39a11752a13c16c12867dba0448c9d",
-          "commitDate": "2026-11-02T07:45:26Z",
+          "commitSha": "e21555cff0d75b27a054535bf5f2b2b57c3bdb84",
+          "commitDate": "2026-11-04T09:04:07Z",
           "lastAuthor": "dannxbt",
           "blobSha": "c16ac2e9ed69dffd2f04b277a792c14b35a2554b",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "fe2a7acb80ae7d28631595f4d5063fc41882555335aaabe46799981699f707c2"
+            "SKILL.md": "a403a5ab0f0c59b573cf89fa5c0beba99770f7d1015b193bb2fdc5f089f27623"
           },
           "hostedPath": "/s/meteora/meteora/SKILL.md"
         }
       ],
       "logo": "/logos/MeteoraAg.png",
-      "commitDate": "2026-11-02T07:45:26Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "commitDate": "2026-11-04T09:04:07Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "avicoder",
         "dannxbt",
@@ -6719,9 +6725,9 @@
       ],
       "blurb": "Official Alchemy skills: Solana RPC, DAS, Yellowstone gRPC, token prices and NFT data via alchemy-api, plus wallet-based x402 flows with SIWS through the agentic gateway.",
       "url": "https://github.com/alchemyplatform/skills",
-      "stars": 54,
-      "pushedAt": "2026-09-30",
-      "commitSha": "4caf3e555c3af8dbb9e5b540aed558aef986d885",
+      "stars": 55,
+      "pushedAt": "2026-11-03",
+      "commitSha": "add94e5059c39edc9917bb5a4585cc1a1cefeed2",
       "license": "MIT",
       "description": null,
       "skillCount": 6,
@@ -6731,7 +6737,7 @@
           "name": "agentic-gateway",
           "description": "Wire Alchemy into application code without an API key, using the x402 or MPP gateway with wallet-based auth (SIWE/SIWS) and per-request payments (USDC via x402, or USDC/credit-card via MPP). Specialized app-integration path. Use when the user is building application code AND no API key is available, or they're an autonomous agent that needs to pay for itself, or they explicitly want x402/MPP. For normal app code with an API key, use `alchemy-api`. For live agent work in this session (querying, admin, automation), use `alchemy-cli` (preferred) or `alchemy-mcp`.",
           "category": "infra-data",
-          "url": "https://github.com/alchemyplatform/skills/tree/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway",
+          "url": "https://github.com/alchemyplatform/skills/tree/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway",
           "multiFile": true,
           "hosted": true,
           "dir": "skills/agentic-gateway",
@@ -6768,13 +6774,13 @@
             "rules/x402/reference.md",
             "rules/x402/wallet-bootstrap.md"
           ],
-          "commitSha": "4caf3e555c3af8dbb9e5b540aed558aef986d885",
-          "commitDate": "2026-08-26T18:28:17Z",
+          "commitSha": "add94e5059c39edc9917bb5a4585cc1a1cefeed2",
+          "commitDate": "2026-11-03T14:10:57Z",
           "lastAuthor": "SahilAujla",
           "blobSha": "167c5b87636f392c86e09b5bdc547dadc09fa3e9",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "c5ed4d86acd150432b70cca60cae05a03443e2e8022d573927cfec4342d72c90"
+            "SKILL.md": "359b6667fdaf0a45d1c93acd4a008b71184c1bb9d55f8f3b43707a8c3785fa96"
           },
           "hostedPath": "/s/alchemy/agentic-gateway/SKILL.md"
         },
@@ -6782,7 +6788,7 @@
           "name": "alchemy-api",
           "description": "Wire Alchemy into application code (server, backend, dApp, script) using a standard API key. Preferred app-integration path for normal server/backend usage. Covers EVM JSON-RPC, Token API, NFT API, Transfers API, Prices API, Portfolio API, Simulation, Webhooks, Solana RPC, Solana DAS, Solana Yellowstone gRPC, Sui gRPC, Wallets/Account Kit, and operational topics. Requires `$ALCHEMY_API_KEY`. For live agent work in this session (querying, admin, local automation), use `alchemy-cli` (preferred) or `alchemy-mcp` instead. For app code without an API key (autonomous agent paying per-request, or explicit x402/MPP), use `agentic-gateway` instead.",
           "category": "infra-data",
-          "url": "https://github.com/alchemyplatform/skills/tree/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/alchemy-api",
+          "url": "https://github.com/alchemyplatform/skills/tree/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/alchemy-api",
           "multiFile": true,
           "hosted": true,
           "dir": "skills/alchemy-api",
@@ -6870,13 +6876,13 @@
             "references/webhooks-webhook-payloads.md",
             "references/webhooks-webhook-types.md"
           ],
-          "commitSha": "4caf3e555c3af8dbb9e5b540aed558aef986d885",
-          "commitDate": "2026-08-26T18:28:17Z",
+          "commitSha": "add94e5059c39edc9917bb5a4585cc1a1cefeed2",
+          "commitDate": "2026-11-03T14:10:57Z",
           "lastAuthor": "alchemy-bot",
           "blobSha": "f679dd099d7dfff5359ec6b9c7110b2cd77a030e",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "52b5b9dde8cad2e92c895dc60fa9d4789e9c447cb6f8cc74de675fe820c67136"
+            "SKILL.md": "5b4e47492600b0d6226558a44c5d3d2533760fb50d74e56c8edf00c11562371a"
           },
           "hostedPath": "/s/alchemy/alchemy-api/SKILL.md"
         },
@@ -6884,7 +6890,7 @@
           "name": "alchemy-cli",
           "description": "Use the Alchemy CLI (`@alchemy/cli`) for live blockchain data, transaction lookups, NFT/token/portfolio queries, simulation, tracing/debugging, account abstraction (bundler + gas manager), webhook management, Solana RPC/DAS, and Alchemy app administration. Preferred runtime path for live agent work (querying, admin, local automation) when the CLI is installed locally — or when both CLI and MCP are available. If neither is installed, install the CLI with `npm i -g @alchemy/cli`. Use for live agent work in this session, not for building application code that ships to production. For application code, use the `alchemy-api` skill (with API key) or `agentic-gateway` skill (without).",
           "category": "infra-data",
-          "url": "https://github.com/alchemyplatform/skills/tree/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/alchemy-cli",
+          "url": "https://github.com/alchemyplatform/skills/tree/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/alchemy-cli",
           "multiFile": true,
           "hosted": true,
           "dir": "skills/alchemy-cli",
@@ -6896,13 +6902,13 @@
             "agents/",
             "agents/openai.yaml"
           ],
-          "commitSha": "4caf3e555c3af8dbb9e5b540aed558aef986d885",
-          "commitDate": "2026-08-26T18:28:17Z",
+          "commitSha": "add94e5059c39edc9917bb5a4585cc1a1cefeed2",
+          "commitDate": "2026-11-03T14:10:57Z",
           "lastAuthor": "alchemy-bot",
           "blobSha": "507d603e6341337ac15a42ee8839ab3fc99f59f7",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "7964fa2efd34c05ff33263d4bb862bc96fa350e4d2ac721cf7629c459e77c66c"
+            "SKILL.md": "3280c5fe35bf90749f5ae27f60b786643df131329bed4935def90759f9acf9d1"
           },
           "hostedPath": "/s/alchemy/alchemy-cli/SKILL.md"
         },
@@ -6910,7 +6916,7 @@
           "name": "alchemy-mcp",
           "description": "Use the Alchemy MCP server (`https://mcp.alchemy.com/mcp`) for live blockchain data and admin work when MCP is wired into your AI client and the Alchemy CLI is NOT installed locally. Exposes 159 tools across 100+ chains for token prices, NFT metadata, transactions, simulation, tracing, account abstraction, Solana DAS, and app management. Use for live querying, analysis, admin work, or on-machine agent work — not for application code that ships to production. For application code, use the `alchemy-api` skill (with API key) or `agentic-gateway` skill (without). When the CLI is also installed locally, prefer `alchemy-cli` instead.",
           "category": "infra-data",
-          "url": "https://github.com/alchemyplatform/skills/tree/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/alchemy-mcp",
+          "url": "https://github.com/alchemyplatform/skills/tree/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/alchemy-mcp",
           "multiFile": true,
           "hosted": true,
           "dir": "skills/alchemy-mcp",
@@ -6922,13 +6928,13 @@
             "agents/",
             "agents/openai.yaml"
           ],
-          "commitSha": "4caf3e555c3af8dbb9e5b540aed558aef986d885",
-          "commitDate": "2026-08-26T18:28:17Z",
+          "commitSha": "add94e5059c39edc9917bb5a4585cc1a1cefeed2",
+          "commitDate": "2026-11-03T14:10:57Z",
           "lastAuthor": "alchemy-bot",
           "blobSha": "aebda9529fa14deac500a3c9f60f2470304a1fb7",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "1bdfc9d2f6038670f02607598e4995168bb43a296764f22295ec1077e1c0e62f"
+            "SKILL.md": "65fb86b2b77eef8617844a1113f37f75f3919a83ea64cb964d4d7aea9a6dd48b"
           },
           "hostedPath": "/s/alchemy/alchemy-mcp/SKILL.md"
         },
@@ -6936,7 +6942,7 @@
           "name": "allium",
           "description": "Query Allium APIs for wallet PnL (current + historical, by-wallet and by-token), holdings timeseries history, Hyperliquid HyperCore trading data (info, fills, orders, orderbook), and custom SQL analytics across 70+ chains. NOT for token prices, token metadata, current wallet balance snapshots, transaction transfer history, or NFT metadata — for those use `alchemy-cli` (live work), `alchemy-mcp`, `alchemy-api` (app code), or `agentic-gateway` (no API key). Requires Allium credentials at `~/.allium/credentials`.",
           "category": "infra-data",
-          "url": "https://github.com/alchemyplatform/skills/tree/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/ecosystem/allium",
+          "url": "https://github.com/alchemyplatform/skills/tree/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/ecosystem/allium",
           "multiFile": true,
           "hosted": true,
           "dir": "skills/ecosystem/allium",
@@ -6952,13 +6958,13 @@
             "references/hyperliquid.md",
             "references/pnl-and-holdings.md"
           ],
-          "commitSha": "4caf3e555c3af8dbb9e5b540aed558aef986d885",
-          "commitDate": "2026-08-26T18:28:17Z",
+          "commitSha": "add94e5059c39edc9917bb5a4585cc1a1cefeed2",
+          "commitDate": "2026-11-03T14:10:57Z",
           "lastAuthor": "SahilAujla",
           "blobSha": "c4c8baa5bbd165c305d588d2e6820003643f13bc",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "5ee255519ca23b4fdf1d9638922bd985d1598a27c3b1988787f661c74f8d53f3"
+            "SKILL.md": "88f77859741ca88ce2dfc3824efc62364b6fcae1d3361568faffe54240588670"
           },
           "hostedPath": "/s/alchemy/allium/SKILL.md"
         },
@@ -6966,7 +6972,7 @@
           "name": "opensea",
           "description": "Query OpenSea marketplace data — listings, offers, sales / events, floor prices, collection stats, drops, traits — and execute Seaport trades via the official `@opensea/cli` and OpenSea REST API across Ethereum, Base, Arbitrum, Optimism, Polygon, and more. Includes search across collections / NFTs / tokens / accounts. NOT for general NFT metadata reads (name, image, traits, ownership), token metadata, current wallet balances, transaction history, or live RPC reads — for those use `alchemy-cli` (live), `alchemy-mcp`, `alchemy-api` (app code), or `agentic-gateway` (no API key). For pure cross-chain token swaps (no marketplace context), prefer the `lifi` ecosystem skill. Requires `OPENSEA_API_KEY` (instant via API).",
           "category": "nft-tokens",
-          "url": "https://github.com/alchemyplatform/skills/tree/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/ecosystem/opensea",
+          "url": "https://github.com/alchemyplatform/skills/tree/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/ecosystem/opensea",
           "multiFile": true,
           "hosted": true,
           "dir": "skills/ecosystem/opensea",
@@ -6980,20 +6986,20 @@
             "references/",
             "references/marketplace.md"
           ],
-          "commitSha": "4caf3e555c3af8dbb9e5b540aed558aef986d885",
-          "commitDate": "2026-08-26T18:28:17Z",
+          "commitSha": "add94e5059c39edc9917bb5a4585cc1a1cefeed2",
+          "commitDate": "2026-11-03T14:10:57Z",
           "lastAuthor": "SahilAujla",
           "blobSha": "c5e7df1bf07a96b194b14c1bc8d11cccfc1ad6f3",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "8f8eb65fad10892aa6cb9c8a5eda4378e743f60b80c84528fe76ebad49bedba6"
+            "SKILL.md": "20a3173133f2ce46fa7ba4c6b51f6f783ba5d69ed83b1367a69b2615607fb431"
           },
           "hostedPath": "/s/alchemy/opensea/SKILL.md"
         }
       ],
       "logo": "/logos/alchemyplatform.png",
-      "commitDate": "2026-08-26T18:28:17Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "commitDate": "2026-11-03T14:10:57Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "0xmts",
         "alchemy-bot",
@@ -7213,7 +7219,7 @@
       ],
       "logo": "/logos/phantom.png",
       "commitDate": "2026-03-09T17:00:55Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "Th3Ya0vi"
       ]
@@ -7374,7 +7380,7 @@
       ],
       "logo": "/logos/Lightprotocol.png",
       "commitDate": "2026-06-08T23:42:04Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "tilo-14"
       ]
@@ -7457,7 +7463,7 @@
       ],
       "logo": "/logos/DFlowProtocol.png",
       "commitDate": "2026-10-08T20:02:16Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "lukecd",
         "Th3Ya0vi"
@@ -7534,7 +7540,7 @@
       ],
       "logo": "/logos/quiknode-labs.png",
       "commitDate": "2026-08-12T15:36:22Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "0xsergen",
         "rx294",
@@ -7556,7 +7562,7 @@
       ],
       "blurb": "Official pump.fun skills for creating coins, trading bonding-curve and PumpSwap AMM pools, managing creator fees, and building Tokenized Agents.",
       "url": "https://github.com/pump-fun/pump-fun-skills",
-      "stars": 34,
+      "stars": 35,
       "pushedAt": "2026-11-02",
       "license": null,
       "description": "This repo contains pump fun skills for AI agents",
@@ -7567,7 +7573,7 @@
           "name": "coin-fees",
           "description": "Inspect and manage creator fees on pump.fun — determine fee destinations (cashback, shared config, or direct creator), collect fees, distribute shared fees to shareholders, and query vault balances. Prefer runnable Node scripts in this skill folder; use @pump-fun/pump-sdk and @pump-fun/pump-swap-sdk for custom integrations.",
           "category": "defi",
-          "url": "https://github.com/pump-fun/pump-fun-skills/tree/c8aaa6a8fb766b2765d2663744515bbf88d04380/coin-fees",
+          "url": "https://github.com/pump-fun/pump-fun-skills/tree/5410f6a7d8ed2b388c74cd8d6dd5b51fd009fc5f/coin-fees",
           "multiFile": true,
           "hosted": false,
           "dir": "coin-fees",
@@ -7575,8 +7581,9 @@
           "bytes": 21884,
           "words": 2644,
           "files": [
-            "package-lock.json",
             "package.json",
+            "pnpm-lock.yaml",
+            "pnpm-workspace.yaml",
             "scripts/",
             "scripts/build-collect-fee-tx.mjs",
             "scripts/build-distribute-fees-tx.mjs",
@@ -7594,8 +7601,8 @@
             "scripts/lib/jito.mjs",
             "scripts/lib/tx-build.mjs"
           ],
-          "commitSha": "c8aaa6a8fb766b2765d2663744515bbf88d04380",
-          "commitDate": "2026-04-23T16:28:52Z",
+          "commitSha": "5410f6a7d8ed2b388c74cd8d6dd5b51fd009fc5f",
+          "commitDate": "2026-11-02T17:22:57Z",
           "lastAuthor": "sushant-baton",
           "blobSha": "6ceeec356772b7d91e4a51578d19d16a46afafaa"
         },
@@ -7603,7 +7610,7 @@
           "name": "create-coin",
           "description": "Create coins on pump.fun — standard create with initial buy. Prefer runnable Node scripts in this skill folder; use @pump-fun/pump-sdk for custom integrations.",
           "category": "nft-tokens",
-          "url": "https://github.com/pump-fun/pump-fun-skills/tree/c8aaa6a8fb766b2765d2663744515bbf88d04380/create-coin",
+          "url": "https://github.com/pump-fun/pump-fun-skills/tree/5410f6a7d8ed2b388c74cd8d6dd5b51fd009fc5f/create-coin",
           "multiFile": true,
           "hosted": false,
           "dir": "create-coin",
@@ -7611,8 +7618,9 @@
           "bytes": 16272,
           "words": 1712,
           "files": [
-            "package-lock.json",
             "package.json",
+            "pnpm-lock.yaml",
+            "pnpm-workspace.yaml",
             "references/",
             "references/METADATA.md",
             "scripts/",
@@ -7628,8 +7636,8 @@
             "scripts/lib/jito.mjs",
             "scripts/lib/tx-build.mjs"
           ],
-          "commitSha": "c8aaa6a8fb766b2765d2663744515bbf88d04380",
-          "commitDate": "2026-04-23T16:28:52Z",
+          "commitSha": "5410f6a7d8ed2b388c74cd8d6dd5b51fd009fc5f",
+          "commitDate": "2026-11-02T17:22:57Z",
           "lastAuthor": "sushant-baton",
           "blobSha": "675537b75c6c5440a2f8333a4b93aaedac32d02b"
         },
@@ -7637,7 +7645,7 @@
           "name": "swap",
           "description": "Buy and sell tokens on pump.fun bonding curve and pump swap AMM pool, and query SOL/token balances. Prefer runnable Node scripts in this skill folder; use @pump-fun/pump-sdk and @pump-fun/pump-swap-sdk for custom integrations.",
           "category": "defi",
-          "url": "https://github.com/pump-fun/pump-fun-skills/tree/c8aaa6a8fb766b2765d2663744515bbf88d04380/swap",
+          "url": "https://github.com/pump-fun/pump-fun-skills/tree/5410f6a7d8ed2b388c74cd8d6dd5b51fd009fc5f/swap",
           "multiFile": true,
           "hosted": false,
           "dir": "swap",
@@ -7645,8 +7653,9 @@
           "bytes": 20365,
           "words": 2269,
           "files": [
-            "package-lock.json",
             "package.json",
+            "pnpm-lock.yaml",
+            "pnpm-workspace.yaml",
             "scripts/",
             "scripts/build-buy-amm-tx.mjs",
             "scripts/build-buy-bonding-tx.mjs",
@@ -7664,8 +7673,8 @@
             "scripts/lib/tx-build.mjs",
             "scripts/print-balances.mjs"
           ],
-          "commitSha": "c8aaa6a8fb766b2765d2663744515bbf88d04380",
-          "commitDate": "2026-04-23T16:28:52Z",
+          "commitSha": "5410f6a7d8ed2b388c74cd8d6dd5b51fd009fc5f",
+          "commitDate": "2026-11-02T17:22:57Z",
           "lastAuthor": "sushant-baton",
           "blobSha": "4bf8159df14720524bb67d50960b6785c3c5edb0"
         },
@@ -7673,7 +7682,7 @@
           "name": "tokenized-agents",
           "description": "Use when the user wants to charge users for actions. Use @pump-fun/agent-payments-sdk, to build Solana payment transactions, verify on-chain invoice payments, or integrate Solana wallet adapters for agent payment flows.",
           "category": "defi",
-          "url": "https://github.com/pump-fun/pump-fun-skills/tree/c8aaa6a8fb766b2765d2663744515bbf88d04380/tokenized-agents",
+          "url": "https://github.com/pump-fun/pump-fun-skills/tree/5410f6a7d8ed2b388c74cd8d6dd5b51fd009fc5f/tokenized-agents",
           "multiFile": true,
           "hosted": false,
           "dir": "tokenized-agents",
@@ -7687,17 +7696,18 @@
             "references/SCENARIOS.md",
             "references/WALLET_INTEGRATION.md"
           ],
-          "commitSha": "c8aaa6a8fb766b2765d2663744515bbf88d04380",
-          "commitDate": "2026-04-23T16:28:52Z",
+          "commitSha": "5410f6a7d8ed2b388c74cd8d6dd5b51fd009fc5f",
+          "commitDate": "2026-11-02T17:22:57Z",
           "lastAuthor": "sushant-baton",
           "blobSha": "f0f26bffd14b8c61d81b20a45c7460ef4d5f62bd"
         }
       ],
-      "commitSha": "c8aaa6a8fb766b2765d2663744515bbf88d04380",
+      "commitSha": "5410f6a7d8ed2b388c74cd8d6dd5b51fd009fc5f",
       "logo": "/logos/pump-fun.png",
-      "commitDate": "2026-04-23T16:28:52Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "commitDate": "2026-11-02T17:22:57Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
+        "brice-baton",
         "sushant-baton"
       ]
     },
@@ -7713,7 +7723,7 @@
       ],
       "blurb": "deBridge's official agent skills for cross-chain swaps and bridging via DLN across 20+ chains including Solana — wallets, signing, execution, and analytics.",
       "url": "https://github.com/debridge-finance/debridge-skills",
-      "stars": 0,
+      "stars": 1,
       "pushedAt": "2026-08-26",
       "license": "MIT",
       "description": "deBridge cross-chain bridge and swap skills. Bridge tokens between Ethereum, Arbitrum, Solana, and 20+ chains. Quote routes, approve tokens, execute trades, track DLN orders. Wallet setup, transaction signing, trading strategies.",
@@ -8057,7 +8067,7 @@
       "commitSha": "6365a9d22062f3e13e5206281aeddb45e6b36d3d",
       "logo": "/logos/pyth-network.png",
       "commitDate": "2026-03-18T13:29:27Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "aditya520"
       ]
@@ -8076,9 +8086,9 @@
       ],
       "blurb": "OKX's official OnchainOS skills — agentic wallet, DEX market data, DeFi, portfolio, payments, and dapp discovery across Solana and 20+ chains, including pump.fun meme-launch tooling.",
       "url": "https://github.com/okx/onchainos-skills",
-      "stars": 344,
-      "pushedAt": "2026-10-30",
-      "license": null,
+      "stars": 347,
+      "pushedAt": "2026-11-07",
+      "license": "MIT",
       "description": "Skills for AI agents to integrate with the OKX OnchainOS API — Wallet, token discovery, market data, DEX swap, and transaction broadcasting.",
       "skillCount": 7,
       "highlightsOnly": false,
@@ -8087,9 +8097,9 @@
           "name": "okx-agent-payments-protocol",
           "description": "Use when an agent hits HTTP 402 / payment-required, or the user mentions x402, x402Version, X-PAYMENT, PAYMENT-REQUIRED, PAYMENT-SIGNATURE, WWW-Authenticate: Payment, permit2, upto, metered billing, a payment channel / voucher / session, channelId / channel_id, opening / closing / topping up / settling / refunding a channel, a paymentId or a2a_ link, creating / checking a payment link, A2MCP / an A2MCP endpoint, or sending a request to / calling an Agent's endpoint with a concrete endpoint URL. Covers x402 (exact, exact+Permit2, upto, aggr_deferred), MPP (charge / session), and a2a-pay paymentId flows. Any close / topup / settle / voucher / refund near a channel_id or session is an MPP mid-session op. Two-phase quote/pay: `payment quote`, `payment pay --payment-id`, `decode-receipt`. The full bilingual trigger list (including Chinese) lives in the skill body.",
           "category": "defi",
-          "url": "https://github.com/okx/onchainos-skills/tree/73904b636a0f022dcc13b6d7a0dd2ed3b3195f25/skills/okx-agent-payments-protocol",
+          "url": "https://github.com/okx/onchainos-skills/tree/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-agent-payments-protocol",
           "multiFile": true,
-          "hosted": false,
+          "hosted": true,
           "dir": "skills/okx-agent-payments-protocol",
           "slug": "okx-agent-payments-protocol",
           "bytes": 35874,
@@ -8107,28 +8117,34 @@
             "references/session.md",
             "references/subscription.md"
           ],
-          "commitSha": "73904b636a0f022dcc13b6d7a0dd2ed3b3195f25",
-          "commitDate": "2026-10-29T08:30:25Z",
+          "commitSha": "9d5663398ae0947323e283ff763ea89c37815d3c",
+          "commitDate": "2026-11-06T13:36:32Z",
           "lastAuthor": "SherlockHomer",
-          "blobSha": "c0f8141acd29ea7336bb1eff7af359cd0c71d2e1"
+          "blobSha": "167e0f5d055c6a03cdffca9b92b5a80d8bb8d2b3",
+          "hostedFiles": [],
+          "integrity": {
+            "SKILL.md": "55ff88508cc3b8cfc72309835226b4d3422c09690bb257785c69be7df6487b5b"
+          },
+          "hostedPath": "/s/okx/okx-agent-payments-protocol/SKILL.md"
         },
         {
           "name": "okx-agentic-wallet",
           "description": "OKX Agentic Wallet — the single skill for the user's wallet and on-chain execution. Use it whenever the user wants to operate their wallet or execute an on-chain action, including: login & accounts, balance / holdings, wallet address / deposit / receive, send / transfer, contract calls (approve / deposit / withdraw), transaction history & status, message signing, wallet export & policy; pay gas with a stablecoin (Gas Station, Solana); swap / trade / buy / sell / convert, get a quote; cross-chain bridge & track arrival; limit orders (buy dip / take profit / stop loss / buy above) plus cancel / list / resume them; broadcast / gas / simulate / track a transaction; look up any public address's holdings; security scanning (token / honeypot 蜜罐 / 貔貅, DApp phishing, tx & signature checks, approvals); audit log. Once matched, follow this skill's Intent Routing to dispatch to the exact action.",
           "category": "wallets-mobile",
-          "url": "https://github.com/okx/onchainos-skills/tree/73904b636a0f022dcc13b6d7a0dd2ed3b3195f25/skills/okx-agentic-wallet",
+          "url": "https://github.com/okx/onchainos-skills/tree/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-agentic-wallet",
           "multiFile": true,
-          "hosted": false,
+          "hosted": true,
           "dir": "skills/okx-agentic-wallet",
           "slug": "okx-agentic-wallet",
-          "bytes": 10067,
-          "words": 1390,
+          "bytes": 10453,
+          "words": 1428,
           "files": [
             "_shared/",
             "_shared/chain-support.md",
             "_shared/preflight.md",
             "references/",
             "references/account-faq.md",
+            "references/approval-verification.md",
             "references/audit-log.md",
             "references/brc20-cli-reference.md",
             "references/bridge-cli-reference.md",
@@ -8158,18 +8174,23 @@
             "references/wallet-troubleshooting.md",
             "references/wallet.md"
           ],
-          "commitSha": "73904b636a0f022dcc13b6d7a0dd2ed3b3195f25",
-          "commitDate": "2026-10-29T08:30:25Z",
+          "commitSha": "9d5663398ae0947323e283ff763ea89c37815d3c",
+          "commitDate": "2026-11-06T13:36:32Z",
           "lastAuthor": "SherlockHomer",
-          "blobSha": "fb626c9e983b7e252fd18e0e90a09588076f44c6"
+          "blobSha": "1c32c8c1d7a610c8ba3097588ede35a8e426a19a",
+          "hostedFiles": [],
+          "integrity": {
+            "SKILL.md": "01752bab77ff7955c36a88b6e4095b7143ab5d95ac3414030283840a7c7065ef"
+          },
+          "hostedPath": "/s/okx/okx-agentic-wallet/SKILL.md"
         },
         {
           "name": "okx-ai",
           "description": "ERC-8004 Agent identity: 注册/更新/上架/下架/搜索agent, register/update/activate/deactivate/search — User/ASP/Evaluator(买家/卖家/评审员, 旧称仲裁者亦可); 我的agent/ASP, 找做X的ASP/agent有什么服务/endpoint怎么填/查口碑/传头像. + Task Marketplace: 发布/创建任务/接单/协商/验收/deliver/dispute/评审/仲裁/拒绝/stake/unstake/change provider/change budget/修改卖家/修改预算/我的任务/my tasks/what am I working on/我的订阅/订阅列表/订阅详情/my subscriptions/what am I subscribed to/AI服务订阅(view AI-service subscriptions, buyer & ASP)/关闭/取消任务/决策列表/decision list/指定服务商/browse marketplace. + task watch: 监听任务进展/历史消息/未读消息/未决策/outstanding decisions. + device routing: 设备列表/我登录了哪些设备/device list, 本设备或指定设备订阅消息开关. + okx-a2a missing/uninitialized. Match by meaning. MUST ACTIVATE on inbound envelopes: (1) {agentId, message:{source:\"system\", event, jobId,...}} system event; (2) {msgType:\"a2a-agent-chat\", jobId, sender:{role},...} agent-to-agent task chat (sender.role = COUNTERPARTY, not you); (3) literal \"Read the okx-ai skill\" (or legacy \"Read the okx-agent-task skill\") in the envelope.",
           "category": "infra-data",
-          "url": "https://github.com/okx/onchainos-skills/tree/73904b636a0f022dcc13b6d7a0dd2ed3b3195f25/skills/okx-ai",
+          "url": "https://github.com/okx/onchainos-skills/tree/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-ai",
           "multiFile": true,
-          "hosted": false,
+          "hosted": true,
           "dir": "skills/okx-ai",
           "slug": "okx-ai",
           "bytes": 12042,
@@ -8265,18 +8286,23 @@
             "references/shared/protocol.md",
             "references/shared/refund-contract.md"
           ],
-          "commitSha": "73904b636a0f022dcc13b6d7a0dd2ed3b3195f25",
-          "commitDate": "2026-10-29T08:30:25Z",
+          "commitSha": "9d5663398ae0947323e283ff763ea89c37815d3c",
+          "commitDate": "2026-11-06T13:36:32Z",
           "lastAuthor": "SherlockHomer",
-          "blobSha": "90e97b7272c82b48953df9f260ff775c505eec22"
+          "blobSha": "76758bd569ae246d0851481ac332d6aa875392d0",
+          "hostedFiles": [],
+          "integrity": {
+            "SKILL.md": "12b42c14f3d96f4d9ad1654e0e83839090e4a0c99150f7f03823d8553fd3dc47"
+          },
+          "hostedPath": "/s/okx/okx-ai/SKILL.md"
         },
         {
           "name": "okx-dapp-discovery",
           "description": "Plugin router for 20 third-party DeFi protocols (Polymarket, Aave, Hyperliquid, PancakeSwap, Morpho, Raydium, Curve, Compound, Pendle, Lido, ether.fi, GMX, Kamino, Orca, Meteora, Clanker, pump.fun, Uniswap) and their protocol-native tokens (HYPE, HLP, eETH, weETH, stETH, wstETH, LDO, GHO, CAKE, CRV, COMP, RAY, ETHFI, GLP, kToken, PT-* / YT-*, $CLANKER). Resolves DApp/token → plugin → confirm-install → re-apply request. Routing only — never signs or broadcasts; every on-chain write needs explicit user approval. Fires on: (1) named DApp + action verb (swap/deposit/stake/long/borrow/buy/sell/snipe/farm/claim, EN or ZH 买/卖/换/存/质押/借/做多/做空/狙击); (2) 2+ DApp comparison (\"Aave vs Compound\", \"Lido vs ether.fi\"); (3) Polymarket UpDown (`<COIN> 5min updown`, `5 分钟涨跌`, `预测市场`); (4) protocol-native token + action verb (\"deposit USDC into HLP\", \"PT-stETH on Pendle\"); (5) pump.fun WRITE verbs (buy/sell/snipe/ape/swap or 买/卖/狙击/梭哈/帮我买). See body for full rules.",
           "category": "defi",
-          "url": "https://github.com/okx/onchainos-skills/tree/73904b636a0f022dcc13b6d7a0dd2ed3b3195f25/skills/okx-dapp-discovery",
+          "url": "https://github.com/okx/onchainos-skills/tree/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-dapp-discovery",
           "multiFile": true,
-          "hosted": false,
+          "hosted": true,
           "dir": "skills/okx-dapp-discovery",
           "slug": "okx-dapp-discovery",
           "bytes": 27914,
@@ -8286,18 +8312,23 @@
             "references/keyword-glossary.md",
             "references/protocol-keywords.md"
           ],
-          "commitSha": "73904b636a0f022dcc13b6d7a0dd2ed3b3195f25",
-          "commitDate": "2026-10-29T08:30:25Z",
+          "commitSha": "9d5663398ae0947323e283ff763ea89c37815d3c",
+          "commitDate": "2026-11-06T13:36:32Z",
           "lastAuthor": "SherlockHomer",
-          "blobSha": "57933d281eaf778b3e387f0914468a863c7f8ce3"
+          "blobSha": "c83c1fe307326e9d524b8ef5f2c3db16d51a3aab",
+          "hostedFiles": [],
+          "integrity": {
+            "SKILL.md": "e5b40e6c028025ae1208f6d80705f0fd99db4bd3a6a420a8655d43c8428455df"
+          },
+          "hostedPath": "/s/okx/okx-dapp-discovery/SKILL.md"
         },
         {
           "name": "okx-defi",
           "description": "OKX-aggregated DeFi (no specific DApp named) — product discovery, deposit/withdraw/claim execution, AND positions viewing. **If the user names ANY third-party protocol/DApp (Aave, Lido, PancakeSwap, Uniswap, Curve, Compound, Morpho, Pendle, Kamino, Raydium, Hyperliquid, Polymarket, …), route to okx-dapp-discovery — NOT here, even for 'show my Aave positions'.** INVEST triggers: 'invest in DeFi', 'earn yield', 'find best APY', 'deposit/stake for yield', 'search DeFi products', 'redeem/withdraw position', 'claim DeFi rewards', 'borrow against asset', 'repay loan', 'add/remove CLMM liquidity', 'APY/TVL history', 'depth chart', yield farming, lending, staking, liquidity pools. PORTFOLIO triggers: 'check my DeFi positions', 'view DeFi holdings/portfolio', 'my staking/lending positions', 'DeFi balance', 'DeFi 持仓', '我的DeFi资产'. Do NOT use for: DEX swaps (okx-agentic-wallet), token prices (okx-dex-market), wallet token balances (okx-agentic-wallet).",
           "category": "defi",
-          "url": "https://github.com/okx/onchainos-skills/tree/73904b636a0f022dcc13b6d7a0dd2ed3b3195f25/skills/okx-defi",
+          "url": "https://github.com/okx/onchainos-skills/tree/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-defi",
           "multiFile": true,
-          "hosted": false,
+          "hosted": true,
           "dir": "skills/okx-defi",
           "slug": "okx-defi",
           "bytes": 5378,
@@ -8313,18 +8344,23 @@
             "references/portfolio-troubleshooting.md",
             "references/portfolio.md"
           ],
-          "commitSha": "73904b636a0f022dcc13b6d7a0dd2ed3b3195f25",
-          "commitDate": "2026-10-29T08:30:25Z",
+          "commitSha": "9d5663398ae0947323e283ff763ea89c37815d3c",
+          "commitDate": "2026-11-06T13:36:32Z",
           "lastAuthor": "SherlockHomer",
-          "blobSha": "6f5c9f0f9480b7a99877528cac468e34f3de486c"
+          "blobSha": "ff61da499b57485250ecdcf99d7a6b0d71e7b5fc",
+          "hostedFiles": [],
+          "integrity": {
+            "SKILL.md": "3c1d91299615b2407af8f353c850e69a4476b5900a186a5bb91b5760eb5b9270"
+          },
+          "hostedPath": "/s/okx/okx-defi/SKILL.md"
         },
         {
           "name": "okx-dex-market",
           "description": "HARD BLOCK — never use for prediction-market/Polymarket UpDown queries; route to okx-dapp-discovery when a named DApp (Polymarket/Aave/Hyperliquid/PancakeSwap/Morpho) appears with a timeframe, or 涨跌/updown for BTC/ETH/SOL/XRP/BNB/DOGE/HYPE. Otherwise, read-only on-chain DEX data, 6 groups: TOKEN (search, hot/热门, liquidity, holders/whale, risk metadata, cluster/持仓集中度, trade history, top traders); MARKET (price/价格, K线/OHLC, index price, wallet PnL/胜率, trade history); SIGNAL (smart money/KOL/whale tracking, buy signals/信号, leaderboard/牛人榜); SOCIAL (news/新闻, sentiment/情绪, token vibe/热度, KOL leaderboard); TRENCHES (pump.fun/meme launches/新盘/扫链, dev reputation, bundle/sniper detection/捆绑狙击者, co-investor — read-only; buy/snipe → okx-dapp-discovery); WS (onchainos ws CLI, or custom WebSocket script/脚本). Also owns Market API payment/x402, quota/额度, and MARKET_API_*_OVER_QUOTA/confirming:true for all 6 groups.",
           "category": "defi",
-          "url": "https://github.com/okx/onchainos-skills/tree/73904b636a0f022dcc13b6d7a0dd2ed3b3195f25/skills/okx-dex-market",
+          "url": "https://github.com/okx/onchainos-skills/tree/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-dex-market",
           "multiFile": true,
-          "hosted": false,
+          "hosted": true,
           "dir": "skills/okx-dex-market",
           "slug": "okx-dex-market",
           "bytes": 5016,
@@ -8362,18 +8398,23 @@
             "references/ws-troubleshooting.md",
             "references/ws.md"
           ],
-          "commitSha": "73904b636a0f022dcc13b6d7a0dd2ed3b3195f25",
-          "commitDate": "2026-10-29T08:30:25Z",
+          "commitSha": "9d5663398ae0947323e283ff763ea89c37815d3c",
+          "commitDate": "2026-11-06T13:36:32Z",
           "lastAuthor": "SherlockHomer",
-          "blobSha": "5d5d43bf494b488ce1b468a5546606ca8bf826c6"
+          "blobSha": "518d4d09a83dfa9853908f40e099244aa0eb8cfe",
+          "hostedFiles": [],
+          "integrity": {
+            "SKILL.md": "441332f77b882fc5501c0372e3864b909090a4725a31e5a1b23dc6a4d19c1078"
+          },
+          "hostedPath": "/s/okx/okx-dex-market/SKILL.md"
         },
         {
           "name": "okx-guide",
           "description": "Onchain OS onboarding & guide hub — the single entry for first-time, 'what is this / how do I use it', OKX.AI, and customer-support intents; classifies the intent and routes to the right sub-flow via its Intent Routing table. Covers: (1) Onchain OS onboarding + welcome banner — 'what is onchainos', 'what is onchain os', 'what can it do', 'what can onchainos do', 'what does onchainos do', 'how do I use this', 'how do I play', 'how to use onchainos', 'how to play onchainos', 'how does onchainos work', 'how do I start', 'getting started', 'tutorial', 'onboarding', 'first time', 'I just installed', 'now what', 'what do I do now', 'where do I start', 'who are you', 'what are you', 'introduce onchainos', 'tell me about onchainos', 'I'm new'; (2) OKX.AI intro & role-registration routing (the Agent economic system — roles User / ASP / Evaluator) — 'what is OKX.AI', 'OKX.AI 是什么', 'how to use OKX.AI', 'OKX.AI 快速开始', and any spelling / spacing / casing / typo variant (OKXAI, okx ai, okx-ai, lowercase okx.ai, 啥是okxai); (3) customer support / Help Center — 'contact support', 'talk to a human', 'customer service', 'file a complaint', 'give feedback', 'report a bug / system error', 'help center', 'FAQ', 'user guide', 'something is broken'. NOT for: direct on-chain actions (swap / wallet / balance / token) or Agent task lifecycle (publish / accept / deliver / dispute) — those have their own skills.",
           "category": "development",
-          "url": "https://github.com/okx/onchainos-skills/tree/73904b636a0f022dcc13b6d7a0dd2ed3b3195f25/skills/okx-guide",
+          "url": "https://github.com/okx/onchainos-skills/tree/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-guide",
           "multiFile": true,
-          "hosted": false,
+          "hosted": true,
           "dir": "skills/okx-guide",
           "slug": "okx-guide",
           "bytes": 1791,
@@ -8391,16 +8432,21 @@
             "references/unregistered-role-selection.md",
             "references/welcome.md"
           ],
-          "commitSha": "73904b636a0f022dcc13b6d7a0dd2ed3b3195f25",
-          "commitDate": "2026-10-29T08:30:25Z",
+          "commitSha": "9d5663398ae0947323e283ff763ea89c37815d3c",
+          "commitDate": "2026-11-06T13:36:32Z",
           "lastAuthor": "SherlockHomer",
-          "blobSha": "ec28191181be63836fcb41ab76b68f6486993812"
+          "blobSha": "9dca4dc6667c8d9d481e211e0ef9ef8060e1cf87",
+          "hostedFiles": [],
+          "integrity": {
+            "SKILL.md": "52283e16fe9435226e4df03785bd6a4392b690b745b0299f09c1c7960fd465f6"
+          },
+          "hostedPath": "/s/okx/okx-guide/SKILL.md"
         }
       ],
-      "commitSha": "73904b636a0f022dcc13b6d7a0dd2ed3b3195f25",
+      "commitSha": "9d5663398ae0947323e283ff763ea89c37815d3c",
       "logo": "/logos/okx.png",
-      "commitDate": "2026-10-29T08:30:25Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "commitDate": "2026-11-06T13:36:32Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "BlueBd",
         "DingMing-okx",
@@ -8444,10 +8490,10 @@
       ],
       "blurb": "Chainstack's pump.fun trading skill wrapping their pumpfun-cli — buy/sell with smart bonding-curve/AMM routing, slippage and priority-fee control, and dry-run simulation.",
       "url": "https://github.com/chainstacklabs/pumpclaw",
-      "stars": 8,
-      "pushedAt": "2026-11-01",
+      "stars": 15,
+      "pushedAt": "2026-11-09",
       "license": "Apache-2.0",
-      "description": "pump.fun trading skill for OpenClaw - launch and browse tokens, execute trades, manage wallets",
+      "description": "Agent skill for trading on pump.fun and Raydium LaunchLab launchpads (letsbonk.fun, StonkFun) through pumpfun-cli: buy, sell and launch tokens, manage wallets. Works with OpenClaw, Claude Code, Cursor, Codex and other Agent Skills agents.",
       "skillCount": 1,
       "highlightsOnly": false,
       "skills": [
@@ -8455,13 +8501,13 @@
           "name": "pumpclaw",
           "description": "Execute pump.fun token trades via pumpfun-cli. Handles buy/sell with smart routing (bonding curve vs PumpSwap AMM), slippage control, priority fees, compute units, and dry-run simulation. Also covers token launch, migration, wallet management, and token discovery. Use when the user wants to trade, swap, buy, sell, launch, or manage pump.fun tokens.",
           "category": "defi",
-          "url": "https://github.com/chainstacklabs/pumpclaw/tree/0a3feb9b23cc895be726943f23c0187f9fc4d5b2",
+          "url": "https://github.com/chainstacklabs/pumpclaw/tree/2163cfdbdeaa69fbe353f2921ebf10e337ccfcbd",
           "multiFile": true,
           "hosted": true,
           "dir": "",
           "slug": "pumpclaw",
-          "bytes": 7304,
-          "words": 943,
+          "bytes": 9919,
+          "words": 1361,
           "files": [
             "assets/",
             "assets/token-lifecycle.md",
@@ -8471,21 +8517,21 @@
             "scripts/",
             "scripts/check-prereqs.sh"
           ],
-          "commitSha": "0a3feb9b23cc895be726943f23c0187f9fc4d5b2",
-          "commitDate": "2026-11-01T18:09:30Z",
+          "commitSha": "2163cfdbdeaa69fbe353f2921ebf10e337ccfcbd",
+          "commitDate": "2026-11-09T09:48:45Z",
           "lastAuthor": "smypmsa",
-          "blobSha": "73bdde4dce6631ed5775934b49a4f1f00d6bfc25",
+          "blobSha": "9e7feea406d85c9e87e7a1b1658605098755582a",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "237103ff3f4d42cecb8be3328828c87c6d9e28ccc7a5887fbc18fa861c334fb0"
+            "SKILL.md": "d8b42f1c61cef9542067d2882734f214925384311951c8e82abdbad95de090c9"
           },
           "hostedPath": "/s/chainstack/pumpclaw/SKILL.md"
         }
       ],
-      "commitSha": "0a3feb9b23cc895be726943f23c0187f9fc4d5b2",
+      "commitSha": "2163cfdbdeaa69fbe353f2921ebf10e337ccfcbd",
       "logo": "/logos/chainstacklabs.png",
-      "commitDate": "2026-11-01T18:09:30Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "commitDate": "2026-11-09T09:48:45Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": [
         "smypmsa"
       ]
@@ -8530,7 +8576,7 @@
       "commitSha": "86b0343e8c4351e87b2470e785d11acb99180722",
       "logo": "/logos/getpara.png",
       "commitDate": "2026-02-16T20:40:50Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "contributors": []
     },
     {
@@ -8553,13 +8599,13 @@
           "name": "orquestra-mcp-connect",
           "description": "Connect the Orquestra MCP server to Claude Code, Claude Desktop, OpenAI Codex CLI, or Cursor. Use when setting up Orquestra MCP for the first time, troubleshooting connection issues, or configuring a new client. Triggers: \"connect orquestra\", \"mcp config\", \"claude desktop config\", \"cursor mcp\", \"how to add mcp\", \"orquestra mcp setup\", \"mcp not connecting\", \"add orquestra to claude\", \"mcp server config\", \"configure mcp\", \"install orquestra mcp\", \"mcp endpoint\", \"codex mcp\", \"codex cli mcp\", \"openai codex mcp\".",
           "category": "development",
-          "url": "https://github.com/berkayoztunc/orquestra/tree/47d8961e34ca8015fa84864c023b1f59385b4fc3/.claude/skills/orquestra-mcp-connect",
+          "url": "https://github.com/berkayoztunc/orquestra/tree/a09bd18fc49dd479d944b5753929e9543868b64d/.claude/skills/orquestra-mcp-connect",
           "multiFile": false,
           "hosted": true,
           "dir": ".claude/skills/orquestra-mcp-connect",
           "slug": "orquestra-mcp-connect",
-          "commitSha": "47d8961e34ca8015fa84864c023b1f59385b4fc3",
-          "commitDate": "2026-08-17T18:22:52Z",
+          "commitSha": "a09bd18fc49dd479d944b5753929e9543868b64d",
+          "commitDate": "2026-11-06T01:41:14Z",
           "lastAuthor": "berkayoztunc",
           "bytes": 3863,
           "words": 374,
@@ -8567,7 +8613,7 @@
           "blobSha": "800b483b9e427473d1905853e0483b3576977656",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "85f456bafd3001c856c44b77af180519a4069da59aeac8ff93034928c3583f10"
+            "SKILL.md": "96a141454138a6c05919bb7a033e18dc4958d18bbfa1440b1da28d7ac27dc057"
           },
           "hostedPath": "/s/orquestra/orquestra-mcp-connect/SKILL.md"
         },
@@ -8575,13 +8621,13 @@
           "name": "orquestra-mcp-tools",
           "description": "Complete reference for all 8 Orquestra MCP tools — parameters, return shapes, and usage examples. Use when calling any Orquestra MCP tool directly, debugging tool responses, or understanding what inputs each tool requires. Triggers: \"orquestra tool\", \"search_programs\", \"list_instructions\", \"build_instruction\", \"list_pda_accounts\", \"derive_pda\", \"read_llms_txt\", \"get_ai_analysis\", \"simulate_instruction\", \"mcp tool params\", \"what does this tool return\", \"tool not working\", \"tool input schema\", \"orquestra api tool\".",
           "category": "development",
-          "url": "https://github.com/berkayoztunc/orquestra/tree/47d8961e34ca8015fa84864c023b1f59385b4fc3/.claude/skills/orquestra-mcp-tools",
+          "url": "https://github.com/berkayoztunc/orquestra/tree/a09bd18fc49dd479d944b5753929e9543868b64d/.claude/skills/orquestra-mcp-tools",
           "multiFile": false,
           "hosted": true,
           "dir": ".claude/skills/orquestra-mcp-tools",
           "slug": "orquestra-mcp-tools",
-          "commitSha": "47d8961e34ca8015fa84864c023b1f59385b4fc3",
-          "commitDate": "2026-08-17T18:22:52Z",
+          "commitSha": "a09bd18fc49dd479d944b5753929e9543868b64d",
+          "commitDate": "2026-11-06T01:41:14Z",
           "lastAuthor": "berkayoztunc",
           "bytes": 5913,
           "words": 797,
@@ -8589,7 +8635,7 @@
           "blobSha": "68fc7beac479ffd1d009745ee7730ab96ec5bf2f",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "305c9669306769346e266711ef80fab33dac2d8dbe61e711496ed7718c9bc31a"
+            "SKILL.md": "7f8486b946ebf73df5583076730ca4c05bd679c7e39e6293cc37630cc961d712"
           },
           "hostedPath": "/s/orquestra/orquestra-mcp-tools/SKILL.md"
         },
@@ -8597,13 +8643,13 @@
           "name": "orquestra-solana",
           "description": "End-to-end guide for executing Solana transactions via the Orquestra agent pipeline. Use when performing any Solana operation: staking, swapping, minting, transferring, or any Anchor program interaction using the Orquestra agents. Triggers: \"stake sol\", \"swap token\", \"solana transaction\", \"use orquestra to\", \"send transaction\", \"interact with program\", \"call instruction\", \"build and sign\", \"orquestra pipeline\", \"full pipeline\", \"execute on solana\", \"solana agent\", \"marinade deposit\", \"jupiter swap\", \"mint token\", \"transfer spl\".",
           "category": "development",
-          "url": "https://github.com/berkayoztunc/orquestra/tree/47d8961e34ca8015fa84864c023b1f59385b4fc3/.claude/skills/orquestra-solana",
+          "url": "https://github.com/berkayoztunc/orquestra/tree/a09bd18fc49dd479d944b5753929e9543868b64d/.claude/skills/orquestra-solana",
           "multiFile": false,
           "hosted": true,
           "dir": ".claude/skills/orquestra-solana",
           "slug": "orquestra-solana",
-          "commitSha": "47d8961e34ca8015fa84864c023b1f59385b4fc3",
-          "commitDate": "2026-08-17T18:22:52Z",
+          "commitSha": "a09bd18fc49dd479d944b5753929e9543868b64d",
+          "commitDate": "2026-11-06T01:41:14Z",
           "lastAuthor": "berkayoztunc",
           "bytes": 5893,
           "words": 751,
@@ -8611,7 +8657,7 @@
           "blobSha": "4adf4452ae7128e5570996dc07183f50a007e2be",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "72dcde94158319b2c138d15bec4884fe0a0088770f621ca53340173ab27f0b70"
+            "SKILL.md": "097c851f8574c1d99115035e4e16e9e68997bec2b92a75fc16411abdc245b8dc"
           },
           "hostedPath": "/s/orquestra/orquestra-solana/SKILL.md"
         },
@@ -8619,13 +8665,13 @@
           "name": "orquestra-pda-explorer",
           "description": "Use when you need to derive Program Derived Addresses (PDAs), resolve missing accounts, or inspect on-chain PDA data — all via Orquestra MCP only. Use when a user says 'derive PDA', 'find my stake account', 'resolve missing accounts', 'what's in the vault PDA', 'fetch account data', 'PDA for wallet', or 'fill missing accounts'.",
           "category": "development",
-          "url": "https://github.com/berkayoztunc/orquestra/tree/47d8961e34ca8015fa84864c023b1f59385b4fc3/agents/skills/orquestra-pda-explorer",
+          "url": "https://github.com/berkayoztunc/orquestra/tree/a09bd18fc49dd479d944b5753929e9543868b64d/agents/skills/orquestra-pda-explorer",
           "multiFile": false,
           "hosted": true,
           "dir": "agents/skills/orquestra-pda-explorer",
           "slug": "orquestra-pda-explorer",
-          "commitSha": "47d8961e34ca8015fa84864c023b1f59385b4fc3",
-          "commitDate": "2026-08-17T18:22:52Z",
+          "commitSha": "a09bd18fc49dd479d944b5753929e9543868b64d",
+          "commitDate": "2026-11-06T01:41:14Z",
           "lastAuthor": "berkayoztunc",
           "bytes": 2367,
           "words": 258,
@@ -8633,7 +8679,7 @@
           "blobSha": "6b368684886e38bb4cc22121ba80224e48dd4042",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "4c49e1bc292f7d2a22822ef1a5a9dd97f310be0879015fe8b77aa5491aaf457c"
+            "SKILL.md": "fea90a17f5b99093e6d76341b94a56126e4d3eea57baf3499ed9880f547a903b"
           },
           "hostedPath": "/s/orquestra/orquestra-pda-explorer/SKILL.md"
         },
@@ -8641,13 +8687,13 @@
           "name": "orquestra-researcher",
           "description": "Use when you need to discover Solana programs, read their documentation, list instructions and account types, or get an AI-generated analysis — all via Orquestra MCP only. Use when a user says 'find program', 'what does this program do', 'list instructions for', 'show me the accounts', 'AI analysis of', 'read IDL docs', 'search Solana program', or 'what is <protocol>'.",
           "category": "development",
-          "url": "https://github.com/berkayoztunc/orquestra/tree/47d8961e34ca8015fa84864c023b1f59385b4fc3/agents/skills/orquestra-researcher",
+          "url": "https://github.com/berkayoztunc/orquestra/tree/a09bd18fc49dd479d944b5753929e9543868b64d/agents/skills/orquestra-researcher",
           "multiFile": false,
           "hosted": true,
           "dir": "agents/skills/orquestra-researcher",
           "slug": "orquestra-researcher",
-          "commitSha": "47d8961e34ca8015fa84864c023b1f59385b4fc3",
-          "commitDate": "2026-08-17T18:22:52Z",
+          "commitSha": "a09bd18fc49dd479d944b5753929e9543868b64d",
+          "commitDate": "2026-11-06T01:41:14Z",
           "lastAuthor": "berkayoztunc",
           "bytes": 1897,
           "words": 196,
@@ -8655,7 +8701,7 @@
           "blobSha": "2f0e3bf9fdbe01f15040d837abde002a2c4634ce",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "b539f251f2e853d4ac5ac32f57639fee6a2854e064a1572f6d73f5eb9327a90e"
+            "SKILL.md": "135bb9bb77ab4e4d169ac2672c1da04eeacf62024c2903dd2db8eaad17c84b9e"
           },
           "hostedPath": "/s/orquestra/orquestra-researcher/SKILL.md"
         },
@@ -8663,13 +8709,13 @@
           "name": "orquestra-signer",
           "description": "Use when you have an unsigned base64 wire Solana transaction and need to sign and/or send it using @orquestradev/signer-mcp. Use when a user says 'sign transaction', 'sign and send', 'submit this tx', 'send the transaction', 'sign this base64', 'what\\'s my wallet address', or 'broadcast transaction'. ALWAYS show an approval summary and require explicit YES before signing.",
           "category": "development",
-          "url": "https://github.com/berkayoztunc/orquestra/tree/47d8961e34ca8015fa84864c023b1f59385b4fc3/agents/skills/orquestra-signer",
+          "url": "https://github.com/berkayoztunc/orquestra/tree/a09bd18fc49dd479d944b5753929e9543868b64d/agents/skills/orquestra-signer",
           "multiFile": false,
           "hosted": false,
           "dir": "agents/skills/orquestra-signer",
           "slug": "orquestra-signer",
-          "commitSha": "47d8961e34ca8015fa84864c023b1f59385b4fc3",
-          "commitDate": "2026-08-17T18:22:52Z",
+          "commitSha": "a09bd18fc49dd479d944b5753929e9543868b64d",
+          "commitDate": "2026-11-06T01:41:14Z",
           "lastAuthor": "berkayoztunc",
           "bytes": 3284,
           "words": 324,
@@ -8680,13 +8726,13 @@
           "name": "orquestra-simulator",
           "description": "Preflights a Solana instruction via Orquestra's `simulate_instruction` MCP tool — no signing. Decodes Anchor errors from logs and reports compute units. Use when a user says 'simulate', 'dry run', 'preflight', 'will this work', 'check before signing', 'why did this fail', or 'decode this error'.",
           "category": "development",
-          "url": "https://github.com/berkayoztunc/orquestra/tree/47d8961e34ca8015fa84864c023b1f59385b4fc3/agents/skills/orquestra-simulator",
+          "url": "https://github.com/berkayoztunc/orquestra/tree/a09bd18fc49dd479d944b5753929e9543868b64d/agents/skills/orquestra-simulator",
           "multiFile": false,
           "hosted": true,
           "dir": "agents/skills/orquestra-simulator",
           "slug": "orquestra-simulator",
-          "commitSha": "47d8961e34ca8015fa84864c023b1f59385b4fc3",
-          "commitDate": "2026-08-17T18:22:52Z",
+          "commitSha": "a09bd18fc49dd479d944b5753929e9543868b64d",
+          "commitDate": "2026-11-06T01:41:14Z",
           "lastAuthor": "berkayoztunc",
           "bytes": 1640,
           "words": 186,
@@ -8694,7 +8740,7 @@
           "blobSha": "27630a712ff8f9b4146b021647a474972d38e15c",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "093d593ceb1550dff5e6a74c42735f2471539b0748ad8f294ddf2d2f9a867577"
+            "SKILL.md": "6396ac395f39d493e8c3a1e5ff9a257e79393f37afabe8f39ef92d8e357c3708"
           },
           "hostedPath": "/s/orquestra/orquestra-simulator/SKILL.md"
         },
@@ -8702,32 +8748,32 @@
           "name": "orquestra-tx-builder",
           "description": "Use when all accounts and arguments are resolved and you need to construct an unsigned Solana transaction via Orquestra MCP. Use when a user says 'build transaction', 'build instruction', 'create unsigned tx', 'construct the transaction', 'build the swap', 'build the stake instruction', or 'generate base64 transaction'.",
           "category": "development",
-          "url": "https://github.com/berkayoztunc/orquestra/tree/47d8961e34ca8015fa84864c023b1f59385b4fc3/agents/skills/orquestra-tx-builder",
+          "url": "https://github.com/berkayoztunc/orquestra/tree/a09bd18fc49dd479d944b5753929e9543868b64d/agents/skills/orquestra-tx-builder",
           "multiFile": false,
           "hosted": true,
           "dir": "agents/skills/orquestra-tx-builder",
           "slug": "orquestra-tx-builder",
-          "commitSha": "47d8961e34ca8015fa84864c023b1f59385b4fc3",
-          "commitDate": "2026-08-17T18:22:52Z",
+          "commitSha": "a09bd18fc49dd479d944b5753929e9543868b64d",
+          "commitDate": "2026-11-06T01:41:14Z",
           "lastAuthor": "berkayoztunc",
-          "bytes": 2567,
-          "words": 278,
+          "bytes": 2949,
+          "words": 338,
           "files": [],
-          "blobSha": "8e9f39225863d1b6e09d34d56cda821283527872",
+          "blobSha": "4efcf5ded13e612c9abf9d5bf1a75da5411fecb4",
           "hostedFiles": [],
           "integrity": {
-            "SKILL.md": "90466e7b888c41bb1c175e5e5067fd2f0d79ecace78a0c3f85d98f8b29f83c48"
+            "SKILL.md": "7ff0976174e52b2214fec2c9390c53dc0a94fa6dc1cc0551cc272a81122d0b8c"
           },
           "hostedPath": "/s/orquestra/orquestra-tx-builder/SKILL.md"
         }
       ],
-      "stars": 25,
-      "pushedAt": "2026-08-17",
+      "stars": 26,
+      "pushedAt": "2026-11-06",
       "license": "MIT",
       "description": "orquestra is a free, open-source platform that instantly converts Solana program IDLs into production-ready APIs & MCP server.",
-      "commitSha": "47d8961e34ca8015fa84864c023b1f59385b4fc3",
-      "commitDate": "2026-08-17T18:22:52Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "commitSha": "a09bd18fc49dd479d944b5753929e9543868b64d",
+      "commitDate": "2026-11-06T01:41:14Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "logo": "/logos/berkayoztunc.png",
       "contributors": [
         "berkayoztunc",
@@ -8806,7 +8852,7 @@
       "description": "Built on the v2 packaging and workflow model from pashov/skills, then adapted for Solana-specific security review.",
       "commitSha": "e501915ff4953ed25ff40bd9e776de370b350e8d",
       "commitDate": "2026-03-23T10:29:17Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "logo": "/logos/sanbir.png",
       "contributors": [
         "sanbir"
@@ -8979,13 +9025,13 @@
           "hostedPath": "/s/agi-trading/solana-rpc/SKILL.md"
         }
       ],
-      "stars": 508,
+      "stars": 517,
       "pushedAt": "2026-09-03",
       "license": "MIT",
       "description": "68 trading, DeFi, and quantitative finance Agent Skills. Works with Claude Code, Cursor, Codex, Gemini CLI, and 30+ other tools.",
       "commitSha": "981e1d736cdc02bdc1c55c74ec9224e956414706",
       "commitDate": "2026-09-03T02:19:34Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "logo": "/logos/agiprolabs.png",
       "contributors": [
         "agiprolabs",
@@ -9060,7 +9106,7 @@
       "description": "154 Web3 MCP tools for Claude Code, custody-free. Plus an agent wallet prompt injection can't drain: per-tx, daily, and on-chain (ERC-4337) spending caps the model can't bypass. EVM + Solana + Tron DEX/DeFi, perps, prediction markets, contract deploy + audit.",
       "commitSha": "c58efe0c84bb8532aa7f86c6a4e426c27c26e559",
       "commitDate": "2026-11-02T03:54:05Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z",
       "logo": "/logos/ChainGPT-org.png",
       "contributors": [
         "ceoguy"
@@ -9100,7 +9146,7 @@
       "pushedAt": "2026-04-09",
       "commitSha": "747211bef454c79e7a6ae4ec2ab9f71b44ae739a",
       "commitDate": "2026-04-03T20:55:58Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z"
+      "pinnedAt": "2026-11-09T15:22:25.352Z"
     },
     {
       "name": "Octav API Skill",
@@ -9111,7 +9157,7 @@
       "pushedAt": "2026-08-05",
       "commitSha": "0c1a8632543a31dc36f82df1d93f6b2bba640d21",
       "commitDate": "2026-08-05T21:33:58Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z"
+      "pinnedAt": "2026-11-09T15:22:25.352Z"
     },
     {
       "name": "PNP Markets Skill",
@@ -9122,29 +9168,29 @@
       "pushedAt": "2026-04-11",
       "commitSha": "cd43f8019b0966ca4c672d056cea416ab86a8180",
       "commitDate": "2026-04-11T21:16:51Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z"
+      "pinnedAt": "2026-11-09T15:22:25.352Z"
     },
     {
       "name": "Solana Skills Plugin",
       "repo": "tenequm/claude-plugins",
       "description": "Anchor/native program development, security auditing, ZK compression.",
       "logo": "/logos/tenequm.png",
-      "stars": 40,
-      "pushedAt": "2026-10-24",
-      "commitSha": "b648a09c2a238d47fb690777c1095d210299ce58",
-      "commitDate": "2026-10-23T23:59:48Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z"
+      "stars": 39,
+      "pushedAt": "2026-11-05",
+      "commitSha": "16996da5399d22f781a70b3d3694b4684f9b8bfd",
+      "commitDate": "2026-11-05T13:43:15Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z"
     },
     {
       "name": "Bitget Wallet Skill",
       "repo": "bitget-wallet-ai-lab/bitget-wallet-skill",
       "description": "Multi-chain swaps, bridges, and gasless transactions incl. Solana.",
       "logo": "/logos/bitget-wallet-ai-lab.png",
-      "stars": 259,
+      "stars": 258,
       "pushedAt": "2026-10-30",
       "commitSha": "9175a19d9a71db24de97ef7e4b2f060af5e8fe8b",
       "commitDate": "2026-10-30T07:06:58Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z"
+      "pinnedAt": "2026-11-09T15:22:25.352Z"
     },
     {
       "name": "Project 0 Agents",
@@ -9155,7 +9201,7 @@
       "pushedAt": "2026-10-27",
       "commitSha": "b33b569b630a63cea1f26b2318408ec69371f531",
       "commitDate": "2026-10-27T10:15:35Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z"
+      "pinnedAt": "2026-11-09T15:22:25.352Z"
     },
     {
       "name": "Breeze Agent Kit",
@@ -9166,7 +9212,7 @@
       "pushedAt": "2026-03-30",
       "commitSha": "f59885a36fb5f398a09bc157033026ab3e17d53c",
       "commitDate": "2026-03-30T19:50:29Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z"
+      "pinnedAt": "2026-11-09T15:22:25.352Z"
     },
     {
       "name": "SP3ND Agent Skill",
@@ -9177,7 +9223,7 @@
       "pushedAt": "2026-09-16",
       "commitSha": "d90c465f67baf97c33cca2d747517e65dcab0168",
       "commitDate": "2026-09-16T17:48:28Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z"
+      "pinnedAt": "2026-11-09T15:22:25.352Z"
     },
     {
       "name": "Sentients",
@@ -9188,7 +9234,7 @@
       "pushedAt": "2026-02-15",
       "commitSha": "1a3c751316cd6ffacdb40cc19a8210e5ac7fb56b",
       "commitDate": "2026-02-15T18:24:51Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z"
+      "pinnedAt": "2026-11-09T15:22:25.352Z"
     },
     {
       "name": "MoonPay Skills",
@@ -9199,18 +9245,18 @@
       "pushedAt": "2026-10-20",
       "commitSha": "aa672ab120ce366c064b8facc4dc18bd465ac09d",
       "commitDate": "2026-05-20T17:58:02Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z"
+      "pinnedAt": "2026-11-09T15:22:25.352Z"
     },
     {
       "name": "Bankr Skills",
       "repo": "BankrBot/skills",
       "description": "Multi-chain agent-skill marketplace whose core trading skill runs Solana wallets and Raydium LaunchLab token launches.",
       "logo": "/logos/BankrBot.png",
-      "stars": 1208,
-      "pushedAt": "2026-11-02",
-      "commitSha": "77e0a8391c80994e0e0e2109620d0d2892354915",
-      "commitDate": "2026-11-02T11:03:46Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z"
+      "stars": 1209,
+      "pushedAt": "2026-11-09",
+      "commitSha": "32bc8e41f837ebf48624c00928ec47e03a628d48",
+      "commitDate": "2026-11-09T09:19:30Z",
+      "pinnedAt": "2026-11-09T15:22:25.352Z"
     },
     {
       "name": "Switchboard Agent Skills",
@@ -9221,7 +9267,7 @@
       "pushedAt": "2026-09-04",
       "commitSha": "6262810ebbc7feed25f04f6e98fcdeb53eaec833",
       "commitDate": "2026-09-04T18:47:27Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z"
+      "pinnedAt": "2026-11-09T15:22:25.352Z"
     },
     {
       "name": "Wormhole Interop Skill",
@@ -9232,7 +9278,7 @@
       "pushedAt": "2026-03-23",
       "commitSha": "5c5d1e324f8a6ae14114e5c70b9853a58b2d7bab",
       "commitDate": "2026-03-23T20:46:45Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z"
+      "pinnedAt": "2026-11-09T15:22:25.352Z"
     },
     {
       "name": "Solana Dev Skills",
@@ -9243,19 +9289,19 @@
       "pushedAt": "2026-05-22",
       "commitSha": "fac9cf1c88684411416d6fd41a8360d630741f8e",
       "commitDate": "2026-05-22T04:12:24Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z"
+      "pinnedAt": "2026-11-09T15:22:25.352Z"
     },
     {
       "name": "Sol CLI Skill",
       "repo": "solanaguide/solana-cli",
       "description": "CLI-backed payments, staking, and trading skill built for local-key-only agent use.",
       "logo": "/logos/solanaguide.png",
-      "stars": 7,
+      "stars": 8,
       "pushedAt": "2026-03-04",
       "commitSha": "554f9e28df72b2482b6fee041b78f08cabba2377",
       "commitDate": "2026-03-04T18:10:20Z",
-      "pinnedAt": "2026-11-02T14:54:04.159Z"
+      "pinnedAt": "2026-11-09T15:22:25.352Z"
     }
   ],
-  "pinnedAt": "2026-11-02T14:54:04.159Z"
+  "pinnedAt": "2026-11-09T15:22:25.352Z"
 }

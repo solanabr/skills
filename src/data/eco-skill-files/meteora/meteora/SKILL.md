@@ -7,7 +7,7 @@ metadata: {"version": "2.0.0", "author": "MeteoraAg", "openclaw": {"emoji": "ðŸŒ
 ---
 
 <!--
-  Mirror of https://github.com/MeteoraAg/meteora-invent/blob/99d1441e8e39a11752a13c16c12867dba0448c9d/skills/meteora/SKILL.md hosted by kit.superteam.codes.
+  Mirror of https://github.com/MeteoraAg/meteora-invent/blob/e21555cff0d75b27a054535bf5f2b2b57c3bdb84/skills/meteora/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit â€”
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

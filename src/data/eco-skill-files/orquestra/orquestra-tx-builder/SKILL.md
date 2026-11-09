@@ -5,7 +5,7 @@ argument-hint: "Program ID, instruction name, all resolved account addresses (wi
 ---
 
 <!--
-  Mirror of https://github.com/berkayoztunc/orquestra/blob/47d8961e34ca8015fa84864c023b1f59385b4fc3/agents/skills/orquestra-tx-builder/SKILL.md hosted by kit.superteam.codes.
+  Mirror of https://github.com/berkayoztunc/orquestra/blob/a09bd18fc49dd479d944b5753929e9543868b64d/agents/skills/orquestra-tx-builder/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->
@@ -62,6 +62,10 @@ Wire TX:   <base64_encoded_wire_tx>
 
 > Solana wire-format transaction serialized as base64.
 > Submit to RPC with `encoding: "base64"` in the request body.
+>
+> Default format is **legacy**. Only pass `txVersion` when the user asks for it: `"v0"`, or `"v1"` (Transaction v1 — 4096-byte limit,
+> max 64 inline accounts, no lookup tables, starts with byte `0x81`). v1 defaults to base64, measures compute limits automatically
+> (override via `txConfig`), and requires a signer/wallet that supports v1 — confirm that before building one.
 
 **RPC submission header (for manual use)**
 ```http

@@ -1,15 +1,17 @@
 ---
 name: pumpclaw
 description: >
-  Execute pump.fun token trades via pumpfun-cli. Handles buy/sell with smart
-  routing (bonding curve vs PumpSwap AMM), slippage control, priority fees,
-  compute units, and dry-run simulation. Also covers token launch, migration,
-  wallet management, and token discovery. Use when the user wants to trade,
-  swap, buy, sell, launch, or manage pump.fun tokens.
-compatibility: "Requires uv and pumpfun-cli 0.2 or later (install via uv from github.com/chainstacklabs/pumpfun-cli)"
+  Execute pump.fun and Raydium LaunchLab token trades via pumpfun-cli. Handles
+  buy/sell with smart routing (pump.fun bonding curve or PumpSwap AMM; LaunchLab
+  curve or Raydium CPMM, for letsbonk.fun, StonkFun and other launchpads),
+  slippage control, priority fees, compute units, and dry-run simulation. Also
+  covers pump.fun token launch, migration, wallet management, and token
+  discovery. Use when the user wants to trade, swap, buy, sell, launch, or
+  manage pump.fun, letsbonk.fun or StonkFun tokens.
+compatibility: "Requires uv and pumpfun-cli 0.3 or later (install via uv from github.com/chainstacklabs/pumpfun-cli)"
 metadata:
   author: chainstacklabs
-  version: "0.2"
+  version: "0.3"
   category: crypto-trading
   requires:
     bins: ["uv", "pumpfun"]
@@ -17,7 +19,7 @@ metadata:
 ---
 
 <!--
-  Mirror of https://github.com/chainstacklabs/pumpclaw/blob/0a3feb9b23cc895be726943f23c0187f9fc4d5b2/SKILL.md hosted by kit.superteam.codes.
+  Mirror of https://github.com/chainstacklabs/pumpclaw/blob/2163cfdbdeaa69fbe353f2921ebf10e337ccfcbd/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->
@@ -25,7 +27,8 @@ metadata:
 
 # PumpClaw — pump.fun Trading Skill
 
-You are a pump.fun trading assistant operating through the `pumpfun` CLI.
+You are a trading assistant for pump.fun and Raydium LaunchLab coins, operating
+through the `pumpfun` CLI.
 
 ## Installing pumpfun-cli
 
@@ -39,7 +42,7 @@ uv tool install git+https://github.com/chainstacklabs/pumpfun-cli.git
 uv tool install --force git+https://github.com/chainstacklabs/pumpfun-cli.git
 ```
 
-This installs `pumpfun` globally — available from any directory. `pumpfun --version` should report 0.2 or later; older versions build transactions the current pump.fun program rejects.
+This installs `pumpfun` globally — available from any directory. `pumpfun --version` should report 0.3 or later; older versions can't trade LaunchLab coins and their `migrate` is rejected by the current programs.
 
 ## Pre-Trade Checklist
 
@@ -48,15 +51,21 @@ Before any trade, verify:
 1. **Wallet exists**: `pumpfun wallet show` — confirms keystore is set up
 2. **RPC configured**: `pumpfun config set rpc <url>`, or `PUMPFUN_RPC` env var, or `--rpc` flag
 3. **Balance sufficient**: `pumpfun wallet balance` — SOL for fees, plus the coin's quote asset for the spend
-4. **Token status**: `pumpfun info <mint>` — bonding curve or graduated to PumpSwap AMM, and which quote asset it is priced in (`quote_symbol`)
+4. **Token status**: `pumpfun info <mint>` — which venue the coin trades on (`venue`), whether it has graduated, and which quote asset it is priced in (`quote_symbol`)
 
 ## Smart Routing
 
-The CLI automatically routes trades based on token status:
+The CLI finds where a coin trades and routes there; `venue` in every result says which:
 
-- **On bonding curve** → uses pump.fun bonding curve instructions
-- **Graduated to AMM** → uses PumpSwap AMM instructions
-- **Force AMM** → `--force-amm` flag bypasses bonding curve check
+| Coin | Before graduation | After graduation |
+|---|---|---|
+| pump.fun | `bonding_curve` | `pumpswap` (PumpSwap AMM) |
+| Raydium LaunchLab: letsbonk.fun, StonkFun, other launchpads | `launchlab` | `cpmm` (Raydium CPMM) |
+
+- `--force-amm` skips the curve and trades in the coin's pool: PumpSwap, or CPMM for a LaunchLab coin
+- LaunchLab results also name the launchpad (`platform`)
+- A LaunchLab coin that graduated to Raydium AMM v4 instead is refused (`unsupported_venue`)
+- `launch`, `migrate`, `claim-cashback`, `collect-creator-fee`, `close-volume-acc` and `tokens` are pump.fun only
 
 Always run `pumpfun info <mint>` first to understand the token's current state.
 
@@ -71,6 +80,18 @@ every amount is in it:
 - results name the asset in `quote_symbol` (`SOL`, `USDC`, or the mint address)
 
 Check `quote_symbol` in `pumpfun info <mint>` before choosing an amount.
+
+LaunchLab coins are often priced in something other than SOL (USDC, tokenized
+stocks, other tokens). The CLI finds such a coin with `getProgramAccounts`, so
+it needs an RPC that serves that method.
+
+### Transfer fees
+
+Some LaunchLab coins (StonkFun reward coins, for example) are Token-2022 mints
+with a transfer fee: `transfer_fee_bps` in `pumpfun info`. A buy delivers that
+much less and a sell sends that much less into the pool, so a round trip loses
+the fee twice on top of the trading fees (`curve_fee_pct`, `pool_fee_pct`). The
+CLI's amounts already count it; tell the user before trading a coin that has one.
 
 ## Core Trading Commands
 
@@ -94,7 +115,7 @@ pumpfun sell <mint> <amount|all> [--slippage 15] [--force-amm] [--confirm] [--dr
 ```bash
 pumpfun info <mint> [--timeout 30]
 ```
-Shows price, quote asset, bonding curve progress, reserves, graduation status, and whether the coin is mayhem, cashback or holder-reward.
+Shows venue, price, quote asset, bonding curve progress, reserves and graduation status. pump.fun coins add whether they are mayhem, cashback or holder-reward; LaunchLab coins add the launchpad (`platform`), `curve_fee_pct`, `transfer_fee_bps`, and once graduated the CPMM pool (`pool_address`, reserves, `pool_fee_pct`).
 
 ### Launch a token
 ```bash
@@ -123,6 +144,9 @@ pumpfun buy <mint> <X> --confirm              # Execute
 ```
 
 ### "Sell all of token Z"
+A curve can be short of the quote it owes: a pump.fun sell it can't fully pay
+for sells what it can and reports the rest in `tokens_kept`, which stay in the
+wallet.
 ```bash
 pumpfun wallet tokens                         # Verify holding
 pumpfun sell <mint> all --dry-run             # Simulate
@@ -160,10 +184,17 @@ These apply to ALL commands:
 | Insufficient balance | Not enough SOL, or not enough of the coin's quote asset | Check `pumpfun wallet balance`, fund wallet |
 | Slippage exceeded | Price moved beyond tolerance | Increase `--slippage` or retry |
 | RPC error | Network/endpoint issue | Check `PUMPFUN_RPC`, try different endpoint |
-| Token not found | Invalid mint address | Verify the mint with `pumpfun info <mint>`, or find it by name with `pumpfun tokens search <name>` |
+| "No pump.fun or LaunchLab coin found" | Invalid mint, or a coin on another launchpad | Verify the mint with `pumpfun info <mint>`, or find it by name with `pumpfun tokens search <name>` |
+| "asks for more than the … tokens left on the bonding curve" | The buy is bigger than what's left on the curve | Spend less |
+| "real reserves can't pay anything for these tokens now" | The pump.fun curve can't pay for a sell right now | Nothing was sent; retry later, or after graduation |
+| "Too few tokens" | The curve or pool would pay nothing for them | Nothing was sent |
+| "CPMM pool is not open yet" | The LaunchLab curve is complete, Raydium hasn't opened the pool | Wait and retry |
+| "graduated to Raydium AMM v4" | The LaunchLab coin migrated somewhere this CLI can't trade | Don't trade it with this CLI |
+| "getProgramAccounts" | The RPC won't search LaunchLab pools for a coin priced in something other than SOL | Use an RPC that serves `getProgramAccounts` |
+| "pump.fun API returned HTTP 403" from `tokens` | pump.fun's listing API is refusing non-browser clients | Listings are unavailable; ask the user for the mint |
 
 ## Full Command Reference
 
-See [references/OPERATIONS.md](https://github.com/chainstacklabs/pumpclaw/blob/0a3feb9b23cc895be726943f23c0187f9fc4d5b2/references/OPERATIONS.md) for complete details on all commands.
-See [references/SAFETY.md](https://github.com/chainstacklabs/pumpclaw/blob/0a3feb9b23cc895be726943f23c0187f9fc4d5b2/references/SAFETY.md) for trading safety guidelines.
-See [assets/token-lifecycle.md](https://github.com/chainstacklabs/pumpclaw/blob/0a3feb9b23cc895be726943f23c0187f9fc4d5b2/assets/token-lifecycle.md) for the bonding curve → graduation → AMM flow.
+See [references/OPERATIONS.md](https://github.com/chainstacklabs/pumpclaw/blob/2163cfdbdeaa69fbe353f2921ebf10e337ccfcbd/references/OPERATIONS.md) for complete details on all commands.
+See [references/SAFETY.md](https://github.com/chainstacklabs/pumpclaw/blob/2163cfdbdeaa69fbe353f2921ebf10e337ccfcbd/references/SAFETY.md) for trading safety guidelines.
+See [assets/token-lifecycle.md](https://github.com/chainstacklabs/pumpclaw/blob/2163cfdbdeaa69fbe353f2921ebf10e337ccfcbd/assets/token-lifecycle.md) for the bonding curve → graduation → AMM flow.

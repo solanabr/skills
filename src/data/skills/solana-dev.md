@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires Node.js 20.18+, Rust toolchain, Solana CLI, Anchor CLI
 metadata:
   author: Solana Foundation
-  version: "2.7.0"
+  version: "2.8.0"
 ---
 
 # Solana Development Skill
@@ -197,6 +197,7 @@ Surfpool also ships its own MCP server (`surfpool mcp`, stdio) for driving local
 - Runtime concepts (rent, off-curve PDAs, entrypoint dispatch, wire format): [concepts.md](references/concepts.md)
 - Testing strategy (Surfpool/LiteSVM/Mollusk): [testing.md](references/testing.md)
 - IDLs + codegen: [idl-codegen.md](references/idl-codegen.md)
+- Token concepts (SPL Token vs Token-2022, mints, ATAs, authorities, delegation, extensions): [tokens.md](references/tokens.md)
 - Payments: [payments.md](references/payments.md)
 - **Kora (gasless / fee sponsorship, paymaster operators):** [kora.md](references/kora.md)
 - **Solana Keychain (server-side signing: KMS, Vault, MPC, managed wallets):** [keychain.md](references/keychain.md)

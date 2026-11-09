@@ -11,7 +11,7 @@ metadata:
 ---
 
 <!--
-  Mirror of https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/ecosystem/allium/SKILL.md hosted by kit.superteam.codes.
+  Mirror of https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/ecosystem/allium/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->
@@ -136,7 +136,7 @@ curl -X POST "https://api.allium.so/api/v1/explorer/queries" \
 
 ## Endpoint reference
 
-### Wallet PnL & holdings history → [references/pnl-and-holdings.md](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/ecosystem/allium/references/pnl-and-holdings.md)
+### Wallet PnL & holdings history → [references/pnl-and-holdings.md](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/ecosystem/allium/references/pnl-and-holdings.md)
 
 | Endpoint | Use for |
 | --- | --- |
@@ -146,7 +146,7 @@ curl -X POST "https://api.allium.so/api/v1/explorer/queries" \
 | `POST /api/v1/developer/wallet/pnl-by-token/history` | Historical PnL timeseries per (wallet, token) |
 | `POST /api/v1/developer/wallet/holdings/history` | Timeseries of total USD holdings per wallet (optional per-token breakdown) |
 
-### Hyperliquid HyperCore (off-chain trading) → [references/hyperliquid.md](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/ecosystem/allium/references/hyperliquid.md)
+### Hyperliquid HyperCore (off-chain trading) → [references/hyperliquid.md](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/ecosystem/allium/references/hyperliquid.md)
 
 | Endpoint | Use for |
 | --- | --- |
@@ -156,7 +156,7 @@ curl -X POST "https://api.allium.so/api/v1/explorer/queries" \
 | `POST /api/v1/developer/trading/hyperliquid/info/order/status` | Status of a specific order |
 | `GET /api/v1/developer/trading/hyperliquid/orderbook/snapshot` | L4 orderbook snapshot (all pairs) |
 
-### Custom SQL → [references/custom-sql.md](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/ecosystem/allium/references/custom-sql.md)
+### Custom SQL → [references/custom-sql.md](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/ecosystem/allium/references/custom-sql.md)
 
 | Endpoint | Use for |
 | --- | --- |
@@ -178,7 +178,7 @@ curl -X POST "https://api.allium.so/api/v1/developer/wallet/pnl" \
   -d '[{"chain": "solana", "address": "125Z6k4ZAxsgdG7JxrKZpwbcS1rxqpAeqM9GSCKd66Wp"}]'
 ```
 
-Returns per-token realized/unrealized PnL plus aggregate totals. See [references/pnl-and-holdings.md](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/ecosystem/allium/references/pnl-and-holdings.md) for the full response schema.
+Returns per-token realized/unrealized PnL plus aggregate totals. See [references/pnl-and-holdings.md](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/ecosystem/allium/references/pnl-and-holdings.md) for the full response schema.
 
 ### Holdings history (timeseries)
 

@@ -9,7 +9,7 @@ metadata:
 ---
 
 <!--
-  Mirror of https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/SKILL.md hosted by kit.superteam.codes.
+  Mirror of https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->
@@ -60,8 +60,8 @@ Before writing application code or making any network call:
 **Do NOT skip this prompt. Do NOT pick a protocol on behalf of the user.** Wait for their explicit choice before proceeding.
 
 4. Based on the user's choice, follow the corresponding protocol rules:
-   - **x402** → Follow all rules under [rules/x402/](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/rules/x402/)
-   - **MPP** → Follow all rules under [rules/mpp/](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/rules/mpp/)
+   - **x402** → Follow all rules under [rules/x402/](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/rules/x402/)
+   - **MPP** → Follow all rules under [rules/mpp/](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/rules/mpp/)
 
 ## Protocol comparison
 
@@ -103,37 +103,37 @@ Whenever the user asks ANY question related to blockchain, crypto, Web3, smart c
 
 | Rule | Description |
 |------|-------------|
-| [x402/wallet-bootstrap](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/rules/x402/wallet-bootstrap.md) | Set up a wallet and fund it with USDC |
-| [x402/overview](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/rules/x402/overview.md) | Gateway overview, end-to-end flow, packages |
-| [x402/authentication](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/rules/x402/authentication.md) | SIWE/SIWS token creation and signing |
-| [x402/making-requests](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/rules/x402/making-requests.md) | Sending requests with `@x402/fetch` or `@x402/axios` |
-| [x402/curl-workflow](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/rules/x402/curl-workflow.md) | Quick RPC calls via curl (for app-code prototyping) |
-| [x402/payment](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/rules/x402/payment.md) | x402 payment creation from a 402 response |
-| [x402/reference](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/rules/x402/reference.md) | Endpoints, networks, headers, status codes |
+| [x402/wallet-bootstrap](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/rules/x402/wallet-bootstrap.md) | Set up a wallet and fund it with USDC |
+| [x402/overview](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/rules/x402/overview.md) | Gateway overview, end-to-end flow, packages |
+| [x402/authentication](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/rules/x402/authentication.md) | SIWE/SIWS token creation and signing |
+| [x402/making-requests](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/rules/x402/making-requests.md) | Sending requests with `@x402/fetch` or `@x402/axios` |
+| [x402/curl-workflow](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/rules/x402/curl-workflow.md) | Quick RPC calls via curl (for app-code prototyping) |
+| [x402/payment](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/rules/x402/payment.md) | x402 payment creation from a 402 response |
+| [x402/reference](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/rules/x402/reference.md) | Endpoints, networks, headers, status codes |
 
 ## MPP protocol rules
 
 | Rule | Description |
 |------|-------------|
-| [mpp/wallet-bootstrap](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/rules/mpp/wallet-bootstrap.md) | Set up a wallet and choose a payment method (Tempo or Stripe) |
-| [mpp/overview](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/rules/mpp/overview.md) | Gateway overview, end-to-end flow, packages |
-| [mpp/authentication](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/rules/mpp/authentication.md) | SIWE token creation and signing |
-| [mpp/making-requests](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/rules/mpp/making-requests.md) | Sending requests with `mppx` library |
-| [mpp/curl-workflow](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/rules/mpp/curl-workflow.md) | Quick RPC calls via curl (for app-code prototyping) |
-| [mpp/payment](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/rules/mpp/payment.md) | MPP payment creation from a 402 response |
-| [mpp/reference](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/rules/mpp/reference.md) | Endpoints, networks, headers, status codes |
+| [mpp/wallet-bootstrap](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/rules/mpp/wallet-bootstrap.md) | Set up a wallet and choose a payment method (Tempo or Stripe) |
+| [mpp/overview](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/rules/mpp/overview.md) | Gateway overview, end-to-end flow, packages |
+| [mpp/authentication](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/rules/mpp/authentication.md) | SIWE token creation and signing |
+| [mpp/making-requests](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/rules/mpp/making-requests.md) | Sending requests with `mppx` library |
+| [mpp/curl-workflow](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/rules/mpp/curl-workflow.md) | Quick RPC calls via curl (for app-code prototyping) |
+| [mpp/payment](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/rules/mpp/payment.md) | MPP payment creation from a 402 response |
+| [mpp/reference](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/rules/mpp/reference.md) | Endpoints, networks, headers, status codes |
 
 ## API references (shared)
 
 | Gateway route | API methods | Reference file |
 | --- | --- | --- |
-| `/{chainNetwork}/v2` | `eth_*` standard RPC | [references/node-json-rpc.md](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/references/node-json-rpc.md) |
-| `/{chainNetwork}/v2` | `alchemy_getTokenBalances`, `alchemy_getTokenMetadata`, `alchemy_getTokenAllowance` | [references/data-token-api.md](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/references/data-token-api.md) |
-| `/{chainNetwork}/v2` | `alchemy_getAssetTransfers` | [references/data-transfers-api.md](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/references/data-transfers-api.md) |
-| `/{chainNetwork}/v2` | `alchemy_simulateAssetChanges`, `alchemy_simulateExecution` | [references/data-simulation-api.md](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/references/data-simulation-api.md) |
-| `/{chainNetwork}/nft/v3/*` | `getNFTsForOwner`, `getNFTMetadata`, etc. | [references/data-nft-api.md](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/references/data-nft-api.md) |
-| `/prices/v1/*` | `tokens/by-symbol`, `tokens/by-address`, `tokens/historical` | [references/data-prices-api.md](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/references/data-prices-api.md) |
-| `/data/v1/*` | `assets/tokens/by-address`, `assets/nfts/by-address`, etc. | [references/data-portfolio-apis.md](https://github.com/alchemyplatform/skills/blob/4caf3e555c3af8dbb9e5b540aed558aef986d885/skills/agentic-gateway/references/data-portfolio-apis.md) |
+| `/{chainNetwork}/v2` | `eth_*` standard RPC | [references/node-json-rpc.md](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/references/node-json-rpc.md) |
+| `/{chainNetwork}/v2` | `alchemy_getTokenBalances`, `alchemy_getTokenMetadata`, `alchemy_getTokenAllowance` | [references/data-token-api.md](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/references/data-token-api.md) |
+| `/{chainNetwork}/v2` | `alchemy_getAssetTransfers` | [references/data-transfers-api.md](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/references/data-transfers-api.md) |
+| `/{chainNetwork}/v2` | `alchemy_simulateAssetChanges`, `alchemy_simulateExecution` | [references/data-simulation-api.md](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/references/data-simulation-api.md) |
+| `/{chainNetwork}/nft/v3/*` | `getNFTsForOwner`, `getNFTMetadata`, etc. | [references/data-nft-api.md](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/references/data-nft-api.md) |
+| `/prices/v1/*` | `tokens/by-symbol`, `tokens/by-address`, `tokens/historical` | [references/data-prices-api.md](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/references/data-prices-api.md) |
+| `/data/v1/*` | `assets/tokens/by-address`, `assets/nfts/by-address`, etc. | [references/data-portfolio-apis.md](https://github.com/alchemyplatform/skills/blob/add94e5059c39edc9917bb5a4585cc1a1cefeed2/skills/agentic-gateway/references/data-portfolio-apis.md) |
 
 > For the full breadth of Alchemy APIs (webhooks, wallets, etc.), see the `alchemy-api` skill — and use an API key for those if available.
 

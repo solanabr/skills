@@ -1,4 +1,6 @@
 ---
+import { i18n } from '../i18n';
+
 // Copy a markdown file's contents, or open it raw. The copy fetches the file
 // on click, so a page can offer it for every reference without inlining them.
 interface Props {
@@ -8,23 +10,24 @@ interface Props {
   name?: string;
   size?: 'sm' | 'md';
 }
-const { url, name = 'this file', size = 'md' } = Astro.props;
+const { m } = i18n(Astro);
+const { url, name = m.common.copy.thisFile, size = 'md' } = Astro.props;
 const external = url.startsWith('http');
 ---
 
 <span class:list={['md-actions', `md-${size}`]}>
-  <button type="button" class="md-btn" data-copy-url={url} aria-label={`Copy ${name} as Markdown`}>
+  <button type="button" class="md-btn" data-copy-url={url} aria-label={m.common.copy.copyAsMarkdown(name)}>
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <rect x="9" y="9" width="13" height="13" rx="2"></rect>
       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
     </svg>
-    <span class="md-label">Copy .md</span>
+    <span class="md-label">{m.common.copy.md}</span>
   </button>
-  <a class="md-btn" href={url} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} aria-label={`Open ${name} as raw Markdown`}>
+  <a class="md-btn" href={url} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} aria-label={m.common.copy.openAsMarkdown(name)}>
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M14 3h7v7"></path><path d="M10 14 21 3"></path><path d="M21 14v7H3V3h7"></path>
     </svg>
-    <span>Open .md</span>
+    <span>{m.common.copy.openMd}</span>
   </a>
 </span>
 

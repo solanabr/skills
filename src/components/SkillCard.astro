@@ -1,15 +1,16 @@
 ---
 import type { OfficialSkill } from '../lib/registry';
-import { CATEGORY_LABELS } from '../lib/registry';
+import { categoryLabel, i18n } from '../i18n';
 
 interface Props {
   skill: OfficialSkill;
   featured?: boolean;
 }
 const { skill, featured = false } = Astro.props;
+const { m, l } = i18n(Astro);
 ---
 
-<a href={`/skills/${skill.id}`} class:list={['card', { featured }]}>
+<a href={l(`/skills/${skill.id}`)} class:list={['card', { featured }]}>
   <svg
     class="card-arrow"
     width="18"
@@ -25,8 +26,8 @@ const { skill, featured = false } = Astro.props;
     <path d="M7 17 17 7M7 7h10v10"></path>
   </svg>
   <div class="badges">
-    <span class="badge badge-official">Official</span>
-    <span class="badge">{CATEGORY_LABELS[skill.category] ?? skill.category}</span>
+    <span class="badge badge-official">{m.common.official}</span>
+    <span class="badge">{categoryLabel(m, skill.category)}</span>
   </div>
   <h3>{skill.title}</h3>
   <code class="skill-name mono">{skill.name}</code>
@@ -37,13 +38,14 @@ const { skill, featured = false } = Astro.props;
     <span aria-hidden="true">·</span>
     {skill.version && <span>v{skill.version}</span>}
     {skill.version && <span aria-hidden="true">·</span>}
-    <span>{skill.multiFile ? `${skill.files.filter((f) => !f.endsWith('/')).length + 1} files` : 'single file'}</span>
+    <span>{skill.multiFile ? m.common.files(skill.files.filter((f) => !f.endsWith('/')).length + 1) : m.common.singleFile}</span>
   </div>
 </a>
 
 <style>
   .badges {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
   }
   .skill-name {

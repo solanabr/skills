@@ -1,20 +1,48 @@
 ---
 import Base from '../layouts/Base.astro';
+import { DEFAULT_LOCALE, LOCALES, LOCALE_META, localePath, messages } from '../i18n';
+
+const en = messages[DEFAULT_LOCALE].common.notFound;
 ---
 
-<Base title="Not found — Solana Skills" description="This page does not exist." noindex>
+<Base title={en.title} description={en.description} noindex langPath="/">
   <section class="nf">
     <div class="container nf-inner">
       <span class="mono nf-code gradient-text">404</span>
-      <h1>Nothing at this address</h1>
-      <p class="muted">No skill lives here. The catalog does, though.</p>
-      <div class="nf-actions">
-        <a class="btn btn-primary" href="/skills">Browse skills</a>
-        <a class="btn btn-ghost" href="/">Home</a>
-      </div>
+      {
+        LOCALES.map((locale) => {
+          const t = messages[locale].common.notFound;
+          return (
+            <div class="nf-copy" data-nf-locale={locale} lang={LOCALE_META[locale].tag} hidden={locale !== DEFAULT_LOCALE}>
+              <h1>{t.heading}</h1>
+              <p class="muted">{t.body}</p>
+              <div class="nf-actions">
+                <a class="btn btn-primary" href={localePath(locale, '/skills')}>
+                  {t.browse}
+                </a>
+                <a class="btn btn-ghost" href={localePath(locale, '/')}>
+                  {t.home}
+                </a>
+              </div>
+            </div>
+          );
+        })
+      }
     </div>
   </section>
 </Base>
+
+<script>
+  // One file answers every missing URL, so the language can't be known at
+  // build time: show the copy that matches the URL's locale prefix.
+  const prefix = location.pathname.split('/')[1];
+  const copies = Array.from(document.querySelectorAll<HTMLElement>('[data-nf-locale]'));
+  const match = copies.find((el) => el.dataset.nfLocale === prefix);
+  if (match) {
+    copies.forEach((el) => (el.hidden = el !== match));
+    document.documentElement.lang = match.lang;
+  }
+</script>
 
 <style>
   .nf {
@@ -30,6 +58,13 @@ import Base from '../layouts/Base.astro';
   .nf-code {
     font-size: 4.6rem;
     font-weight: 700;
+  }
+  /* The per-language copies join the column above as if they were not there. */
+  .nf-copy {
+    display: contents;
+  }
+  .nf-copy[hidden] {
+    display: none;
   }
   .nf-actions {
     display: flex;

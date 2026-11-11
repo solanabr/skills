@@ -1,23 +1,30 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Base from '../../../layouts/Base.astro';
-import CopyBlock from '../../../components/CopyBlock.astro';
-import MdActions from '../../../components/MdActions.astro';
-import { registry, ecoInstallCommands, CATEGORY_LABELS, SITE_URL } from '../../../lib/registry';
+import Base from '../../../../layouts/Base.astro';
+import CopyBlock from '../../../../components/CopyBlock.astro';
+import MdActions from '../../../../components/MdActions.astro';
+import { registry, ecoInstallCommands, SITE_URL } from '../../../../lib/registry';
+import { categoryLabel, i18n, withLocales } from '../../../../i18n';
 
 export async function getStaticPaths() {
   const entries = await getCollection('ecoSkills');
-  return registry.ecosystem.flatMap((repo) =>
-    repo.skills
-      .filter((s) => s.slug)
-      .map((skill) => ({
-        params: { repo: repo.id, skill: skill.slug },
-        props: { repo, skill, entry: entries.find((e) => e.id === `${repo.id}/${skill.slug}`) },
-      }))
+  return withLocales(
+    registry.ecosystem.flatMap((repo) =>
+      repo.skills
+        .filter((s) => s.slug)
+        .map((skill) => ({
+          params: { repo: repo.id, skill: skill.slug },
+          props: { repo, skill, entry: entries.find((e) => e.id === `${repo.id}/${skill.slug}`) },
+        })),
+    ),
   );
 }
 
 const { repo, skill, entry } = Astro.props;
+// t: this page's own messages; sp: the wording it shares with the official skill page.
+const { m, l, num, date } = i18n(Astro);
+const t = m.ecoSkillPage;
+const sp = m.skillPage;
 const { Content } = entry ? await render(entry) : { Content: null };
 const install = ecoInstallCommands(repo, skill);
 const pinnedRef = skill.url.match(/\/(?:tree|blob)\/([^/]+)/)?.[1] ?? null;
@@ -25,13 +32,13 @@ const files = (skill.files ?? []).filter((f) => !f.endsWith('/'));
 const hostedSet = new Set(skill.hostedFiles ?? []);
 const fullHost = hostedSet.size > 0;
 const readMinutes = skill.words ? Math.max(1, Math.round(skill.words / 220)) : null;
-const desc = skill.description || `${skill.name} — a Solana agent skill from ${repo.vendor}.`;
+const desc = skill.description || t.fallbackDescription(skill.name, repo.vendor);
 const metaDesc = desc.length > 158 ? desc.slice(0, 158).replace(/\s+\S*$/, '') + '…' : desc;
 const TYPE_LABELS: Record<string, string> = {
-  aggregator: 'Aggregator',
-  toolkit: 'Toolkit',
+  aggregator: t.types.aggregator,
+  toolkit: t.types.toolkit,
   vendor: repo.vendor,
-  community: 'Community',
+  community: t.types.community,
 };
 // NOTE: no nested template literals in frontmatter — they break the Astro
 // compiler's export hoisting ("Unexpected export" at build).
@@ -50,10 +57,10 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
 >
   <section class="detail-head">
     <div class="container">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="/skills">Skills</a>
+      <nav class="breadcrumb" aria-label={sp.breadcrumb}>
+        <a href={l('/skills')}>{m.common.nav.skills}</a>
         <span aria-hidden="true">/</span>
-        <a href={`/ecosystem#${repo.id}`}>{repo.displayName}</a>
+        <a href={l(`/ecosystem#${repo.id}`)}>{repo.displayName}</a>
         <span aria-hidden="true">/</span>
         <span>{skill.name}</span>
       </nav>
@@ -72,13 +79,13 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
             <span class:list={['badge', { 'badge-vendor': repo.type === 'vendor' }]}>
               {TYPE_LABELS[repo.type]}
             </span>
-            <span class="badge">Ecosystem</span>
-            {skill.category && <span class="badge">{CATEGORY_LABELS[skill.category] ?? skill.category}</span>}
-            {skill.multiFile && <span class="badge">Multi-file</span>}
+            <span class="badge">{m.common.nav.ecosystem}</span>
+            {skill.category && <span class="badge">{categoryLabel(m, skill.category)}</span>}
+            {skill.multiFile && <span class="badge">{m.common.multiFile}</span>}
           </div>
           <h1 class="skill-title">{skill.name}</h1>
           <div class="name-row">
-            <span class="muted">by {repo.vendor}</span>
+            <span class="muted">{t.by(repo.vendor)}</span>
             <span class="muted">·</span>
             <a class="muted repo-link" href={skill.url} target="_blank" rel="noopener">{repo.repo}</a>
             {
@@ -88,9 +95,9 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
                   <a
                     class="agent-view mono"
                     href={skill.hostedPath}
-                    title="The raw SKILL.md this page renders — the URL to hand an agent"
+                    title={sp.head.agentViewTip}
                   >
-                    Agent view ↗
+                    {sp.head.agentView}
                   </a>
                 </>
               )
@@ -100,9 +107,8 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
       </div>
       <p class="lead">{desc}</p>
       <p class="eco-note muted">
-        Ecosystem skill — independently developed and maintained by {repo.vendor}, not the Solana
-        Foundation. No security review is performed; evaluate before use.
-        {!repo.license && ' The upstream repo declares no license, so its content is not mirrored here.'}
+        {t.note(repo.vendor)}
+        {!repo.license && ` ${t.noteNoLicense}`}
       </p>
     </div>
   </section>
@@ -111,87 +117,67 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
     <div class="container detail-grid">
       <article>
         <div class="install-panel" data-tabs>
-          <div class="tabs" role="tablist" aria-label="Install methods">
+          <div class="tabs" role="tablist" aria-label={sp.install.label}>
             <button class="tab" role="tab" id="tab-cli" aria-controls="panel-cli" data-tab="cli" aria-selected="true">skills CLI</button>
             <button class="tab" role="tab" id="tab-claude" aria-controls="panel-claude" data-tab="claude" aria-selected="false" tabindex="-1">Claude Code</button>
-            <button class="tab" role="tab" id="tab-nono" aria-controls="panel-nono" data-tab="nono" aria-selected="false" tabindex="-1">No install</button>
+            <button class="tab" role="tab" id="tab-nono" aria-controls="panel-nono" data-tab="nono" aria-selected="false" tabindex="-1">{sp.install.noInstall}</button>
             <button class="tab" role="tab" id="tab-git" aria-controls="panel-git" data-tab="git" aria-selected="false" tabindex="-1">Git</button>
           </div>
           <div class="tab-panel" role="tabpanel" id="panel-cli" aria-labelledby="tab-cli" tabindex="0" data-panel="cli">
-            <p class="panel-note">
-              One command for Claude Code, Cursor, Codex, Windsurf and other agents — installs from
-              the upstream repo (current HEAD{repo.skills.length > 1 && `; it ships ${repo.skills.length} skills — pick ${skill.name} when prompted`}).
-            </p>
+            <p class="panel-note">{t.install.cli(repo.skills.length, skill.name)}</p>
             <CopyBlock command={install.cli} />
           </div>
           <div class="tab-panel" role="tabpanel" id="panel-claude" aria-labelledby="tab-claude" tabindex="0" data-panel="claude" hidden>
-            <p class="panel-note">
-              Drop the {skill.hosted ? 'mirrored' : 'upstream'} SKILL.md into your skills directory.
-              Global (all projects):
-            </p>
+            <p class="panel-note">{t.install.claude(Boolean(skill.hosted))}</p>
             <CopyBlock command={install.claudeGlobal} />
-            <p class="panel-note">Or scoped to the current project:</p>
+            <p class="panel-note">{sp.install.project}</p>
             <CopyBlock command={install.claudeProject} />
             {
               skill.multiFile && !fullHost && (
                 <p class="panel-hint">
-                  This skill references companion files ({files.length}) that stay on GitHub — links
-                  in the {skill.hosted ? 'mirror' : 'file'} point there, pinned to the indexed
-                  commit. For the full offline bundle use the CLI or Git tab.
+                  {t.install.externalHint(files.length, Boolean(skill.hosted))} {sp.install.offlineBundle}
                 </p>
               )
             }
             {
               fullHost && (
                 <p class="panel-hint">
-                  Companion files ({hostedSet.size}) are hosted on this domain too, so relative
-                  links resolve. For the full offline bundle use the CLI or Git tab.
+                  {t.install.hostedHint(hostedSet.size)} {sp.install.offlineBundle}
                 </p>
               )
             }
           </div>
           <div class="tab-panel" role="tabpanel" id="panel-nono" aria-labelledby="tab-nono" tabindex="0" data-panel="nono" hidden>
-            <p class="panel-note">
-              {skill.hosted
-                ? 'The skill is mirrored as plain markdown — tell your agent:'
-                : 'Point your agent at the raw file on GitHub (pinned to the commit we indexed):'}
-            </p>
-            <CopyBlock prompt={false} command={`Read ${install.fetchable} and follow it for this task: `} />
-            <p class="panel-note">
-              Or have the skills CLI generate a one-shot prompt (pipe it straight into your agent):
-            </p>
+            <p class="panel-note">{t.install.noInstall(Boolean(skill.hosted))}</p>
+            <CopyBlock prompt={false} command={sp.install.prompt(install.fetchable)} />
+            <p class="panel-note">{sp.install.oneShot}</p>
             <CopyBlock command={`${install.oneShot} | claude`} />
-            <p class="panel-note">Or pull the raw file into a terminal session:</p>
+            <p class="panel-note">{sp.install.raw}</p>
             <CopyBlock command={`curl -fsSL ${install.fetchable}`} />
           </div>
           <div class="tab-panel" role="tabpanel" id="panel-git" aria-labelledby="tab-git" tabindex="0" data-panel="git" hidden>
-            <p class="panel-note">
-              Copy the skill directory{skill.multiFile && ' with all companion files'} straight from
-              GitHub:
-            </p>
+            <p class="panel-note">{sp.install.git(skill.multiFile)}</p>
             <CopyBlock command={install.git} />
           </div>
         </div>
 
         <div class="contents-title contents-head">
-          <h2>Skill contents</h2>
+          <h2>{sp.contents.title}</h2>
           <MdActions url={install.fetchable} name="SKILL.md" />
         </div>
         {
           Content ? (
-            <div class="prose" id="skill-prose">
+            <div class="prose" id="skill-prose" data-copy-label={sp.contents.copyCode}>
               <Content />
             </div>
           ) : (
             <div class="no-mirror">
               <p>
-                {repo.license
-                  ? 'This skill isn’t mirrored on this domain yet.'
-                  : `${repo.displayName} doesn’t declare a license, so we link to the source instead of republishing it.`}
-                Read it on GitHub, pinned to the commit we indexed:
+                {repo.license ? t.noMirror.notYet : t.noMirror.noLicense(repo.displayName)}
+                {t.noMirror.read}
               </p>
               <a class="btn btn-primary" href={skill.url} target="_blank" rel="noopener">
-                Open {skill.name} on GitHub
+                {t.noMirror.open(skill.name)}
               </a>
             </div>
           )
@@ -200,7 +186,7 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
 
       <aside>
         <div class="meta-card">
-          <h3>{skill.hosted ? 'Hosted file' : 'Source file'}</h3>
+          <h3>{skill.hosted ? sp.hostedFile : t.sourceFile}</h3>
           <div class="hosted-row">
             <a
               class="mono hosted-url"
@@ -210,7 +196,7 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
             >
               {skill.hosted ? `${SITE_URL.replace('https://', '')}${skill.hostedPath}` : install.rawGithub.replace('https://', '')}
             </a>
-            <button class="copy-btn static" data-copy={install.fetchable} aria-label="Copy file URL" title="Copy URL">
+            <button class="copy-btn static" data-copy={install.fetchable} aria-label={t.copyFileUrl} title={sp.copyUrl}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="9" y="9" width="13" height="13" rx="2"></rect>
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -218,20 +204,20 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
             </button>
           </div>
 
-          <h3>Details</h3>
+          <h3>{sp.details.title}</h3>
           <dl class="meta-list">
             <div>
-              <dt>Maintainer</dt>
+              <dt>{sp.details.maintainer}</dt>
               <dd>{repo.vendor}</dd>
             </div>
             <div>
-              <dt>Repository</dt>
+              <dt>{t.details.repository}</dt>
               <dd><a class="sha-link" href={repo.url} target="_blank" rel="noopener">{repo.repo}</a></dd>
             </div>
             {
               repo.license && (
                 <div>
-                  <dt>License</dt>
+                  <dt>{sp.details.license}</dt>
                   <dd>{repo.license}</dd>
                 </div>
               )
@@ -239,19 +225,17 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
             {
               skill.words && (
                 <div>
-                  <dt>Length</dt>
-                  <dd>
-                    {skill.words.toLocaleString('en-US')} words{readMinutes ? ` · ~${readMinutes} min` : ''}
-                  </dd>
+                  <dt>{sp.details.length}</dt>
+                  <dd>{sp.details.lengthValue(num(skill.words), readMinutes)}</dd>
                 </div>
               )
             }
             {
               skill.bytes && (
                 <div>
-                  <dt>Agent cost</dt>
-                  <dd title="Approximate tokens an agent spends reading this (bytes ÷ 4)">
-                    ~{Math.round(skill.bytes / 4 / 100) / 10}k tokens
+                  <dt>{sp.details.agentCost}</dt>
+                  <dd title={sp.details.agentCostTip}>
+                    {sp.details.tokens(num(Math.round(skill.bytes / 4 / 100) / 10), null)}
                   </dd>
                 </div>
               )
@@ -259,16 +243,9 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
             {
               repo.pushedAt && (
                 <div>
-                  <dt>Repo updated</dt>
+                  <dt>{sp.details.repoUpdated}</dt>
                   <dd>
-                    <time datetime={repo.pushedAt}>
-                      {new Date(repo.pushedAt + 'T00:00:00Z').toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                        timeZone: 'UTC',
-                      })}
-                    </time>
+                    <time datetime={repo.pushedAt}>{date(repo.pushedAt)}</time>
                   </dd>
                 </div>
               )
@@ -276,28 +253,15 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
             {
               pinnedRef && (
                 <div>
-                  <dt>Pinned commit</dt>
-                  <dd
-                    title={
-                      repo.pinnedAt
-                        ? `Pin verified ${repo.pinnedAt} — links and installs reference this exact commit`
-                        : 'Links and installs reference this exact commit'
-                    }
-                  >
+                  <dt>{sp.details.pinned}</dt>
+                  <dd title={t.details.pinnedTip(repo.pinnedAt)}>
                     <a class="mono sha-link" href={skill.url} target="_blank" rel="noopener">
                       {pinnedRef.slice(0, 7)}
                     </a>
                     {skill.commitDate && (
                       <>
                         {' · '}
-                        <time datetime={skill.commitDate}>
-                          {new Date(skill.commitDate).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric',
-                            timeZone: 'UTC',
-                          })}
-                        </time>
+                        <time datetime={skill.commitDate}>{date(skill.commitDate)}</time>
                       </>
                     )}
                   </dd>
@@ -307,10 +271,12 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
             {
               skill.integrity?.['SKILL.md'] && skill.hostedPath && (
                 <div>
-                  <dt>Integrity</dt>
+                  <dt>{sp.details.integrity}</dt>
                   <dd
                     class="mono"
-                    title={`sha256 of the hosted SKILL.md — verify: curl -fsSL https://kit.superteam.codes${skill.hostedPath} | shasum -a 256`}
+                    title={sp.details.integrityTip(
+                      `curl -fsSL https://kit.superteam.codes${skill.hostedPath} | shasum -a 256`,
+                    )}
                   >
                     sha256:{skill.integrity['SKILL.md'].slice(0, 12)}…
                   </dd>
@@ -322,7 +288,7 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
                  their /<login> profile URLs 404 — show real contributors only. */
               skill.lastAuthor && !skill.lastAuthor.endsWith('[bot]') && (
                 <div>
-                  <dt>Last updated by</dt>
+                  <dt>{sp.details.updatedBy}</dt>
                   <dd>
                     <a
                       class="inline-link"
@@ -342,7 +308,7 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
             files.length > 0 && (
               <details class="files-tree">
                 <summary>
-                  <h3>Companion files ({files.length})</h3>
+                  <h3>{sp.files.title(files.length)}</h3>
                 </summary>
                 <ul class="mono">
                   {files.map((f) => {
@@ -353,7 +319,7 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
                           href={hostedHere ? `/s/${repo.id}/${skill.slug}/${f}` : externalFileUrl(f)}
                           target={hostedHere ? undefined : '_blank'}
                           rel={hostedHere ? undefined : 'noopener'}
-                          title={hostedHere ? 'Hosted here — stable URL for agents' : 'On GitHub, pinned to the indexed commit'}
+                          title={hostedHere ? sp.files.hostedTip : t.files.githubTip}
                         >
                           {f}
                           {!hostedHere && <span class="ext-mark" aria-hidden="true"> ↗</span>}
@@ -363,10 +329,10 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
                             type="button"
                             class="file-copy"
                             data-copy-url={hostedHere ? `/s/${repo.id}/${skill.slug}/${f}` : rawFileUrl(f)}
-                            aria-label={`Copy ${f} as Markdown`}
-                            title="Copy .md"
+                            aria-label={m.common.copy.copyAsMarkdown(f)}
+                            title={m.common.copy.md}
                           >
-                            <span class="md-label">Copy .md</span>
+                            <span class="md-label">{m.common.copy.md}</span>
                           </button>
                         )}
                       </li>
@@ -378,8 +344,8 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
           }
 
           <div class="meta-actions">
-            <a class="btn btn-ghost btn-sm" href={skill.url} target="_blank" rel="noopener">View on GitHub</a>
-            <a class="btn btn-ghost btn-sm" href={`https://github.com/${repo.repo}/issues`} target="_blank" rel="noopener">Report issue</a>
+            <a class="btn btn-ghost btn-sm" href={skill.url} target="_blank" rel="noopener">{sp.actions.viewOnGithub}</a>
+            <a class="btn btn-ghost btn-sm" href={`https://github.com/${repo.repo}/issues`} target="_blank" rel="noopener">{sp.actions.reportIssue}</a>
           </div>
         </div>
       </aside>
@@ -388,12 +354,14 @@ const initial = repo.displayName.replace(/^[^a-zA-Z0-9]*/, '').charAt(0).toUpper
 </Base>
 
 <script>
-  // Copy buttons on every code block in the rendered skill.
+  // Copy buttons on every code block in the rendered skill. Their label is
+  // rendered into the page in its language (data-copy-label).
+  const copyLabel = document.getElementById('skill-prose')?.dataset.copyLabel ?? '';
   for (const pre of document.querySelectorAll('#skill-prose pre')) {
     const code = pre.textContent ?? '';
     const btn = document.createElement('button');
     btn.className = 'copy-btn pre-copy';
-    btn.setAttribute('aria-label', 'Copy code block');
+    btn.setAttribute('aria-label', copyLabel);
     btn.setAttribute('data-copy', code.trimEnd());
     btn.innerHTML =
       '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';

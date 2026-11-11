@@ -1,16 +1,19 @@
 ---
+import { i18n } from '../i18n';
+
 interface Props {
   command: string;
   prompt?: boolean;
   label?: string;
 }
 const { command, prompt = true, label } = Astro.props;
+const { m } = i18n(Astro);
 ---
 
 {label && <div class="copy-label-heading">{label}</div>}
 <div class="copyblock">
   <span class="cmd">{prompt && <span class="prompt-char">$ </span>}{command}</span>
-  <button class="copy-btn" data-copy={command} aria-label="Copy to clipboard" title="Copy">
+  <button class="copy-btn" data-copy={command} aria-label={m.common.copy.toClipboard} title={m.common.copy.copy}>
     <svg
       width="15"
       height="15"

@@ -1,57 +1,53 @@
 ---
-import Base from '../layouts/Base.astro';
-import RepoCard from '../components/RepoCard.astro';
-import { registry } from '../lib/registry';
+import Base from '../../layouts/Base.astro';
+import RepoCard from '../../components/RepoCard.astro';
+import Rich from '../../components/Rich.astro';
+import { registry } from '../../lib/registry';
+import { i18n, localeStaticPaths } from '../../i18n';
+
+export const getStaticPaths = localeStaticPaths;
+
+const { m, l } = i18n(Astro);
+const t = m.ecosystem;
 
 const groups: { title: string; sub: string; types: string[] }[] = [
-  {
-    title: 'Aggregators & toolkits',
-    sub: 'Many skills per repo — protocol collections and full agent workspaces.',
-    types: ['aggregator', 'toolkit'],
-  },
-  {
-    title: 'Teams & protocols',
-    sub: 'Skills maintained by the teams behind the protocols and infra they cover.',
-    types: ['vendor'],
-  },
-  {
-    title: 'Community',
-    sub: 'Independent builders — smaller scope, newer, less battle-tested.',
-    types: ['community'],
-  },
+  { ...t.groups.toolkits, types: ['aggregator', 'toolkit'] },
+  { ...t.groups.vendors, types: ['vendor'] },
+  { ...t.groups.community, types: ['community'] },
 ];
 
 const byTypes = (types: string[]) => registry.ecosystem.filter((r) => types.includes(r.type));
 const skillSum = registry.ecosystem.reduce((n, r) => n + r.skills.length, 0);
+// The badge on a Foundation resource: translated when the kind is a known one.
+const kindLabel = (kind: string) => (t.foundation.kinds as Record<string, string>)[kind] ?? kind;
 ---
 
 <Base
-  title="Ecosystem — Solana Skills"
-  description={`Explore ${registry.ecosystem.length} Solana ecosystem skill repositories — ${skillSum} indexed skills from Jupiter, Helius, Metaplex, SendAI, Solana Mobile, Trail of Bits, and more.`}
+  title={t.title}
+  description={t.description(registry.ecosystem.length, skillSum)}
   ogImage="/og/ecosystem.png"
 >
   <section class="section eco-head">
     <div class="container">
-      <h1 class="section-title">Ecosystem skill repositories</h1>
+      <h1 class="section-title">{t.head.title}</h1>
       <p class="section-sub">
-        Beyond the official skills: {skillSum} skills indexed across {registry.ecosystem.length}
-        repositories from Solana teams and the community. Sourced from
-        <a
-          class="inline-link"
-          href="https://github.com/solana-foundation/awesome-solana-ai"
-          target="_blank"
-          rel="noopener">awesome-solana-ai</a
-        > and direct ecosystem research, refreshed weekly from GitHub.
+        <Rich text={t.head.sub(skillSum, registry.ecosystem.length)}>
+          <a
+            slot="link"
+            class="inline-link"
+            href="https://github.com/solana-foundation/awesome-solana-ai"
+            target="_blank"
+            rel="noopener">awesome-solana-ai</a
+          >
+        </Rich>
       </p>
     </div>
   </section>
 
   <section class="eco-group">
     <div class="container">
-      <h2 class="group-title">More from the Foundation</h2>
-      <p class="group-sub muted">
-        The docs MCP server, the source directory, and the agentic-payments registry.
-      </p>
+      <h2 class="group-title">{t.foundation.title}</h2>
+      <p class="group-sub muted">{t.foundation.sub}</p>
       <div class="grid resources">
         {
           registry.foundationResources.map((res) => (
@@ -79,8 +75,8 @@ const skillSum = registry.ecosystem.reduce((n, r) => n + r.skills.length, 0);
                   height="20"
                   loading="lazy"
                 />
-                <span class="badge badge-official">Official</span>
-                <span class="badge">{res.kind}</span>
+                <span class="badge badge-official">{m.common.official}</span>
+                <span class="badge">{kindLabel(res.kind)}</span>
               </div>
               <h3>{res.name}</h3>
               <code class="mono res-repo">{res.repo}</code>
@@ -115,15 +111,17 @@ const skillSum = registry.ecosystem.reduce((n, r) => n + r.skills.length, 0);
 
   <section class="eco-group">
     <div class="container">
-      <h2 class="group-title">More community skills</h2>
+      <h2 class="group-title">{t.tail.title}</h2>
       <p class="group-sub muted">
-        Smaller and newer entries from
-        <a
-          class="inline-link"
-          href="https://github.com/solana-foundation/awesome-solana-ai"
-          target="_blank"
-          rel="noopener">awesome-solana-ai</a
-        > — repo links only; we haven&rsquo;t crawled these for individual skills.
+        <Rich text={t.tail.sub}>
+          <a
+            slot="link"
+            class="inline-link"
+            href="https://github.com/solana-foundation/awesome-solana-ai"
+            target="_blank"
+            rel="noopener">awesome-solana-ai</a
+          >
+        </Rich>
       </p>
       <ul class="tail-list">
         {
@@ -143,28 +141,27 @@ const skillSum = registry.ecosystem.reduce((n, r) => n + r.skills.length, 0);
       </ul>
       <div class="disclaimer muted">
         <p>
-          <strong>Listing criteria.</strong> Repositories come from the Foundation&rsquo;s
-          <a
-            class="inline-link"
-            href="https://github.com/solana-foundation/awesome-solana-ai"
-            target="_blank"
-            rel="noopener">awesome-solana-ai</a
-          > directory and from direct ecosystem research (official protocol orgs, skill registries).
-          Every listed repo must contain a <code class="mono">SKILL.md</code> with
-          <code class="mono">name</code> frontmatter and is re-indexed weekly. Entries whose
-          upstream disappears get delisted. No security review is performed. Skills are mirrored on
-          this domain only when the upstream repo declares a license; unlicensed repos are linked,
-          never republished.
+          <strong>{t.disclaimer.criteria.lead}</strong>{' '}
+          <Rich text={t.disclaimer.criteria.body}>
+            <a
+              slot="link"
+              class="inline-link"
+              href="https://github.com/solana-foundation/awesome-solana-ai"
+              target="_blank"
+              rel="noopener">awesome-solana-ai</a
+            >
+            <code slot="file" class="mono">SKILL.md</code>
+            <code slot="field" class="mono">name</code>
+          </Rich>
         </p>
         <p>
-          <strong>Trust the pins, verify the installs.</strong> Ecosystem skills are independently
-          developed — evaluate code, license, and security practices before use. Every skill is
-          tied to an immutable commit: links point at the exact sha we indexed, mirrors carry a
-          published <code class="mono">sha256</code> you can check with
-          <code class="mono">curl | shasum -a 256</code>, and both are exposed per skill in
-          <a class="inline-link" href="/api/skills.json">skills.json</a> alongside the commit
-          timestamp. Install commands like <code class="mono">npx skills add</code> pull the
-          repo&rsquo;s current HEAD — diff against the pin if that matters to you.
+          <strong>{t.disclaimer.trust.lead}</strong>{' '}
+          <Rich text={t.disclaimer.trust.body}>
+            <code slot="hash" class="mono">sha256</code>
+            <code slot="check" class="mono">curl | shasum -a 256</code>
+            <a slot="json" class="inline-link" href={l('/api/skills.json')}>skills.json</a>
+            <code slot="install" class="mono">npx skills add</code>
+          </Rich>
         </p>
       </div>
     </div>
@@ -174,17 +171,18 @@ const skillSum = registry.ecosystem.reduce((n, r) => n + r.skills.length, 0);
     <div class="container">
       <div class="card add-repo">
         <div>
-          <h2>Maintain a Solana skill repo?</h2>
+          <h2>{t.add.title}</h2>
           <p class="muted">
-            Open a PR to the Foundation&rsquo;s <code class="mono">awesome-solana-ai</code> — merged
-            repos are picked up by the next weekly refresh and listed here.
+            <Rich text={t.add.body}>
+              <code slot="repo" class="mono">awesome-solana-ai</code>
+            </Rich>
           </p>
         </div>
         <a
           class="btn btn-primary"
           href="https://github.com/solana-foundation/awesome-solana-ai"
           target="_blank"
-          rel="noopener">Open a PR</a
+          rel="noopener">{t.add.cta}</a
         >
       </div>
     </div>

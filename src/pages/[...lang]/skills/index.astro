@@ -1,8 +1,14 @@
 ---
-import Base from '../../layouts/Base.astro';
-import SkillCard from '../../components/SkillCard.astro';
-import SuperteamCard from '../../components/SuperteamCard.astro';
-import { registry, totalSkills, CATEGORY_LABELS, ecoSkillPage, superteamPage } from '../../lib/registry';
+import Base from '../../../layouts/Base.astro';
+import SkillCard from '../../../components/SkillCard.astro';
+import SuperteamCard from '../../../components/SuperteamCard.astro';
+import { registry, totalSkills, ecoSkillPage, superteamPage } from '../../../lib/registry';
+import { categoryLabel, i18n, localeStaticPaths } from '../../../i18n';
+
+export const getStaticPaths = localeStaticPaths;
+
+const { m, l } = i18n(Astro);
+const t = m.catalog;
 
 const official = registry.official;
 const ecoSkills = registry.ecosystem.flatMap((repo) =>
@@ -44,18 +50,11 @@ const usedCategories = new Set([
 ]);
 ---
 
-<Base
-  title="Browse skills — Solana Skills"
-  description={`Search ${totalSkills()}+ agent skills for Solana: official Solana Foundation skills plus ecosystem skills from Jupiter, Helius, Metaplex, SendAI, and more.`}
-  ogImage="/og/skills.png"
->
+<Base title={t.title} description={t.description(totalSkills())} ogImage="/og/skills.png">
   <section class="section catalog-head">
     <div class="container">
-      <h1 class="section-title">Browse skills</h1>
-      <p class="section-sub">
-        Official skills from the Solana Foundation and Superteam Brasil, plus {ecoSkills.length} skills indexed from{' '}
-        {registry.ecosystem.length} ecosystem repositories — each pinned to the commit we indexed.
-      </p>
+      <h1 class="section-title">{t.heading}</h1>
+      <p class="section-sub">{t.sub(ecoSkills.length, registry.ecosystem.length)}</p>
       <div class="filter-bar" role="search">
         <div class="search-wrap">
           <svg
@@ -75,22 +74,27 @@ const usedCategories = new Set([
             id="skill-search"
             class="search-input"
             type="search"
-            placeholder={`Search skills — try "jupiter", "anchor", "security"…`}
+            placeholder={t.search.placeholder}
             autocomplete="off"
           />
         </div>
-        <span class="result-count muted" id="result-count" aria-live="polite"></span>
+        <span
+          class="result-count muted"
+          id="result-count"
+          aria-live="polite"
+          data-one={t.results.one}
+          data-other={t.results.other}></span>
       </div>
       <div class="chips" id="category-chips">
         <button class="chip" data-cat="all" aria-pressed="true">
-          All <span class="chip-count">{official.length + stOfficial.length + stSkills.length + ecoSkills.length}</span>
+          {t.chips.all} <span class="chip-count">{official.length + stOfficial.length + stSkills.length + ecoSkills.length}</span>
         </button>
         <button class="chip" data-cat="official" aria-pressed="false">
-          Official <span class="chip-count">{official.length + stOfficial.length}</span>
+          {m.common.official} <span class="chip-count">{official.length + stOfficial.length}</span>
         </button>
         {stOfficial.length > 0 && (
           <button class="chip" data-cat="superteam" aria-pressed="false">
-            Superteam Brasil <span class="chip-count">{stOfficial.length + stSkills.length}</span>
+            {m.common.nav.superteam} <span class="chip-count">{stOfficial.length + stSkills.length}</span>
           </button>
         )}
         {
@@ -104,7 +108,7 @@ const usedCategories = new Set([
                 ecoSkills.filter((s) => s.category === c).length;
               return (
                 <button class="chip" data-cat={c} aria-pressed="false">
-                  {CATEGORY_LABELS[c]} <span class="chip-count">{n}</span>
+                  {categoryLabel(m, c)} <span class="chip-count">{n}</span>
                 </button>
               );
             })
@@ -117,7 +121,7 @@ const usedCategories = new Set([
     <div class="container">
       <div class="group" id="group-official">
         <h2 class="group-title">
-          <span class="badge badge-official">Official</span> Solana Foundation and Superteam Brasil
+          <span class="badge badge-official">{m.common.official}</span> {t.groups.official}
         </h2>
         <div class="grid grid-official">
           {
@@ -125,7 +129,7 @@ const usedCategories = new Set([
               <div
                 class="filterable"
                 data-name={skill.name}
-                data-text={`${skill.title} ${skill.name} ${skill.description} ${CATEGORY_LABELS[skill.category] ?? ''} ${skill.category} solana foundation official`.toLowerCase()}
+                data-text={`${skill.title} ${skill.name} ${skill.description} ${categoryLabel(m, skill.category)} ${skill.category} ${t.search.officialKeywords}`.toLowerCase()}
                 data-cat={skill.category}
                 data-official="true"
               >
@@ -138,7 +142,7 @@ const usedCategories = new Set([
               <div
                 class="filterable"
                 data-name={st.id}
-                data-text={`${st.displayName} ${st.id} ${st.tagline} ${st.summary} ${CATEGORY_LABELS[st.category] ?? ''} ${st.category} superteam brasil brazil official`.toLowerCase()}
+                data-text={`${st.displayName} ${st.id} ${st.tagline} ${st.summary} ${categoryLabel(m, st.category)} ${st.category} ${t.search.superteamKeywords}`.toLowerCase()}
                 data-cat={st.category}
                 data-official="true"
                 data-superteam="true"
@@ -154,25 +158,25 @@ const usedCategories = new Set([
         stSkills.length > 0 && (
           <div class="group" id="group-superteam">
             <h2 class="group-title">
-              <span class="badge st-badge">Superteam Brasil</span> Every skill in {[...new Set(stSkills.map((s) => s.setName))].join(' and ')}
+              <span class="badge st-badge">{m.common.nav.superteam}</span> {t.groups.superteam([...new Set(stSkills.map((s) => s.setName))])}
             </h2>
             <div class="grid">
               {stSkills.map((s) => (
                 <div
                   class="filterable"
                   data-name={s.name}
-                  data-text={`${s.name} ${s.description} ${s.setName} superteam brasil brazil ${CATEGORY_LABELS[s.category] ?? ''} ${s.category}`.toLowerCase()}
+                  data-text={`${s.name} ${s.description} ${s.setName} superteam brasil brazil ${categoryLabel(m, s.category)} ${s.category}`.toLowerCase()}
                   data-cat={s.category}
                   data-official="false"
                   data-superteam="true"
                 >
-                  <a href={s.page} class="card eco-card">
+                  <a href={l(s.page)} class="card eco-card">
                     <div class="eco-top">
                       <code class="mono eco-name">{s.name}</code>
                     </div>
                     <p>{s.description}</p>
                     <div class="card-meta">
-                      <span class="badge st-badge">Superteam Brasil</span>
+                      <span class="badge st-badge">{m.common.nav.superteam}</span>
                       <span>{s.setName}</span>
                     </div>
                   </a>
@@ -184,19 +188,19 @@ const usedCategories = new Set([
       }
 
       <div class="group" id="group-eco">
-        <h2 class="group-title"><span class="badge">Ecosystem</span> Indexed from the community</h2>
+        <h2 class="group-title"><span class="badge">{m.common.nav.ecosystem}</span> {t.groups.ecosystem}</h2>
         <div class="grid">
           {
             ecoSkills.map((s) => (
               <div
                 class="filterable"
                 data-name={s.name}
-                data-text={`${s.name} ${s.description} ${s.vendor} ${s.repoName} ${s.category ? `${CATEGORY_LABELS[s.category] ?? ''} ${s.category}` : ''}`.toLowerCase()}
+                data-text={`${s.name} ${s.description} ${s.vendor} ${s.repoName} ${s.category ? `${categoryLabel(m, s.category)} ${s.category}` : ''}`.toLowerCase()}
                 data-cat={s.category ?? 'uncategorized'}
                 data-official="false"
               >
                 <a
-                  href={s.page ?? s.url}
+                  href={s.page ? l(s.page) : s.url}
                   target={s.page ? undefined : '_blank'}
                   rel={s.page ? undefined : 'noopener'}
                   class="card eco-card"
@@ -222,12 +226,12 @@ const usedCategories = new Set([
                   <div class="eco-top">
                     <code class="mono eco-name">{s.name}</code>
                     {s.multiFile && (
-                      <span class="muted eco-files" title="Includes companion files">
-                        multi-file
+                      <span class="muted eco-files" title={t.card.companionFiles}>
+                        {t.card.multiFile}
                       </span>
                     )}
                   </div>
-                  <p>{s.description || 'No description provided.'}</p>
+                  <p>{s.description || t.card.noDescription}</p>
                   <div class="card-meta">
                     {s.logo && <img class="eco-logo" src={s.logo} alt="" width="18" height="18" loading="lazy" />}
                     <span class="badge badge-vendor">{s.vendor}</span>
@@ -241,10 +245,15 @@ const usedCategories = new Set([
       </div>
 
       <div class="empty-state" id="empty-state" hidden>
-        <p id="empty-message">No skills match.</p>
+        <p
+          id="empty-message"
+          data-none={t.empty.none}
+          data-query={t.empty.query}
+          data-category={t.empty.category}
+          data-both={t.empty.both}>{t.empty.none}</p>
         <div class="empty-actions">
-          <button class="btn btn-ghost btn-sm" id="clear-filters">Clear filters</button>
-          <a class="btn btn-ghost btn-sm" href="/ecosystem">Browse by repository →</a>
+          <button class="btn btn-ghost btn-sm" id="clear-filters">{t.empty.clear}</button>
+          <a class="btn btn-ghost btn-sm" href={l('/ecosystem')}>{t.empty.byRepo}</a>
         </div>
       </div>
     </div>
@@ -264,12 +273,23 @@ const usedCategories = new Set([
   const countEl = document.getElementById('result-count');
   let activeCat = 'all';
 
+  // Every sentence the script writes is rendered by the page, in its language,
+  // into data attributes (#result-count, #empty-message). The script only
+  // fills in the {n} / {q} / {cat} tokens, in one pass so a query that happens
+  // to contain "{cat}" is left alone.
+  const fill = (text: string | undefined, values: Record<string, string>) =>
+    (text ?? '').replace(/\{(\w+)\}/g, (token, key: string) => values[key] ?? token);
+
+  // Accents don't count when searching: "seguranca" finds "Segurança".
+  const fold = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const haystacks = new Map(cards.map((card) => [card, fold(card.dataset.text ?? '')]));
+
   function apply() {
     const q = search.value.trim().toLowerCase();
-    const terms = q.split(/\s+/).filter(Boolean);
+    const terms = fold(q).split(/\s+/).filter(Boolean);
     let visible = 0;
     for (const card of cards) {
-      const text = card.dataset.text ?? '';
+      const text = haystacks.get(card) ?? '';
       const matchesQ = terms.every((t) => text.includes(t));
       const matchesCat =
         activeCat === 'all' ||
@@ -288,14 +308,17 @@ const usedCategories = new Set([
       group.classList.toggle('skeleton-hide', !any);
     }
     if (emptyState) emptyState.hidden = visible > 0;
-    if (countEl) countEl.textContent = `${visible} skill${visible === 1 ? '' : 's'}`;
+    if (countEl) {
+      countEl.textContent = fill(visible === 1 ? countEl.dataset.one : countEl.dataset.other, { n: String(visible) });
+    }
     const emptyMessage = document.getElementById('empty-message');
     if (emptyMessage && visible === 0) {
       const catLabel =
         activeCat !== 'all'
           ? document.querySelector(`.chip[data-cat="${activeCat}"]`)?.childNodes[0]?.textContent?.trim()
           : null;
-      emptyMessage.textContent = `No skills match${q ? ` “${q}”` : ''}${catLabel ? ` in ${catLabel}` : ''}.`;
+      const kind = q ? (catLabel ? 'both' : 'query') : catLabel ? 'category' : 'none';
+      emptyMessage.textContent = fill(emptyMessage.dataset[kind], { q, cat: catLabel ?? '' });
     }
   }
 

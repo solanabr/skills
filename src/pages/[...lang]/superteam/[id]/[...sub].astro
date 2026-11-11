@@ -1,33 +1,39 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Base from '../../../layouts/Base.astro';
-import CopyBlock from '../../../components/CopyBlock.astro';
-import MdActions from '../../../components/MdActions.astro';
-import KitBand from '../../../components/superteam/KitBand.astro';
-import FileLibrary from '../../../components/superteam/FileLibrary.astro';
-import '../../../styles/superteam.css';
+import Base from '../../../../layouts/Base.astro';
+import CopyBlock from '../../../../components/CopyBlock.astro';
+import MdActions from '../../../../components/MdActions.astro';
+import Rich from '../../../../components/Rich.astro';
+import KitBand from '../../../../components/superteam/KitBand.astro';
+import FileLibrary from '../../../../components/superteam/FileLibrary.astro';
+import '../../../../styles/superteam.css';
 import {
   registry,
   SITE_URL,
   superteamPage,
   superteamFileUrl,
   superteamGithubUrl,
-} from '../../../lib/registry';
+} from '../../../../lib/registry';
+import { i18n, withLocales } from '../../../../i18n';
 
 export async function getStaticPaths() {
   const entries = await getCollection('stbr');
-  return registry.superteam.flatMap((skill) =>
-    skill.subskills.map((sub) => ({
-      params: { id: skill.id, sub: sub.slug },
-      props: { skill, sub, entry: entries.find((e) => e.id === `${skill.id}/${sub.path.replace(/\.md$/, '')}`) },
-    })),
+  return withLocales(
+    registry.superteam.flatMap((skill) =>
+      skill.subskills.map((sub) => ({
+        params: { id: skill.id, sub: sub.slug },
+        props: { skill, sub, entry: entries.find((e) => e.id === `${skill.id}/${sub.path.replace(/\.md$/, '')}`) },
+      })),
+    ),
   );
 }
 
 const { skill, sub, entry } = Astro.props;
+const { m, l } = i18n(Astro);
+const t = m.superteam.sub;
+const d = m.superteam.detail;
 const { Content } = entry ? await render(entry) : { Content: null };
 const fileUrl = superteamFileUrl(skill, sub.path);
-const KIND_LABEL: Record<string, string> = { skill: 'Skill', command: 'Command', agent: 'Agent' };
 const siblings = skill.subskills.filter((x) => x.kind === sub.kind);
 const i = siblings.findIndex((x) => x.slug === sub.slug);
 const prev = i > 0 ? siblings[i - 1] : null;
@@ -45,27 +51,27 @@ const metaDesc = (sub.description ?? skill.tagline).slice(0, 158);
 ---
 
 <Base
-  title={`${sub.name} · ${skill.displayName} by Superteam Brasil`}
+  title={t.title(sub.name, skill.displayName)}
   description={metaDesc}
   ogImage={`/og/superteam/${skill.id}/${sub.slug}.png`}
 >
   <section class="st-head">
     <div class="container">
-      <nav class="st-breadcrumb" aria-label="Breadcrumb">
-        <a href="/superteam">Superteam Brasil</a>
+      <nav class="st-breadcrumb" aria-label={d.breadcrumb}>
+        <a href={l('/superteam')}>Superteam Brasil</a>
         <span aria-hidden="true">/</span>
-        <a href={superteamPage(skill)}>{skill.displayName}</a>
+        <a href={l(superteamPage(skill))}>{skill.displayName}</a>
         <span aria-hidden="true">/</span>
         <span>{sub.name}</span>
       </nav>
       <div class="st-badges">
-        <span class="badge badge-st">Superteam Brasil · Official</span>
-        <span class="badge">{KIND_LABEL[sub.kind]}</span>
+        <span class="badge badge-st">Superteam Brasil · {m.common.official}</span>
+        <span class="badge">{t.kind[sub.kind]}</span>
         <span class="badge">{skill.displayName}</span>
       </div>
       <h1 class="st-title mono">{sub.name}</h1>
       <div class="st-byline">
-        <span>by Superteam Brasil</span>
+        <span>{d.byline}</span>
         <span aria-hidden="true">·</span>
         <a href={superteamGithubUrl(skill, sub.path)} target="_blank" rel="noopener">{skill.repo}/{sub.path}</a>
       </div>
@@ -84,8 +90,10 @@ const metaDesc = (sub.description ?? skill.tagline).slice(0, 158);
             sub.kind === 'command' && (
               <>
                 <p class="st-panel-note">
-                  Run it in Claude Code once {skill.displayName} is installed (plugin, script or the
-                  Solana AI Kit; see <a href={superteamPage(skill)}>{skill.displayName}</a>):
+                  <Rich text={t.commandNote}>
+                    <Fragment slot="skill">{skill.displayName}</Fragment>
+                    <a slot="link" href={l(superteamPage(skill))}>{skill.displayName}</a>
+                  </Rich>
                 </p>
                 <CopyBlock command={`/${sub.name}`} prompt={false} />
               </>
@@ -94,28 +102,25 @@ const metaDesc = (sub.description ?? skill.tagline).slice(0, 158);
           {
             sub.kind === 'agent' && (
               <p class="st-panel-note">
-                A subagent of {skill.displayName}: its commands spawn it, so it comes with any install
-                of the skill (see <a href={superteamPage(skill)}>{skill.displayName}</a>).
+                <Rich text={t.agentNote}>
+                  <Fragment slot="skill">{skill.displayName}</Fragment>
+                  <a slot="link" href={l(superteamPage(skill))}>{skill.displayName}</a>
+                </Rich>
               </p>
             )
           }
           {
             sub.kind === 'skill' && pinnedSkill && (
               <>
-                <p class="st-panel-note">
-                  Just this skill, with its reference files, at the pinned commit:
-                </p>
+                <p class="st-panel-note">{t.skillOnly}</p>
                 <CopyBlock command={pinnedSkill} />
-                <p class="st-panel-note">
-                  Or the whole set. The skills link to each other's format files, so the set works
-                  best together:
-                </p>
+                <p class="st-panel-note">{t.skillSet}</p>
                 {skill.install[0]?.commands.map((c) => <CopyBlock command={c} />)}
               </>
             )
           }
-          <p class="st-panel-note">No install: tell your agent</p>
-          <CopyBlock command={`Read ${SITE_URL}${fileUrl} and follow it for this task: `} prompt={false} />
+          <p class="st-panel-note">{t.noInstall}</p>
+          <CopyBlock command={m.superteam.readPrompt(`${SITE_URL}${fileUrl}`)} prompt={false} />
         </div>
 
         <div class="st-section-title st-section-head">
@@ -129,14 +134,16 @@ const metaDesc = (sub.description ?? skill.tagline).slice(0, 158);
             </div>
           ) : (
             <p class="muted">
-              This file is not mirrored yet. <a href={superteamGithubUrl(skill, sub.path)} target="_blank" rel="noopener">Read it on GitHub</a>.
+              <Rich text={t.notMirrored}>
+                <a slot="link" href={superteamGithubUrl(skill, sub.path)} target="_blank" rel="noopener">{t.readOnGithub}</a>
+              </Rich>
             </p>
           )
         }
 
-        <nav class="st-kit-actions" aria-label={`Other ${KIND_LABEL[sub.kind].toLowerCase()}s`} style="margin-top:40px">
-          {prev && <a class="btn btn-ghost btn-sm" href={superteamPage(skill, prev)}>← {prev.name}</a>}
-          {next && <a class="btn btn-ghost btn-sm" href={superteamPage(skill, next)}>{next.name} →</a>}
+        <nav class="st-kit-actions" aria-label={t.otherKind[sub.kind]} style="margin-top:40px">
+          {prev && <a class="btn btn-ghost btn-sm" href={l(superteamPage(skill, prev))}>← {prev.name}</a>}
+          {next && <a class="btn btn-ghost btn-sm" href={l(superteamPage(skill, next))}>{next.name} →</a>}
         </nav>
 
         <KitBand />
@@ -144,15 +151,15 @@ const metaDesc = (sub.description ?? skill.tagline).slice(0, 158);
 
       <aside class="st-aside">
         <div class="st-meta">
-          <h3>Details</h3>
+          <h3>{d.details}</h3>
           <dl>
-            <div><dt>Part of</dt><dd><a href={superteamPage(skill)}>{skill.displayName}</a></dd></div>
-            <div><dt>Type</dt><dd>{KIND_LABEL[sub.kind]}</dd></div>
-            <div><dt>Maintainer</dt><dd>Superteam Brasil</dd></div>
-            <div><dt>License</dt><dd>{skill.license ?? 'None declared'}</dd></div>
-            {skill.tag && <div><dt>Release</dt><dd>{skill.tag}</dd></div>}
+            <div><dt>{t.partOf}</dt><dd><a href={l(superteamPage(skill))}>{skill.displayName}</a></dd></div>
+            <div><dt>{t.type}</dt><dd>{t.kind[sub.kind]}</dd></div>
+            <div><dt>{d.maintainer}</dt><dd>Superteam Brasil</dd></div>
+            <div><dt>{d.license}</dt><dd>{skill.license ?? d.noLicense}</dd></div>
+            {skill.tag && <div><dt>{d.release}</dt><dd>{skill.tag}</dd></div>}
             <div>
-              <dt>Pinned commit</dt>
+              <dt>{d.pinnedCommit}</dt>
               <dd><a class="mono" href={superteamGithubUrl(skill, sub.path)} target="_blank" rel="noopener">{skill.commitSha?.slice(0, 7)}</a></dd>
             </div>
           </dl>
@@ -160,20 +167,20 @@ const metaDesc = (sub.description ?? skill.tagline).slice(0, 158);
         {
           sub.files.length > 0 && (
             <div class="st-meta">
-              <h3>Reference files ({sub.files.length})</h3>
+              <h3>{t.referenceFiles} ({sub.files.length})</h3>
               <FileLibrary skill={skill} paths={sub.files} base={sub.slug + '/'} open />
             </div>
           )
         }
         <div class="st-meta">
-          <h3>More {KIND_LABEL[sub.kind].toLowerCase()}s ({siblings.length})</h3>
+          <h3>{t.moreKind[sub.kind]} ({siblings.length})</h3>
           <div class="st-files">
             <ul>
               {siblings.map((x) => (
                 <li>
-                  <a href={superteamPage(skill, x)} aria-current={x.slug === sub.slug ? 'page' : undefined}>{x.name}</a>
-                  <button type="button" class="st-file-copy" data-copy-url={superteamFileUrl(skill, x.path)} aria-label={`Copy ${x.name} as Markdown`}>
-                    <span class="md-label">Copy .md</span>
+                  <a href={l(superteamPage(skill, x))} aria-current={x.slug === sub.slug ? 'page' : undefined}>{x.name}</a>
+                  <button type="button" class="st-file-copy" data-copy-url={superteamFileUrl(skill, x.path)} aria-label={m.common.copy.copyAsMarkdown(x.name)}>
+                    <span class="md-label">{m.common.copy.md}</span>
                   </button>
                 </li>
               ))}

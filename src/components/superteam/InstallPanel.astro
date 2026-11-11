@@ -1,6 +1,7 @@
 ---
 import CopyBlock from '../CopyBlock.astro';
 import type { InstallOption } from '../../lib/registry';
+import { i18n } from '../../i18n';
 
 interface Props {
   options: InstallOption[];
@@ -8,15 +9,26 @@ interface Props {
   fetchable?: string | null;
 }
 const { options, fetchable } = Astro.props;
+const { m } = i18n(Astro);
+const msg = m.superteam;
+// Each option carries its own English label and note from the registry. Those
+// the site ships are translated (matched on the exact English text); anything
+// else shows as the registry wrote it.
+const known = (map: Record<string, string>, text: string) => (Object.hasOwn(map, text) ? map[text] : text);
 const tabs = [
-  ...options.map((o, i) => ({ key: `opt${i}`, ...o })),
+  ...options.map((o, i) => ({
+    key: `opt${i}`,
+    ...o,
+    label: known(msg.install.labels, o.label),
+    note: known(msg.install.notes, o.note),
+  })),
   ...(fetchable
     ? [
         {
           key: 'noinstall',
-          label: 'No install',
-          note: 'Hosted here as plain markdown at a pinned commit. Tell your agent:',
-          commands: [`Read ${fetchable} and follow it for this task: `],
+          label: msg.install.noInstall,
+          note: msg.install.noInstallNote,
+          commands: [msg.readPrompt(fetchable)],
           prompt: false,
         },
       ]
@@ -25,7 +37,7 @@ const tabs = [
 ---
 
 <div class="st-panel" data-tabs>
-  <div class="tabs" role="tablist" aria-label="Install methods">
+  <div class="tabs" role="tablist" aria-label={msg.install.methods}>
     {
       tabs.map((t, i) => (
         <button

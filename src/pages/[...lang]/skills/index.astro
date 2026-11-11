@@ -7,8 +7,13 @@ import { categoryLabel, i18n, localeStaticPaths } from '../../../i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
-const { m, l } = i18n(Astro);
+const { m, l, tx } = i18n(Astro);
 const t = m.catalog;
+// Search matches a description in the page's language and in the English it came from.
+const both = (text: string) => {
+  const local = tx(text);
+  return local === text ? text : `${local} ${text}`;
+};
 
 const official = registry.official;
 const ecoSkills = registry.ecosystem.flatMap((repo) =>
@@ -129,7 +134,7 @@ const usedCategories = new Set([
               <div
                 class="filterable"
                 data-name={skill.name}
-                data-text={`${skill.title} ${skill.name} ${skill.description} ${categoryLabel(m, skill.category)} ${skill.category} ${t.search.officialKeywords}`.toLowerCase()}
+                data-text={`${both(skill.title)} ${skill.name} ${both(skill.description)} ${categoryLabel(m, skill.category)} ${skill.category} ${t.search.officialKeywords}`.toLowerCase()}
                 data-cat={skill.category}
                 data-official="true"
               >
@@ -142,7 +147,7 @@ const usedCategories = new Set([
               <div
                 class="filterable"
                 data-name={st.id}
-                data-text={`${st.displayName} ${st.id} ${st.tagline} ${st.summary} ${categoryLabel(m, st.category)} ${st.category} ${t.search.superteamKeywords}`.toLowerCase()}
+                data-text={`${st.displayName} ${st.id} ${both(st.tagline)} ${both(st.summary)} ${categoryLabel(m, st.category)} ${st.category} ${t.search.superteamKeywords}`.toLowerCase()}
                 data-cat={st.category}
                 data-official="true"
                 data-superteam="true"
@@ -165,7 +170,7 @@ const usedCategories = new Set([
                 <div
                   class="filterable"
                   data-name={s.name}
-                  data-text={`${s.name} ${s.description} ${s.setName} superteam brasil brazil ${categoryLabel(m, s.category)} ${s.category}`.toLowerCase()}
+                  data-text={`${s.name} ${both(s.description)} ${s.setName} superteam brasil brazil ${categoryLabel(m, s.category)} ${s.category}`.toLowerCase()}
                   data-cat={s.category}
                   data-official="false"
                   data-superteam="true"
@@ -174,7 +179,7 @@ const usedCategories = new Set([
                     <div class="eco-top">
                       <code class="mono eco-name">{s.name}</code>
                     </div>
-                    <p>{s.description}</p>
+                    <p>{tx(s.description)}</p>
                     <div class="card-meta">
                       <span class="badge st-badge">{m.common.nav.superteam}</span>
                       <span>{s.setName}</span>
@@ -195,7 +200,7 @@ const usedCategories = new Set([
               <div
                 class="filterable"
                 data-name={s.name}
-                data-text={`${s.name} ${s.description} ${s.vendor} ${s.repoName} ${s.category ? `${categoryLabel(m, s.category)} ${s.category}` : ''}`.toLowerCase()}
+                data-text={`${s.name} ${both(s.description)} ${s.vendor} ${s.repoName} ${s.category ? `${categoryLabel(m, s.category)} ${s.category}` : ''}`.toLowerCase()}
                 data-cat={s.category ?? 'uncategorized'}
                 data-official="false"
               >
@@ -231,7 +236,7 @@ const usedCategories = new Set([
                       </span>
                     )}
                   </div>
-                  <p>{s.description || t.card.noDescription}</p>
+                  <p>{s.description ? tx(s.description) : t.card.noDescription}</p>
                   <div class="card-meta">
                     {s.logo && <img class="eco-logo" src={s.logo} alt="" width="18" height="18" loading="lazy" />}
                     <span class="badge badge-vendor">{s.vendor}</span>

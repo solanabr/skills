@@ -28,7 +28,8 @@ const en = {
     copyright: (year: number) => `© ${year} Solana Foundation`,
     licenses: 'Skill content belongs to its authors under their repository licenses.',
     // Shown on translated pages only.
-    originalLanguage: 'Skill content is shown in its original language (English).',
+    originalLanguage:
+      'Skill descriptions are machine-translated; the skills themselves stay in their original language (English).',
   },
   copy: {
     copy: 'Copy',
@@ -93,7 +94,8 @@ const ptBr: typeof en = {
     skillsInClaudeCode: 'Skills no Claude Code',
     copyright: (year: number) => `© ${year} Solana Foundation`,
     licenses: 'O conteúdo das skills pertence aos seus autores, sob as licenças de cada repositório.',
-    originalLanguage: 'O conteúdo das skills é exibido no idioma original (inglês).',
+    originalLanguage:
+      'As descrições das skills são traduzidas automaticamente; as skills em si permanecem no idioma original (inglês).',
   },
   copy: {
     copy: 'Copiar',
@@ -158,7 +160,8 @@ const es: typeof en = {
     skillsInClaudeCode: 'Skills en Claude Code',
     copyright: (year: number) => `© ${year} Solana Foundation`,
     licenses: 'El contenido de las skills pertenece a sus autores, bajo las licencias de cada repositorio.',
-    originalLanguage: 'El contenido de las skills se muestra en su idioma original (inglés).',
+    originalLanguage:
+      'Las descripciones de las skills se traducen automáticamente; las skills en sí permanecen en su idioma original (inglés).',
   },
   copy: {
     copy: 'Copiar',

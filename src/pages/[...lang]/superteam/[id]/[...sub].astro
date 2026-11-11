@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 }
 
 const { skill, sub, entry } = Astro.props;
-const { m, l } = i18n(Astro);
+const { m, l, tx } = i18n(Astro);
 const t = m.superteam.sub;
 const d = m.superteam.detail;
 const { Content } = entry ? await render(entry) : { Content: null };
@@ -47,7 +47,7 @@ const pinnedSkill =
       ' | tar -xz -C .claude/skills/' + dirName + ' --strip-components=' + (sub.slug.split('/').length + 1) + ' ' +
       skill.repo.split('/')[1] + '-' + skill.commitSha + '/' + sub.slug
     : null;
-const metaDesc = (sub.description ?? skill.tagline).slice(0, 158);
+const metaDesc = tx(sub.description ?? skill.tagline).slice(0, 158);
 ---
 
 <Base
@@ -75,7 +75,7 @@ const metaDesc = (sub.description ?? skill.tagline).slice(0, 158);
         <span aria-hidden="true">·</span>
         <a href={superteamGithubUrl(skill, sub.path)} target="_blank" rel="noopener">{skill.repo}/{sub.path}</a>
       </div>
-      {sub.description && <p class="st-lead">{sub.description}</p>}
+      {sub.description && <p class="st-lead">{tx(sub.description)}</p>}
       <div style="margin-top:20px">
         <MdActions url={fileUrl} name={sub.name} />
       </div>

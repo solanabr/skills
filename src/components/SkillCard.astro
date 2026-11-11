@@ -7,7 +7,7 @@ interface Props {
   featured?: boolean;
 }
 const { skill, featured = false } = Astro.props;
-const { m, l } = i18n(Astro);
+const { m, l, tx } = i18n(Astro);
 ---
 
 <a href={l(`/skills/${skill.id}`)} class:list={['card', { featured }]}>
@@ -29,9 +29,9 @@ const { m, l } = i18n(Astro);
     <span class="badge badge-official">{m.common.official}</span>
     <span class="badge">{categoryLabel(m, skill.category)}</span>
   </div>
-  <h3>{skill.title}</h3>
+  <h3>{tx(skill.title)}</h3>
   <code class="skill-name mono">{skill.name}</code>
-  <p>{skill.summary ?? `${skill.tagline}. ${skill.description}`}</p>
+  <p>{skill.summary == null ? `${tx(skill.tagline)}. ${tx(skill.description)}` : tx(skill.summary)}</p>
   <div class="card-meta">
     {skill.logo && <img class="owner-logo" src={skill.logo} alt="" width="18" height="18" loading="lazy" />}
     <span>{skill.repo.split('/')[0]}</span>

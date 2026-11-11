@@ -7,7 +7,7 @@ import { i18n, localeStaticPaths } from '../../i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
-const { m, l } = i18n(Astro);
+const { m, l, tx } = i18n(Astro);
 const t = m.ecosystem;
 
 const groups: { title: string; sub: string; types: string[] }[] = [
@@ -80,7 +80,7 @@ const kindLabel = (kind: string) => (t.foundation.kinds as Record<string, string
               </div>
               <h3>{res.name}</h3>
               <code class="mono res-repo">{res.repo}</code>
-              <p>{res.description}</p>
+              <p>{tx(res.description)}</p>
             </a>
           ))
         }
@@ -133,7 +133,7 @@ const kindLabel = (kind: string) => (t.foundation.kinds as Record<string, string
                 )}
                 <span class="tail-name">{entry.name}</span>
                 <code class="mono tail-repo">{entry.repo}</code>
-                <span class="tail-desc muted">{entry.description}</span>
+                <span class="tail-desc muted">{tx(entry.description)}</span>
               </a>
             </li>
           ))

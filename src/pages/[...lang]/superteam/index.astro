@@ -8,7 +8,7 @@ import { i18n, localeStaticPaths } from '../../../i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
-const { m, l } = i18n(Astro);
+const { m, l, tx } = i18n(Astro);
 const t = m.superteam.index;
 const skills = registry.superteam;
 const kit = kitEntry();
@@ -60,7 +60,7 @@ const kindsOf = (s: (typeof skills)[number]) =>
               <h3>
                 <a href={l(superteamPage(s))}>{s.displayName}</a>
               </h3>
-              <p>{s.tagline}</p>
+              <p>{tx(s.tagline)}</p>
               <div class="st-chips">
                 {kindsOf(s).map((k) => (
                   <span>{k}</span>
@@ -88,13 +88,13 @@ const kindsOf = (s: (typeof skills)[number]) =>
               <h2>{s.displayName}</h2>
               <a class="btn btn-ghost btn-sm" href={l(superteamPage(s))}>{t.open}</a>
             </div>
-            <p class="st-section-sub">{s.summary}</p>
+            <p class="st-section-sub">{tx(s.summary)}</p>
             <div class="st-cards">
               {s.subskills.map((x) => (
                 <div class="st-card">
                   <a class="st-card-main" href={l(superteamPage(s, x))}>
                     <span class="st-card-name">{x.name}</span>
-                    {x.description && <span class="st-card-desc">{x.description}</span>}
+                    {x.description && <span class="st-card-desc">{tx(x.description)}</span>}
                   </a>
                   <MdActions url={superteamFileUrl(s, x.path)} name={x.name} size="sm" />
                 </div>

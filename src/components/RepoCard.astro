@@ -8,7 +8,7 @@ interface Props {
   expandable?: boolean;
 }
 const { repo, expandable = true } = Astro.props;
-const { m, l, num, date } = i18n(Astro);
+const { m, l, num, date, tx } = i18n(Astro);
 const t = m.repoCard;
 
 const TYPE_LABELS: Record<string, string> = {
@@ -49,7 +49,7 @@ const countLabel = repo.highlightsOnly ? t.picks(repo.skills.length, repo.skillC
       {TYPE_LABELS[repo.type]}
     </span>
   </header>
-  <p class="repo-blurb">{repo.blurb}</p>
+  <p class="repo-blurb">{tx(repo.blurb)}</p>
   <div class="card-meta">
     <span>{countLabel}</span>
     {repo.stars !== null && <span aria-hidden="true">·</span>}
@@ -146,10 +146,10 @@ const countLabel = repo.highlightsOnly ? t.picks(repo.skills.length, repo.skillC
                   href={page ? l(page) : s.url}
                   target={page ? undefined : '_blank'}
                   rel={page ? undefined : 'noopener'}
-                  title={s.description}
+                  title={tx(s.description)}
                 >
                   <code class="mono">{s.name}</code>
-                  <span class="skill-desc">{s.description}</span>
+                  <span class="skill-desc">{tx(s.description)}</span>
                 </a>
               </li>
             );

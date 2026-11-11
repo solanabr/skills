@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 }
 
 const { skill, entry } = Astro.props;
-const { m, l, num, date } = i18n(Astro);
+const { m, l, num, date, tx } = i18n(Astro);
 const t = m.skillPage;
 const { Content } = entry
   ? await render(entry)
@@ -30,8 +30,8 @@ const refs = refsFor(skill.id);
 ---
 
 <Base
-  title={`${skill.title} — Solana Skills`}
-  description={(skill.summary ?? skill.description).slice(0, 158).replace(/\s+\S*$/, '') + '…'}
+  title={`${tx(skill.title)} — Solana Skills`}
+  description={tx(skill.summary ?? skill.description).slice(0, 158).replace(/\s+\S*$/, '') + '…'}
   ogImage={`/og/skills/${skill.id}.png`}
 >
   <section class="detail-head">
@@ -39,14 +39,14 @@ const refs = refsFor(skill.id);
       <nav class="breadcrumb" aria-label={t.breadcrumb}>
         <a href={l('/skills')}>{m.common.nav.skills}</a>
         <span aria-hidden="true">/</span>
-        <span>{skill.title}</span>
+        <span>{tx(skill.title)}</span>
       </nav>
       <div class="badges">
         <span class="badge badge-official">{m.common.official}</span>
         <span class="badge">{categoryLabel(m, skill.category)}</span>
         {skill.multiFile && <span class="badge">{m.common.multiFile}</span>}
       </div>
-      <h1>{skill.title}</h1>
+      <h1>{tx(skill.title)}</h1>
       <div class="name-row">
         <code class="mono name-chip">{skill.name}</code>
         {skill.version && <span class="muted">v{skill.version}</span>}
@@ -62,12 +62,12 @@ const refs = refsFor(skill.id);
           >{t.head.agentView}</a
         >
       </div>
-      <p class="lead">{skill.summary ?? skill.description}</p>
+      <p class="lead">{tx(skill.summary ?? skill.description)}</p>
       {
         skill.summary && (
           <details class="triggers">
             <summary>{t.head.triggers}</summary>
-            <p>{skill.description}</p>
+            <p>{tx(skill.description)}</p>
           </details>
         )
       }
@@ -128,8 +128,8 @@ const refs = refsFor(skill.id);
                 {refs.map((ref) => (
                   <div class="ref-card">
                     <a class="ref-main" href={`/s/${skill.id}/${ref.path}`}>
-                      <span class="ref-title">{ref.title}</span>
-                      {ref.description && <span class="ref-desc">{ref.description}</span>}
+                      <span class="ref-title">{tx(ref.title)}</span>
+                      {ref.description && <span class="ref-desc">{tx(ref.description)}</span>}
                       <code class="mono ref-path">{ref.path}</code>
                     </a>
                     <MdActions url={`/s/${skill.id}/${ref.path}`} name={ref.path} size="sm" />
@@ -276,7 +276,7 @@ const refs = refsFor(skill.id);
               skill.compatibility && (
                 <div>
                   <dt>{t.details.requires}</dt>
-                  <dd>{skill.compatibility.replace(/^Requires\s*/i, '')}</dd>
+                  <dd>{tx(skill.compatibility.replace(/^Requires\s*/i, ''))}</dd>
                 </div>
               )
             }

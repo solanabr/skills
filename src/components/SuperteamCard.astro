@@ -9,7 +9,7 @@ interface Props {
   featured?: boolean;
 }
 const { skill, featured = false } = Astro.props;
-const { m, l } = i18n(Astro);
+const { m, l, tx } = i18n(Astro);
 const t = m.superteam.card;
 const subs = skill.subskills.length;
 const subLabel = skill.subskills.some((x) => x.kind === 'skill') ? t.skills(subs) : t.commandsAndAgents(subs);
@@ -37,7 +37,7 @@ const subLabel = skill.subskills.some((x) => x.kind === 'skill') ? t.skills(subs
   </div>
   <h3>{skill.displayName}</h3>
   <code class="skill-name mono">{skill.id}</code>
-  <p>{skill.tagline}</p>
+  <p>{tx(skill.tagline)}</p>
   <div class="card-meta">
     {skill.logo && <img class="owner-logo" src={skill.logo} alt="" width="18" height="18" loading="lazy" />}
     <span>{skill.repo.split('/')[0]}</span>

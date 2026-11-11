@@ -1,4 +1,5 @@
 import { DEFAULT_LOCALE, LOCALES, LOCALE_META, type Locale } from './config';
+import { translate } from './content';
 import { messages, type Messages } from './messages';
 
 export { DEFAULT_LOCALE, LOCALES, LOCALE_META, messages };
@@ -83,6 +84,8 @@ export function i18n(astro: { url: URL }) {
     m: messages[locale],
     /** Localize an internal page path: l('/skills'). */
     l: (path: string) => localePath(locale, path),
+    /** Registry text (skill titles, summaries, descriptions…) in this language; the English when it has no translation yet. */
+    tx: (text: string) => translate(locale, text),
     /** 12345 → '12,345' / '12.345'. */
     num: (n: number) => n.toLocaleString(intl),
     /** '2026-11-09' or a full ISO timestamp → 'Nov 9, 2026' / '9 de nov. de 2026'. */

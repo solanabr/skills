@@ -30,7 +30,7 @@ export async function getStaticPaths() {
 }
 
 const { skill, entry } = Astro.props;
-const { m, l, date } = i18n(Astro);
+const { m, l, date, tx } = i18n(Astro);
 const t = m.superteam.skill;
 const d = m.superteam.detail;
 const { Content } = entry ? await render(entry) : { Content: null };
@@ -45,7 +45,7 @@ const pinDate = skill.commitDate ? date(skill.commitDate) : null;
 
 <Base
   title={t.title(skill.displayName)}
-  description={skill.tagline}
+  description={tx(skill.tagline)}
   ogImage={`/og/superteam/${skill.id}.png`}
 >
   <section class="st-head">
@@ -68,7 +68,7 @@ const pinDate = skill.commitDate ? date(skill.commitDate) : null;
         {skill.tag && (<><span aria-hidden="true">·</span><span>{skill.tag}</span></>)}
         {skill.stars !== null && (<><span aria-hidden="true">·</span><span>★ {skill.stars}</span></>)}
       </div>
-      <p class="st-lead">{skill.tagline} {skill.summary}</p>
+      <p class="st-lead">{tx(skill.tagline)} {tx(skill.summary)}</p>
       <p class="st-note">
         <Rich text={t.note}>
           <code slot="sha" class="mono">{skill.commitSha?.slice(0, 7)}</code>
@@ -105,7 +105,7 @@ const pinDate = skill.commitDate ? date(skill.commitDate) : null;
                   <div class="st-card">
                     <a class="st-card-main" href={l(superteamPage(skill, x))}>
                       <span class="st-card-name">{x.name}</span>
-                      {x.description && <span class="st-card-desc">{x.description}</span>}
+                      {x.description && <span class="st-card-desc">{tx(x.description)}</span>}
                     </a>
                     <MdActions url={superteamFileUrl(skill, x.path)} name={x.name} size="sm" />
                   </div>

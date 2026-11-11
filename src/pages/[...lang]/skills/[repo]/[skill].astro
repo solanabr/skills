@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 
 const { repo, skill, entry } = Astro.props;
 // t: this page's own messages; sp: the wording it shares with the official skill page.
-const { m, l, num, date } = i18n(Astro);
+const { m, l, num, date, tx } = i18n(Astro);
 const t = m.ecoSkillPage;
 const sp = m.skillPage;
 const { Content } = entry ? await render(entry) : { Content: null };
@@ -32,7 +32,7 @@ const files = (skill.files ?? []).filter((f) => !f.endsWith('/'));
 const hostedSet = new Set(skill.hostedFiles ?? []);
 const fullHost = hostedSet.size > 0;
 const readMinutes = skill.words ? Math.max(1, Math.round(skill.words / 220)) : null;
-const desc = skill.description || t.fallbackDescription(skill.name, repo.vendor);
+const desc = skill.description ? tx(skill.description) : t.fallbackDescription(skill.name, repo.vendor);
 const metaDesc = desc.length > 158 ? desc.slice(0, 158).replace(/\s+\S*$/, '') + '…' : desc;
 const TYPE_LABELS: Record<string, string> = {
   aggregator: t.types.aggregator,

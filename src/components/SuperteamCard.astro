@@ -1,6 +1,7 @@
 ---
 import type { SuperteamEntry } from '../lib/registry';
-import { CATEGORY_LABELS, superteamPage } from '../lib/registry';
+import { superteamPage } from '../lib/registry';
+import { categoryLabel, i18n } from '../i18n';
 
 // A Superteam Brasil skill, styled to sit beside the Foundation's SkillCard.
 interface Props {
@@ -8,11 +9,13 @@ interface Props {
   featured?: boolean;
 }
 const { skill, featured = false } = Astro.props;
+const { m, l } = i18n(Astro);
+const t = m.superteam.card;
 const subs = skill.subskills.length;
-const subLabel = skill.subskills.some((x) => x.kind === 'skill') ? 'skills' : 'commands and agents';
+const subLabel = skill.subskills.some((x) => x.kind === 'skill') ? t.skills(subs) : t.commandsAndAgents(subs);
 ---
 
-<a href={superteamPage(skill)} class:list={['card', { featured }]}>
+<a href={l(superteamPage(skill))} class:list={['card', { featured }]}>
   <svg
     class="card-arrow"
     width="18"
@@ -28,9 +31,9 @@ const subLabel = skill.subskills.some((x) => x.kind === 'skill') ? 'skills' : 'c
     <path d="M7 17 17 7M7 7h10v10"></path>
   </svg>
   <div class="badges">
-    <span class="badge badge-official">Official</span>
+    <span class="badge badge-official">{m.common.official}</span>
     <span class="badge badge-stbr">Superteam Brasil</span>
-    <span class="badge">{CATEGORY_LABELS[skill.category] ?? skill.category}</span>
+    <span class="badge">{categoryLabel(m, skill.category)}</span>
   </div>
   <h3>{skill.displayName}</h3>
   <code class="skill-name mono">{skill.id}</code>
@@ -41,9 +44,9 @@ const subLabel = skill.subskills.some((x) => x.kind === 'skill') ? 'skills' : 'c
     <span aria-hidden="true">·</span>
     {skill.tag && <span>{skill.tag}</span>}
     {skill.tag && <span aria-hidden="true">·</span>}
-    <span>{subs} {subLabel}</span>
+    <span>{subLabel}</span>
     <span aria-hidden="true">·</span>
-    <span>{skill.files.length} files</span>
+    <span>{m.common.files(skill.files.length)}</span>
   </div>
 </a>
 

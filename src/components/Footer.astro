@@ -1,30 +1,33 @@
 ---
 import SolanaMark from './SolanaMark.astro';
+import { DEFAULT_LOCALE, i18n } from '../i18n';
 
+const { locale, m, l } = i18n(Astro);
+const f = m.common.footer;
 const cols = [
   {
-    title: 'Browse',
+    title: f.browse,
     links: [
-      { href: '/skills', label: 'Official skills' },
-      { href: '/ecosystem', label: 'Ecosystem' },
-      { href: '/api/skills.json', label: 'JSON index' },
+      { href: l('/skills'), label: f.officialSkills },
+      { href: l('/ecosystem'), label: f.ecosystem },
+      { href: '/api/skills.json', label: f.jsonIndex },
       { href: '/llms.txt', label: 'llms.txt' },
     ],
   },
   {
-    title: 'Foundation',
+    title: f.foundation,
     links: [
       { href: 'https://github.com/solana-foundation', label: 'GitHub' },
       { href: 'https://github.com/solana-foundation/awesome-solana-ai', label: 'Awesome Solana AI' },
-      { href: 'https://solana.com/developers', label: 'Developers' },
-      { href: 'https://solana.com/docs', label: 'Docs' },
+      { href: 'https://solana.com/developers', label: f.developers },
+      { href: 'https://solana.com/docs', label: f.docs },
     ],
   },
   {
-    title: 'Learn',
+    title: f.learn,
     links: [
-      { href: 'https://agentskills.io', label: 'Agent Skills spec' },
-      { href: 'https://code.claude.com/docs/en/skills', label: 'Skills in Claude Code' },
+      { href: 'https://agentskills.io', label: f.agentSkillsSpec },
+      { href: 'https://code.claude.com/docs/en/skills', label: f.skillsInClaudeCode },
       { href: 'https://solana.com/ai', label: 'Solana × AI' },
       { href: 'https://solana.stackexchange.com', label: 'Stack Exchange' },
     ],
@@ -36,28 +39,25 @@ const cols = [
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="/" class="brand" aria-label="Solana Skills home">
+        <a href={l('/')} class="brand" aria-label={m.common.brandHome}>
           <SolanaMark size={26} />
           <span>Solana <span class="thin">Skills</span></span>
         </a>
-        <p>
-          Agent skills for building on Solana — curated, hosted, and ready for Claude Code, Cursor,
-          Codex, and any agent that reads markdown.
-        </p>
+        <p>{f.blurb}</p>
       </div>
       {
         cols.map((col) => (
           <div class="footer-col">
             <h3>{col.title}</h3>
             <ul>
-              {col.links.map((l) => (
+              {col.links.map((link) => (
                 <li>
                   <a
-                    href={l.href}
-                    target={l.href.startsWith('http') ? '_blank' : undefined}
-                    rel={l.href.startsWith('http') ? 'noopener' : undefined}
+                    href={link.href}
+                    target={link.href.startsWith('http') ? '_blank' : undefined}
+                    rel={link.href.startsWith('http') ? 'noopener' : undefined}
                   >
-                    {l.label}
+                    {link.label}
                   </a>
                 </li>
               ))}
@@ -67,9 +67,17 @@ const cols = [
       }
     </div>
     <div class="footer-bottom">
-      <span>© {new Date().getFullYear()} Solana Foundation</span>
+      <span>{f.copyright(new Date().getFullYear())}</span>
       <span class="foot-sep" aria-hidden="true">·</span>
-      <span>Skill content belongs to its authors under their repository licenses.</span>
+      <span>{f.licenses}</span>
+      {
+        locale !== DEFAULT_LOCALE && (
+          <>
+            <span class="foot-sep" aria-hidden="true">·</span>
+            <span>{f.originalLanguage}</span>
+          </>
+        )
+      }
     </div>
   </div>
 </footer>

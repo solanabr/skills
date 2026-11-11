@@ -1,0 +1,25 @@
+---
+// Renders a message that has inline markup. The message is plain text with
+// {name} tokens; each token is filled from the slot of the same name, so a
+// translation can move the link or <code> wherever its grammar wants it.
+//
+//   <Rich text={m.home.contribute.body}>
+//     <Fragment slot="code"><code class="mono">SKILL.md</code></Fragment>
+//     <a slot="link" href="…">awesome-solana-ai</a>
+//   </Rich>
+//
+// Message text is escaped. Slot content is rendered by the calling page, so it
+// keeps that page's scoped styles (which set:html on a string would lose).
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+const escape = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+// split() with a capture group alternates text, token, text, token, …
+const parts = text.split(/\{(\w+)\}/);
+const html = (
+  await Promise.all(parts.map((part, i) => (i % 2 === 0 ? escape(part) : Astro.slots.render(part))))
+).join('');
+---
+
+<Fragment set:html={html} />

@@ -1,11 +1,17 @@
 ---
-import Base from '../layouts/Base.astro';
-import SkillCard from '../components/SkillCard.astro';
-import SuperteamCard from '../components/SuperteamCard.astro';
-import RepoCard from '../components/RepoCard.astro';
-import CopyBlock from '../components/CopyBlock.astro';
-import { registry, totalSkills, contributorCount, installCommands, SITE_URL } from '../lib/registry';
+import Base from '../../layouts/Base.astro';
+import SkillCard from '../../components/SkillCard.astro';
+import SuperteamCard from '../../components/SuperteamCard.astro';
+import RepoCard from '../../components/RepoCard.astro';
+import CopyBlock from '../../components/CopyBlock.astro';
+import Rich from '../../components/Rich.astro';
+import { registry, totalSkills, contributorCount, installCommands, SITE_URL } from '../../lib/registry';
+import { i18n, localeStaticPaths } from '../../i18n';
 
+export const getStaticPaths = localeStaticPaths;
+
+const { m, l } = i18n(Astro);
+const t = m.home;
 const official = registry.official;
 const featured = registry.ecosystem.filter((r) =>
   ['sendai-skills', 'solana-new', 'jupiter', 'helius', 'metaplex', 'solana-ai-kit'].includes(r.id)
@@ -17,26 +23,20 @@ const contributors = contributorCount();
 const superteam = registry.superteam;
 ---
 
-<Base
-  title="Solana Skills — agent skills for building on Solana"
-  description={`${skillTotal}+ open-source agent skills from the Solana Foundation and ecosystem — install with one command, or hand your agent a URL.`}
->
+<Base title={t.title} description={t.description(skillTotal)}>
   <!-- ————— hero ————— -->
   <section class="hero">
     <div class="glow-orb orb-purple"></div>
     <div class="glow-orb orb-green"></div>
     <div class="container hero-inner">
       <h1 class="display">
-        Teach your agent to<br />
-        <span class="gradient-text">build on Solana</span>
+        {t.hero.line1}<br />
+        <span class="gradient-text">{t.hero.line2}</span>
       </h1>
-      <p class="hero-sub">
-        Markdown skills from the Solana Foundation and the teams building on it — for Claude Code,
-        Cursor, Codex, and any agent that reads markdown. Install one, or hand your agent a URL.
-      </p>
+      <p class="hero-sub">{t.hero.sub}</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="/skills">Browse skills</a>
-        <a class="btn btn-ghost" href="/ecosystem">Explore the ecosystem</a>
+        <a class="btn btn-primary" href={l('/skills')}>{t.hero.browse}</a>
+        <a class="btn btn-ghost" href={l('/ecosystem')}>{t.hero.explore}</a>
       </div>
       {
         leadInstall && (
@@ -47,20 +47,20 @@ const superteam = registry.superteam;
       }
       <dl class="hero-stats">
         <div>
-          <dt>Official skills</dt>
-          <dd title="Solana Foundation and Superteam Brasil">{official.length + superteam.length}</dd>
+          <dt>{t.stats.official}</dt>
+          <dd title={t.stats.officialTip}>{official.length + superteam.length}</dd>
         </div>
         <div>
-          <dt>Ecosystem repos</dt>
+          <dt>{t.stats.ecosystem}</dt>
           <dd>{registry.ecosystem.length}</dd>
         </div>
         <div>
-          <dt>Skills indexed</dt>
+          <dt>{t.stats.indexed}</dt>
           <dd>{skillTotal}+</dd>
         </div>
         <div>
-          <dt>Contributors</dt>
-          <dd title="Distinct GitHub contributors across every repository indexed here">{contributors}</dd>
+          <dt>{t.stats.contributors}</dt>
+          <dd title={t.stats.contributorsTip}>{contributors}</dd>
         </div>
       </dl>
     </div>
@@ -71,16 +71,12 @@ const superteam = registry.superteam;
     <div class="container">
       <div class="section-head">
         <div>
-          <h2 class="section-title">Official skills</h2>
-          <p class="section-sub">
-            Written and maintained by the Solana Foundation and Superteam Brasil. Mirrored here
-            byte-for-byte at a pinned commit; every build checks the hosted files against their
-            published sha256.
-          </p>
+          <h2 class="section-title">{t.official.title}</h2>
+          <p class="section-sub">{t.official.sub}</p>
         </div>
         <div class="section-actions">
-          <a class="btn btn-ghost btn-sm" href="/superteam">Superteam Brasil</a>
-          <a class="btn btn-ghost btn-sm" href="/skills">View all</a>
+          <a class="btn btn-ghost btn-sm" href={l('/superteam')}>{t.official.superteam}</a>
+          <a class="btn btn-ghost btn-sm" href={l('/skills')}>{t.official.viewAll}</a>
         </div>
       </div>
       <div class="grid grid-official">
@@ -93,37 +89,37 @@ const superteam = registry.superteam;
   <!-- ————— how to use ————— -->
   <section class="section" id="use">
     <div class="container">
-      <h2 class="section-title">Three ways to use a skill</h2>
+      <h2 class="section-title">{t.use.title}</h2>
       <p class="section-sub">
-        Skills are plain markdown with YAML frontmatter — the open
-        <a class="inline-link" href="https://agentskills.io" target="_blank" rel="noopener"
-          >Agent Skills</a
-        > format.
+        <Rich text={t.use.sub}>
+          <a slot="format" class="inline-link" href="https://agentskills.io" target="_blank" rel="noopener"
+            >{t.use.formatName}</a
+          >
+        </Rich>
       </p>
       <div class="use-grid">
         <div class="card">
           <span class="use-step">01</span>
-          <h3>Install with the skills CLI</h3>
-          <p>Works with Claude Code, Cursor, Codex, Windsurf and friends — one command per repo.</p>
+          <h3>{t.use.cli.title}</h3>
+          <p>{t.use.cli.body}</p>
           <CopyBlock command={`npx skills add ${lead?.repo ?? 'solana-foundation/solana-dev-skill'}`} />
         </div>
         <div class="card">
           <span class="use-step">02</span>
-          <h3>Add to Claude Code manually</h3>
-          <p>Drop the hosted file into <code class="mono">~/.claude/skills/</code> — global, or per-project under <code class="mono">.claude/skills/</code>.</p>
+          <h3>{t.use.manual.title}</h3>
+          <p>
+            <Rich text={t.use.manual.body}>
+              <code slot="global" class="mono">~/.claude/skills/</code>
+              <code slot="project" class="mono">.claude/skills/</code>
+            </Rich>
+          </p>
           <CopyBlock command={leadInstall?.claudeGlobal ?? ''} />
         </div>
         <div class="card">
           <span class="use-step">03</span>
-          <h3>No install — tell your agent</h3>
-          <p>
-            Every official skill is hosted as plain markdown at a stable URL. One line in any
-            agent chat:
-          </p>
-          <CopyBlock
-            prompt={false}
-            command={`Read ${SITE_URL}/llms.txt before you start building on Solana.`}
-          />
+          <h3>{t.use.noInstall.title}</h3>
+          <p>{t.use.noInstall.body}</p>
+          <CopyBlock prompt={false} command={t.use.noInstall.prompt(SITE_URL)} />
         </div>
       </div>
     </div>
@@ -134,13 +130,10 @@ const superteam = registry.superteam;
     <div class="container">
       <div class="section-head">
         <div>
-          <h2 class="section-title">From the ecosystem</h2>
-          <p class="section-sub">
-            Aggregators, protocol vendors, toolkits, and security specialists — indexed weekly,
-            pinned to the commit we checked.
-          </p>
+          <h2 class="section-title">{t.ecosystem.title}</h2>
+          <p class="section-sub">{t.ecosystem.sub}</p>
         </div>
-        <a class="btn btn-ghost btn-sm" href="/ecosystem">Explore all</a>
+        <a class="btn btn-ghost btn-sm" href={l('/ecosystem')}>{t.ecosystem.exploreAll}</a>
       </div>
       <div class="grid">
         {featured.map((repo) => <RepoCard repo={repo} expandable={false} />)}
@@ -153,16 +146,18 @@ const superteam = registry.superteam;
     <div class="container">
       <div class="contribute card">
         <div class="contribute-text">
-          <h2 class="section-title">Ship your own skill</h2>
+          <h2 class="section-title">{t.contribute.title}</h2>
           <p class="section-sub">
-            Write a <code class="mono">SKILL.md</code> following the Agent Skills format, publish
-            it on GitHub, and open a PR to
-            <a
-              class="inline-link"
-              href="https://github.com/solana-foundation/awesome-solana-ai"
-              target="_blank"
-              rel="noopener">awesome-solana-ai</a
-            >. Merged repos are picked up by the next weekly refresh.
+            <Rich text={t.contribute.body}>
+              <code slot="code" class="mono">SKILL.md</code>
+              <a
+                slot="link"
+                class="inline-link"
+                href="https://github.com/solana-foundation/awesome-solana-ai"
+                target="_blank"
+                rel="noopener">awesome-solana-ai</a
+              >
+            </Rich>
           </p>
         </div>
         <div class="contribute-actions">
@@ -170,13 +165,13 @@ const superteam = registry.superteam;
             class="btn btn-primary"
             href="https://agentskills.io"
             target="_blank"
-            rel="noopener">Read the spec</a
+            rel="noopener">{t.contribute.spec}</a
           >
           <a
             class="btn btn-ghost"
             href="https://github.com/solana-foundation/awesome-solana-ai"
             target="_blank"
-            rel="noopener">Submit yours</a
+            rel="noopener">{t.contribute.submit}</a
           >
         </div>
       </div>
@@ -307,6 +302,7 @@ const superteam = registry.superteam;
   }
   .contribute-actions {
     display: flex;
+    flex-wrap: wrap;
     gap: 12px;
     flex-shrink: 0;
   }

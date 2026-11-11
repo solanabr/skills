@@ -89,6 +89,19 @@ Deploy `dist/` to any static host (Vercel / Cloudflare Pages / Netlify — zero 
 
 The site is served at `kit.superteam.codes`, set as `site` in `astro.config.mjs` and `SITE_URL` in `src/lib/registry.ts`; every hosted-file URL, canonical link, social image and llms.txt line is built from it. `superteam.codes` is on Vercel's nameservers with a wildcard record, so adding the domain under the Vercel project's **Settings → Domains** is the whole setup. The Solana AI Kit's installer stays at `aikit.superteam.codes` (`curl -fsSL https://aikit.superteam.codes | bash`), served by the kit's own Vercel project.
 
+## Languages
+
+The site is published in English (the default, served at the root), Brazilian Portuguese (`/pt-br`) and Spanish (`/es`). Every page exists in every language, and the English URLs are unchanged. Skill content itself — descriptions, `SKILL.md` bodies, mirrored files — stays in its original language; the footer says so on translated pages. The machine-readable files (`/api/*`, `/llms.txt`, `/s/*`, `/og/*`) are not translated.
+
+- **Locales** are listed in `src/i18n/config.ts`, with their `<html lang>`, hreflang, Open Graph and `Intl` codes.
+- **Strings** live in `src/i18n/messages/<area>.ts`, one file per area of the site, each exporting `{ en, 'pt-br', es }`. English is the reference: the other languages are typed `typeof en`, so a missing or extra key is a type error, and the build fails with a list of differences if a key, an array length or a `{token}` doesn't line up.
+- **In a page or component**: `const { m, l, num, date } = i18n(Astro);`, then `{m.home.hero.sub}`, `href={l('/skills')}` (locale-aware link), `{num(n)}`, `{date(skill.pushedAt)}`.
+- **Inline markup** (a link or `<code>` inside a sentence) is a message with `{token}`s, rendered by `<Rich text={…}>` with one named slot per token — see `home.ts` and `src/components/Rich.astro`. Slots are rendered by the page, so scoped styles keep working.
+- **Routes**: pages live under `src/pages/[...lang]/`. English has no prefix (`lang` is `undefined`), the others get `/pt-br/…` and `/es/…`. A page exports `getStaticPaths = localeStaticPaths`, or wraps its own paths in `withLocales(…)`.
+- **SEO**: `Base.astro` sets `<html lang>`, `og:locale`, and hreflang alternates (with the English page as `x-default`); the sitemap lists every page in every language with its alternates.
+
+To add a language: add it to `LOCALES` and `LOCALE_META` in `src/i18n/config.ts`, add a column to each file in `src/i18n/messages/`, and run `npm run build` — it names whatever is still missing.
+
 ## Design
 
 Follows solana.com branding: black canvas, `#9945FF` → `#14F195` brand gradient, Inter, pill buttons, glass cards. All tokens live in `src/styles/global.css`.

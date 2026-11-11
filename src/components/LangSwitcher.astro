@@ -1,0 +1,151 @@
+---
+import { LOCALES, LOCALE_META, i18n, localePath, stripLocale } from '../i18n';
+
+interface Props {
+  /** Locale-free path of the page being switched; defaults to the current one. */
+  path?: string;
+}
+const { locale, m } = i18n(Astro);
+const path = Astro.props.path ?? stripLocale(Astro.url.pathname);
+const items = LOCALES.map((l) => ({ locale: l, ...LOCALE_META[l], href: localePath(l, path) }));
+---
+
+<details class="lang" data-lang-switcher>
+  <summary class="lang-button" aria-label={`${m.common.language}: ${LOCALE_META[locale].name}`}>
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"></circle>
+      <path d="M2 12h20"></path>
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+    </svg>
+    <span>{LOCALE_META[locale].short}</span>
+    <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="m6 9 6 6 6-6"></path>
+    </svg>
+  </summary>
+  <ul class="lang-menu">
+    {
+      items.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            hreflang={item.tag}
+            lang={item.tag}
+            aria-current={item.locale === locale ? 'true' : undefined}
+          >
+            {item.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</details>
+
+<script>
+  // The menu is a <details>, so it works without JS; this just closes it on an
+  // outside click or Escape like a native menu would.
+  const menus = document.querySelectorAll<HTMLDetailsElement>('[data-lang-switcher]');
+  document.addEventListener('click', (e) => {
+    menus.forEach((menu) => {
+      if (menu.open && !menu.contains(e.target as Node)) menu.open = false;
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    menus.forEach((menu) => {
+      if (!menu.open) return;
+      menu.open = false;
+      menu.querySelector<HTMLElement>('summary')?.focus();
+    });
+  });
+</script>
+
+<style>
+  .lang {
+    position: relative;
+  }
+  .lang-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 11px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 560;
+    color: var(--text);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition: background 0.15s ease;
+  }
+  .lang-button::-webkit-details-marker {
+    display: none;
+  }
+  .lang-button:hover,
+  .lang[open] .lang-button {
+    background: rgba(255, 255, 255, 0.07);
+  }
+  .lang-button:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
+  }
+  .chevron {
+    color: var(--text-3);
+    transition: transform 0.15s ease;
+  }
+  .lang[open] .chevron {
+    transform: rotate(180deg);
+  }
+  .lang-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    z-index: 60;
+    min-width: 188px;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    background: var(--bg-elev);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  }
+  .lang-menu a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    color: var(--text-2);
+    white-space: nowrap;
+  }
+  .lang-menu a:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .lang-menu a[aria-current='true'] {
+    color: var(--green);
+  }
+  .lang-menu a[aria-current='true']::after {
+    content: '✓';
+    margin-left: 14px;
+    font-size: 0.85rem;
+  }
+  /* Phones: just the globe and the language code, so the nav keeps its room. */
+  @media (max-width: 640px) {
+    .lang-button {
+      gap: 4px;
+      padding: 6px 9px;
+    }
+    .chevron {
+      display: none;
+    }
+  }
+  /* The narrowest phones drop the globe too; the code alone still reads as a switcher. */
+  @media (max-width: 370px) {
+    .lang-button > svg:first-child {
+      display: none;
+    }
+  }
+</style>

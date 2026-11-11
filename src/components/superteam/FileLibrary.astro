@@ -1,5 +1,6 @@
 ---
 import { superteamFileUrl, type SuperteamEntry } from '../../lib/registry';
+import { i18n } from '../../i18n';
 
 // Every mirrored .md of a Superteam Brasil skill, grouped by top-level
 // folder, each with its hosted URL and a copy button.
@@ -12,6 +13,10 @@ interface Props {
   open?: boolean;
 }
 const { skill, paths = skill.files, base = '', open = false } = Astro.props;
+const { m } = i18n(Astro);
+// Files at the top of the repo are grouped under the key 'Root'; only the
+// label shown for that group is translated.
+const groupLabel = (group: string) => (group === 'Root' ? m.superteam.files.root : group);
 const groups = new Map<string, string[]>();
 for (const p of paths) {
   const rel = p.startsWith(base) ? p.slice(base.length) : p;
@@ -31,7 +36,7 @@ const ordered = [...groups.entries()].sort(([a], [b]) => (a === 'Root' ? -1 : b 
     ordered.map(([group, files]) => (
       <details open={open || ordered.length === 1}>
         <summary>
-          {group} <span class="muted">({files.length})</span>
+          {groupLabel(group)} <span class="muted">({files.length})</span>
         </summary>
         <ul>
           {files.map((f) => (
@@ -39,8 +44,8 @@ const ordered = [...groups.entries()].sort(([a], [b]) => (a === 'Root' ? -1 : b 
               <a href={superteamFileUrl(skill, f)} title={f}>
                 {shown(f, group)}
               </a>
-              <button type="button" class="st-file-copy" data-copy-url={superteamFileUrl(skill, f)} aria-label={`Copy ${f} as Markdown`}>
-                <span class="md-label">Copy .md</span>
+              <button type="button" class="st-file-copy" data-copy-url={superteamFileUrl(skill, f)} aria-label={m.common.copy.copyAsMarkdown(f)}>
+                <span class="md-label">{m.common.copy.md}</span>
               </button>
             </li>
           ))}

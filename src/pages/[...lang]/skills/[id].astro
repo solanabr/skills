@@ -1,20 +1,25 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import CopyBlock from '../../components/CopyBlock.astro';
-import MdActions from '../../components/MdActions.astro';
-import { registry, installCommands, CATEGORY_LABELS, SITE_URL } from '../../lib/registry';
-import { refsFor } from '../../lib/skill-refs';
+import Base from '../../../layouts/Base.astro';
+import CopyBlock from '../../../components/CopyBlock.astro';
+import MdActions from '../../../components/MdActions.astro';
+import { registry, installCommands, SITE_URL } from '../../../lib/registry';
+import { refsFor } from '../../../lib/skill-refs';
+import { categoryLabel, i18n, withLocales } from '../../../i18n';
 
 export async function getStaticPaths() {
   const entries = await getCollection('skills');
-  return registry.official.map((skill) => ({
-    params: { id: skill.id },
-    props: { skill, entry: entries.find((e) => e.id === skill.id) },
-  }));
+  return withLocales(
+    registry.official.map((skill) => ({
+      params: { id: skill.id },
+      props: { skill, entry: entries.find((e) => e.id === skill.id) },
+    })),
+  );
 }
 
 const { skill, entry } = Astro.props;
+const { m, l, num, date } = i18n(Astro);
+const t = m.skillPage;
 const { Content } = entry
   ? await render(entry)
   : { Content: null };
@@ -31,15 +36,15 @@ const refs = refsFor(skill.id);
 >
   <section class="detail-head">
     <div class="container">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="/skills">Skills</a>
+      <nav class="breadcrumb" aria-label={t.breadcrumb}>
+        <a href={l('/skills')}>{m.common.nav.skills}</a>
         <span aria-hidden="true">/</span>
         <span>{skill.title}</span>
       </nav>
       <div class="badges">
-        <span class="badge badge-official">Official</span>
-        <span class="badge">{CATEGORY_LABELS[skill.category] ?? skill.category}</span>
-        {skill.multiFile && <span class="badge">Multi-file</span>}
+        <span class="badge badge-official">{m.common.official}</span>
+        <span class="badge">{categoryLabel(m, skill.category)}</span>
+        {skill.multiFile && <span class="badge">{m.common.multiFile}</span>}
       </div>
       <h1>{skill.title}</h1>
       <div class="name-row">
@@ -53,15 +58,15 @@ const refs = refsFor(skill.id);
         <a
           class="agent-view mono"
           href={skill.hostedPath}
-          title="The raw SKILL.md this page renders — the URL to hand an agent"
-          >Agent view ↗</a
+          title={t.head.agentViewTip}
+          >{t.head.agentView}</a
         >
       </div>
       <p class="lead">{skill.summary ?? skill.description}</p>
       {
         skill.summary && (
           <details class="triggers">
-            <summary>When your agent invokes this</summary>
+            <summary>{t.head.triggers}</summary>
             <p>{skill.description}</p>
           </details>
         )
@@ -73,60 +78,43 @@ const refs = refsFor(skill.id);
     <div class="container detail-grid">
       <article>
         <div class="install-panel" data-tabs>
-          <div class="tabs" role="tablist" aria-label="Install methods">
+          <div class="tabs" role="tablist" aria-label={t.install.label}>
             <button class="tab" role="tab" id="tab-cli" aria-controls="panel-cli" data-tab="cli" aria-selected="true">skills CLI</button>
             <button class="tab" role="tab" id="tab-claude" aria-controls="panel-claude" data-tab="claude" aria-selected="false" tabindex="-1"
               >Claude Code</button
             >
             <button class="tab" role="tab" id="tab-nono" aria-controls="panel-nono" data-tab="nono" aria-selected="false" tabindex="-1"
-              >No install</button
+              >{t.install.noInstall}</button
             >
             <button class="tab" role="tab" id="tab-git" aria-controls="panel-git" data-tab="git" aria-selected="false" tabindex="-1">Git</button>
           </div>
           <div class="tab-panel" role="tabpanel" id="panel-cli" aria-labelledby="tab-cli" tabindex="0" data-panel="cli">
-            <p class="panel-note">
-              One command for Claude Code, Cursor, Codex, Windsurf and other agents — pulls the
-              full skill{skill.multiFile && ', companion files included'}.
-            </p>
+            <p class="panel-note">{t.install.cli(skill.multiFile)}</p>
             <CopyBlock command={install.cli} />
           </div>
           <div class="tab-panel" role="tabpanel" id="panel-claude" aria-labelledby="tab-claude" tabindex="0" data-panel="claude" hidden>
-            <p class="panel-note">
-              Drop the hosted file into your skills directory. Global (all projects):
-            </p>
+            <p class="panel-note">{t.install.claude}</p>
             <CopyBlock command={install.claudeGlobal} />
-            <p class="panel-note">Or scoped to the current project:</p>
+            <p class="panel-note">{t.install.project}</p>
             <CopyBlock command={install.claudeProject} />
             {
               skill.multiFile && (
                 <p class="panel-hint">
-                  This skill references companion files ({companionFiles.length} of them) — links
-                  in the hosted copy resolve to GitHub, so it works standalone. For the full
-                  offline bundle use the CLI or Git tab.
+                  {t.install.companionHint(companionFiles.length)} {t.install.offlineBundle}
                 </p>
               )
             }
           </div>
           <div class="tab-panel" role="tabpanel" id="panel-nono" aria-labelledby="tab-nono" tabindex="0" data-panel="nono" hidden>
-            <p class="panel-note">
-              The skill is hosted as plain markdown — tell your agent:
-            </p>
-            <CopyBlock
-              prompt={false}
-              command={`Read ${install.hosted} and follow it for this task: `}
-            />
-            <p class="panel-note">
-              Or have the skills CLI generate a one-shot prompt (pipe it straight into your agent):
-            </p>
+            <p class="panel-note">{t.install.hosted}</p>
+            <CopyBlock prompt={false} command={t.install.prompt(install.hosted)} />
+            <p class="panel-note">{t.install.oneShot}</p>
             <CopyBlock command={`npx skills use ${skill.repo}@${skill.name} | claude`} />
-            <p class="panel-note">Or pull the raw file into a terminal session:</p>
+            <p class="panel-note">{t.install.raw}</p>
             <CopyBlock command={`curl -fsSL ${install.hosted}`} />
           </div>
           <div class="tab-panel" role="tabpanel" id="panel-git" aria-labelledby="tab-git" tabindex="0" data-panel="git" hidden>
-            <p class="panel-note">
-              Copy the skill directory{skill.multiFile && ' with all companion files'} straight
-              from GitHub:
-            </p>
+            <p class="panel-note">{t.install.git(skill.multiFile)}</p>
             <CopyBlock command={install.git} />
           </div>
         </div>
@@ -134,11 +122,8 @@ const refs = refsFor(skill.id);
         {
           refs.length > 0 && (
             <section class="ref-lib">
-              <h2 class="contents-title">Reference library</h2>
-              <p class="ref-sub muted">
-                {refs.length} focused files, hosted here — point your agent at just the one it
-                needs instead of the whole skill.
-              </p>
+              <h2 class="contents-title">{t.refs.title}</h2>
+              <p class="ref-sub muted">{t.refs.sub(refs.length)}</p>
               <div class="ref-grid">
                 {refs.map((ref) => (
                   <div class="ref-card">
@@ -156,18 +141,18 @@ const refs = refsFor(skill.id);
         }
 
         <div class="contents-title contents-head">
-          <h2>Skill contents</h2>
+          <h2>{t.contents.title}</h2>
           <MdActions url={skill.hostedPath} name="SKILL.md" />
         </div>
-        <div class="prose" id="skill-prose">{Content && <Content />}</div>
+        <div class="prose" id="skill-prose" data-copy-label={t.contents.copyCode}>{Content && <Content />}</div>
       </article>
 
       <aside>
         <div class="meta-card">
-          <h3>Hosted file</h3>
+          <h3>{t.hostedFile}</h3>
           <div class="hosted-row">
             <a class="mono hosted-url" href={skill.hostedPath}>{SITE_URL.replace('https://', '')}{skill.hostedPath}</a>
-            <button class="copy-btn static" data-copy={install.hosted} aria-label="Copy hosted URL" title="Copy URL">
+            <button class="copy-btn static" data-copy={install.hosted} aria-label={t.copyHostedUrl} title={t.copyUrl}>
               <svg
                 width="14"
                 height="14"
@@ -185,37 +170,37 @@ const refs = refsFor(skill.id);
             </button>
           </div>
 
-          <h3>Details</h3>
+          <h3>{t.details.title}</h3>
           <dl class="meta-list">
             <div>
-              <dt>Maintainer</dt>
+              <dt>{t.details.maintainer}</dt>
               <dd>Solana Foundation</dd>
             </div>
             <div>
-              <dt>License</dt>
-              <dd>{skill.license ?? 'None declared'}</dd>
+              <dt>{t.details.license}</dt>
+              <dd>{skill.license ?? t.details.noLicense}</dd>
             </div>
             {
               skill.version && (
                 <div>
-                  <dt>Version</dt>
+                  <dt>{t.details.version}</dt>
                   <dd>{skill.version}</dd>
                 </div>
               )
             }
             <div>
-              <dt>Length</dt>
-              <dd>{skill.words.toLocaleString('en-US')} words · ~{readMinutes} min</dd>
+              <dt>{t.details.length}</dt>
+              <dd>{t.details.lengthValue(num(skill.words), readMinutes)}</dd>
             </div>
             {
               skill.bytes && (
                 <div>
-                  <dt>Agent cost</dt>
-                  <dd title="Approximate tokens an agent spends reading this (bytes ÷ 4)">
-                    ~{Math.round(skill.bytes / 4 / 100) / 10}k tokens
-                    {skill.refsBytes
-                      ? ` (+${Math.round((skill.refsBytes / 4) * 1e-3)}k refs)`
-                      : ''}
+                  <dt>{t.details.agentCost}</dt>
+                  <dd title={t.details.agentCostTip}>
+                    {t.details.tokens(
+                      num(Math.round(skill.bytes / 4 / 100) / 10),
+                      skill.refsBytes ? num(Math.round((skill.refsBytes / 4) * 1e-3)) : null,
+                    )}
                   </dd>
                 </div>
               )
@@ -223,16 +208,9 @@ const refs = refsFor(skill.id);
             {
               skill.pushedAt && (
                 <div>
-                  <dt>Repo updated</dt>
+                  <dt>{t.details.repoUpdated}</dt>
                   <dd>
-                    <time datetime={skill.pushedAt}>
-                      {new Date(skill.pushedAt + 'T00:00:00Z').toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                        timeZone: 'UTC',
-                      })}
-                    </time>
+                    <time datetime={skill.pushedAt}>{date(skill.pushedAt)}</time>
                   </dd>
                 </div>
               )
@@ -240,14 +218,8 @@ const refs = refsFor(skill.id);
             {
               skill.commitSha && (
                 <div>
-                  <dt>Pinned commit</dt>
-                  <dd
-                    title={
-                      skill.pinnedAt
-                        ? `Pin taken ${skill.pinnedAt} — mirror, links, and installs all reference this exact commit`
-                        : 'Mirror, links, and installs all reference this exact commit'
-                    }
-                  >
+                  <dt>{t.details.pinned}</dt>
+                  <dd title={t.details.pinnedTip(skill.pinnedAt)}>
                     <a
                       class="mono sha-link"
                       href={`https://github.com/${skill.repo}/tree/${skill.commitSha}`}
@@ -259,14 +231,7 @@ const refs = refsFor(skill.id);
                     {skill.commitDate && (
                       <>
                         {' · '}
-                        <time datetime={skill.commitDate}>
-                          {new Date(skill.commitDate).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric',
-                            timeZone: 'UTC',
-                          })}
-                        </time>
+                        <time datetime={skill.commitDate}>{date(skill.commitDate)}</time>
                       </>
                     )}
                   </dd>
@@ -276,10 +241,12 @@ const refs = refsFor(skill.id);
             {
               skill.integrity?.['SKILL.md'] && (
                 <div>
-                  <dt>Integrity</dt>
+                  <dt>{t.details.integrity}</dt>
                   <dd
                     class="mono"
-                    title={`sha256 of the hosted SKILL.md — verify: curl -fsSL https://kit.superteam.codes${skill.hostedPath} | shasum -a 256`}
+                    title={t.details.integrityTip(
+                      `curl -fsSL https://kit.superteam.codes${skill.hostedPath} | shasum -a 256`,
+                    )}
                   >
                     sha256:{skill.integrity['SKILL.md'].slice(0, 12)}…
                   </dd>
@@ -291,7 +258,7 @@ const refs = refsFor(skill.id);
                  their /<login> profile URLs 404 — show real contributors only. */
               skill.lastAuthor && !skill.lastAuthor.endsWith('[bot]') && (
                 <div>
-                  <dt>Last updated by</dt>
+                  <dt>{t.details.updatedBy}</dt>
                   <dd>
                     <a
                       class="inline-link"
@@ -308,7 +275,7 @@ const refs = refsFor(skill.id);
             {
               skill.compatibility && (
                 <div>
-                  <dt>Requires</dt>
+                  <dt>{t.details.requires}</dt>
                   <dd>{skill.compatibility.replace(/^Requires\s*/i, '')}</dd>
                 </div>
               )
@@ -319,7 +286,7 @@ const refs = refsFor(skill.id);
             companionFiles.length > 0 && (
               <details class="files-tree">
                 <summary>
-                  <h3>Companion files ({companionFiles.length})</h3>
+                  <h3>{t.files.title(companionFiles.length)}</h3>
                 </summary>
                 <ul class="mono">
                   {companionFiles.map((f) => {
@@ -334,7 +301,7 @@ const refs = refsFor(skill.id);
                           }
                           target={hostedHere ? undefined : '_blank'}
                           rel={hostedHere ? undefined : 'noopener'}
-                          title={hostedHere ? 'Hosted here — stable URL for agents' : 'On GitHub'}
+                          title={hostedHere ? t.files.hostedTip : t.files.githubTip}
                         >
                           {f}
                         </a>
@@ -348,13 +315,13 @@ const refs = refsFor(skill.id);
 
           <div class="meta-actions">
             <a class="btn btn-ghost btn-sm" href={skill.skillFileUrl} target="_blank" rel="noopener"
-              >View on GitHub</a
+              >{t.actions.viewOnGithub}</a
             >
             <a
               class="btn btn-ghost btn-sm"
               href={`https://github.com/${skill.repo}/issues`}
               target="_blank"
-              rel="noopener">Report issue</a
+              rel="noopener">{t.actions.reportIssue}</a
             >
           </div>
         </div>
@@ -364,12 +331,14 @@ const refs = refsFor(skill.id);
 </Base>
 
 <script>
-  // Copy buttons on every code block in the rendered skill.
+  // Copy buttons on every code block in the rendered skill. Their label is
+  // rendered into the page in its language (data-copy-label).
+  const copyLabel = document.getElementById('skill-prose')?.dataset.copyLabel ?? '';
   for (const pre of document.querySelectorAll('#skill-prose pre')) {
     const code = pre.textContent ?? '';
     const btn = document.createElement('button');
     btn.className = 'copy-btn pre-copy';
-    btn.setAttribute('aria-label', 'Copy code block');
+    btn.setAttribute('aria-label', copyLabel);
     btn.setAttribute('data-copy', code.trimEnd());
     btn.innerHTML =
       '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
@@ -421,6 +390,7 @@ const refs = refsFor(skill.id);
   }
   .badges {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 16px;
   }

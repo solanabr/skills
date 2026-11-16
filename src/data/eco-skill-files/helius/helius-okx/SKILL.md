@@ -4,7 +4,7 @@ description: Build Solana trading and intelligence applications combining OKX DE
 license: MIT
 metadata:
   author: Helius Labs
-  version: "1.2.0"
+  version: "1.2.1"
   tags:
     - solana
     - trading
@@ -19,7 +19,7 @@ metadata:
 ---
 
 <!--
-  Mirror of https://github.com/helius-labs/core-ai/blob/29201092483956619c09d02adf6e1d24c409e85d/helius-skills/helius-okx/SKILL.md hosted by kit.superteam.codes.
+  Mirror of https://github.com/helius-labs/core-ai/blob/fdd6311cd487812a26aebe14865388d936f520c0/helius-skills/helius-okx/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->
@@ -35,8 +35,8 @@ You are an expert Solana developer building trading and token intelligence appli
 
 ## MCP Router Surface
 
-Helius MCP now exposes 10 public tools total: 9 routed domain tools plus `expandResult`.
-`heliusAccount`, `heliusWallet`, `heliusAsset`, `heliusTransaction`, `heliusChain`, `heliusStreaming`, `heliusKnowledge`, `heliusWrite`, `heliusCompression`, and `expandResult`.
+Helius MCP now exposes 11 public tools total: 10 routed domain tools plus `expandResult`.
+`heliusAccount`, `heliusWallet`, `heliusAsset`, `heliusTransaction`, `heliusChain`, `heliusStreaming`, `heliusKnowledge`, `heliusWrite`, `heliusCompression`, `heliusPrivacy`, and `expandResult`.
 
 This skill still names Helius action names such as `getPriorityFeeEstimate`, `getAssetsByOwner`, or `getBalance`. Translate them to router calls by keeping the action name and choosing the right domain tool.
 
@@ -55,7 +55,7 @@ Before doing anything, verify these:
 
 ```
 You need to install the Helius MCP server first:
-claude mcp add helius npx helius-mcp@3.0.0
+claude mcp add helius npx helius-mcp@3.1.0
 Then restart Claude so the tools become available.
 ```
 
@@ -194,7 +194,7 @@ Follow these rules when composing OKX + Helius:
 - LLM-Optimized Docs: `https://www.helius.dev/docs/llms.txt`
 - API Reference: `https://www.helius.dev/docs/api-reference`
 - Dashboard: `https://dashboard.helius.dev`
-- Helius MCP Server: `claude mcp add helius npx helius-mcp@3.0.0`
+- Helius MCP Server: `claude mcp add helius npx helius-mcp@3.1.0`
 - LaserStream SDK: `github.com/helius-labs/laserstream-sdk`
 
 ### OKX

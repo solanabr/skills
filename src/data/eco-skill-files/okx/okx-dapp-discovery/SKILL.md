@@ -5,12 +5,12 @@ description: "Discover supported third-party DApps and route protocol-specific r
 license: MIT
 metadata:
   author: okx
-  version: "4.6.9"
+  version: "4.6.11"
   homepage: "https://web3.okx.com"
 ---
 
 <!--
-  Mirror of https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-dapp-discovery/SKILL.md hosted by kit.superteam.codes.
+  Mirror of https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-dapp-discovery/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->
@@ -20,7 +20,7 @@ metadata:
 
 Route supported DApp requests to an approved OKX plugin without signing or broadcasting transactions.
 
-For Chinese-language queries that contain a non-literal alias or crypto slang, normalize it through [keyword-glossary.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-dapp-discovery/references/keyword-glossary.md) before routing. Use §2's compact native-token table first; load [protocol-keywords.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-dapp-discovery/references/protocol-keywords.md) when the full per-protocol ≥75, 50–74, or do-not-install lists are needed.
+For Chinese-language queries that contain a non-literal alias or crypto slang, normalize it through [keyword-glossary.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-dapp-discovery/references/keyword-glossary.md) before routing. Use §2's compact native-token table first; load [protocol-keywords.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-dapp-discovery/references/protocol-keywords.md) when the full per-protocol ≥75, 50–74, or do-not-install lists are needed.
 
 ## Pre-flight Checks
 

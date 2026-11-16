@@ -4,12 +4,12 @@ description: "Guide users through installing or updating Onchain OS, getting sta
 license: MIT
 metadata:
   author: okx
-  version: "4.6.9"
+  version: "4.6.11"
   homepage: "https://web3.okx.com"
 ---
 
 <!--
-  Mirror of https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-guide/SKILL.md hosted by kit.superteam.codes.
+  Mirror of https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-guide/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->
@@ -31,7 +31,7 @@ Apply the first matching row, read that reference before responding, and follow 
 
 | Priority | User signal | Reference |
 |---|---|---|
-| 1 | Intent to **install / update / reinstall** the Onchain OS CLI or skills — a request to perform the maintenance, not "I just installed, now what?" | [install-update.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-guide/references/install-update.md) |
-| 2 | Human support, customer service, complaint, feedback, bug/system error, Help Center, FAQ, or user guide | [ai-support.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-guide/references/ai-support.md) |
-| 3 | Explicit OKX.AI subject or spelling variant, quick start, platform compatibility, or User/ASP/Evaluator registration | [ai-guide.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-guide/references/ai-guide.md) |
-| 4 | Generic Onchain OS introduction, first use, tutorial, getting started, “what can it do?”, or “where do I start?” | [how-to-play.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-guide/references/how-to-play.md) |
+| 1 | Intent to **install / update / reinstall** the Onchain OS CLI or skills — a request to perform the maintenance, not "I just installed, now what?" | [install-update.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-guide/references/install-update.md) |
+| 2 | Human support, customer service, complaint, feedback, bug/system error, Help Center, FAQ, or user guide | [ai-support.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-guide/references/ai-support.md) |
+| 3 | Explicit OKX.AI subject or spelling variant, quick start, platform compatibility, or User/ASP/Evaluator registration | [ai-guide.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-guide/references/ai-guide.md) |
+| 4 | Generic Onchain OS introduction, first use, tutorial, getting started, “what can it do?”, or “where do I start?” | [how-to-play.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-guide/references/how-to-play.md) |

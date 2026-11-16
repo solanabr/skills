@@ -4,12 +4,12 @@ description: "Discover and manage OKX-aggregated DeFi products and positions acr
 license: MIT
 metadata:
   author: okx
-  version: "4.6.9"
+  version: "4.6.11"
   homepage: "https://web3.okx.com"
 ---
 
 <!--
-  Mirror of https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-defi/SKILL.md hosted by kit.superteam.codes.
+  Mirror of https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-defi/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->
@@ -29,18 +29,18 @@ Load only the reference files required by the selected route.
 
 | User Intent | Reference |
 |---|---|
-| Discover / search DeFi products, find best APY | [invest.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-defi/references/invest.md) |
-| Product detail (APY, TVL, accepted tokens) | [invest.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-defi/references/invest.md) |
-| Deposit / stake / provide liquidity | [invest.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-defi/references/invest.md) |
-| Withdraw / redeem a position (full or partial) | [invest.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-defi/references/invest.md) |
-| Claim rewards (platform / investment / V3 fee / bonus / unlocked principal) | [invest.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-defi/references/invest.md) |
-| APY history, TVL history, V3 depth / price charts | [invest.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-defi/references/invest.md) |
-| View DeFi positions / holdings overview | [portfolio.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-defi/references/portfolio.md) |
-| Per-protocol position detail | [portfolio.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-defi/references/portfolio.md) |
-| Exact parameters / return schemas — invest, shared support, and charts commands | [invest-cli-reference.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-defi/references/invest-cli-reference.md) |
-| Exact parameters / return schemas — positions commands | [portfolio-cli-reference.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-defi/references/portfolio-cli-reference.md) |
-| Errors / failed deposits / expired calldata | [invest-troubleshooting.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-defi/references/invest-troubleshooting.md) |
-| Errors / empty positions / address-format issues | [portfolio-troubleshooting.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-defi/references/portfolio-troubleshooting.md) |
+| Discover / search DeFi products, find best APY | [invest.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-defi/references/invest.md) |
+| Product detail (APY, TVL, accepted tokens) | [invest.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-defi/references/invest.md) |
+| Deposit / stake / provide liquidity | [invest.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-defi/references/invest.md) |
+| Withdraw / redeem a position (full or partial) | [invest.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-defi/references/invest.md) |
+| Claim rewards (platform / investment / V3 fee / bonus / unlocked principal) | [invest.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-defi/references/invest.md) |
+| APY history, TVL history, V3 depth / price charts | [invest.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-defi/references/invest.md) |
+| View DeFi positions / holdings overview | [portfolio.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-defi/references/portfolio.md) |
+| Per-protocol position detail | [portfolio.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-defi/references/portfolio.md) |
+| Exact parameters / return schemas — invest, shared support, and charts commands | [invest-cli-reference.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-defi/references/invest-cli-reference.md) |
+| Exact parameters / return schemas — positions commands | [portfolio-cli-reference.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-defi/references/portfolio-cli-reference.md) |
+| Errors / failed deposits / expired calldata | [invest-troubleshooting.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-defi/references/invest-troubleshooting.md) |
+| Errors / empty positions / address-format issues | [portfolio-troubleshooting.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-defi/references/portfolio-troubleshooting.md) |
 
 Typical flow spans both: view positions (Portfolio) → redeem or claim (Invest). Read both reference files when the request chains them.
 
@@ -53,7 +53,7 @@ balances, login, contract calls, or transaction broadcasts to
 
 ## Chain Name Support
 
-The CLI resolves chain names automatically (for example, `ethereum` → `1`, `bsc` → `56`, `solana` → `501`). Use the Chain Support table in [portfolio.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-defi/references/portfolio.md) for the DeFi-specific aliases.
+The CLI resolves chain names automatically (for example, `ethereum` → `1`, `bsc` → `56`, `solana` → `501`). Use the Chain Support table in [portfolio.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-defi/references/portfolio.md) for the DeFi-specific aliases.
 
 ## Security
 

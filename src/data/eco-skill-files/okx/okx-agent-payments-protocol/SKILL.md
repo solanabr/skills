@@ -4,12 +4,12 @@ description: "Handle agent payments and paid endpoints via x402, MPP, payment li
 license: MIT
 metadata:
   author: okx
-  version: "4.6.9"
+  version: "4.6.11"
   homepage: "https://web3.okx.com"
 ---
 
 <!--
-  Mirror of https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-agent-payments-protocol/SKILL.md hosted by kit.superteam.codes.
+  Mirror of https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-agent-payments-protocol/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->

@@ -4,12 +4,12 @@ description: "Query read-only DEX token, market, signal, social, trenches, and W
 license: MIT
 metadata:
   author: okx
-  version: "4.6.9"
+  version: "4.6.11"
   homepage: "https://web3.okx.com"
 ---
 
 <!--
-  Mirror of https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-dex-market/SKILL.md hosted by kit.superteam.codes.
+  Mirror of https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-dex-market/SKILL.md hosted by kit.superteam.codes.
   Relative links were rewritten to GitHub URLs pinned to the mirrored commit —
   companion files are not hosted here; the upstream repo is the source of truth.
 -->
@@ -28,16 +28,16 @@ Preflight checks: At the start of each thread, complete the checks in `../okx-ag
 ## Intent Routing
 
 - **Named-protocol gate:** if a supported DApp is the subject of an operation or protocol-specific analytics request—including APY, TVL, volume, positions, history, or a timeframe—stop and invoke `okx-dapp-discovery`. Polymarket and supported-asset up/down phrases for BTC/ETH/SOL/XRP/BNB/DOGE/HYPE also route there. Example: "BTC 5-minute up/down market" routes to `okx-dapp-discovery`, not kline or price.
-- **Trenches write gate:** buy/sell/snipe/ape verbs, including direct translations and Chinese slang, aimed at a pump.fun-style token are write operations and route to `okx-dapp-discovery`. Analytical bundle/sniper detection requests remain in Trenches; apply the detailed rule in [trenches.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-dex-market/references/trenches.md).
+- **Trenches write gate:** buy/sell/snipe/ape verbs, including direct translations and Chinese slang, aimed at a pump.fun-style token are write operations and route to `okx-dapp-discovery`. Analytical bundle/sniper detection requests remain in Trenches; apply the detailed rule in [trenches.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-dex-market/references/trenches.md).
 
 | User intent | Reference |
 |---|---|
-| Search/rank tokens; metadata; detailed price information; liquidity; holders; top traders; trades; risk metadata; or holder clusters | [token.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-dex-market/references/token.md) |
-| Single/batch prices; K-line/OHLC; index price; wallet PnL, win rate, or DEX trade history | [market.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-dex-market/references/market.md) |
-| Smart-money/KOL/whale feeds; custom-address tracking; aggregated buy signals; or a top-trader leaderboard | [signal.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-dex-market/references/signal.md) |
-| News; market/per-coin sentiment; token vibe/hotness; or token KOL leaderboard | [social.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-dex-market/references/social.md) |
-| Meme launches; developer/rug history; bundle/sniper detection; or co-investor wallets | [trenches.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-dex-market/references/trenches.md) |
-| Real-time `onchainos ws` monitoring or a custom WebSocket client | [ws.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-dex-market/references/ws.md) |
+| Search/rank tokens; metadata; detailed price information; liquidity; holders; top traders; trades; risk metadata; or holder clusters | [token.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-dex-market/references/token.md) |
+| Single/batch prices; K-line/OHLC; index price; wallet PnL, win rate, or DEX trade history | [market.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-dex-market/references/market.md) |
+| Smart-money/KOL/whale feeds; custom-address tracking; aggregated buy signals; or a top-trader leaderboard | [signal.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-dex-market/references/signal.md) |
+| News; market/per-coin sentiment; token vibe/hotness; or token KOL leaderboard | [social.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-dex-market/references/social.md) |
+| Meme launches; developer/rug history; bundle/sniper detection; or co-investor wallets | [trenches.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-dex-market/references/trenches.md) |
+| Real-time `onchainos ws` monitoring or a custom WebSocket client | [ws.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-dex-market/references/ws.md) |
 
 When a request spans modules, resolve the missing input first—for example use Token to resolve a contract address before Social vibe—and then load the next module Reference.
 
@@ -50,9 +50,9 @@ When a request spans modules, resolve the missing input first—for example use 
 
 ## CLI Result Contract
 
-1. Before formatting any DEX CLI result, inspect `notifications[]`. If it is non-empty, load [_shared/payment-notifications.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-dex-market/_shared/payment-notifications.md), render every matching notification, and follow its `confirming: true` procedure. If it is absent or empty, continue normally.
+1. Before formatting any DEX CLI result, inspect `notifications[]`. If it is non-empty, load [_shared/payment-notifications.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-dex-market/_shared/payment-notifications.md), render every matching notification, and follow its `confirming: true` procedure. If it is absent or empty, continue normally.
 2. Before reporting completion, verify that the selected command succeeded, required fields were rendered according to the module Reference, notifications were handled, and partial or error states were surfaced explicitly.
-3. After a successful DEX command, load [follow-ups.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-dex-market/references/follow-ups.md) for its matching next-action suggestions and workflow hint. Do not load it before a result exists.
+3. After a successful DEX command, load [follow-ups.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-dex-market/references/follow-ups.md) for its matching next-action suggestions and workflow hint. Do not load it before a result exists.
 
 ## Security
 
@@ -69,4 +69,4 @@ When a request spans modules, resolve the missing input first—for example use 
 
 ## Chain Name Support
 
-Use `../okx-agentic-wallet/_shared/chain-support.md` as the canonical chain list. If it is unavailable, use the synchronized fallback at [_shared/chain-support.md](https://github.com/okx/onchainos-skills/blob/9d5663398ae0947323e283ff763ea89c37815d3c/skills/okx-dex-market/_shared/chain-support.md).
+Use `../okx-agentic-wallet/_shared/chain-support.md` as the canonical chain list. If it is unavailable, use the synchronized fallback at [_shared/chain-support.md](https://github.com/okx/onchainos-skills/blob/30cc6915d7dacc06d497ecafb51a4fc7c1ebd251/skills/okx-dex-market/_shared/chain-support.md).

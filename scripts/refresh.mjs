@@ -49,6 +49,7 @@ const API_HEADERS = {
 
 /** Where each ecosystem repo keeps its canonical skills (path prefix filters). */
 const SKILL_PATHS = {
+  "StalkC/stalkchain-plugin": { include: [/^skills\/wallet-lookup\/SKILL\.md$/], exclude: [] },
   "sendaifun/skills": {
     include: [/^skills\//],
     // example-skill = template boilerplate; animation-reverse-engineering =

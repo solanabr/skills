@@ -1540,6 +1540,58 @@
   ],
   "ecosystem": [
     {
+      "id": "stalkchain",
+      "repo": "StalkC/stalkchain-plugin",
+      "displayName": "StalkChain Wallet Lookup",
+      "vendor": "StalkChain",
+      "type": "vendor",
+      "homepage": "https://stalkchain.com/mcp",
+      "categories": [
+        "wallets",
+        "data"
+      ],
+      "blurb": "Look up public Solana wallet holdings, profit and loss, and win rate. StalkChain sign-in is required, and live queries use account credits.",
+      "url": "https://github.com/StalkC/stalkchain-plugin",
+      "skills": [
+        {
+          "name": "wallet-lookup",
+          "description": "Look up any crypto wallet address. Use when the user pastes a wallet address or asks what a wallet holds, what it's worth, how much it has made or lost, how old it is, who funded it, what it has been doing, or whether it belongs to a known trader.",
+          "category": "wallets-mobile",
+          "url": "https://github.com/StalkC/stalkchain-plugin/tree/b69be0f9eac83d26ec37699ee31bdc4d643635c2/skills/wallet-lookup",
+          "multiFile": false,
+          "hosted": true,
+          "dir": "skills/wallet-lookup",
+          "slug": "wallet-lookup",
+          "commitSha": "b69be0f9eac83d26ec37699ee31bdc4d643635c2",
+          "commitDate": "2026-11-19T02:56:23Z",
+          "lastAuthor": "antoinersx",
+          "blobSha": "859ac2d007b6f53c1edd46c060afa992418bbad0",
+          "bytes": 4223,
+          "words": 609,
+          "files": [],
+          "hostedFiles": [],
+          "integrity": {
+            "SKILL.md": "77897a0385d6286f8d1baa0373d340544bd0b203aa1a728ccb0a7962ce536762"
+          },
+          "hostedPath": "/s/stalkchain/wallet-lookup/SKILL.md"
+        }
+      ],
+      "stars": 3,
+      "pushedAt": "2026-11-19",
+      "license": "MIT",
+      "description": "StalkChain crypto research plugin for Claude Code, ChatGPT, Codex, Cursor and Hermes. MCP tools for wallet PnL, token safety and smart-money flows.",
+      "contributors": [
+        "antoinersx",
+        "claude",
+        "The-x-35"
+      ],
+      "commitSha": "b69be0f9eac83d26ec37699ee31bdc4d643635c2",
+      "commitDate": "2026-11-19T02:56:23Z",
+      "pinnedAt": "2026-11-19T06:32:23.018Z",
+      "skillCount": 1,
+      "logo": "/logos/StalkC.png"
+    },
+    {
       "id": "sendai-skills",
       "repo": "sendaifun/skills",
       "displayName": "SendAI Skills",
